@@ -1,5 +1,4 @@
 import brawlstats
-import logging
 import discord
 import pandas as pd
 import schedule
