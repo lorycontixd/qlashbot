@@ -6,10 +6,13 @@ import schedule
 import time
 from random import randint
 
+roles_assignment = '434850121134637056'
+bot_testing = '705823922402361437'
+
 qc_directory = './qlashclans/'
 qc_directory2 = './qlashclans2/'
 
-TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImI2NDU2OWJkLTNkN2MtNGViNS04ZWIyLWM1YjIzOGU3NWI2ZiIsImlhdCI6MTU4OTMxMjc4MSwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNS4xNzEuOTYuMTM2Il0sInR5cGUiOiJjbGllbnQifV19.6tGLHX9t20qRiwhTYqLzP5XiTCw2v6NtR7QlGW-QM-c79qOCN1qCdzkOIieLbLLV7rhYf1s9AFeCxjy8H92vSA'
+TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
 myclient = brawlstats.Client(TOKEN2,is_async=True)
 
 def LoadCsv():
@@ -108,6 +111,41 @@ async def getclan(ctx,tag):
     e.add_field(name="Top member", value=str(members[0].name)+'\n'+str(members[0].trophies)+'\n'+str(members[0].role), inline=True)
     e.set_footer(text="Created By Lore")
     await ctx.send(embed=e)
+
+async def set_(ctx,gametag):
+    if gametag[0] != '#':
+        await ctx.send("BadArguement: GameTag needs to start with #")
+        return
+    clanname = ''
+    membergamename = ''
+    author = ctx.message.author
+    readfile = 'qlash_clans.csv'
+    writefile = 'registered.txt'
+    file = open(readfile,'r+')
+    content = file.read()
+    lines = content.split('\n')
+    file.close()
+    for i in range(len(lines)-1): #cycle through clans
+        ll=lines[i].split(",")
+        #print(ll)
+        nname = str(ll[0])
+        tag = str(ll[1])
+        club = await myclient.get_club(tag)
+        for member in club.members:
+            if member.tag == gametag:
+                await ctx.send("Position found in clan: "+str(club.name))
+                role = discord.utils.get(author.guild.roles, name=nname)
+                await author.add_roles(role)
+                membergamename = member.name
+                clanname = nname
+                break
+        if clanname:
+            break
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    file2 = open(writefile,'w+')
+    file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+str(dt_string) )
+    file2.close()
+
 
 async def search_member(ctx,name,clubtag):
     if not await Check(ctx,str(ctx.message.author)):

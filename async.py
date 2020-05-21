@@ -23,7 +23,6 @@ myclient = brawlstats.Client(TOKEN2,is_async=True)
 botconfig = '450694573161709569'
 itgeneral = '415221650481610762'
 
-
 #*****************************************************************************************
 
 @bot.event
@@ -65,6 +64,10 @@ async def qlash_allclans(ctx):
 @bot.command(name='qlash-clan',brief="Search for information about a specific QLASH clan. Parameter accepts either clan name or clan tag. Clan name has to be identical to the ingame clan name.")
 async def qlash_clan(ctx,name_tag):
     await qlash_cclan(ctx,name_tag)
+
+@bot.command(name='set')
+async def set(ctx,gametag):
+    await set_(ctx,gametag)
 
 @bot.command(name='clan-add',brief='Add a qlash clan to the database. Parameters require <tag> and <clan_name>')
 async def clan_add(ctx,tag,*cname):
