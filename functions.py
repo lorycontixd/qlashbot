@@ -7,9 +7,23 @@ import time
 from datetime import datetime
 from random import randint
 
+#bot properties
+TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
+clientid = '701125311047401474'
+clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
+
+#test friends tags
+ignick_lory = 'loryconti'
+igtag_lory = '#20VYUG2L'
+qlash_ares = '#98VQUC8R'
+igtag_picoz = '#20VVVVYQ8'
+igtag_elgarzy = '#RC9PVRCJ'
+
+#discord channel IDs
 roles_assignment = '434850121134637056'
 bot_testing = '705823922402361437'
 
+#database directories
 qc_directory = './qlashclans/'
 qc_directory2 = './qlashclans2/'
 
@@ -119,12 +133,14 @@ async def getclan(ctx,tag):
     e.set_footer(text="Created By Lore")
     await ctx.send(embed=e)
 
+#---- SET FUNCTION (GIVE ROLE TO MEMBERS FOR CURRENT CLAN)
 async def set_(ctx,gametag):
     if gametag[0] != '#':
         await ctx.send("BadArguement: GameTag needs to start with #")
         return
     clanname = ''
     membergamename = ''
+    rolename = ''
     author = ctx.message.author
     readfile = 'qlash_clans.csv'
     writefile = 'registered.txt'
@@ -134,31 +150,46 @@ async def set_(ctx,gametag):
     file.close()
     for i in range(len(lines)-1): #cycle through clans
         ll=lines[i].split(",")
-        #print(ll)
         nname = str(ll[0])
+        role = discord.utils.get(author.guild.roles, name=nname)
+        if role in author.roles:
+            await author.remove_roles(role)
         tag = str(ll[1])
         club = await myclient.get_club(tag)
         for member in club.members:
             if member.tag == gametag:
                 await ctx.send("Position found in clan: "+str(club.name))
-                role = discord.utils.get(author.guild.roles, name=nname)
+                #role = discord.utils.get(author.guild.roles, name=nname)
                 await author.add_roles(role)
                 membergamename = member.name
                 clanname = nname
+                rolename = str(role)
                 break
-        if clanname:
-            break
     if not clanname:
         await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
         return
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    file2 = open(writefile,'w+')
-    file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+'\t'+str(dt_string) )
+
+    filetemp = open('registered.txt','r+')
+    contenttemp = filetemp.read()
+    linestemp = contenttemp.split('\n')
+    filetemp.close()
+    exists = False
+    for k in range(len(linestemp)-1): #cycle through users in database
+        lltemp=linestemp[k].split("\t")
+        if str(author)==str(lltemp[0]):
+            print("Found in database")
+            exists = True
+            break
+    file2 = open(writefile,'a+')
+    if exists == False:
+        file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
+        print("Registered")
     file2.close()
-    await ctx.send("Role set for member "+str(author)+'\t'+"Role: "+str(role)+"\t"+"Time: "+str(dt_string))
+    await ctx.send("Role set for member "+str(author)+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
 
-
+#---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
 async def search_member(ctx,name,clubtag):
     if not await Check(ctx,str(ctx.message.author)):
         return

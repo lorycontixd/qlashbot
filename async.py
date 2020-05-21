@@ -6,16 +6,13 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
+import os
+from urllib.request import Request, urlopen
+apiinvestigator_key = '809O044FN563WZ7IXJTMLP1U63G1HEQ2R8VC7S9KABYD52'
+request = Request('https://ipinvestigator.expeditedaddons.com/?api_key=' + os.environ[apiinvestigator_key] + '&ip=68.10.149.45')
 
-TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
-clientid = '701125311047401474'
-clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
-
-ignick_lory = 'loryconti'
-igtag_lory = '#20VYUG2L'
-qlash_ares = '#98VQUC8R'
-igtag_picoz = '#20VVVVYQ8'
-igtag_elgarzy = '#RC9PVRCJ'
+response_body = urlopen(request).read()
+print(response_body)
 
 bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
 #myclient = brawlstats.Client(TOKEN2,is_async=True)
@@ -29,8 +26,21 @@ itgeneral = '415221650481610762'
 async def on_ready():
     print('Logged in as: ',bot.user.name)
     print('Bot ID: ',bot.user.id)
-    print('------')
+    print('----------------')
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
+
+@bot.event
+async def on_message(message):
+    print("New Message in "+str(message.channel)+", author: "+str(message.author))
+    roles_channel = bot.get_channel(int(bot_testing))
+    if message.channel == roles_channel:
+        if not message.content.startswith('^set'):
+            if not message.attachments:
+                if not message.author.bot:
+                    await message.delete()
+                    message2 = await roles_channel.send("No allowed messages apart from set commands. If you need support please write in the support channel or contact our staff.")
+                    await message2.delete(delay=4.0)
+    await bot.process_commands(message)
 
 #***********************************  FUN  ***********************************************
 @commands.cooldown(1, 20, commands.BucketType.user)
