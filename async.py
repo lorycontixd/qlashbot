@@ -22,9 +22,6 @@ proxies = {
 "https": os.environ['QUOTAGUARDSTATIC_URL']
 }
 
-
-
-
 #*********************************** CHANNELS ********************************************
 botconfig = '450694573161709569'
 itgeneral = '415221650481610762'
@@ -46,18 +43,17 @@ async def on_ready():
     print('----------------')
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
+
 @bot.event
-async def on_message(message):
-    print("New Message in "+str(message.channel)+", author: "+str(message.author))
-    roles_channel = bot.get_channel(int(bot_testing))
-    if message.channel == roles_channel:
-        if not message.content.startswith('^set'):
-            if not message.attachments:
-                if not message.author.bot:
-                    await message.delete()
-                    message2 = await roles_channel.send("No allowed messages apart from set commands. If you need support please write in the support channel or contact our staff.")
-                    await message2.delete(delay=4.0)
-    await bot.process_commands(message)
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.CheckFailure):
+        await ctx.send('PermissionError: You do not have the correct role for this command. 😥')
+    if isinstance(error, commands.errors.UserInputError):
+    	await ctx.send('ArguementError: Bad arguement was given. 😕')
+    if isinstance(error, commands.CommandOnCooldown):
+    	await ctx.send('CommandError: Command is on cooldown. 😞')
+    if isinstance(error, commands.CommandNotFound):
+    	await ctx.send('CommandError: Command was not found. 😞')
 
 #***********************************  FUN  ***********************************************
 @commands.cooldown(1, 20, commands.BucketType.user)

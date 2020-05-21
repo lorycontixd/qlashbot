@@ -5,6 +5,7 @@ import schedule
 import time
 from datetime import datetime
 from random import randint
+import twitch
 
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
