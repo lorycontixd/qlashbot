@@ -4,6 +4,7 @@ import discord
 import pandas as pd
 import schedule
 import time
+from datetime import datetime
 from random import randint
 
 roles_assignment = '434850121134637056'
@@ -12,14 +13,14 @@ bot_testing = '705823922402361437'
 qc_directory = './qlashclans/'
 qc_directory2 = './qlashclans2/'
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
-myclient = brawlstats.Client(TOKEN2,is_async=True)
-=======
-LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImI2NDU2OWJkLTNkN2MtNGViNS04ZWIyLWM1YjIzOGU3NWI2ZiIsImlhdCI6MTU4OTMxMjc4MSwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNS4xNzEuOTYuMTM2Il0sInR5cGUiOiJjbGllbnQifV19.6tGLHX9t20qRiwhTYqLzP5XiTCw2v6NtR7QlGW-QM-c79qOCN1qCdzkOIieLbLLV7rhYf1s9AFeCxjy8H92vSA'
+#=======
+LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
 DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjgyZWY4OTBhLTVhMTEtNDNlOS04NjdhLWJiNDUzOWQ5MzJmNCIsImlhdCI6MTU5MDAxMjMyNiwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYyLjI4LjIxNyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.hm_9XKs7P2b3f-DlcYlsbfu16lXQu6jmYPNCXGGrJ1vVC5HH9YxZksOE9DSSr7Sx1GJBHMt57e1kKgeMMtCg_A'
-myclient = brawlstats.Client(DaddeToken,is_async=True)
->>>>>>> 626418930a1a91e75beb6efadce32fd75e2e0df5
+myclient = brawlstats.Client(LoryToken,is_async=True)
+#myclient = brawlstats.Client(DaddeToken,is_async=True)
+#>>>>>>> 626418930a1a91e75beb6efadce32fd75e2e0df5
 
 def LoadCsv():
     df = pd.DataFrame(columns = ['Name','Tag'])
@@ -147,10 +148,15 @@ async def set_(ctx,gametag):
                 break
         if clanname:
             break
+    if not clanname:
+        await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
+        return
+    now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     file2 = open(writefile,'w+')
-    file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+str(dt_string) )
+    file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+'\t'+str(dt_string) )
     file2.close()
+    await ctx.send("Role set for member "+str(author)+'\t'+"Role: "+str(role)+"\t"+"Time: "+str(dt_string))
 
 
 async def search_member(ctx,name,clubtag):

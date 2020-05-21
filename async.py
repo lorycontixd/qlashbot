@@ -18,7 +18,7 @@ igtag_picoz = '#20VVVVYQ8'
 igtag_elgarzy = '#RC9PVRCJ'
 
 bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
-myclient = brawlstats.Client(TOKEN2,is_async=True)
+#myclient = brawlstats.Client(TOKEN2,is_async=True)
 #*********************************** CHANNELS ********************************************
 botconfig = '450694573161709569'
 itgeneral = '415221650481610762'
