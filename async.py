@@ -36,7 +36,6 @@ itgeneral = '415221650481610762'
 async def on_ready():
     print('Logged in as: ',bot.user.name)
     print('Bot ID: ',bot.user.id)
-    print(s.text)
     print('----------------')
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
