@@ -8,13 +8,14 @@ from functions import *
 import os
 import requests
 from urllib.request import Request, urlopen
+import aiohttp
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
 quotaURL = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
 #myclient = brawlstats.Client(TOKEN2,is_async=True)
-
+proxyurl = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 
 proxies = {
 "http": os.environ['QUOTAGUARDSTATIC_URL'],
@@ -32,13 +33,16 @@ itgeneral = '415221650481610762'
 
 @bot.event
 async def on_ready():
-    r = requests.get('http://ip.quotaguard.com', proxies=proxies)
+    #r = requests.get('http://ip.quotaguard.com', proxies=proxies)
+
     print('Logged in as: ',bot.user.name)
     print('Bot ID: ',bot.user.id)
 
-    if r.status_code == 200:
-        js = r.json()
-        print(js)
+    async with aiohttp.ClientSession() as session:
+        async with session.get('http://ip.quotaguard.com',proxy=proxyurl) as r:
+            if r.status == 200:
+                js = await r.json()
+                print(js)
     print('----------------')
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
