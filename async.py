@@ -6,12 +6,19 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
 import os
+import requests
 from urllib.request import Request, urlopen
-apiinvestigator_key = '809O044FN563WZ7IXJTMLP1U63G1HEQ2R8VC7S9KABYD52'
-request = Request('https://ipinvestigator.expeditedaddons.com/?api_key=' + os.environ[apiinvestigator_key] + '&ip=68.10.149.45')
+fixie_url = 'http://fixie:0tLVIpawRWIF0Vw@olympic.usefixie.com:80'
+#fixie ip addresses - 99.80.183.117, 99.81.135.32
 
-response_body = urlopen(request).read()
-print(response_body)
+proxyDict = {
+              "http"  : os.environ.get('FIXIE_URL', ''),
+              "https" : os.environ.get('FIXIE_URL', '')
+            }
+r = requests.get(fixie_url, proxies=proxyDict)
+os.environ['http_proxy'] = os.environ.get('FIXIE_URL', '')
+os.environ['https_proxy'] = os.environ.get('FIXIE_URL', '')
+requests.get(fixie_url)
 
 bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
 #myclient = brawlstats.Client(TOKEN2,is_async=True)
