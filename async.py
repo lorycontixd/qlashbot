@@ -8,21 +8,25 @@ from functions import *
 import os
 import requests
 from urllib.request import Request, urlopen
+from boto.s3.connection import S3Connection
+import aiohttp
+
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
 quotaURL = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
 #myclient = brawlstats.Client(TOKEN2,is_async=True)
 
-import requests
-import os
 
 proxies = {
-"http": os.environ['QUORA_URL'],
-"https": os.environ['QUORA_URL']
+"http": os.environ['QUOTAGUARDSTATIC_URL'],
+"https": os.environ['QUOTAGUARDSTATIC_URL']
 }
 
-res = requests.get("http://ip.quotaguard.com/", proxies=proxies)
+s = requests.session()
+s.proxies.update(proxies)
+s.get("http://ip.quotaguard.com")
+
 
 #*********************************** CHANNELS ********************************************
 botconfig = '450694573161709569'
@@ -34,7 +38,7 @@ itgeneral = '415221650481610762'
 async def on_ready():
     print('Logged in as: ',bot.user.name)
     print('Bot ID: ',bot.user.id)
-    print(res.text)
+    print(s.text)
     print('----------------')
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
