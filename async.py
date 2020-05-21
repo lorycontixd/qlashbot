@@ -35,7 +35,10 @@ async def on_ready():
     r = requests.get('http://ip.quotaguard.com', proxies=proxies)
     print('Logged in as: ',bot.user.name)
     print('Bot ID: ',bot.user.id)
-    print(r.text)
+
+    if r.status_code == 200:
+        js = r.json()
+        print(js)
     print('----------------')
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
