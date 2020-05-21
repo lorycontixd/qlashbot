@@ -16,25 +16,30 @@ quotaURL = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03
 bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
 #myclient = brawlstats.Client(TOKEN2,is_async=True)
 proxyurl = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
-
 proxies = {
 "http": os.environ['QUOTAGUARDSTATIC_URL'],
 "https": os.environ['QUOTAGUARDSTATIC_URL']
 }
 
-#*********************************** CHANNELS ********************************************
-botconfig = '450694573161709569'
-itgeneral = '415221650481610762'
-
 #*****************************************************************************************
 
+#FUNCTION REPLACING HAS_ANY_ROLE
+def checkforrole(member: discord.Member, *roles):
+	temp = " ".join(roles[:])
+	searchingrole = temp.split(" ") #contains the roles that member must have (list)
+	for role in member.roles:
+		if role.name in searchingrole:
+			print("role found in member")
+			return True
+	print("role not found in member")
+	return False
+
+#************************************ EVENTS ********************************************
 @bot.event
 async def on_ready():
     #r = requests.get('http://ip.quotaguard.com', proxies=proxies)
-
     print('Logged in as: ',bot.user.name)
     print('Bot ID: ',bot.user.id)
-
     async with aiohttp.ClientSession() as session:
         async with session.get('http://ip.quotaguard.com',proxy=proxyurl) as r:
             if r.status == 200:
@@ -100,17 +105,22 @@ async def clan_add(ctx,tag,*cname):
 async def clan_remove(ctx,*cname):
     await clan_remove_(ctx,*cname)
 
-@bot.command(name='view-members',brief='')
-async def viewmembers(ctx):
-    await CompareMembers(ctx)
-
 @bot.command(name='qlash-clan-members',brief='Shows a list of all members of a given QLASH clan. Parameter accepts either clan name or clan tag. Clan name must be identical to the ingame clan name.')
 async def qlashclanmembers(ctx,clan_or_tag):
     await GetClanMembers(ctx,clan_or_tag)
 
-@bot.command(name='write-members',brief="TEST command to write all members to file")
-async def writemembers(ctx):
-    await WriteMembersToFile2(ctx)
+@bot.command(name='locate')
+async def locate(ctx,ip):
+    await locate_(ctx,ip)
+
+#@bot.command(name='view-members',brief='')
+#async def viewmembers(ctx):
+#    await CompareMembers(ctx)
+
+#@bot.command(name='write-members',brief="TEST command to write all members to file")
+#async def writemembers(ctx):
+#    await WriteMembersToFile2(ctx)
+
 
 
 

@@ -6,11 +6,13 @@ import time
 from datetime import datetime
 from random import randint
 import twitch
+import ipapi
 
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
 clientid = '701125311047401474'
 clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
+ipapi.location(ip=None, key=None, field=None)
 
 #test friends tags
 ignick_lory = 'loryconti'
@@ -22,6 +24,10 @@ igtag_elgarzy = '#RC9PVRCJ'
 #discord channel IDs
 roles_assignment = '434850121134637056'
 bot_testing = '705823922402361437'
+en_general = '464691619569074177'
+it_general = '415221650481610762'
+support = '464695005156737024'
+banlist = '493151669849161743'
 
 #database directories
 qc_directory = './qlashclans/'
@@ -390,3 +396,23 @@ async def CompareMembers(ctx):
         for it2 in oldtags:
             if it2 not in newtags:
                 print(it2," ","left")
+
+async def locate_(ctx,ip):
+    print("Searching for location...")
+    mydict = ipapi.location(ip)
+    e=discord.Embed(title="Found location for ip: "+str(mydict["ip"]) , color=0xffaa00)
+    e.set_author(name="QLASH Bot")
+    e.add_field(name="City", value=str(mydict["city"]), inline=True)
+    e.add_field(name="Region", value=str(mydict["region"]), inline=True)
+    e.add_field(name="Country", value=str(mydict["country"]), inline=True)
+    e.add_field(name="Continent Code", value=str(mydict["continent_code"]), inline=True)
+    e.add_field(name="Postal Code", value=str(mydict["postal"]), inline=True)
+    e.add_field(name="Latitude", value=str(mydict["latitude"]), inline=True)
+    e.add_field(name="Longitude", value=str(mydict["longitude"]), inline=True)
+    e.add_field(name="Timezone", value=str(mydict["timezone"]), inline=True)
+    e.add_field(name="Country Calling Code", value=str(mydict["country_calling_code"]), inline=True)
+    e.add_field(name="Currency", value=str(mydict["currency_name"]), inline=True)
+    e.add_field(name="Country Population", value=str(mydict["country_population"]), inline=True)
+    e.add_field(name="Organisation", value=str(mydict["org"]), inline=True)
+    e.set_footer(text="Created by Lore")
+    await ctx.send(embed=e)
