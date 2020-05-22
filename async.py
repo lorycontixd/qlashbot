@@ -7,21 +7,21 @@ from discord.voice_client import VoiceClient
 from functions import *
 import os
 import requests
+import urllib
 from urllib.request import Request, urlopen
 import aiohttp
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
-#TOKEN2=DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
-quotaURL = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
-#myclient = brawlstats.Client(TOKEN2,is_async=True)
-proxyurl = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
-proxies = {
-    "http": os.environ['QUOTAGUARDSTATIC_URL'],
-    "https": os.environ['QUOTAGUARDSTATIC_URL']
-}
 
+os.environ['http_proxy'] = os.environ['QUOTAGUARDSTATIC_URL']
+url = 'http://ip.quotaguard.com/'
+proxy = urllib.request.ProxyHandler()
+opener = urllib.request.build_opener(proxy)
+in_ = opener.open(url)
+res = in_.read()
+print(res)
 #*****************************************************************************************
 
 
@@ -29,14 +29,8 @@ proxies = {
 #************************************ EVENTS ********************************************
 @bot.event
 async def on_ready():
-     r = requests.get('http://ip.quotaguard.com', proxies=proxies)
      print('Logged in as: ',bot.user.name)
      print('Bot ID: ',bot.user.id)
-     async with aiohttp.ClientSession() as session:
-         async with session.get('http://ip.quotaguard.com',proxy=proxyurl) as r:
-             if r.status == 200:
-                 js = await r.json()
-                 print(js)
      print('----------------')
      await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 

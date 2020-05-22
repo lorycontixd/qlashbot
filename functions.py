@@ -35,7 +35,7 @@ qc_directory2 = './qlashclans2/'
 #<<<<<<< HEAD
 TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
 #=======
-LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjkyODY3ZDk5LTExYTItNDExMC04NDY0LTZiMjIwZjE0OTgzMiIsImlhdCI6MTU5MDA3NDY5Mywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzQuMjQzLjE1Ni4xMDUiLCIzNC4yNDIuMTkwLjE0NiIsIjU0LjcyLjEyLjEiLCI1NC43Mi43Ny4yNDkiLCIzNy4xMTYuMjUuMjciXSwidHlwZSI6ImNsaWVudCJ9XX0.nv_hj3RwzSM8PWF5xLC5ZlgxxTuQH5WSt6QPz2MrdIIHS6lPaMHdN4S4RKN2GZkkGP-w8myo9q42wA5-fIAAKw'
+LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg2NjE2MDU1LTRjZWMtNGE1ZS04NGRmLWMwZjQ1YjgzM2FhMiIsImlhdCI6MTU5MDEzMzg2Mywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjM3LjExNi4yNS4yNyIsIjU0LjcyLjc3LjI0OSIsIjUuMTcxLjg5LjI0Il0sInR5cGUiOiJjbGllbnQifV19.H5jQS1iOmRuSQYiVR2GMIFXKc2jwsRjJ2Ni2V8oe3U0VVonhD3tHCng6crwmq0g2LV33jvngEQ2EUmfAV3hNOA'
 DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
 myclient = brawlstats.Client(LoryToken,is_async=True)
 #myclient = brawlstats.Client(DaddeToken,is_async=True)
@@ -153,59 +153,64 @@ async def getclan(ctx,tag):
 
 #---- SET FUNCTION (GIVE ROLE TO MEMBERS FOR CURRENT CLAN)
 async def set_(ctx,gametag):
-    if gametag[0] != '#':
-        await ctx.send("BadArguement: GameTag needs to start with #")
-        return
-    clanname = ''
-    membergamename = ''
-    rolename = ''
-    author = ctx.message.author
-    readfile = 'qlash_clans.csv'
-    writefile = 'registered.txt'
-    file = open(readfile,'r+')
-    content = file.read()
-    lines = content.split('\n')
-    file.close()
-    for i in range(len(lines)-1): #cycle through clans
-        ll=lines[i].split(",")
-        nname = str(ll[0])
-        role = discord.utils.get(author.guild.roles, name=nname)
-        if role in author.roles:
-            await author.remove_roles(role)
-        tag = str(ll[1])
-        club = await myclient.get_club(tag)
-        for member in club.members:
-            if member.tag == gametag:
-                await ctx.send("Position found in clan: "+str(club.name))
-                #role = discord.utils.get(author.guild.roles, name=nname)
-                await author.add_roles(role)
-                membergamename = member.name
-                clanname = nname
-                rolename = str(role)
-                break
-    if not clanname:
-        await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
-        return
-    now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+	if gametag[0] != '#':
+		await ctx.send("BadArguement: GameTag needs to start with #")
+		return
+	mess = ctx.message
+	clanname = ''
+	membergamename = ''
+	rolename = ''
+	author = ctx.message.author
+	readfile = 'qlash_clans.csv'
+	writefile = 'registered.txt'
+	file = open(readfile,'r+')
+	content = file.read()
+	lines = content.split('\n')
+	foundRole = False
+	file.close()
+	for i in range(len(lines)-1): #cycle through clans
+		ll=lines[i].split(",")
+		nname = str(ll[0])
+		role = discord.utils.get(author.guild.roles, name=nname)
+		if role in author.roles:
+			await author.remove_roles(role)
+		tag = str(ll[1])
+		club = await myclient.get_club(tag)
+		for member in club.members:
+			if member.tag == gametag:
+				foundRole = True
+				await ctx.send("Position found in clan: "+str(club.name))
+				#role = discord.utils.get(author.guild.roles, name=nname)
+				await author.add_roles(role)
+				membergamename = member.name
+				clanname = nname
+				rolename = str(role)
+				break
+	if not clanname:
+		await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
+		return
+	now = datetime.now()
+	dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
-    filetemp = open('registered.txt','r+')
-    contenttemp = filetemp.read()
-    linestemp = contenttemp.split('\n')
-    filetemp.close()
-    exists = False
-    for k in range(len(linestemp)-1): #cycle through users in database
-        lltemp=linestemp[k].split("\t")
-        if str(author)==str(lltemp[0]):
-            print("Found in database")
-            exists = True
-            break
-    file2 = open(writefile,'a+')
-    if exists == False:
-        file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
-        print("Registered")
-    file2.close()
-    await ctx.send("Role set for member "+str(author)+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
+	filetemp = open('registered.txt','r+')
+	contenttemp = filetemp.read()
+	linestemp = contenttemp.split('\n')
+	filetemp.close()
+	exists = False
+	for k in range(len(linestemp)-1): #cycle through users in database
+		lltemp=linestemp[k].split("\t")
+		if str(author)==str(lltemp[0]):
+			print("Found in database")
+			exists = True
+			break
+	file2 = open(writefile,'a+')
+	if exists == False:
+		file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
+		print("Registered")
+	file2.close()
+	if foundRole==True:
+		await mess.add_reaction('✅')
+		await ctx.send("Role set for member "+str(author)+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
 
 #---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
 async def search_member(ctx,name,clubtag):
