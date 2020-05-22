@@ -1,11 +1,14 @@
 import brawlstats
 import discord
+from discord.ext import commands
+from discord.ext.commands import Bot,cooldown
+from discord.voice_client import VoiceClient
 import pandas as pd
-import schedule
 import time
 from datetime import datetime
 from random import randint
 import ipapi
+from dateutil import tz
 
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
@@ -27,20 +30,26 @@ en_general = '464691619569074177'
 it_general = '415221650481610762'
 support = '464695005156737024'
 banlist = '493151669849161743'
-
+banlist_testing = '713322449915215923'
 #database directories
+qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/'
 qc_directory2 = './qlashclans2/'
+
+bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
 
 #<<<<<<< HEAD
 TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
 #=======
-LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg2NjE2MDU1LTRjZWMtNGE1ZS04NGRmLWMwZjQ1YjgzM2FhMiIsImlhdCI6MTU5MDEzMzg2Mywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjM3LjExNi4yNS4yNyIsIjU0LjcyLjc3LjI0OSIsIjUuMTcxLjg5LjI0Il0sInR5cGUiOiJjbGllbnQifV19.H5jQS1iOmRuSQYiVR2GMIFXKc2jwsRjJ2Ni2V8oe3U0VVonhD3tHCng6crwmq0g2LV33jvngEQ2EUmfAV3hNOA'
+LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjkyODY3ZDk5LTExYTItNDExMC04NDY0LTZiMjIwZjE0OTgzMiIsImlhdCI6MTU5MDA3NDY5Mywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzQuMjQzLjE1Ni4xMDUiLCIzNC4yNDIuMTkwLjE0NiIsIjU0LjcyLjEyLjEiLCI1NC43Mi43Ny4yNDkiLCIzNy4xMTYuMjUuMjciXSwidHlwZSI6ImNsaWVudCJ9XX0.nv_hj3RwzSM8PWF5xLC5ZlgxxTuQH5WSt6QPz2MrdIIHS6lPaMHdN4S4RKN2GZkkGP-w8myo9q42wA5-fIAAKw'
 DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
 myclient = brawlstats.Client(LoryToken,is_async=True)
 #myclient = brawlstats.Client(DaddeToken,is_async=True)
 #>>>>>>> 626418930a1a91e75beb6efadce32fd75e2e0df5
 
+#time zones
+from_zone = tz.tzutc() #utc
+to_zone = tz.tzlocal() #local
 
 #***********************************************************
 
@@ -53,6 +62,8 @@ def checkforrole(member: discord.Member, *roles):
 			return True
 	return False
 
+def removeEmoji(inputString):
+    return inputString.encode('ascii', 'ignore').decode('ascii')
 #***********************************************************
 def LoadCsv():
     df = pd.DataFrame(columns = ['Name','Tag'])
@@ -72,6 +83,48 @@ def LoadCsv():
 def diff(first, second):
         second = set(second)
         return [item for item in first if item not in second]
+
+#stile banlist:  days of ban, tag ingame, nome ingame,
+async def CheckBanlist(ctx):
+	count=0
+	channel = bot.get_channel(int(banlist_testing))
+	messages = await channel.history(limit=100).flatten()
+	now = datetime.now()
+	for message in messages:
+		#convert utc time to est
+		creationDate = message.created_at
+		creationDate = creationDate.replace(tzinfo=from_zone)
+		central = creationDate.astimezone(to_zone)
+		dayToday = now.day
+		dayCreation = central.day
+		difference=dayToday-dayCreation
+		#print("time difference: ",now-central)
+
+		#work messages
+		content = message.content
+		print(content)
+		temp = content.split(",")
+		playerTag = str(temp[1])
+		dayBan = str(temp[2])
+		if dayBan !='perma':
+			if difference>=int(dayBan):
+				await channel.send("Ban for player "+str(temp[0])+" has expired.")
+				continue
+		file = open(qlash_clans_file,'r+')
+		content = file.read()
+		lines = content.split('\n')
+		for i in range(len(lines)-1):
+			ll = lines[i].split(',')
+			clubTag = str(ll[1])
+			cclub = await myclient.get_club(clubTag)
+			for member in cclub.members:
+				if str(member.tag) == str(playerTag):
+					count+=1
+					await channel.send("Player "+str(member.name)+" found in clan "+str(cclub.name))
+	if count==0:
+		await channel.send("No banned players found in qlash clans")
+
+
 #**************************************** FUN **********************************************
 async def hello_(ctx):
     await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
@@ -102,8 +155,6 @@ async def Check(ctx,member):
 
 async def getplayer(ctx,tag):
     role=''
-    if not await Check(ctx,str(ctx.message.author)):
-        return
     player = await myclient.get_player(tag)
     e=discord.Embed(title="Player info: "+str(player), description="------------------------------------------------", color=0xf6ec00)
     e.set_author(name="QLASH Bot")
@@ -129,8 +180,6 @@ async def getplayer(ctx,tag):
 async def getclan(ctx,tag):
     presname = ''
     prestr = ''
-    if not await Check(ctx,str(ctx.message.author)):
-        return
     await ctx.send("Getting club info: ")
     club = await myclient.get_club(tag)
     members = club.members
@@ -157,10 +206,10 @@ async def set_(ctx,gametag):
 		await ctx.send("BadArguement: GameTag needs to start with #")
 		return
 	mess = ctx.message
+	author = mess.author
 	clanname = ''
 	membergamename = ''
 	rolename = ''
-	author = ctx.message.author
 	readfile = 'qlash_clans.csv'
 	writefile = 'registered.txt'
 	file = open(readfile,'r+')
@@ -210,12 +259,10 @@ async def set_(ctx,gametag):
 	file2.close()
 	if foundRole==True:
 		await mess.add_reaction('✅')
-		await ctx.send("Role set for member "+str(author)+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
+		await ctx.send("Role set for member "+author.mention+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
 
 #---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
 async def search_member(ctx,name,clubtag):
-    if not await Check(ctx,str(ctx.message.author)):
-        return
     await ctx.send("Getting member info: ")
     club = await myclient.get_club(clubtag)
     for member in club.members:
@@ -229,24 +276,25 @@ async def search_member(ctx,name,clubtag):
             await ctx.send(embed=e)
 
 async def qlash_trophies(ctx): #all qlash clans with requires trophies
-    if not await Check(ctx,str(ctx.message.author)):
-        return
-    await ctx.send("Gathering QLASH Clans information...")
-    df = LoadCsv()
-    e=discord.Embed(title="List of QLASH Clans", description="------------------------------------------------", color=0xffb43e)
-    e2=discord.Embed(color=0xffb43e)
-    e.set_author(name="QLASH Bot")
-    for i in range(21):
-        club = await myclient.get_club(str(df.iloc[i][1]))
-        print("Club: "+str(df.iloc[i][0])+"/"+str(df.iloc[i][1]))
-        e.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
-    for i in range(22,len(df.index)):
-        club = await myclient.get_club(str(df.iloc[i][1]))
-        print("Club: "+str(df.iloc[i][0])+"/"+str(df.iloc[i][1]))
-        e2.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
-    e2.set_footer(text="Created By Lore")
-    await ctx.send(embed=e)
-    await ctx.send(embed=e2)
+	print("Function qlash clans called")
+	await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
+	await ctx.trigger_typing()
+	df = LoadCsv()
+	e=discord.Embed(title="List of all registered QLASH Clans", description="------------------------------------------------", color=0xffb43e)
+	e2=discord.Embed(color=0xffb43e)
+	e.set_author(name="QLASH Bot")
+	for i in range(21):
+		club = await myclient.get_club(str(df.iloc[i][1]))
+		print("Club: "+str(df.iloc[i][0])+"/"+str(df.iloc[i][1]))
+		e.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
+	for i in range(22,len(df.index)):
+		club = await myclient.get_club(str(df.iloc[i][1]))
+		print("Club: "+str(df.iloc[i][0])+"/"+str(df.iloc[i][1]))
+		e2.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
+	e2.set_footer(text="Created By Lore")
+	await ctx.send(embed=e)
+	await ctx.send(embed=e2)
+	print(" ")
 
 async def qlash_cclan(ctx,name_tag):
     if not await Check(ctx,str(ctx.message.author)):
@@ -321,19 +369,17 @@ async def GetClanMembers(ctx,name_tag):
     await ctx.send(stringa)
 ###******************************* READ / WRITE / ADD / DELETE ***********
 async def clan_add_(ctx,tag,*cname):
-    if not await Check(ctx,str(ctx.message.author)):
-        return
     sourcefile = 'qlash_clans.csv'
     if tag[0] != '#':
         await ctx.send("Invalid Argument "+str(tag)+"! Please add # in front" )
         return
     clanname = " ".join(cname[:])
-    print(clanname)
+    #print(clanname)
     file = open(sourcefile,'a+')
     content = str(clanname)+","+str(tag)+"\n"
     file.write(content)
     file.close()
-    await ctx.send("Added QLASH clan: "+clanname+" ("+tag+")")
+    await ctx.send("Added QLASH clan: "+clanname+" ("+tag+") to the database")
     return
 
 async def clan_remove_(ctx,*cname):
@@ -354,7 +400,7 @@ async def clan_remove_(ctx,*cname):
         elif clanname in line:
             print(line)
             removedline = line
-            await ctx.send("Successfully removed "+str(removedline))
+            await ctx.send("Successfully removed "+str(removedline)+" from the database")
     if not removedline:
         await ctx.send("Could not find the clan you are looking for!")
     return
@@ -435,9 +481,6 @@ async def locate_(ctx,ip):
     await ctx.send(embed=e)
 
 async def serverinfo_(ctx):
-	if not checkforrole(ctx.message.author, "Moderator", "Sub-Coordinator"):
-		await ctx.send("You don't have the permission for this command!")
-		return
 	guild = ctx.guild
 	e=discord.Embed(title="Server info: "+str(guild.name), color=0xe392ff)
 	e.set_author(name="FrBot")
@@ -450,17 +493,12 @@ async def serverinfo_(ctx):
 	await ctx.send(embed=e)
 
 async def poke(ctx, member: discord.Member, *args):
-	if checkforrole(ctx.message.author,"Moderator","Sub-Coordinator"):
-		await member.create_dm()
-		await member.dm_channel.send(" ".join(args[:]))
-	else:
-		await ctx.send('PermissionError: You do not have the correct role for this command. 😥')
-
+	mess = ctx.message
+	await member.create_dm()
+	await member.dm_channel.send(" ".join(args[:]))
+	await mess.add_reaction('✅')
 
 async def member_info_(ctx,member:discord.Member):
-	if not checkforrole(ctx.message.author,"Sub-Coordinator","Coordinator","Moderator"):
-		await ctx.send("You don't have the permission for this command!")
-		return
 	e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
 	e.set_author(name="FrBot")
 	e.add_field(name="Created", value=str(member.created_at), inline=True)
@@ -475,3 +513,11 @@ async def member_info_(ctx,member:discord.Member):
 	#e.set_image(member.default_avatar)
 	e.set_footer(text="Bot created by Lore")
 	await ctx.send(embed=e)
+
+async def write_message(ctx,channelname,*message):
+	temp = " ".join(message[:])
+	guild = ctx.guild
+	for channel in guild.text_channels:
+		if str(channelname) in str(channel.name):
+			await channel.send(temp)
+			print("message sent in channel "+str(channel.name)+" using the bot")

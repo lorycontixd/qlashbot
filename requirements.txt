@@ -7,3 +7,4 @@ pandas
 schedule
 request
 ipapi
+dateutil
