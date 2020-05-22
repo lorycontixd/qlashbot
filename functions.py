@@ -9,6 +9,7 @@ from datetime import datetime
 from random import randint
 import ipapi
 from dateutil import tz
+from descriptions import *
 
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
@@ -36,12 +37,11 @@ qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/'
 qc_directory2 = './qlashclans2/'
 
-bot = commands.Bot(command_prefix='^' , description = "Qlash Bot ")
-
+bot = commands.Bot(command_prefix='^' , description = bot_description)
 #<<<<<<< HEAD
 TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
 #=======
-LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjkyODY3ZDk5LTExYTItNDExMC04NDY0LTZiMjIwZjE0OTgzMiIsImlhdCI6MTU5MDA3NDY5Mywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzQuMjQzLjE1Ni4xMDUiLCIzNC4yNDIuMTkwLjE0NiIsIjU0LjcyLjEyLjEiLCI1NC43Mi43Ny4yNDkiLCIzNy4xMTYuMjUuMjciXSwidHlwZSI6ImNsaWVudCJ9XX0.nv_hj3RwzSM8PWF5xLC5ZlgxxTuQH5WSt6QPz2MrdIIHS6lPaMHdN4S4RKN2GZkkGP-w8myo9q42wA5-fIAAKw'
+LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc3NWUwNjQ2LWI0NWItNDRjYi1iODNmLTg5MjZjMTQxMzc3NiIsImlhdCI6MTU5MDE2MDE5MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNS4xNzEuOTAuNjciLCI1LjE3MS44OS4yNCIsIjUuMTcxLjkwLjE1NCIsIjU0LjcyLjEyLjEiLCIzNy4xMTYuMjUuMjciXSwidHlwZSI6ImNsaWVudCJ9XX0.2alTXXzJOeMoFV_YyO5RpugaDiaQn2sZdArXtEAXu757mS4mMNagL0rM1lnKv1IBl0Bo_IeFHl1l3G9s2D8BIQ'
 DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
 myclient = brawlstats.Client(LoryToken,is_async=True)
 #myclient = brawlstats.Client(DaddeToken,is_async=True)
@@ -51,7 +51,11 @@ myclient = brawlstats.Client(LoryToken,is_async=True)
 from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local
 
-#***********************************************************
+#*****************************************************************************************************************
+#*****************************************************************************************************************
+#******************************************       NON-ASYNC     **************************************************
+#*****************************************************************************************************************
+#*****************************************************************************************************************
 
 #FUNCTION REPLACING HAS_ANY_ROLE
 def checkforrole(member: discord.Member, *roles):
@@ -64,7 +68,14 @@ def checkforrole(member: discord.Member, *roles):
 
 def removeEmoji(inputString):
     return inputString.encode('ascii', 'ignore').decode('ascii')
-#***********************************************************
+
+def CommandLogs(ctx,commandname):
+    author = ctx.message.author
+    time = datetime.now()
+    logfile = open('command_logs.txt','a+')
+    logfile.write(str(author)+" has called the command "+str(commandname)+" at time "+str(time)+'\n')
+    logfile.close()
+
 def LoadCsv():
     df = pd.DataFrame(columns = ['Name','Tag'])
     sourcefile = 'qlash_clans.csv'
@@ -84,8 +95,16 @@ def diff(first, second):
         second = set(second)
         return [item for item in first if item not in second]
 
+#*****************************************************************************************************************
+#*****************************************************************************************************************
+#**************************************       COMMAND FUNCTIONS     **********************************************
+#*****************************************************************************************************************
+#*****************************************************************************************************************
+
+
 #stile banlist:  days of ban, tag ingame, nome ingame,
 async def CheckBanlist(ctx):
+	await ctx.trigger_typing()
 	count=0
 	channel = bot.get_channel(int(banlist_testing))
 	messages = await channel.history(limit=100).flatten()
@@ -125,7 +144,7 @@ async def CheckBanlist(ctx):
 		await channel.send("No banned players found in qlash clans")
 
 
-#**************************************** FUN **********************************************
+#************************************************ FUN **********************************************
 async def hello_(ctx):
     await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
 
@@ -138,7 +157,9 @@ async def qlash_(ctx):
 async def roll_(ctx):
     value = randint(1,6)
     await ctx.send("You rolled a "+str(value))
-#**************************************  VARIOUS  *******************************************
+
+
+#*********************************************  VARIOUS  *******************************************
 def GetClanTag(df,name):
     for i in range(len(df.index)):
         if name in str(df.iloc[i][0]):
@@ -405,60 +426,18 @@ async def clan_remove_(ctx,*cname):
         await ctx.send("Could not find the clan you are looking for!")
     return
 
-async def WriteMembersToFile2(ctx):
-    sourcefile = 'qlash_clans.csv'
-    file = open(sourcefile,'r+')
-    content = file.read()
-    lines = content.split('\n')
-    file.close()
-    for i in range(len(lines)-1): #cycle through clans
-        ll=lines[i].split(",")
-        #print(ll)
-        name = str(ll[0])
-        tag = str(ll[1])
-        club = await myclient.get_club(tag)
-        memberlist = club.members
-        fr = open(qc_directory2+name+'.txt','w+')
-        print("----"+name+"----")
-        for member in memberlist:
-            fr.write(str(member.name)+'\t'+str(member.role)+'\t'+str(member.tag)+'\n')
-    print("Database Updated!")
-    await ctx.send("Database Updated!")
-
-async def CompareMembers(ctx):
-    sourcefile = 'qlash_clans.csv'
-    file = open(sourcefile,'r+')
-    content = file.read()
-    lines = content.split('\n')
-    file.close()
-    for i in range(len(lines)-1): #cycle through clans
-        oldtags = []
-        newtags = []
-        ll=lines[i].split(",")
-        name = str(ll[0])
-        print(name)
-        tag = str(ll[1])
-        file2 = open(qc_directory2+name+'.txt','r+') #file vecchio
-        content2 = file2.read()
-        lines2 = content2.split('\n')
-        file2.close()
-        for j in range(len(lines2)-1):
-            ll2=lines2[j].split("\t")
-            membertag = str(ll2[2])
-            membertag.replace("''", '')
-            oldtags.append(membertag)
-
-        club = await myclient.get_club(tag)
-        for member in club.members:
-            newtags.append(str(member.tag))
-
-        for it1 in newtags:
-            if it1 not in oldtags:
-                print(it1," ","joined")
-
-        for it2 in oldtags:
-            if it2 not in newtags:
-                print(it2," ","left")
+async def giverole(ctx,member: discord.Member , *rolename):
+	if not Check(ctx,ctx.message.author):
+		await ctx.send("You do not have permissions for this command!")
+		return
+	therolename = " ".join(rolename[:])
+	mychannel = bot.get_channel(int(bot_logs))
+	role = discord.utils.get(ctx.guild.roles, name=therolename)
+	if not role:
+		await ctx.send("ArguementError: Role "+therolename+" does not exist. 😭")
+		return
+	print(member,role)
+	await member.add_roles(role)
 
 async def locate_(ctx,ip):
     print("Searching for location...")
@@ -483,12 +462,15 @@ async def locate_(ctx,ip):
 async def serverinfo_(ctx):
 	guild = ctx.guild
 	e=discord.Embed(title="Server info: "+str(guild.name), color=0xe392ff)
-	e.set_author(name="FrBot")
+	e.set_author(name="QLASH Bot")
 	e.add_field(name="Region:", value=str(guild.region), inline=True)
 	e.add_field(name="ID: ", value=str(guild.id), inline=True)
 	e.add_field(name="Owner:", value=str(guild.owner), inline=True)
 	e.add_field(name="Member count:", value=str(guild.member_count), inline=True)
-	e.add_field(name="Create date:", value=str(guild.created_at), inline=True)
+	e.add_field(name="Premium Subscription count:", value=str(guild.premium_subscription_count), inline=True)
+	e.add_field(name="System Channel:", value=str(guild.system_channel.name), inline=True)
+	e.add_field(name="Role count:", value=str(len(guild.roles)), inline=True)
+	e.add_field(name="Creation date:", value=str(guild.created_at), inline=True)
 	e.set_footer(text="Bot created by Lore")
 	await ctx.send(embed=e)
 
@@ -500,7 +482,7 @@ async def poke(ctx, member: discord.Member, *args):
 
 async def member_info_(ctx,member:discord.Member):
 	e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
-	e.set_author(name="FrBot")
+	e.set_author(name="QLASH Bot")
 	e.add_field(name="Created", value=str(member.created_at), inline=True)
 	e.add_field(name="ID", value=str(member.id), inline=True)
 	e.add_field(name="Joined Server", value=str(member.joined_at), inline=True)
@@ -521,3 +503,65 @@ async def write_message(ctx,channelname,*message):
 		if str(channelname) in str(channel.name):
 			await channel.send(temp)
 			print("message sent in channel "+str(channel.name)+" using the bot")
+
+#******************************** ENTRA/ESCI *******************************
+
+async def WriteMembersToFile2(ctx):
+	"""
+	Writes all members of a clan in the database, in the file of the corresponding clan.
+	Layout of clan file: member_name	  member_role	member_tag
+	Clan file directory: ./qlashclans2
+	"""
+	await ctx.trigger_typing()
+	sourcefile = 'qlash_clans.csv'
+	file = open(sourcefile,'r+')
+	content = file.read()
+	lines = content.split('\n')
+	file.close()
+	for i in range(len(lines)-1): #cycle through clan
+		ll=lines[i].split(",")
+		#print(ll)
+		name = str(ll[0])
+		tag = str(ll[1])
+		club = await myclient.get_club(tag)
+		memberlist = club.members
+		tempfile = open(qc_directory2+name+'.txt','w+')
+		for member in memberlist:
+			tempfile.write(str(member.name)+'\t'+str(member.role)+'\t'+str(member.tag)+'\n')
+		tempfile.close()
+	print("Database Updated!")
+	await ctx.send("Database Updated!")
+
+async def CompareMembers(ctx):
+	"""
+	Compares all members of a clan in the database with current member in clans.
+	Layout of clan file: member_name	  member_role	member_tag
+	Clan file directory: ./qlashclans2
+	"""
+	await ctx.trigger_typing()
+	sourcefile = 'qlash_clans.csv'
+	file = open(sourcefile,'r+')
+	content = file.read()
+	lines = content.split('\n')
+	file.close()
+	for i in range(len(lines)-1): #cycle through clans
+		ll=lines[i].split(",")
+		name = str(ll[0])
+		tag = str(ll[1])
+		taglist = []
+		club = await myclient.get_club(tag)
+		memberlist = club.members
+		for member in memberlist:
+			taglist.append(str(member.tag))
+		tfile = open(qc_directory2+name+'.txt','r+')
+		tcontent = tfile.read()
+		tlines = tcontent.split('\n')
+		tfile.close()
+		print("---------- Reading "+name+" -----------")
+		for j in range(len(tlines)-1):
+			tll=tlines[j].split("\t")
+			membername = str(tll[0])
+			membertag = str(tll[2])
+			if membertag not in taglist: #membertag is the old list, taglist is the new list
+				print("member "+membername+" left clan "+name)
+	print(" ")
