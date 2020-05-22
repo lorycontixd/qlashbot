@@ -5,7 +5,6 @@ import schedule
 import time
 from datetime import datetime
 from random import randint
-import twitch
 import ipapi
 
 #bot properties
