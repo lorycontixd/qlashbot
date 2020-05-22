@@ -38,10 +38,23 @@ TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi
 #=======
 LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjkyODY3ZDk5LTExYTItNDExMC04NDY0LTZiMjIwZjE0OTgzMiIsImlhdCI6MTU5MDA3NDY5Mywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzQuMjQzLjE1Ni4xMDUiLCIzNC4yNDIuMTkwLjE0NiIsIjU0LjcyLjEyLjEiLCI1NC43Mi43Ny4yNDkiLCIzNy4xMTYuMjUuMjciXSwidHlwZSI6ImNsaWVudCJ9XX0.nv_hj3RwzSM8PWF5xLC5ZlgxxTuQH5WSt6QPz2MrdIIHS6lPaMHdN4S4RKN2GZkkGP-w8myo9q42wA5-fIAAKw'
 DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
-# myclient = brawlstats.Client(LoryToken,is_async=True)
-myclient = brawlstats.Client(DaddeToken,is_async=True)
+myclient = brawlstats.Client(LoryToken,is_async=True)
+#myclient = brawlstats.Client(DaddeToken,is_async=True)
 #>>>>>>> 626418930a1a91e75beb6efadce32fd75e2e0df5
 
+
+#***********************************************************
+
+#FUNCTION REPLACING HAS_ANY_ROLE
+def checkforrole(member: discord.Member, *roles):
+	temp = " ".join(roles[:])
+	searchingrole = temp.split(" ") #contains the roles that member must have (list)
+	for role in member.roles:
+		if role.name in searchingrole:
+			return True
+	return False
+
+#***********************************************************
 def LoadCsv():
     df = pd.DataFrame(columns = ['Name','Tag'])
     sourcefile = 'qlash_clans.csv'
@@ -416,3 +429,45 @@ async def locate_(ctx,ip):
     e.add_field(name="Organisation", value=str(mydict["org"]), inline=True)
     e.set_footer(text="Created by Lore")
     await ctx.send(embed=e)
+
+async def serverinfo_(ctx):
+	if not checkforrole(ctx.message.author, "Moderator", "Sub-Coordinator"):
+		await ctx.send("You don't have the permission for this command!")
+		return
+	guild = ctx.guild
+	e=discord.Embed(title="Server info: "+str(guild.name), color=0xe392ff)
+	e.set_author(name="FrBot")
+	e.add_field(name="Region:", value=str(guild.region), inline=True)
+	e.add_field(name="ID: ", value=str(guild.id), inline=True)
+	e.add_field(name="Owner:", value=str(guild.owner), inline=True)
+	e.add_field(name="Member count:", value=str(guild.member_count), inline=True)
+	e.add_field(name="Create date:", value=str(guild.created_at), inline=True)
+	e.set_footer(text="Bot created by Lore")
+	await ctx.send(embed=e)
+
+async def poke(ctx, member: discord.Member, *args):
+	if checkforrole(ctx.message.author,"Moderator","Sub-Coordinator"):
+		await member.create_dm()
+		await member.dm_channel.send(" ".join(args[:]))
+	else:
+		await ctx.send('PermissionError: You do not have the correct role for this command. 😥')
+
+
+async def member_info_(ctx,member:discord.Member):
+	if not checkforrole(ctx.message.author,"Sub-Coordinator","Coordinator","Moderator"):
+		await ctx.send("You don't have the permission for this command!")
+		return
+	e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
+	e.set_author(name="FrBot")
+	e.add_field(name="Created", value=str(member.created_at), inline=True)
+	e.add_field(name="ID", value=str(member.id), inline=True)
+	e.add_field(name="Joined Server", value=str(member.joined_at), inline=True)
+	e.add_field(name="Premium Since", value=str(member.premium_since), inline=True)
+	e.add_field(name="Status", value=str(member.status), inline=True)
+	e.add_field(name="Mobile status", value=str(member.mobile_status),inline=True)
+	e.add_field(name="Desktop status", value=str(member.desktop_status),inline=True)
+	e.add_field(name="Top Role", value=str(member.top_role), inline=False)
+	e.add_field(name="Permissions ", value=str(member.guild_permissions), inline=False)
+	#e.set_image(member.default_avatar)
+	e.set_footer(text="Bot created by Lore")
+	await ctx.send(embed=e)
