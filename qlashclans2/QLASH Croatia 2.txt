@@ -6,13 +6,13 @@ The Brawlist	member	#Y0C2J882
 Tinboss	member	#GQV9U2YR
 lollo	member	#99YUG28R
 OP|Ignatij01	member	#8GP822VRJ
-NARKOMAN	member	#9RQQ9GQR
 IQ|Peki PRO	member	#8L99V8PL8
+NARKOMAN	member	#9RQQ9GQR
 QLS|PUFNA	member	#2CRJRL9LP
 QLS | Kiki	member	#R9LULQ2Q
 Faze_Bujo	vicePresident	#82CLC892L
-<V!KT0R>	member	#2CUQLRGQJ
 El Pindrinho	member	#98YQYJ8CP
+<V!KT0R>	member	#2CUQLRGQJ
 ℹ️Legend	member	#YGY9U8P
 CFC|チェルシーFC ⚽	member	#280VGGPYC
 ANTE DRONDI	member	#PQCQ0Q828
@@ -24,9 +24,9 @@ QLS | Uli	member	#2PC2LJUCU
 OP|CPG	member	#8Q89PPLU2
 ☄️Joleツ☄️	member	#2JVUYUG9G
 QLS|Z3D	member	#GJJLJJRC
+Tomic	member	#222P9LG8P
 Lil Cope	senior	#9GUR2GC9
 Jo$!p	vicePresident	#9U9L8UU28
-Tomic	member	#222P9LG8P
 OP|Elmir	member	#8YP2LJ02C
 ✈HAPPY SHEPP✈	member	#GJ9JJ2YG
 #SPUZVA BOB	member	#2LG9UGY22
@@ -34,15 +34,15 @@ TheStjepan IQ2	member	#98YJCG80R
 bigz007	member	#2QQPGL98J
 jedandevetpet0	member	#PRGQLJCQ9
 RIKY	member	#2PGY0QQPG
-ivic6	member	#2J9PV98PJ
 Pro_Pi_Player	member	#890Y2Q9VQ
-GX Saita	member	#209JLGYJP
+ivic6	member	#2J9PV98PJ
 OP|Zoki	member	#YYYQ8LQR
+GX Saita	member	#209JLGYJP
 6lukas9	member	#2J92LV0UG
 David XD	member	#8CUPRUGUU
 GX Black Shark	member	#8C0G09YRU
-GG |<Iv4n10>	member	#82RVV98Q0
 megalolgamer	member	#822VYV2GV
+GG |<Iv4n10>	member	#82RVV98Q0
 moon	member	#889Q8CR9U
 travno221	member	#2PJJ8VU2V
 Mario	member	#29CCRJPLY
@@ -53,9 +53,9 @@ XXMARKOPROXX	member	#QLGJL02G
 YAO | Ektadok	member	#2R020RV9V
 ☄MarkYツ☄	senior	#2L2LG9J9J
 snajdr	member	#2GGUJU2R8
-zaljubljen sam	member	#2RGLPQ9UQ
 LUKAS BOMB	member	#P80U982C
 Toma_m3me	member	#2LJUG0GQ0
+zaljubljen sam	member	#2RGLPQ9UQ
 IamBasic	member	#2P2P29LGL
 DAZZO™	member	#Y8JRCR8
 DaniC	member	#8VYG9V9QJ
@@ -73,16 +73,16 @@ Lovrinho	member	#GU298YUJ
 CROW ☠️	member	#8YG298R82
 OP | Gaba35	member	#2VY99YCQC
 QLS/Rock	member	#9RJQLL92
+RSK|KOCINA	member	#VPVY9URP
 ACE_SegetKing	member	#RY99CCG
 OG Twister	member	#LL2P0Q0Q
 TH | GosoX	member	#8YYRP9V0P
 jokopolo	member	#88Y8YPGUR
-RSK|KOCINA	member	#VPVY9URP
 DJANI | Marko	member	#2UG2YCY2R
 BlackCanary	member	#8YJRP9UJY
 QLS|KRNJAVI	senior	#RY9JGG98
-EmanPlebex	member	#8UGUGQCJR
 JSTM | PLENKI69	member	#GV9YUU9
+EmanPlebex	member	#8UGUGQCJR
 Albert	member	#2J9GC2LPV
 QLS|Non4me	vicePresident	#2VYLJQU99
 OP | Dony	member	#JQV8JGU
@@ -92,8 +92,8 @@ KARLO KILLER	member	#2PLRPYQG9
 Faze_Mac(CRO)	member	#2CJQVGGP0
 OP|Gabrijel	member	#2JR0QQPPY
 QLS2|md	senior	#8U8YC20V9
-tesija06	vicePresident	#2VJ20PG8P
 Korbe	member	#C0JY20VJ
+tesija06	vicePresident	#2VJ20PG8P
 igić	member	#2Q9JVUUQ0
 marijan	member	#88G99LJJ
 GG|ANTE	member	#2Y0LCR82

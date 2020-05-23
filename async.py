@@ -45,6 +45,14 @@ async def on_ready():
 #    await member.dm_channel.send(response)
 
 @bot.event
+async def on_message(message):
+    print(message.author)
+    print(message.channel)
+    print(message.content)
+    print(" ")
+    await bot.process_commands(message)
+
+@bot.event
 async def on_command_error(ctx, error):
      if isinstance(error, commands.errors.CheckFailure):
          await ctx.send('PermissionError: You do not have the correct role for this command. 😥')
@@ -77,8 +85,8 @@ async def util(ctx):
 #**********************************************       FUN     ****************************************************
 #*****************************************************************************************************************
 
-@commands.cooldown(1, 60, commands.BucketType.user)
-@fun.command(name='roll',brief='(FUN) Roll a 6 sided dice.',description='Entertainment Command \n \n'
+@commands.cooldown(1, 30, commands.BucketType.user)
+@fun.command(name='roll',brief='(FUN) Roll a 6 sided dice.',description='Fun Command \n 30 seconds cooldown per user \n \n'
 +'Roll a 6 sided dice to get a random number from 1 to 6.')
 async def roll(ctx):
     CommandLogs(ctx,'roll')
@@ -87,11 +95,18 @@ async def roll(ctx):
 #BucketType.user can be changed to default: global ratelimit, channel: channel ratelimit, guild: server ratelimit, user: user ratelimit /for that command
 
 @commands.cooldown(1, 30, commands.BucketType.user)
-@fun.command(name='ping',brief = '(FUN) Pong! 🏓',description='Nothing to describe. Play some Ping Pong with the Bot')
+@fun.command(name='ping',brief = '(FUN) Pong! 🏓',description='Fun Command \n 30 seconds cooldown per user \n \nNothing to describe. Play some Ping Pong with the Bot')
 async def ping(ctx):
-    CommandLogs(ctx,'ping')
     response='pong 🏓'
+    CommandLogs(ctx,'ping')
     await ctx.send(response)
+
+@commands.cooldown(1, 30, commands.BucketType.user)
+@fun.command(name='coin-flip',brief='(FUN) Flip a coin',pass_context = True,description=desc_coinflip)
+async def coin_flip(ctx):
+    flip = random.choice(['Heads','Tails'])
+    CommandLogs(ctx,'coin-flip')
+    await ctx.channel.send('You flipped '+flip)
 
 #*****************************************************************************************************************
 #**********************************************       UTILS     **************************************************
@@ -110,12 +125,13 @@ async def qlash_allclans(ctx):
     CommandLogs(ctx,'qlash-allclans')
     await qlash_trophies(ctx)
 
-@commands.cooldown(1, 60, commands.BucketType.user)
+@commands.cooldown(1, 60, commands.BucketType.channel)
 @util.command(name='qlash-clan',brief="(UTIL) Search for information about a specific QLASH clan.",description=desc_qlash_clan)
 async def qlash_clan(ctx,name_or_tag):
     CommandLogs(ctx,'qlash-clan')
     await qlash_cclan(ctx,name_or_tag)
 
+@commands.cooldown(1, 60, commands.BucketType.user)
 @util.command(name='set',brief="(UTIL) Get the discord role for the clan you belong to.",description=desc_set)
 async def set(ctx,ingame_tag):
     CommandLogs(ctx,'set')
@@ -205,7 +221,6 @@ async def memberinfo(ctx,member:discord.Member):
     CommandLogs(ctx,'member-info')
     await member_info_(ctx,member)
 
-@commands.cooldown(1, 30, commands.BucketType.guild)
 @mod.command(name="server-info",brief="(MOD) Show information of the server",description=desc_serverinfo)
 async def serverinfo(ctx):
     author = ctx.message.author
@@ -215,7 +230,6 @@ async def serverinfo(ctx):
     CommandLogs(ctx,'server-info')
     await serverinfo_(ctx)
 
-@commands.cooldown(1, 30, commands.BucketType.guild)
 @mod.command(name='member-dm',pass_context=True,brief='(MOD) Send a private message to a member by the bot.',description=desc_member_dm)
 async def dm(ctx,member: discord.Member, *message):
     author = ctx.message.author
@@ -234,6 +248,21 @@ async def annouce(ctx,channel_name,*message):
     CommandLogs(ctx,'announce')
     await write_message(ctx,channel_name,*message)
 
+@mod.command(name='refresh-banlist',brief='(MOD) Get members who break the ingame banlist.',description=desc_refresh_banlist)
+async def test(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    CommandLogs(ctx,'refresh-banlist')
+    await CheckBanlist(ctx)
+
+
+@bot.command(name="role-give",hidden=True,pass_context=True)
+async def role_give(ctx,member: discord.Member , *rolename):
+    CommandLogs(ctx,'role-give')
+    await giverole(ctx,member,*rolename)
+
 @bot.command(name='view-members',brief='TEST')
 async def viewmembers(ctx):
     await CompareMembers(ctx)
@@ -242,17 +271,8 @@ async def viewmembers(ctx):
 async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 
-@mod.command(name='refresh-banlist',brief='(MOD) Get members who break the ingame banlist.',description=desc_refresh_banlist)
-async def test(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await CheckBanlist(ctx)
 
-@bot.command(name="role-give",hidden=True,pass_context=True)
-async def role_give(ctx,member: discord.Member , *rolename):
-    await giverole(ctx,member,*rolename)
+
 
 
 #schedule.every().minute.at(":17").do(test)

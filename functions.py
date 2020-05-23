@@ -41,7 +41,7 @@ bot = commands.Bot(command_prefix='^' , description = bot_description)
 #<<<<<<< HEAD
 TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
 #=======
-LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc3NWUwNjQ2LWI0NWItNDRjYi1iODNmLTg5MjZjMTQxMzc3NiIsImlhdCI6MTU5MDE2MDE5MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNS4xNzEuOTAuNjciLCI1LjE3MS44OS4yNCIsIjUuMTcxLjkwLjE1NCIsIjU0LjcyLjEyLjEiLCIzNy4xMTYuMjUuMjciXSwidHlwZSI6ImNsaWVudCJ9XX0.2alTXXzJOeMoFV_YyO5RpugaDiaQn2sZdArXtEAXu757mS4mMNagL0rM1lnKv1IBl0Bo_IeFHl1l3G9s2D8BIQ'
+LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImY2NWM0YWIxLWIzYzUtNDdhNy1hYmM0LWUzMzFiMzI0NzgxNCIsImlhdCI6MTU5MDIxOTE1Niwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNS4xNzEuOTAuNjciLCI1LjE3MS44OS4yNCIsIjUuMTcxLjkwLjE1NCIsIjUuMTcxLjk2Ljc5IiwiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.6bApPHJGdVMrtY0RI4h4_UYcAQ53ZJkfQrr0Ulg1pgBS0M_yas8GxA8K6WJpUB5qC-_XuJOpjFTK7CGpgX5UWQ'
 DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
 myclient = brawlstats.Client(LoryToken,is_async=True)
 #myclient = brawlstats.Client(DaddeToken,is_async=True)
@@ -110,6 +110,7 @@ async def CheckBanlist(ctx):
 	messages = await channel.history(limit=100).flatten()
 	now = datetime.now()
 	for message in messages:
+
 		#convert utc time to est
 		creationDate = message.created_at
 		creationDate = creationDate.replace(tzinfo=from_zone)
@@ -117,11 +118,9 @@ async def CheckBanlist(ctx):
 		dayToday = now.day
 		dayCreation = central.day
 		difference=dayToday-dayCreation
-		#print("time difference: ",now-central)
 
 		#work messages
 		content = message.content
-		print(content)
 		temp = content.split(",")
 		playerTag = str(temp[1])
 		dayBan = str(temp[2])
@@ -140,7 +139,7 @@ async def CheckBanlist(ctx):
 				if str(member.tag) == str(playerTag):
 					count+=1
 					await channel.send("Player "+str(member.name)+" found in clan "+str(cclub.name))
-	if count==0:
+	if count==0: #if no players were found in clans
 		await channel.send("No banned players found in qlash clans")
 
 
@@ -175,28 +174,31 @@ async def Check(ctx,member):
     return True
 
 async def getplayer(ctx,tag):
-    role=''
-    player = await myclient.get_player(tag)
-    e=discord.Embed(title="Player info: "+str(player), description="------------------------------------------------", color=0xf6ec00)
-    e.set_author(name="QLASH Bot")
-    e.add_field(name="Player", value=str(player), inline=False)
-    e.add_field(name="Current Trophies", value=str(player.trophies), inline=True)
-    e.add_field(name="Highest Trophies", value=str(player.highest_trophies), inline=True)
-    e.add_field(name="Current Power Play", value=str(player.power_play_points), inline=True)
-    e.add_field(name="Highest Power Play", value=str(player.highest_power_play_points), inline=True)
-    e.add_field(name="Is Qualified in Championship Challenge", value=player.is_qualified_from_championship_challenge, inline=True)
-    e.add_field(name="3v3 Victories", value=str(player.x3v3_victories), inline=True)
-    e.add_field(name="Solo Victories", value=str(player.solo_victories), inline=True)
-    e.add_field(name="Duo Victories", value=str(player.duo_victories), inline=True)
-    cclub = player.club["tag"]
-    pclub = await myclient.get_club(cclub)
-    for member in pclub.members:
-        if member.name == player.name:
-            role = str(member.role)
-    e.add_field(name="Player Club", value=str(pclub.name)+'\n'+str(pclub.tag)+'\n'+role, inline=True)
-    e.add_field(name="Brawler Count", value=str(len(player.brawlers)), inline=True)
-    e.set_footer(text="Created By Lore")
-    await ctx.send(embed=e)
+	role=''
+	player = await myclient.get_player(tag)
+	if not player:
+		await ctx.send("Player with this tag was not found. If you think this was a problem, contact the Bot creators.")
+		return
+	e=discord.Embed(title="Player info: "+str(player), description="------------------------------------------------", color=0xf6ec00)
+	e.set_author(name="QLASH Bot")
+	e.add_field(name="Player", value=str(player), inline=False)
+	e.add_field(name="Current Trophies", value=str(player.trophies), inline=True)
+	e.add_field(name="Highest Trophies", value=str(player.highest_trophies), inline=True)
+	e.add_field(name="Current Power Play", value=str(player.power_play_points), inline=True)
+	e.add_field(name="Highest Power Play", value=str(player.highest_power_play_points), inline=True)
+	e.add_field(name="Is Qualified in Championship Challenge", value=player.is_qualified_from_championship_challenge, inline=True)
+	e.add_field(name="3v3 Victories", value=str(player.x3v3_victories), inline=True)
+	e.add_field(name="Solo Victories", value=str(player.solo_victories), inline=True)
+	e.add_field(name="Duo Victories", value=str(player.duo_victories), inline=True)
+	cclub = player.club["tag"]
+	pclub = await myclient.get_club(cclub)
+	for member in pclub.members:
+		if member.name == player.name:
+			role = str(member.role)
+	e.add_field(name="Player Club", value=str(pclub.name)+'\n'+str(pclub.tag)+'\n'+role, inline=True)
+	e.add_field(name="Brawler Count", value=str(len(player.brawlers)), inline=True)
+	e.set_footer(text="Created By Lore")
+	await ctx.send(embed=e)
 
 async def getclan(ctx,tag):
     presname = ''
@@ -468,7 +470,7 @@ async def serverinfo_(ctx):
 	e.add_field(name="Owner:", value=str(guild.owner), inline=True)
 	e.add_field(name="Member count:", value=str(guild.member_count), inline=True)
 	e.add_field(name="Premium Subscription count:", value=str(guild.premium_subscription_count), inline=True)
-	e.add_field(name="System Channel:", value=str(guild.system_channel.name), inline=True)
+	e.add_field(name="System Channel:", value=str(guild.system_channel), inline=True)
 	e.add_field(name="Role count:", value=str(len(guild.roles)), inline=True)
 	e.add_field(name="Creation date:", value=str(guild.created_at), inline=True)
 	e.set_footer(text="Bot created by Lore")
@@ -564,4 +566,5 @@ async def CompareMembers(ctx):
 			membertag = str(tll[2])
 			if membertag not in taglist: #membertag is the old list, taglist is the new list
 				print("member "+membername+" left clan "+name)
-	print(" ")
+	await ctx.send("Action completed")
+	print("Action Completed!")
