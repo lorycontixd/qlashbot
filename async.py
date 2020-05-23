@@ -177,7 +177,7 @@ async def bs_pinfo(ctx,player_tag):
     try:
         await getplayer(ctx,player_tag)
     except brawlstats.errors.RequestError as e:
-        CommandLogs(e.message)
+        raise e
 
 #ADMIN
 @mod.command(name='bs-claninfo',brief='(MOD) Search for information about an ingame clan.',description=desc_bs_claninfo,)
