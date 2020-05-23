@@ -174,7 +174,7 @@ async def bs_pinfo(ctx,player_tag):
     #CommandLogs(ctx,'bs_playerinfo')
     try:
         await getplayer(ctx,player_tag)
-    except Exception as e:
+    except brawlstats.errors.RequestError as e:
         raise e
 
 #ADMIN
