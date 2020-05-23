@@ -11,6 +11,10 @@ import ipapi
 from dateutil import tz
 from descriptions import *
 from aiohttp_proxy import ProxyConnector
+import os
+from dotenv import load_dotenv
+env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
+load_dotenv(dotenv_path=env_path)
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
 bot_status = True
