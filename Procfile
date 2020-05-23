@@ -1,1 +1,1 @@
-worker: bin/qgpass python async.py
+worker: python async.py
