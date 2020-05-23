@@ -7,4 +7,6 @@ pandas
 schedule
 request
 ipapi
+aiohttp_proxy
 python-dateutil
+python-dotenv
