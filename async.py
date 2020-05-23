@@ -38,7 +38,6 @@ async def on_ready():
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
     print('Creation Date: ',bot.user.created_at)
-)
 
     print('----------------')
     #mych = await bot.fetch_channel(int(bot_testing))
