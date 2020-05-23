@@ -1,1 +1,1 @@
-worker: python async.py
+web: python async.py
