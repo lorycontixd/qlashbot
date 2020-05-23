@@ -44,8 +44,8 @@ async def on_ready():
 @bot.event
 async def on_disconnect():
     print("Logging off: ",bot.user)
-    mych = await bot.fetch_channel(int(bot_testing))
-    await mych.send("Bot has logged off 🔴")
+    #mych = await bot.fetch_channel(int(bot_testing))
+    #await mych.send("Bot has logged off 🔴")
 
 #@bot.event
 #async def on_member_join(member):
@@ -64,7 +64,7 @@ async def on_disconnect():
 
 @bot.event
 async def on_command_error(ctx, error):
-    commandname = ctx.command.name
+    commandname = ctx.invoked_with
     CommandLogs(ctx,commandname+'(failed)')
     if isinstance(error, commands.errors.CheckFailure):
         await ctx.send('PermissionError: You do not have the correct role for this command. 😥')
