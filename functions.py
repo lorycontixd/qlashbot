@@ -29,7 +29,7 @@ connector = ProxyConnector(
 	port=9293,
 	username='6cy3e5odaiitpe',
 	password='gxag60u036717xavs35razjk18s2',
-	rdns=True
+	rdns=False
 )
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
