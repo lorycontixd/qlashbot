@@ -32,11 +32,20 @@ schedule_switch=True
 
 @bot.event
 async def on_ready():
-     print('Logged in as: ',bot.user)
-     print('Bot ID: ',bot.user.id)
-     print('Creation Date: ',bot.user.created_at)
-     print('----------------')
-     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
+    print('Logged in as: ',bot.user)
+    print('Bot ID: ',bot.user.id)
+    print('Creation Date: ',bot.user.created_at)
+    print('----------------')
+    #mych = await bot.fetch_channel(int(bot_testing))
+    #await mych.send("Bot has logged in 🟢")
+    await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
+
+
+@bot.event
+async def on_disconnect():
+    print("Logging off: ",bot.user)
+    mych = await bot.fetch_channel(int(bot_testing))
+    await mych.send("Bot has logged off 🔴")
 
 #@bot.event
 #async def on_member_join(member):
@@ -269,17 +278,21 @@ async def test(ctx):
     #CommandLogs(ctx,'refresh-banlist')
     await CheckBanlist(ctx)
 
+@mod.command(name='purge')
+async def purge(ctx,amount):
+    await purge_(ctx,amount)
+
 
 @bot.command(name="role-give",hidden=True,pass_context=True)
 async def role_give(ctx,member: discord.Member , *rolename):
     #CommandLogs(ctx,'role-give')
     await giverole(ctx,member,*rolename)
 
-@bot.command(name='view-members',brief='TEST')
+@mod.command(name='view-members',brief='TEST')
 async def viewmembers(ctx):
     await CompareMembers(ctx)
 
-@bot.command(name='write-members',brief="TEST command to write all members to file")
+@mod.command(name='write-members',brief="TEST command to write all members to file")
 async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 

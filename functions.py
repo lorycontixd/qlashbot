@@ -12,6 +12,8 @@ from dateutil import tz
 from descriptions import *
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
+bot_status = True
+last_update = ''
 
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
@@ -34,10 +36,12 @@ it_general = '415221650481610762'
 support = '464695005156737024'
 banlist = '493151669849161743'
 banlist_testing = '713322449915215923'
+entry_exit = '713735004827418625'
+
 #database directories
 qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/'
-qc_directory2 = './qlashclans2/'
+qc_directory2 = './qlashclans2/' #this one is the right one
 
 #<<<<<<< HEAD
 TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
@@ -92,9 +96,8 @@ def LoadCsv():
     #print(df)
     return df
 
-def diff(first, second):
-        second = set(second)
-        return [item for item in first if item not in second]
+def is_me(m):
+    return m.author == client.user
 
 #*****************************************************************************************************************
 #*****************************************************************************************************************
@@ -105,10 +108,12 @@ def diff(first, second):
 
 #stile banlist:  days of ban, tag ingame, nome ingame,
 async def CheckBanlist(ctx):
-	await ctx.trigger_typing()
 	count=0
-	channel = bot.get_channel(int(banlist_testing))
-	messages = await channel.history(limit=100).flatten()
+	channel = bot.get_channel(int(entry_exit))
+	write_channel = bot.get_channel(int(banlist_testing))
+	tempmsg = await ctx.send("Calculating and reporting bans in channel: "+channel.mention)
+	await channel.trigger_typing()
+	messages = await channel.history(limit=150).flatten()
 	now = datetime.now()
 	for message in messages:
 
@@ -127,7 +132,7 @@ async def CheckBanlist(ctx):
 		dayBan = str(temp[2])
 		if dayBan !='perma':
 			if difference>=int(dayBan):
-				await channel.send("Ban for player "+str(temp[0])+" has expired.")
+				await writechannel.send("Ban for player "+str(temp[0])+" has expired.")
 				continue
 		file = open(qlash_clans_file,'r+')
 		content = file.read()
@@ -139,10 +144,10 @@ async def CheckBanlist(ctx):
 			for member in cclub.members:
 				if str(member.tag) == str(playerTag):
 					count+=1
-					await channel.send("Player "+str(member.name)+" found in clan "+str(cclub.name))
+					await writechannel.send("Player "+str(member.name)+" found in clan "+str(cclub.name))
 	if count==0: #if no players were found in clans
-		await channel.send("No banned players found in qlash clans")
-
+		await writechannel.send("No banned players found in qlash clans")
+	await tempsmg.delete() #deletes bot message
 
 #************************************************ FUN **********************************************
 async def hello_(ctx):
@@ -268,9 +273,6 @@ async def set_(ctx,gametag):
 				clanname = nname
 				rolename = str(role)
 				break
-	if not clanname:
-		await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
-		return
 	now = datetime.now()
 	dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
@@ -287,12 +289,16 @@ async def set_(ctx,gametag):
 			break
 	file2 = open(writefile,'a+')
 	if exists == False:
-		file2.write( str(ctx.author)+'\t'+str(membergamename)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
+		file2.write( str(ctx.author)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
 		print("Registered")
 	file2.close()
 	if foundRole==True:
 		await mess.add_reaction('✅')
 		await ctx.send("Role set for member "+author.mention+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
+		return
+	else:
+		await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
+		return
 
 #---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
 async def search_member(ctx,name,clubtag):
@@ -516,6 +522,14 @@ async def write_message(ctx,channelname,*message):
 			await channel.send(temp)
 			print("message sent in channel "+str(channel.name)+" using the bot")
 
+async def purge_(ctx,amount:int):
+	print("1")
+	author = ctx.message.author
+	print("2")
+	await ctx.channel.purge(limit=amount)
+	msg = await ctx.send("Deleted "+str(amount)+" messages from "+author.name)
+	await msg.delete(delay=4.0)
+
 #******************************** ENTRA/ESCI *******************************
 
 async def WriteMembersToFile2(ctx):
@@ -524,6 +538,8 @@ async def WriteMembersToFile2(ctx):
 	Layout of clan file: member_name	  member_role	member_tag
 	Clan file directory: ./qlashclans2
 	"""
+	global last_update
+	last_update = str(datetime.now())
 	await ctx.trigger_typing()
 	sourcefile = 'qlash_clans.csv'
 	file = open(sourcefile,'r+')
@@ -550,7 +566,12 @@ async def CompareMembers(ctx):
 	Layout of clan file: member_name	  member_role	member_tag
 	Clan file directory: ./qlashclans2
 	"""
-	await ctx.trigger_typing()
+	global last_update
+	#response = ' ``` \n'
+	mychannel = await bot.fetch_channel(int(entry_exit))
+	tempmsg = await ctx.send("Printing information about members left in channel: "+mychannel.mention)
+	await mychannel.trigger_typing()
+	await mychannel.send("Fetching data of player that left a QLASH clan since last update "+str(last_update)+" (call ^mod write-members to update) ")
 	sourcefile = 'qlash_clans.csv'
 	file = open(sourcefile,'r+')
 	content = file.read()
@@ -569,12 +590,19 @@ async def CompareMembers(ctx):
 		tcontent = tfile.read()
 		tlines = tcontent.split('\n')
 		tfile.close()
-		print("---------- Reading "+name+" -----------")
+		#response += "----------- Clan: "+name+" -------------\n"
+		await mychannel.send("----------- Clan: "+name+" -------------\n")
 		for j in range(len(tlines)-1):
 			tll=tlines[j].split("\t")
 			membername = str(tll[0])
 			membertag = str(tll[2])
 			if membertag not in taglist: #membertag is the old list, taglist is the new list
-				print("member "+membername+" left clan "+name)
-	await ctx.send("Action completed")
+				#response+="Member "+membername+" left clan "+name+"\n"
+				await mychannel.send("Member "+membername+" left clan "+name+"\n")
+	#response +="```"
+	print("sending response")
+	await mychannel.send(str(response))
+	print("sending confirmation")
+	await mychannel.send("Action completed")
+	await tempmsg.delete()
 	print("Action Completed!")
