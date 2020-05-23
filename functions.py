@@ -10,7 +10,7 @@ from random import randint
 import ipapi
 from dateutil import tz
 from descriptions import *
-from aiohttp_proxy import ProxyConnector
+from aiohttp_proxy import ProxyConnector,ProxyType
 import os
 from dotenv import load_dotenv
 import aiohttp
@@ -19,6 +19,16 @@ env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
 load_dotenv(dotenv_path=env_path)
 
 #quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
+#connector = ProxyConnector.from_url(quota_url)
+#session = aiohttp.ClientSession(connector=connector)
+
+#quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
+connector = ProxyConnector(
+	proxy_type=ProxyType.SOCKS5,
+	host='@eu-west-static-03.quotaguard.com',
+	port=9293,
+	username='6cy3e5odaiitpe',
+	password='gxag60u036717xavs35razjk18s2',
 	rdns=True
 )
 
