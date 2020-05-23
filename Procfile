@@ -1,1 +1,1 @@
-web: python async.py $PORT
+web: python async.py

@@ -13,15 +13,25 @@ from descriptions import *
 from aiohttp_proxy import ProxyConnector
 import os
 from dotenv import load_dotenv
+import aiohttp
 
-env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
-load_dotenv(dotenv_path=env_path)
-quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
-connector = ProxyConnector.from_url(quota_url)
+#env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
+#load_dotenv(dotenv_path=env_path)
+#quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
+#connector = ProxyConnector.from_url(quota_url)
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
 bot_status = True
 last_update = ''
+
+async def on_ready_():
+	print('Logged in as: ',bot.user)
+	print('Bot ID: ',bot.user.id)
+	print('Creation Date: ',bot.user.created_at)
+	print('----------------')
+	#mych = await bot.fetch_channel(int(bot_testing))
+	#await mych.send("Bot has logged in 🟢")
+	await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
@@ -56,10 +66,8 @@ TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi
 #=======
 LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImY2NWM0YWIxLWIzYzUtNDdhNy1hYmM0LWUzMzFiMzI0NzgxNCIsImlhdCI6MTU5MDIxOTE1Niwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNS4xNzEuOTAuNjciLCI1LjE3MS44OS4yNCIsIjUuMTcxLjkwLjE1NCIsIjUuMTcxLjk2Ljc5IiwiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.6bApPHJGdVMrtY0RI4h4_UYcAQ53ZJkfQrr0Ulg1pgBS0M_yas8GxA8K6WJpUB5qC-_XuJOpjFTK7CGpgX5UWQ'
 DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
-connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
-myclient = brawlstats.Client(LoryToken,is_async=True,connector=connector,debug=True)
-#myclient = brawlstats.Client(DaddeToken,is_async=True)
-#>>>>>>> 626418930a1a91e75beb6efadce32fd75e2e0df5
+#connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
+myclient = brawlstats.Client(LoryToken,is_async=True,debug=True)
 
 #time zones
 from_zone = tz.tzutc() #utc

@@ -24,7 +24,6 @@ TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
 #print(res)
 
 
-
 #schedule.every().day.at("22:00").do(CheckBanlist)
 schedule_switch=True
 
@@ -34,14 +33,7 @@ schedule_switch=True
 
 @bot.event
 async def on_ready():
-    print('Logged in as: ',bot.user)
-    print('Bot ID: ',bot.user.id)
-    print('Creation Date: ',bot.user.created_at)
-
-    print('----------------')
-    #mych = await bot.fetch_channel(int(bot_testing))
-    #await mych.send("Bot has logged in 🟢")
-    await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
+    await on_ready_()
 
 
 @bot.event
