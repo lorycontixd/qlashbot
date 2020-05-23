@@ -13,8 +13,11 @@ from descriptions import *
 from aiohttp_proxy import ProxyConnector
 import os
 from dotenv import load_dotenv
+
 env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
 load_dotenv(dotenv_path=env_path)
+quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
+connector = ProxyConnector.from_url(quota_url)
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
 bot_status = True

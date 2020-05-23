@@ -15,7 +15,6 @@ TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
 
-quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 #os.environ['http_proxy'] = os.environ['QUOTAGUARDSTATIC_URL']
 #url = 'http://ip.quotaguard.com/'
 #proxy = urllib.request.ProxyHandler()
@@ -24,7 +23,7 @@ quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-0
 #res = in_.read()
 #print(res)
 
-connector = ProxyConnector.from_url(quota_url)
+
 
 #schedule.every().day.at("22:00").do(CheckBanlist)
 schedule_switch=True
