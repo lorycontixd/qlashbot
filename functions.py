@@ -11,6 +11,8 @@ import ipapi
 from dateutil import tz
 from descriptions import *
 
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
+
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
 clientid = '701125311047401474'
@@ -37,7 +39,6 @@ qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/'
 qc_directory2 = './qlashclans2/'
 
-bot = commands.Bot(command_prefix='^' , description = bot_description)
 #<<<<<<< HEAD
 TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijc0ODcyNDJkLTliMWYtNGVlMi04ZjQyLTZmMmRiNzY3MDg5ZiIsImlhdCI6MTU5MDA1MTU3MCwic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTE2LjI1LjI3Il0sInR5cGUiOiJjbGllbnQifV19.74PJnDjJkn6YPSJ55yf7-Og2ASr-vd67Cb_xIpbZ59utmwCTfQpWX7AtPixk7lZG2UD6pNGAztWoo3AkRYr9mQ'
 #=======
@@ -158,7 +159,16 @@ async def roll_(ctx):
     await ctx.send("You rolled a "+str(value))
 
 
+
 #*********************************************  VARIOUS  *******************************************
+async def ChannelList(ctx):
+	guild = ctx.guild
+	txt = guild.text_channels
+	voice = guild.voice_channels
+	await ctx.send(channels_response)
+
+
+
 def GetClanTag(df,name):
     for i in range(len(df.index)):
         if name in str(df.iloc[i][0]):

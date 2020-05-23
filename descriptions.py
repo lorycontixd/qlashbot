@@ -83,3 +83,23 @@ The information is gathered from the banlist channel, where the most relevant in
 desc_coinflip = """Fun command
 30 seconds cooldown per user \n
 Throw a coin to get a completely random outcome from either Heads or Tails."""
+
+#*****************************************************************************************************************
+#********************************************       VARIOUS     **************************************************
+#*****************************************************************************************************************
+
+channels_response = """
+```
+Here is a list of the main channels in this server:
+- #welcome: here you can read our main rules in order to establish order in the server. We advise you to read them carefully
+- #🔥announcements: we use this channel to announce changes, tournaments, competitions, applications and more things within the server
+- #👑all-qlash-clans: here you can find all official QLASH clans in Brawl Stars, with the corresponding trophy limit.
+- #roles-assignment: in this channel you can send a screenshot as a proof of your position in a qlash clan to unlock benefits such as tournaments, dedicated channels and more..
+- there are various general chats for most of the languages worldwide. Please chat in the right channel based on the language you are speaking.
+- #📗support: in this channel you can publicly ask for help at any time and our staff will contact you as soon as possible.
+- #🤖bot-spam: in this channel you can interact with our bots. We do this to avoid confusion in channels for normal conversation.
+- #📢tournament-announcements: here we give announcements on qlash tournaments
+
+If you have more questions about channels, do not hesitate to contact our staff.
+```
+"""
