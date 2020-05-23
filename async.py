@@ -165,10 +165,7 @@ async def bs_pinfo(ctx,player_tag):
         await ctx.send("You don't have the permission for this command!")
         return
     #CommandLogs(ctx,'bs_playerinfo')
-    try:
-        await getplayer(ctx,player_tag)
-    except brawlstats.errors.RequestError as e:
-        raise e
+    await getplayer(ctx,player_tag)
 
 #ADMIN
 @mod.command(name='bs-claninfo',brief='(MOD) Search for information about an ingame clan.',description=desc_bs_claninfo,)
