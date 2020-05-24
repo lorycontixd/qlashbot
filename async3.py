@@ -6,7 +6,7 @@ import asyncio
 
 connector = ProxyConnector(
 	proxy_type=ProxyType.SOCKS5,
-	host='54.72.12.1',#eu-west-static-03.quotaguard.com',
+	host= '54.72.77.249',#eu-west-static-03.quotaguard.com',
 	port=1080,
 	username='6cy3e5odaiitpe',
 	password='gxag60u036717xavs35razjk18s2',
