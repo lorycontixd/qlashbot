@@ -619,7 +619,7 @@ async def commandlog_view_(ctx,limit):
     response = "``` \n"
     offset=0
     sourcefile = 'command_logs.txt'
-	file = open(sourcefile,'r+')
+    file = open(sourcefile,'r+')
     lines = tail(file,limit,offset)
     for line in lines:
         response += line+'\n'

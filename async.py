@@ -96,17 +96,22 @@ async def on_command_completion(ctx):
 @bot.group(pass_context=True,cog_name="Fun",case_insensitive=True)
 async def fun(ctx):
         if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed - Fun...")
+            await ctx.send("Invalid subcommand passed - Fun ...")
 
 @bot.group(pass_context=True,cog_name="Mod",case_insensitive=True)
 async def mod(ctx):
         if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed - Mod...")
+            await ctx.send("Invalid subcommand passed - Moderation ...")
 
 @bot.group(pass_context=True,cog_name="Util",case_insensitive=True)
 async def util(ctx):
         if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed - Util...")
+            await ctx.send("Invalid subcommand passed - Utility ...")
+
+@bot.group(pass_context=True,cog_name="Sys",case_insensitive=True)
+async def sys(ctx):
+        if ctx.invoked_subcommand is None:
+            await ctx.send("Invalid subcommand passed - System ...")
 
 #*****************************************************************************************************************
 #**********************************************       FUN     ****************************************************
@@ -311,11 +316,11 @@ async def viewmembers(ctx):
 async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 
-@mod.command(name='database-view',hidden=False,brief='View registered QLASH clans',description=desc_database_view)
+@sys.command(name='database-view',hidden=False,brief='View registered QLASH clans',description=desc_database_view)
 async def view_database_(ctx):
     await view_database(ctx)
 
-@mod.command(name='commandlog-view',hidden=False,brief='View the logs of recorded commands',description=desc_commandlog_view)
+@sys.command(name='commandlog-view',hidden=False,brief='View the logs of recorded commands',description=desc_commandlog_view)
 async def commandlog_view(ctx,limit:int):
     await commandlog_view_(ctx,limit)
 
