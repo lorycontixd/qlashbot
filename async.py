@@ -316,6 +316,11 @@ async def viewmembers(ctx):
 async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 
+#*****************************************************************************************************************
+#**********************************************       SYS     ****************************************************
+#*****************************************************************************************************************
+
+
 @sys.command(name='database-view',hidden=False,brief='View registered QLASH clans',description=desc_database_view)
 async def view_database_(ctx):
     await view_database(ctx)

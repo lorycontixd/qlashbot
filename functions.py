@@ -140,6 +140,7 @@ def is_me(m):
 def tail(filename, limit:int):
     file = open(filename,'r+')
     content = file.read()
+    print("content ",content)
     lines = content.split('\n')
     return lines[:-limit]
 
@@ -619,12 +620,13 @@ async def purge_(ctx,amount):
 
 async def commandlog_view_(ctx,limit):
     response = "``` \n"
-    offset=0
     sourcefile = 'command_logs.txt'
     list = tail(sourcefile,limit)
+    print(list)
     for item in list:
         responde += item+'\n'
     response+='```'
+    print(response)
     await ctx.send(response)
 
 #******************************** ENTRA/ESCI *******************************
