@@ -308,7 +308,7 @@ async def test_(ctx,member:discord.Member):
         return message.author == ctx.author and message.channel.type == discord.ChannelType.private
     reply = await bot.wait_for('message', check=check)
     await member.dm_channel.send("Thank you very much for the response. Please have fun in our friendly server! 😊")
-    await channel.send( "Registered: "+str(member)+'\t'+str(reply.content)+'\t'+datetime.now() )
+    await channel.send( "Registered: "+str(member)+'\t'+str(reply.content)+'\t'+str(datetime.now()) )
 
 
 
