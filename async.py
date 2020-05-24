@@ -311,9 +311,15 @@ async def viewmembers(ctx):
 async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 
-@mod.command(name='database-view',hidden=True)
+@mod.command(name='database-view',hidden=False,brief='View registered QLASH clans',description=desc_database_view)
 async def view_database_(ctx):
     await view_database(ctx)
+
+@mod.command(name='commandlog-view',hidden=False,brief='View the logs of recorded commands',description=desc_commandlog_view)
+async def commandlog_view(ctx,limit:int):
+    await commandlog_view_(ctx,limit)
+
+
 
 #@mod.command(name='test')
 #async def test_(ctx,member:discord.Member):

@@ -14,6 +14,7 @@ from aiohttp_proxy import ProxyConnector,ProxyType
 import os
 from dotenv import load_dotenv
 import aiohttp
+import subprocess
 
 env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
 load_dotenv(dotenv_path=env_path)
@@ -134,6 +135,12 @@ def LoadCsv():
 
 def is_me(m):
     return m.author == client.user
+
+
+def tail(f, n, offset=0):
+    proc = subprocess.Popen(['tail', '-n', n + offset, f], stdout=subprocess.PIPE)
+    lines = proc.stdout.readlines()
+    return lines[:, -offset]
 
 #*****************************************************************************************************************
 #*****************************************************************************************************************
@@ -607,6 +614,17 @@ async def purge_(ctx,amount):
 	await ctx.channel.purge(limit=int(amount))
 	msg = await ctx.send("Deleted "+str(amount)+" messages from "+author.name)
 	await msg.delete(delay=4.0)
+
+async def commandlog_view_(ctx,limit):
+    response = "``` \n"
+    offset=0
+    sourcefile = 'command_logs.txt'
+	file = open(sourcefile,'r+')
+    lines = tail(file,limit,offset)
+    for line in lines:
+        response += line+'\n'
+    response +="```"
+    await ctx.send(response)
 
 #******************************** ENTRA/ESCI *******************************
 

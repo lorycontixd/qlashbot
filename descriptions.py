@@ -65,6 +65,16 @@ No Cooldown \n
 Get a list of members who are currently banned from ingame QLASH clans, but that find themselves in one.
 The information is gathered from the banlist channel, where the most relevant information is the player tag and the period of ban."""
 
+desc_database_view="""Moderator Command
+No Cooldown \n
+Gets a list of all registered QLASH Clans in the database.
+"""
+
+desc_commandlog_view ="""Moderator Command
+No Cooldown \n
+View the log of recently called commands with QLASH Bot.
+The parameter takes an integer which corresponds to the number of messages you want to view, starting from the bottom (now we're here).
+"""
 #*****************************************************************************************************************
 #**********************************************       FUN     ****************************************************
 #*****************************************************************************************************************
@@ -75,7 +85,7 @@ Throw a coin to get a completely random outcome from either Heads or Tails."""
 
 desc_tstatus = """Fun command
 50 seconds cooldown in the server \n
-Check the flip status of the table. It does not reset automatically
+Check the flip status of the table. It does not reset automatically.
 """
 
 #*****************************************************************************************************************
@@ -105,7 +115,7 @@ The parameter required is your INGAME tag that you can find in your ingame profi
 #********************************************       VARIOUS     **************************************************
 #*****************************************************************************************************************
 
-desc_channels = """Print a list of the mosts important channels in the server and the corresponding descriptions. 
+desc_channels = """Print a list of the mosts important channels in the server and the corresponding descriptions.
 """
 
 channels_response = """
