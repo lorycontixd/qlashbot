@@ -137,28 +137,12 @@ def is_me(m):
     return m.author == client.user
 
 
-def tail(f, lines):
-    total_lines_wanted = lines
+def tail(filename, lines:int):
+    file = open(filename,'r+')
+    content = file.read()
+    lines = content.split('\n')
+    return lines[:-lines]
 
-    BLOCK_SIZE = 1024
-    f.seek(0, 2)
-    block_end_byte = f.tell()
-    lines_to_go = total_lines_wanted
-    block_number = -1
-    blocks = []
-    while lines_to_go > 0 and block_end_byte > 0:
-        if (block_end_byte - BLOCK_SIZE > 0):
-            f.seek(block_number*BLOCK_SIZE, 2)
-            blocks.append(f.read(BLOCK_SIZE))
-        else:
-            f.seek(0,0)
-            blocks.append(f.read(block_end_byte))
-        lines_found = blocks[-1].count(b'\n')
-        lines_to_go -= lines_found
-        block_end_byte -= BLOCK_SIZE
-        block_number -= 1
-    all_read_text = b''.join(reversed(blocks))
-    return b'\n'.join(all_read_text.splitlines()[-total_lines_wanted:])
 
 #*****************************************************************************************************************
 #*****************************************************************************************************************
@@ -637,10 +621,10 @@ async def commandlog_view_(ctx,limit):
     response = "``` \n"
     offset=0
     sourcefile = 'command_logs.txt'
-    file = open(sourcefile,'r+')
-    string = tail(file,limit)
-    response += str(string)
-    response +="\n```"
+    list = tail(sourcefile,limit)
+    for item in list:
+        responde += item+'\n'
+    response+='```'
     await ctx.send(response)
 
 #******************************** ENTRA/ESCI *******************************
