@@ -693,9 +693,9 @@ async def view_database(ctx):
     lines = content.split('\n')
     file.close()
     for i in range(len(lines)-1): #cycle through clans
-	   ll=lines[i].split(",")
-       name = str(ll[0])
-       tag = str(ll[1])
-       response+=str(name)+'\t'+str(tag)+'\n'
+        ll=lines[i].split(",")
+        name = str(ll[0])
+        tag = str(ll[1])
+        response+=str(name)+'\t'+str(tag)+'\n'
     response+='```'
     await ctx.send(response)
