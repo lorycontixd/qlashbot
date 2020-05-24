@@ -640,12 +640,12 @@ async def member_info_(ctx,member:discord.Member):
 
 async def write_message(ctx,channelname,*message):
     msg = ctx.message
-	temp = " ".join(message[:])
-	guild = ctx.guild
-	for channel in guild.text_channels:
-		if str(channelname) in str(channel.name):
-			await channel.send(temp)
-			print("message sent in channel "+str(channel.name)+" using the bot")
+    temp = " ".join(message[:])
+    guild = ctx.guild
+    for channel in guild.text_channels:
+        if str(channelname) in str(channel.name):
+            await channel.send(temp)
+            print("message sent in channel "+str(channel.name)+" using the bot")
     await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):
