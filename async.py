@@ -69,7 +69,7 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.CommandNotFound):
         await ctx.send('CommandError: Command was not found. 😞')
     else:
-        await ctx.send('we got something unexpected.')
+        await ctx.send('We got something unexpected...')
         await ctx.send(error)
         print(error)
 
@@ -300,7 +300,7 @@ async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 
 @mod.command(name='test')
-async def test_(ctx,member):
+async def test_(ctx,member:discord.Member):
     await member.create_dm()
     response = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
     await member.dm_channel.send(response)
