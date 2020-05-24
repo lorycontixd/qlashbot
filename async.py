@@ -2,6 +2,7 @@ import brawlstats
 import discord
 import os
 import schedule
+from datimetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
@@ -299,13 +300,16 @@ async def writemembers(ctx):
 
 @mod.command(name='test')
 async def test_(ctx,member:discord.Member):
+    channel = bot.get_channel(int(bot_testing))
     await member.create_dm()
     text = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
     msg = await member.dm_channel.send(text)
     def check(message):
         return message.author == ctx.author and message.channel.type == discord.ChannelType.private
     reply = await bot.wait_for('message', check=check)
-    await ctx.author.send("You replied with: "+str(reply.content))
+    await member.dm_channel.send("Thank you very much for the response. Please have fun in our friendly server! 😊")
+    await channel.send( "Registered: "+str(member)+'\t'+str(reply.content)+'\t'+datetime.now() )
+
 
 
 
