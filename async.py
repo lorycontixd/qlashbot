@@ -42,22 +42,22 @@ async def on_disconnect():
     mych = await bot.fetch_channel(int(bot_testing))
     await mych.send("Bot has logged off 🔴")
 
-#@bot.event
-#async def on_member_join(member:discord.Member):
-#    channel = bot.get_channel(int(bot_testing))
-#    await member.create_dm()
-#    text = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
-#    msg = await member.dm_channel.send(text)
-#    def check(message):
-#        return message.author == ctx.author and message.channel.type == discord.ChannelType.private
-#    reply = await bot.wait_for('message', check=check)
-#    content = str(reply.content)
-#    while not content.startswith('#'):
-#        await member.dm_channel.send("You entered a wrong gametag, please send it again")
-#        reply = await bot.wait_for('message', check=check)
-#        content = str(reply.content)
-#    await member.dm_channel.send("Thank you very much for the response. Please have fun in our friendly server! 😊")
-#    await channel.send( "Registered: "+str(member)+'\t'+str(content)+'\t'+str(datetime.now()) )
+@bot.event
+async def on_member_join(member:discord.Member):
+    channel = bot.get_channel(int(bot_testing))
+    await member.create_dm()
+    text = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
+    msg = await member.dm_channel.send(text)
+    def check(message):
+        return message.channel.type == discord.ChannelType.private
+    reply = await bot.wait_for('message', check=check)
+    content = str(reply.content)
+    while not content.startswith('#'):
+        await member.dm_channel.send("You entered a wrong gametag, please send it again")
+        reply = await bot.wait_for('message', check=check)
+        content = str(reply.content)
+    await member.dm_channel.send("Thank you very much for the response. Please have fun in our friendly server! 😊")
+    await channel.send( "Registered: "+str(member)+'\t'+str(content)+'\t'+str(datetime.now()) )
 
 
 #@bot.event
