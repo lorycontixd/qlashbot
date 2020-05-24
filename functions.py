@@ -684,3 +684,18 @@ async def CompareMembers(ctx):
 	await mychannel.send("Action completed")
 	await tempmsg.delete()
 	print("Action Completed!")
+
+async def view_database(ctx):
+    response='```\n'
+    sourcefile = 'qlash_clans.csv'
+    file = open(sourcefile,'r+')
+    content = file.read()
+    lines = content.split('\n')
+    file.close()
+    for i in range(len(lines)-1): #cycle through clans
+	   ll=lines[i].split(",")
+       name = str(ll[0])
+       tag = str(ll[1])
+       response+=str(name)+'\t'+str(tag)+'\n'
+    response+='```'
+    await ctx.send(response)
