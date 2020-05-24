@@ -137,11 +137,11 @@ def is_me(m):
     return m.author == client.user
 
 
-#def tail(filename, lines:int):
-#    file = open(filename,'r+')
-#    content = file.read()
-#    lines = content.split('\n')
-#    return lines[:-lines]
+def tail(filename, limit:int):
+    file = open(filename,'r+')
+    content = file.read()
+    lines = content.split('\n')
+    return lines[:-limit]
 
 
 #*****************************************************************************************************************
