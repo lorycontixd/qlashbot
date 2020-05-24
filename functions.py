@@ -238,14 +238,14 @@ async def ChannelList(ctx):
 async def welcome_(ctx):
     author = ctx.message.author
     response=''
-	print(author.name)
-	if ctx.message.author.name == 'Lore' or ctx.message.author.name == 'Daddedavided':
-		response = 'Welcome back, master! I`ve been waiting for you!'
+    print(author.name)
+    if ctx.message.author.name == 'Lore' or ctx.message.author.name == 'Daddedavided':
+        response = 'Welcome back, master! I`ve been waiting for you!'
     else:
         response = 'Hello '+str(author.name)+', my name is QLASH bot! 😎'
-	reply = 'To view all available commands please type ^help'
-	await ctx.channel.send(response)
-	await ctx.channel.send(reply)
+    reply = 'To view all available commands please type ^help'
+    await ctx.channel.send(response)
+    await ctx.channel.send(reply)
 
 def GetClanTag(df,name):
     for i in range(len(df.index)):
