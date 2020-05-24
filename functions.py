@@ -40,10 +40,16 @@ async def on_ready_():
 	print('Logged in as: ',bot.user)
 	print('Bot ID: ',bot.user.id)
 	print('Creation Date: ',bot.user.created_at)
+    print('Websocket Gateway: ',bot.ws)
 	print('----------------')
-	#mych = await bot.fetch_channel(int(bot_testing))
-	#await mych.send("Bot has logged in 🟢")
+	mych = await bot.fetch_channel(int(bot_testing))
+	await mych.send("Bot has logged in 🟢")
 	await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
+
+async def on_disconnect_():
+    print("Logging off: ",bot.user)
+    mych = await bot.fetch_channel(int(bot_testing))
+    await mych.send("Bot has logged off 🔴")
 
 #bot properties
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
@@ -179,8 +185,37 @@ async def CheckBanlist(ctx):
 	await tempsmg.delete() #deletes bot message
 
 #************************************************ FUN **********************************************
+is_flipped = False
+async def flip(ctx):
+	global is_flipped
+	if is_flipped == False:
+		response = '(╯°□°）╯︵ ┻━┻ '
+		await ctx.channel.send(response)
+		is_flipped = True
+	else:
+		response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
+		await ctx.channel.send(response)
 async def hello_(ctx):
     await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
+
+async def unflip(ctx):
+	global is_flipped
+	if is_flipped == True:
+		response = '┬─┬ ノ( ゜-゜ノ)'
+		await ctx.channel.send(response)
+		is_flipped = False
+	else:
+		response = 'Sorry the table is already unflipped!! ¯\_(ツ)_/¯ '
+		await ctx.channel.send(response)
+
+async def tstatus(ctx):
+	global is_flipped
+	if is_flipped == True:
+		response = 'Table is flipped'
+		await ctx.channel.send(response)
+	else:
+		response = 'Table is unflipped'
+		await ctx.channel.send(response)
 
 async def qlash_(ctx):
     e=discord.Embed(title="QLASH", url="http://www.qlash.gg", description="Il Team QLASH è una organizzazione eSportiva con base in Italia. Co-fondata da Luca Pagano e Eugene Katchalov nel 2017, ha come scopo principale la promozione degli eSports in Italia e in Europa, creando sinergie con varie altre organizzazioni.",color=0x0061ff)
@@ -193,7 +228,6 @@ async def roll_(ctx):
     await ctx.send("You rolled a "+str(value))
 
 
-
 #*********************************************  VARIOUS  *******************************************
 async def ChannelList(ctx):
 	guild = ctx.guild
@@ -201,7 +235,17 @@ async def ChannelList(ctx):
 	voice = guild.voice_channels
 	await ctx.send(channels_response)
 
-
+async def welcome_(ctx):
+    author = ctx.message.author
+    response=''
+	print(author.name)
+	if ctx.message.author.name == 'Lore' or ctx.message.author.name == 'Daddedavided':
+		response = 'Welcome back, master! I`ve been waiting for you!'
+    else:
+        response = 'Hello '+str(author.name)+', my name is QLASH bot! 😎'
+	reply = 'To view all available commands please type ^help'
+	await ctx.channel.send(response)
+	await ctx.channel.send(reply)
 
 def GetClanTag(df,name):
     for i in range(len(df.index)):
@@ -557,11 +601,9 @@ async def write_message(ctx,channelname,*message):
 			await channel.send(temp)
 			print("message sent in channel "+str(channel.name)+" using the bot")
 
-async def purge_(ctx,amount:int):
-	print("1")
+async def purge_(ctx,amount):
 	author = ctx.message.author
-	print("2")
-	await ctx.channel.purge(limit=amount)
+	await ctx.channel.purge(limit=int(amount))
 	msg = await ctx.send("Deleted "+str(amount)+" messages from "+author.name)
 	await msg.delete(delay=4.0)
 

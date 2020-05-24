@@ -41,12 +41,12 @@ async def on_disconnect():
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged off 🔴")
 
-#@bot.event
-#async def on_member_join(member):
-#    await member.create_dm()
-#    response = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \n"+
-#    "You can use the general chat of your language to talk to other people, the support channel to ask questions. If you have any question, please contact our moderators."
-#    await member.dm_channel.send(response)
+@bot.event
+async def on_member_join(member):
+    await member.create_dm()
+    response = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \n"+
+    "You can use the general chat of your language to talk to other people, the support channel to ask questions. If you have any question, please contact our moderators."
+    await member.dm_channel.send(response)
 
 #@bot.event
 #async def on_message(message):
@@ -104,7 +104,6 @@ async def util(ctx):
 @fun.command(name='roll',brief='(FUN) Roll a 6 sided dice.',description='Fun Command \n 30 seconds cooldown per user \n \n'
 +'Roll a 6 sided dice to get a random number from 1 to 6.')
 async def roll(ctx):
-    #CommandLogs(ctx,'roll')
     await roll_(ctx)
 
 #BucketType.user can be changed to default: global ratelimit, channel: channel ratelimit, guild: server ratelimit, user: user ratelimit /for that command
@@ -113,15 +112,31 @@ async def roll(ctx):
 @fun.command(name='ping',brief = '(FUN) Pong! 🏓',description='Fun Command \n 30 seconds cooldown per user \n \nNothing to describe. Play some Ping Pong with the Bot')
 async def ping(ctx):
     response='pong 🏓'
-    #CommandLogs(ctx,'ping')
     await ctx.send(response)
 
 @commands.cooldown(1, 30, commands.BucketType.user)
 @fun.command(name='coin-flip',brief='(FUN) Flip a coin',pass_context = True,description=desc_coinflip)
 async def coin_flip(ctx):
     flip = random.choice(['Heads','Tails'])
-    #CommandLogs(ctx,'coin-flip')
     await ctx.channel.send('You flipped '+flip)
+
+
+
+@commands.cooldown(1, 50, commands.BucketType.guild)
+@fun.command(name='table-flip',brief='Flip that table!!',description="Flip that table!!  50 seconds cooldown in the server")
+async def flip_(ctx):
+    await flip(ctx)
+
+@commands.cooldown(1, 50, commands.BucketType.guild)
+@fun.command(name='table-unflip',brief='Unflip that table!!',description="Unflip that table!!  50 seconds cooldown in the server")
+async def unflip_(ctx):
+    await unflip(ctx)
+
+@commands.cooldown(1, 50, commands.BucketType.guild)
+@fun.command(name='table-status',brief="Check table's status",desciption=desc_tstatus)
+async def tstatus_(ctx):
+    await tstatus(ctx)
+
 
 #*****************************************************************************************************************
 #**********************************************       UTILS     **************************************************
@@ -131,30 +146,33 @@ async def coin_flip(ctx):
 @util.command(name='qlash',brief='(UTIL) Display some information about QLASH.',description=
 'Display information about the QLASH Organisation, such as their goal, the founders and more...')
 async def qlash(ctx):
-    #CommandLogs(ctx,'qlash')
     await qlash_(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
 @util.command(name='qlash-allclans',brief='(UTIL) List all ingame qlash clans.',description = desc_qlash_allclans)
 async def qlash_allclans(ctx):
-    #CommandLogs(ctx,'qlash-allclans')
     await qlash_trophies(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
 @util.command(name='qlash-clan',hidden=True,brief="(UTIL) Search for information about a specific QLASH clan.",description=desc_qlash_clan)
 async def qlash_clan(ctx,name_or_tag):
-    #CommandLogs(ctx,'qlash-clan')
     await qlash_cclan(ctx,name_or_tag)
 
 @commands.cooldown(1, 60, commands.BucketType.user)
 @util.command(name='set',brief="(UTIL) Get the discord role for the clan you belong to.",description=desc_set)
 async def set(ctx,ingame_tag):
-    #CommandLogs(ctx,'set')
     await set_(ctx,ingame_tag)
 
-@util.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.')
+@commands.cooldown(1,60,commands.BucketType.user)
+@util.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.',description=desc_channels)
 async def channels(ctx):
     await ChannelList(ctx)
+
+@commands.cooldown(1, 60, commands.BucketType.channel)
+@bot.command(name='hello',brief="(UTIL) Welcomes a user ",description=)
+async def welcome(ctx):
+    await welcome_(ctx)
+
 
 #*****************************************************************************************************************
 #**********************************************       MOD     ****************************************************
@@ -167,7 +185,6 @@ async def bs_pinfo(ctx,player_tag):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'bs_playerinfo')
     await getplayer(ctx,player_tag)
 
 #ADMIN
@@ -177,7 +194,6 @@ async def bs_cinfo(ctx,clan_tag):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'bs_claninfo')
     await getclan(ctx,clan_tag)
 
 #ADMIN
@@ -187,7 +203,6 @@ async def bs_minfo(ctx,name,clan_tag):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'bs_memberinfo')
     await search_member(ctx,name,clan_tag)
 
 
@@ -198,7 +213,6 @@ async def clan_add(ctx,tag,*clan_name):
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'clan-add')
     await clan_add_(ctx,tag,*clan_name)
 
 #ADMIN
@@ -208,7 +222,6 @@ async def clan_remove(ctx,*clan_name):
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'clan-remove')
     await clan_remove_(ctx,*clan_name)
 
 #ADMIN
@@ -218,7 +231,6 @@ async def qlashclanmembers(ctx,clanname_or_tag):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'qlash-clan-members')
     await GetClanMembers(ctx,clanname_or_tag)
 
 @mod.command(name='locate',brief = '(MOD) Locate an ip address',description=desc_ip)
@@ -226,9 +238,7 @@ async def locate(ctx,ip):
     author = ctx.message.author
     if Check(ctx,author):
         await locate_(ctx,ip)
-        #CommandLogs(ctx,'locate')
     else:
-        #CommandLogs(ctx,'locate (no-success)')
         return
 
 @mod.command(name='member-info',brief='(MOD) Show information of a discord member',description=desc_memberinfo)
@@ -246,7 +256,6 @@ async def serverinfo(ctx):
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'server-info')
     await serverinfo_(ctx)
 
 @mod.command(name='member-dm',pass_context=True,brief='(MOD) Send a private message to a member by the bot.',description=desc_member_dm)
@@ -255,7 +264,6 @@ async def dm(ctx,member: discord.Member, *message):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'member-dm')
     await poke(ctx,member,*message)
 
 @mod.command(name='announce',brief='(MOD) Send a message to a specific channel by the bot.',description=desc_announce)
@@ -264,7 +272,6 @@ async def annouce(ctx,channel_name,*message):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'announce')
     await write_message(ctx,channel_name,*message)
 
 @mod.command(name='refresh-banlist',brief='(MOD) Get members who break the ingame banlist.',description=desc_refresh_banlist)
@@ -273,7 +280,6 @@ async def test(ctx):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    #CommandLogs(ctx,'refresh-banlist')
     await CheckBanlist(ctx)
 
 @mod.command(name='purge')
@@ -283,7 +289,6 @@ async def purge(ctx,amount):
 
 @bot.command(name="role-give",hidden=True,pass_context=True)
 async def role_give(ctx,member: discord.Member , *rolename):
-    #CommandLogs(ctx,'role-give')
     await giverole(ctx,member,*rolename)
 
 @mod.command(name='view-members',brief='TEST')

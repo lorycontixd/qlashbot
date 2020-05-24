@@ -6,6 +6,10 @@ To run a command type ^<category> <command> <parameters (if any)>, for example ^
 If you have any question or problem with my commands, please do not hesitate to contact our staff or the Bot creators directly.
 I hope you have a pleasant stay in the discord server! 🤩😁 """
 
+#*****************************************************************************************************************
+#**********************************************       MOD     ****************************************************
+#*****************************************************************************************************************
+
 desc_bs_playerinfo = """Moderator command
 No Cooldown \n
 Search for information about a specific PLAYER from the Brawl Stars game, including: \n-- Name & Tag \n-- Highest & Current Trophies \n-- Player Victories \n-- Championship Qualification"""
@@ -20,21 +24,6 @@ Search for information about a specific MEMBER in a given clan from the Brawl St
 The difference from the player information is that, while in the previous function the parameter <#gametag> is required, for this function it is necessary to give the parameters <PlayerName> and <#clantag>, allowing you to not know the player's ingame tag.
 Informations about the member include:
 \n-- Name & Tag \n-- Clan Role \n-- Player Trophies"""
-
-desc_qlash_allclans = """Utility command
-60 seconds cooldown per channel \n
-Print a list of all official QLASH Clans and the respective required trophies. No Parameters are needed for this function."""
-
-desc_qlash_clan = """Utility command
-60 seconds cooldown per channel \n
-Print information about a specific QLASH Clan.
-The parameter can be the clan tag (for precise search) or the clan name. In the second case, the name must be exact, or the command will not work."""
-
-desc_set = """Utility command
-60 seconds cooldown per user (only usable in the roles_assignement channel) \n
-Get the discord role for the QLASH clan you belong to in Brawl Stars.
-If you already have the right role, it will give it again. If you do not belong to an official clan, it will tell you explicitly.
-The parameter required is your INGAME tag that you can find in your profile."""
 
 desc_clan_add = """Moderator command
 No Cooldown \n
@@ -84,9 +73,40 @@ desc_coinflip = """Fun command
 30 seconds cooldown per user \n
 Throw a coin to get a completely random outcome from either Heads or Tails."""
 
+desc_tstatus = """Fun command
+50 seconds cooldown in the server \n
+Check the flip status of the table. It does not reset automatically
+"""
+
+#*****************************************************************************************************************
+#*********************************************       UTIL     ****************************************************
+#*****************************************************************************************************************
+
+desc_hello = """Utility command
+60 seconds cooldown per channel \n
+Welcomes a user to the server. Bot presents itself and reveals help command"""
+
+desc_qlash_allclans = """Utility command
+60 seconds cooldown per channel \n
+Print a list of all official QLASH Clans and the respective required trophies. No Parameters are needed for this function."""
+
+desc_qlash_clan = """Utility command
+60 seconds cooldown per channel \n
+Print information about a specific QLASH Clan.
+The parameter can be the clan tag (for precise search) or the clan name. In the second case, the name must be exact, or the command will not work."""
+
+desc_set = """Utility command
+60 seconds cooldown per user (only usable in the roles_assignement channel) \n
+Get the discord role for the QLASH clan you belong to in Brawl Stars.
+If you already have the right role, it will give it again. If you do not belong to an official clan, it will tell you explicitly.
+The parameter required is your INGAME tag that you can find in your ingame profile."""
+
 #*****************************************************************************************************************
 #********************************************       VARIOUS     **************************************************
 #*****************************************************************************************************************
+
+desc_channels = """Print a list of the mosts important channels in the server and the corresponding descriptions. 
+"""
 
 channels_response = """
 ```
