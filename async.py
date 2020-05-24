@@ -140,8 +140,6 @@ async def coin_flip(ctx):
     flip = random.choice(['Heads','Tails'])
     await ctx.channel.send('You flipped '+flip)
 
-
-
 @commands.cooldown(1, 50, commands.BucketType.guild)
 @fun.command(name='table-flip',brief='Flip that table!!',description="Flip that table!!  50 seconds cooldown in the server")
 async def flip_(ctx):
@@ -313,10 +311,16 @@ async def role_give(ctx,member: discord.Member , *rolename):
 
 @mod.command(name='view-members',brief='TEST')
 async def viewmembers(ctx):
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
     await CompareMembers(ctx)
 
 @mod.command(name='write-members',brief="TEST command to write all members to file")
 async def writemembers(ctx):
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
     await WriteMembersToFile2(ctx)
 
 #*****************************************************************************************************************
@@ -332,7 +336,7 @@ async def view_database_(ctx):
 async def commandlog_view(ctx,limit:int):
     await commandlog_view_(ctx,limit)
 
-@sys.command(name='commandlog-clear',hidden=False,brief='Clears the log file of recorded commands')
+@sys.command(name='commandlog-clear',hidden=False,brief='Clears the log file of recorded commands',description=desc_commandlog_clear)
 async def commandlog_clear(ctx):
     await commandlog_clear_(ctx)
 

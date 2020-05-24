@@ -10,37 +10,37 @@ I hope you have a pleasant stay in the discord server! 🤩😁 """
 #**********************************************       MOD     ****************************************************
 #*****************************************************************************************************************
 
-desc_bs_playerinfo = """Moderator command
+desc_bs_playerinfo = """Moderator Command
 No Cooldown \n
 Search for information about a specific PLAYER from the Brawl Stars game, including: \n-- Name & Tag \n-- Highest & Current Trophies \n-- Player Victories \n-- Championship Qualification"""
 
-desc_bs_claninfo = """Moderator command
+desc_bs_claninfo = """Moderator Command
 No Cooldown \n
 Search for information about a specific CLAN from the Brawl Stars game, including: \n-- Name & Tag \n-- Current & Required Trophies \n-- Player Count \n-- President & Highest Member"""
 
-desc_bs_memberinfo =  """Moderator command
+desc_bs_memberinfo =  """Moderator Command
 No Cooldown \n
 Search for information about a specific MEMBER in a given clan from the Brawl Stars game.
 The difference from the player information is that, while in the previous function the parameter <#gametag> is required, for this function it is necessary to give the parameters <PlayerName> and <#clantag>, allowing you to not know the player's ingame tag.
 Informations about the member include:
 \n-- Name & Tag \n-- Clan Role \n-- Player Trophies"""
 
-desc_clan_add = """Moderator command
+desc_clan_add = """Moderator Command
 No Cooldown \n
 Add a QLASH Clan to the database. The parameters are the clan's tag and the clan's name written correctly.
 Moderator and Sub-Coordinator roles are required."""
 
-desc_clann_remove = """Moderator command
+desc_clann_remove = """Moderator Command
 No Cooldown \n
 Remove a QLASH Clan to the database. The parameter is the clan's name written correctly.
 Moderator and Sub-Coordinator roles are required."""
 
-desc_ip = """Moderator command
+desc_ip = """Moderator Command
 No Cooldown \n
 Locate an ip address with information such as country, city, postal code, longitude & latitude and much more.
 Only the creators of the bot have access to this function. Please contact them."""
 
-desc_memberinfo = """Moderator command
+desc_memberinfo = """Moderator Command
 No Cooldown \n
 Show rich information about a discord member inside the server.
 Information includes: \n-- Name, Tag & ID\n-- Member Status \n-- Server join date \n-- Top role and permissions."""
@@ -75,6 +75,12 @@ No Cooldown \n
 View the log of recently called commands with QLASH Bot.
 The parameter takes an integer which corresponds to the number of messages you want to view, starting from the bottom (now we're here).
 """
+
+desc_commandlog_clear = """Moderator Command
+No Cooldown \n
+Clear the log file containing a list of all commands called from this bot. Please use wisely.
+"""
+
 #*****************************************************************************************************************
 #**********************************************       FUN     ****************************************************
 #*****************************************************************************************************************

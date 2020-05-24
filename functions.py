@@ -43,6 +43,7 @@ async def on_ready_():
     print('Creation Date: ',bot.user.created_at)
     print('Websocket Gateway: ',bot.ws)
     print('----------------')
+
     mych = await bot.fetch_channel(int(bot_testing))
     await mych.send("Bot has logged in 🟢")
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
@@ -53,7 +54,7 @@ async def on_disconnect_():
     await mych.send("Bot has logged off 🔴")
 
 #bot properties
-TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
+TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM' #token for discord api
 clientid = '701125311047401474'
 clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
 ipapi.location(ip=None, key=None, field=None)
@@ -78,7 +79,7 @@ entries_discord = '714161674432806972'
 
 #database directories
 qlash_clans_file = './qlash_clans.csv'
-qc_directory = './qlashclans/'
+qc_directory = './qlashclans/' #NO
 qc_directory2 = './qlashclans2/' #this one is the right one
 
 #<<<<<<< HEAD
@@ -237,6 +238,7 @@ async def flip(ctx):
 	else:
 		response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
 		await ctx.channel.send(response)
+    
 async def hello_(ctx):
     await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
 
@@ -645,11 +647,12 @@ async def write_message(ctx,channelname,*message):
 
 async def purge_(ctx,amount):
 	author = ctx.message.author
-	await ctx.channel.purge(limit=int(amount))
+	await ctx.channel.purge(limit=int(amount)+1)
 	msg = await ctx.send("Deleted "+str(amount)+" messages from "+author.name)
 	await msg.delete(delay=4.0)
 
 async def commandlog_view_(ctx,limit):
+    await mychannel.trigger_typing()
     response = "``` \n"
     sourcefile = 'command_logs.txt'
     list = tail(sourcefile,limit)
