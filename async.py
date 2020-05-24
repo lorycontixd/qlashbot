@@ -305,7 +305,7 @@ async def test_(ctx,member:discord.Member):
     def check(message):
         return message.author == ctx.author and message.channel.type == discord.ChannelType.private
     reply = await bot.wait_for('message', check=check)
-    await ctx.author.send("You replied with: "+str(reply))
+    await ctx.author.send("You replied with: "+str(reply.content))
 
 
 
