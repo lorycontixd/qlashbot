@@ -2,3 +2,4 @@ Lore#5934 has called the command bs-playerinfo(failed) at time 2020-05-23 23:26:
 Lore#5934 has called the command roll(failed) at time 2020-05-23 23:26:20.195631
 Lore#5934 has called the command bs-playerinfo at time 2020-05-23 23:26:47.774147
 Lore#5934 has called the command bs-playerinfo at time 2020-05-23 23:27:14.441244
+Lore#5934 has called the command roll at time 2020-05-24 10:27:28.156955
