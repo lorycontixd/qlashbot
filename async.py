@@ -320,9 +320,9 @@ async def writemembers(ctx):
 async def view_database_(ctx):
     await view_database(ctx)
 
-@sys.command(name='commandlog-view',hidden=False,brief='View the logs of recorded commands',description=desc_commandlog_view)
-async def commandlog_view(ctx,limit:int):
-    await commandlog_view_(ctx,limit)
+#@sys.command(name='commandlog-view',hidden=False,brief='View the logs of recorded commands',description=desc_commandlog_view)
+#async def commandlog_view(ctx,limit:int):
+#    await commandlog_view_(ctx,limit)
 
 
 
