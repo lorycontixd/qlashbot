@@ -81,6 +81,22 @@ No Cooldown \n
 Clear the log file containing a list of all commands called from this bot. Please use wisely.
 """
 
+desc_purge = """Moderator Command
+No Cooldown \n
+Clear a certain amount of messages in the channel where the command is invoked from.
+"""
+
+desc_view_members="""Moderator Command
+No Cooldown \n
+Get a list of players that left each QLASH Clan since the last time the database was updated (with the command ^mod write-members).
+It is possible that the list of players will be long, therefore it might take some time.
+"""
+
+desc_write_members = """Moderator Command
+No Cooldown \n
+Update the database with clan members (see help for command view-members)
+"""
+
 #*****************************************************************************************************************
 #**********************************************       FUN     ****************************************************
 #*****************************************************************************************************************
