@@ -1,1 +1,1 @@
-web: python async.py --port 1080
+web: python async.py
