@@ -24,12 +24,12 @@ load_dotenv(dotenv_path=env_path)
 
 #quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 connector = ProxyConnector(
-	proxy_type=ProxyType.SOCKS5,
-	host='54.72.12.1',#'eu-west-static-03.quotaguard.com',
-	port=os.environ["PORT"],
-	username='6cy3e5odaiitpe',
-	password='gxag60u036717xavs35razjk18s2',
-	rdns=False
+    proxy_type=ProxyType.SOCKS5,
+    host='54.72.12.1',#'eu-west-static-03.quotaguard.com',
+    port=1080,
+    username='6cy3e5odaiitpe',
+    password='gxag60u036717xavs35razjk18s2',
+    rdns=True
 )
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
