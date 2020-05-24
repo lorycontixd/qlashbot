@@ -87,8 +87,11 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_command_completion(ctx):
-    commandname = ctx.command.name
+    mychannel = bot.get_channel(int(bot_testing))
+    commandname = ctx.invoked_with
     CommandLogs(ctx,commandname)
+    await mychannel.send("registered command usage "+str(commandname))
+
 #*****************************************************************************************************************
 #*******************************************       GROUPS     ****************************************************
 #*****************************************************************************************************************
@@ -329,6 +332,9 @@ async def view_database_(ctx):
 async def commandlog_view(ctx,limit:int):
     await commandlog_view_(ctx,limit)
 
+@sys.command(name='commandlog-clear',hidden=False,brief='Clears the log file of recorded commands')
+async def commandlog_clear(ctx):
+    await commandlog_clear_(ctx)
 
 #@mod.command(name='test')
 #async def test_(ctx,member:discord.Member):

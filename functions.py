@@ -629,6 +629,11 @@ async def commandlog_view_(ctx,limit):
     print(response)
     await ctx.send(response)
 
+async def commandlog_clear_(ctx):
+    sourcefile = 'command_logs.txt'
+    open(sourcefile, 'w+').close()
+    await ctx.send("Command Log File cleared!")
+
 #******************************** ENTRA/ESCI *******************************
 
 async def WriteMembersToFile2(ctx):
