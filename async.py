@@ -10,7 +10,6 @@ from descriptions import *
 import requests
 import urllib
 from urllib.request import Request, urlopen
-import aiohttp
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
