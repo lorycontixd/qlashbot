@@ -168,7 +168,7 @@ async def channels(ctx):
     await ChannelList(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
-@bot.command(name='hello',brief="(UTIL) Welcomes a user ",description=)
+@bot.command(name='hello',brief="(UTIL) Welcomes a user ",description=desc_hello)
 async def welcome(ctx):
     await welcome_(ctx)
 
