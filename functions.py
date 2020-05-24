@@ -37,14 +37,14 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
-	print('Logged in as: ',bot.user)
-	print('Bot ID: ',bot.user.id)
-	print('Creation Date: ',bot.user.created_at)
+    print('Logged in as: ',bot.user)
+    print('Bot ID: ',bot.user.id)
+    print('Creation Date: ',bot.user.created_at)
     print('Websocket Gateway: ',bot.ws)
-	print('----------------')
-	mych = await bot.fetch_channel(int(bot_testing))
-	await mych.send("Bot has logged in 🟢")
-	await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
+    print('----------------')
+    mych = await bot.fetch_channel(int(bot_testing))
+    await mych.send("Bot has logged in 🟢")
+    await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
 async def on_disconnect_():
     print("Logging off: ",bot.user)
