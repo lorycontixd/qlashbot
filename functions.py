@@ -639,7 +639,7 @@ async def commandlog_view_(ctx,limit):
     sourcefile = 'command_logs.txt'
     file = open(sourcefile,'r+')
     string = tail(file,limit)
-    response += string
+    response += str(string)
     response +="\n```"
     await ctx.send(response)
 

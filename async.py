@@ -80,10 +80,10 @@ async def on_command_error(ctx, error):
         await ctx.send('CommandError: Command is on cooldown. 😞')
     elif isinstance(error, commands.CommandNotFound):
         await ctx.send('CommandError: Command was not found. 😞')
-    else:
-        await ctx.send('We got something unexpected...')
-        await ctx.send(error)
-        print(error)
+    #else:
+    #    await ctx.send('We got something unexpected...')
+    #    await ctx.send(error)
+    #    print(error)
 
 @bot.event
 async def on_command_completion(ctx):
