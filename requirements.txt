@@ -10,3 +10,4 @@ ipapi
 aiohttp_proxy
 python-dateutil
 python-dotenv
+pymongo
