@@ -167,7 +167,7 @@ async def qlash(ctx):
     await qlash_(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
-@util.command(name='qlash-allclans',brief='(UTIL)(BS30+) List all ingame qlash clans.',description = desc_qlash_allclans)
+@util.command(name='qlash-allclans',brief='(UTIL) (BS30+) List all ingame qlash clans.',description = desc_qlash_allclans)
 async def qlash_allclans(ctx):
     await qlash_trophies(ctx)
 
@@ -187,7 +187,7 @@ async def channels(ctx):
     await ChannelList(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
-@bot.command(name='hello',brief="(UTIL) Welcomes a user ",description=desc_hello)
+@util.command(name='hello',brief="(UTIL) Welcomes a user ",description=desc_hello)
 async def welcome(ctx):
     await welcome_(ctx)
 
@@ -197,7 +197,7 @@ async def welcome(ctx):
 #*****************************************************************************************************************
 
 #ADMIN
-@mod.command(name='bs-playerinfo',brief='(MOD)(BS1) Search for information about a generic ingame player.',description=desc_bs_playerinfo)
+@mod.command(name='bs-playerinfo',brief='(MOD) (BS1) Search for information about a generic ingame player.',description=desc_bs_playerinfo)
 async def bs_pinfo(ctx,player_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
@@ -206,7 +206,7 @@ async def bs_pinfo(ctx,player_tag):
     await getplayer(ctx,player_tag)
 
 #ADMIN
-@mod.command(name='bs-claninfo',brief='(MOD)(BS1) Search for information about an ingame clan.',description=desc_bs_claninfo,)
+@mod.command(name='bs-claninfo',brief='(MOD) (BS1) Search for information about an ingame clan.',description=desc_bs_claninfo,)
 async def bs_cinfo(ctx,clan_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
@@ -215,7 +215,7 @@ async def bs_cinfo(ctx,clan_tag):
     await getclan(ctx,clan_tag)
 
 #ADMIN
-@mod.command(name='bs-memberinfo',brief='(MOD)(BS1) Search for information about a member within a given clan.',description=desc_bs_memberinfo)
+@mod.command(name='bs-memberinfo',brief='(MOD) (BS1) Search for information about a member within a given clan.',description=desc_bs_memberinfo)
 async def bs_minfo(ctx,name,clan_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
@@ -243,7 +243,7 @@ async def clan_remove(ctx,*clan_name):
     await clan_remove_(ctx,*clan_name)
 
 #ADMIN
-@mod.command(name='qlash-clan-members',brief='(MOD)(BS1) Shows a list of all members of a given QLASH clan.')
+@mod.command(name='qlash-clan-members',brief='(MOD) (BS1) Shows a list of all members of a given QLASH clan.')
 async def qlashclanmembers(ctx,clanname_or_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
@@ -292,7 +292,7 @@ async def annouce(ctx,channel_name,*message):
         return
     await write_message(ctx,channel_name,*message)
 
-@mod.command(name='refresh-banlist',brief='(MOD)(BS~) Get members who break the ingame banlist.',description=desc_refresh_banlist)
+@mod.command(name='refresh-banlist',brief='(MOD) (BS~) Get members who break the ingame banlist.',description=desc_refresh_banlist)
 async def test(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
@@ -309,14 +309,14 @@ async def purge(ctx,amount):
 async def role_give(ctx,member: discord.Member , *rolename):
     await giverole(ctx,member,*rolename)
 
-@mod.command(name='view-members',brief='(MOD)(BS30+) Get a list of players that left ingame clubs.',description=desc_view_members )
+@mod.command(name='view-members',brief='(MOD) (BS30+) Get a list of players that left ingame clubs.',description=desc_view_members )
 async def viewmembers(ctx):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await CompareMembers(ctx)
 
-@mod.command(name='write-members',brief="(MOD)(BS30+) Write all clan members to database",description=desc_write_members)
+@mod.command(name='write-members',brief="(MOD) (BS30+) Write all clan members to database",description=desc_write_members)
 async def writemembers(ctx):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
