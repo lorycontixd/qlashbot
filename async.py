@@ -62,12 +62,14 @@ async def on_command_error(ctx, error):
     CommandLogs(ctx,commandname+'(failed)')
     if isinstance(error, commands.errors.CheckFailure):
         await ctx.send('PermissionError: You do not have the correct role for this command. 😥')
-    if isinstance(error, commands.errors.UserInputError):
+    elif isinstance(error, commands.errors.UserInputError):
         await ctx.send('ArguementError: Bad arguement was given. 😕')
-    if isinstance(error, commands.CommandOnCooldown):
+    elif isinstance(error, commands.CommandOnCooldown):
         await ctx.send('CommandError: Command is on cooldown. 😞')
-    if isinstance(error, commands.CommandNotFound):
+    elif isinstance(error, commands.CommandNotFound):
         await ctx.send('CommandError: Command was not found. 😞')
+    else:
+        await ctx.send('we got something unexpected.')
 
 @bot.event
 async def on_command_completion(ctx):
