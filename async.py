@@ -41,11 +41,12 @@ async def on_disconnect():
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged off 🔴")
 
+def checkdm(message):
+    return message.channel.type == discord.ChannelType.private
+
 #@bot.event
 #async def on_member_join(member):
-#    await member.create_dm()
-#    response = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nYou can use the general chat of your language to talk to other people, the support channel to ask questions. If you have any question, please contact our moderators."
-#    await member.dm_channel.send(response)
+
 
 #@bot.event
 #async def on_message(message):
@@ -298,7 +299,13 @@ async def viewmembers(ctx):
 async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 
-
+@mod.command(name='test')
+async def test_(ctx,member):
+    await member.create_dm()
+    response = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
+    await member.dm_channel.send(response)
+    msg = await bot.wait_for('message',check=checkdm,timeout=60,author=member)
+    await member.dm_channel.send("You replied: "+str(msg))
 
 
 
