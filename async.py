@@ -38,11 +38,8 @@ async def on_ready():
 @bot.event
 async def on_disconnect():
     print("Logging off: ",bot.user)
-    #mych = await bot.fetch_channel(int(bot_testing))
-    #await mych.send("Bot has logged off 🔴")
-
-def checkdm(message):
-    return message.channel.type == discord.ChannelType.private
+    mych = await bot.fetch_channel(int(bot_testing))
+    await mych.send("Bot has logged off 🔴")
 
 #@bot.event
 #async def on_member_join(member):
@@ -299,13 +296,16 @@ async def viewmembers(ctx):
 async def writemembers(ctx):
     await WriteMembersToFile2(ctx)
 
+
 @mod.command(name='test')
 async def test_(ctx,member:discord.Member):
     await member.create_dm()
-    response = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
-    await member.dm_channel.send(response)
-    msg = await bot.wait_for('message',check=checkdm,timeout=60)
-    await member.dm_channel.send("You replied: "+str(msg))
+    text = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
+    await member.dm_channel.send(text)
+    def check(message):
+        return message.author == ctx.author and message.channel == msg.channel
+    reply = await bot.wait_for('message', check=check)
+    await ctx.author.send("You replied with: "+str(reply))
 
 
 
