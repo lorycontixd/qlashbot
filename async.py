@@ -44,7 +44,7 @@ async def on_disconnect():
 
 @bot.event
 async def on_member_join(member:discord.Member):
-    channel = bot.get_channel(int(bot_testing))
+    channel = bot.get_channel(int(entries_discord))
     await member.create_dm()
     text = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
     msg = await member.dm_channel.send(text)
