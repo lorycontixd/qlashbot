@@ -301,9 +301,9 @@ async def writemembers(ctx):
 async def test_(ctx,member:discord.Member):
     await member.create_dm()
     text = "Hello and welcome to the QLASH Brawl Stars server. Please read the rules before you start interacting with other people. \nI kindly ask you to write your brawl stars game tag here."
-    await member.dm_channel.send(text)
+    msg = await member.dm_channel.send(text)
     def check(message):
-        return message.author == ctx.author and message.channel == msg.channel
+        return message.author == ctx.author and message.channel.type == discord.ChannelType.private
     reply = await bot.wait_for('message', check=check)
     await ctx.author.send("You replied with: "+str(reply))
 
