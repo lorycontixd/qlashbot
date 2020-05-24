@@ -238,7 +238,7 @@ async def flip(ctx):
 	else:
 		response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
 		await ctx.channel.send(response)
-    
+
 async def hello_(ctx):
     await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
 
@@ -554,6 +554,7 @@ async def clan_remove_(ctx,*cname):
     content = file.read()
     lines = content.split('\n')
     file.close()
+    await ctx.send("Removed clan: "+clanname)
 
     file2 = open(sourcefile,'w+')
     for line in lines:
@@ -638,18 +639,20 @@ async def member_info_(ctx,member:discord.Member):
 	await ctx.send(embed=e)
 
 async def write_message(ctx,channelname,*message):
+    msg = ctx.message
 	temp = " ".join(message[:])
 	guild = ctx.guild
 	for channel in guild.text_channels:
 		if str(channelname) in str(channel.name):
 			await channel.send(temp)
 			print("message sent in channel "+str(channel.name)+" using the bot")
+    await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):
 	author = ctx.message.author
 	await ctx.channel.purge(limit=int(amount)+1)
-	msg = await ctx.send("Deleted "+str(amount)+" messages from "+author.name)
-	await msg.delete(delay=4.0)
+	msg = await ctx.send("Deleted "+str(amount)+" messages from "+author.mention+" in channel "+str(ctx.message.channel))
+	await msg.delete(delay=5.0)
 
 async def commandlog_view_(ctx,limit):
     await mychannel.trigger_typing()
