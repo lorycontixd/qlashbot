@@ -653,11 +653,9 @@ async def commandlog_view_(ctx,limit):
     response = "``` \n"
     sourcefile = 'command_logs.txt'
     list = tail(sourcefile,limit)
-    print(list)
     for item in list:
         response += item+'\n'
     response+='```'
-    print(response)
     await ctx.send(response)
 
 async def commandlog_clear_(ctx):

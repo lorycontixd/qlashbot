@@ -2,6 +2,7 @@ import brawlstats
 import discord
 import os
 import schedule
+import random
 from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
@@ -90,7 +91,6 @@ async def on_command_completion(ctx):
     mychannel = bot.get_channel(int(bot_testing))
     commandname = ctx.invoked_with
     CommandLogs(ctx,commandname)
-    await mychannel.send("registered command usage "+str(commandname))
 
 #*****************************************************************************************************************
 #*******************************************       GROUPS     ****************************************************
