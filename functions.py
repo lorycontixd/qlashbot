@@ -638,7 +638,7 @@ async def commandlog_view_(ctx,limit):
     offset=0
     sourcefile = 'command_logs.txt'
     file = open(sourcefile,'r+')
-    string = tail(file,limit,offset)
+    string = tail(file,limit)
     response += string
     response +="\n```"
     await ctx.send(response)
