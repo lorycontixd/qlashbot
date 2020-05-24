@@ -655,7 +655,7 @@ async def commandlog_view_(ctx,limit):
     list = tail(sourcefile,limit)
     print(list)
     for item in list:
-        responde += item+'\n'
+        response += item+'\n'
     response+='```'
     print(response)
     await ctx.send(response)
