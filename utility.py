@@ -1,4 +1,9 @@
 #UTILITY FUNCTIONS (mostly non-async)
+import discord
+from discord.ext import commands
+from discord.ext.commands import Bot,cooldown
+from discord.voice_client import VoiceClient
+
 
 ##***** TAIL FUNCTION -> Grab the last N lines from a file. Returns a list of the last N lines.
 
@@ -69,6 +74,3 @@ def LoadCsv():
 
 
 ##********** Remove Emoji -- Remove an emoji from a string (not tested)
-
-def removeEmoji(inputString):
-    return inputString.encode('ascii', 'ignore').decode('ascii')
