@@ -40,8 +40,8 @@ async def on_ready():
 @bot.event
 async def on_disconnect():
     print("Logging off: ",bot.user)
-    mych = await bot.fetch_channel(int(bot_testing))
-    await mych.send("Bot has logged off 🔴")
+    #mych = await bot.fetch_channel(int(bot_testing))
+    #await mych.send("Bot has logged off 🔴")
 
 #@bot.event
 #async def on_member_join(member:discord.Member):
