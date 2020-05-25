@@ -37,7 +37,7 @@ async def weather_current_(ctx,city,country_code):
     except:
         error = "ExceptionError: Please check that you have spelled the city and the country CODE correctly! \nExample of country codes are: Italy-IT, Great Britain-GB, United States-US, Germany-DE, Spain-ES, Marocco-MA, France-FR, etc.. \nCities are to be written in English: EG. Milan is correct, Milano is wrong."
         await ctx.send(error)
-
+        
 
 async def weather_five_days_(ctx,city,country_code):
     try:

@@ -66,19 +66,27 @@ async def on_disconnect():
 @bot.event
 async def on_command_error(ctx, error):
     commandname = ctx.invoked_with
-    CommandLogs(ctx,commandname+'(failed)')
+    reason = ''
     if isinstance(error, commands.errors.CheckFailure):
-        await ctx.send('PermissionError: You do not have the correct role for this command. 😥')
+        await ctx.send('PermissionError: You do not have the correct permissions for this command. 😥')
+        reason = 'PermissionMissing'
     elif isinstance(error, commands.errors.UserInputError):
         await ctx.send('ArguementError: Bad arguement was given. 😕')
+        reason = 'UserInputError'
     elif isinstance(error, commands.CommandOnCooldown):
         await ctx.send('CommandError: Command is on cooldown. 😞')
+        reason = 'CommandOnCooldown'
     elif isinstance(error, commands.CommandNotFound):
         await ctx.send('CommandError: Command was not found. 😞')
+        reason = 'CommandNotFound'
+    elif isinstance(error, commands.DisabledCommand):
+        await ctx.send('This command has been disabled.')
+        reason = 'DisabledCommand'
     else:
         await ctx.send('We got something unexpected...')
         await ctx.send(error)
-        print(error)
+        reason = 'ExternalError'
+    CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
 async def on_command_completion(ctx):
