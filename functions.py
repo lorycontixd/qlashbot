@@ -79,6 +79,7 @@ banlist = '493151669849161743'
 banlist_testing = '713322449915215923'
 entry_exit = '713735004827418625'
 entries_discord = '714161674432806972'
+qlash_bot = '714161674432806972'
 
 #database directories
 qlash_clans_file = './qlash_clans.csv'
