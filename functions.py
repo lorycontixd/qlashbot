@@ -34,7 +34,7 @@ connector = ProxyConnector(
 )
 
 #bot properties
-OWM_API_Key = 'c19412f77f267f8de7781eb6b6ffb56d'
+
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM' #token for discord api
 clientid = '701125311047401474'
 clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
@@ -43,8 +43,6 @@ ipapi.location(ip=None, key=None, field=None)
 
 #bot instances
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
-owm = OWM(OMW_API_key) #language='it' can be added to change language
-
 
 bot_status = True
 last_update = ''
