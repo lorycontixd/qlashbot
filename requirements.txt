@@ -7,6 +7,7 @@ pandas
 datetime
 schedule
 request
+pyowm
 ipapi
 aiohttp_proxy
 python-dateutil

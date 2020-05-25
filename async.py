@@ -3,30 +3,24 @@ import discord
 import os
 import schedule
 import random
+import requests
+import urllib
+
+from urllib.request import Request, urlopen
 from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
+from utility import *
 from functions import *
 from descriptions import *
-import requests
-import urllib
-from urllib.request import Request, urlopen
-TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
+from weather import *
+
+
+DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
+
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
-
-#os.environ['http_proxy'] = os.environ['QUOTAGUARDSTATIC_URL']
-#url = 'http://ip.quotaguard.com/'
-#proxy = urllib.request.ProxyHandler()
-#opener = urllib.request.build_opener(proxy)
-#in_ = opener.open(url)
-#res = in_.read()
-#print(res)
-
-
-#schedule.every().day.at("22:00").do(CheckBanlist)
-schedule_switch=True
 
 #*****************************************************************************************************************
 #*********************************************       EVENTS     **************************************************
@@ -141,17 +135,17 @@ async def coin_flip(ctx):
     await ctx.channel.send('You flipped '+flip)
 
 @commands.cooldown(1, 50, commands.BucketType.guild)
-@fun.command(name='table-flip',brief='Flip that table!!',description="Flip that table!!  50 seconds cooldown in the server")
+@fun.command(name='table-flip',brief='(FUN) Flip that table!!',description="Flip that table!!  50 seconds cooldown in the server")
 async def flip_(ctx):
     await flip(ctx)
 
 @commands.cooldown(1, 50, commands.BucketType.guild)
-@fun.command(name='table-unflip',brief='Unflip that table!!',description="Unflip that table!!  50 seconds cooldown in the server")
+@fun.command(name='table-unflip',brief='(FUN) Unflip that table!!',description="Unflip that table!!  50 seconds cooldown in the server")
 async def unflip_(ctx):
     await unflip(ctx)
 
 @commands.cooldown(1, 50, commands.BucketType.guild)
-@fun.command(name='table-status',brief="Check table's status",desciption=desc_tstatus)
+@fun.command(name='table-status',brief="(FUN) Check table's status",desciption=desc_tstatus)
 async def tstatus_(ctx):
     await tstatus(ctx)
 
@@ -187,11 +181,19 @@ async def channels(ctx):
     await ChannelList(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
-@util.command(name='hello',brief="(UTIL) Welcomes a user ",description=desc_hello)
+@util.command(name='hello',brief="(UTIL) Welcomes a user! ",description=desc_hello)
 async def welcome(ctx):
     await welcome_(ctx)
 
+@commands.cooldown(1,60, commands.BucketType.user)
+@util.command(name='weather-current',brief='(UTIL) Shows current weather for a given city',description=desc_weather_current)
+async def weather_current(ctx,city,country_code):
+    await weather_current_(ctx,city,country_code)
 
+@commands.cooldown(1,60, commands.BucketType.user)
+@util.command(name='weather-5days',brief='(UTIL) Shows 5-days weather forecase for a city',description=desc_weather_5days)
+async def weather_five_days(ctx,city,country_code):
+    await weather_five_days_(ctx,city,country_code)
 #*****************************************************************************************************************
 #**********************************************       MOD     ****************************************************
 #*****************************************************************************************************************
@@ -328,39 +330,31 @@ async def writemembers(ctx):
 #*****************************************************************************************************************
 
 
-@sys.command(name='database-view',hidden=False,brief='View registered QLASH clans',description=desc_database_view)
+@sys.command(name='database-view',hidden=False,brief='(SYS) View registered QLASH clans',description=desc_database_view)
 async def view_database_(ctx):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await view_database(ctx)
 
-@sys.command(name='commandlog-view',hidden=False,brief='View the logs of recorded commands',description=desc_commandlog_view)
+@sys.command(name='commandlog-view',hidden=False,brief='(SYS) View the logs of recorded commands',description=desc_commandlog_view)
 async def commandlog_view(ctx,limit:int):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await commandlog_view_(ctx,limit)
 
-@sys.command(name='commandlog-clear',hidden=False,brief='Clears the log file of recorded commands',description=desc_commandlog_clear)
+@sys.command(name='commandlog-clear',hidden=False,brief='(SYS) Clears the log file of recorded commands',description=desc_commandlog_clear)
 async def commandlog_clear(ctx):
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await commandlog_clear_(ctx)
 
-#@mod.command(name='test')
-#async def test_(ctx,member:discord.Member):
 
 
-
-
-
-#schedule.every().minute.at(":17").do(test)
-#while schedule_switch==True:
-    #schedule.run_pending()
 
 try:
-	bot.run(TOKEN)
+	bot.run(DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:
 	print("Login unsuccessful.")

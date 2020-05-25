@@ -1,29 +1,29 @@
 import brawlstats
 import discord
-from discord.ext import commands
-from discord.ext.commands import Bot,cooldown
-from discord.voice_client import VoiceClient
+import ipapi
 import pandas as pd
 import time
-from datetime import datetime
-from random import randint
-import ipapi
-from dateutil import tz
-from descriptions import *
-from aiohttp_proxy import ProxyConnector,ProxyType
 import os
-from dotenv import load_dotenv
 import aiohttp
 import subprocess
 
+from pyowm import OWM
+from discord.ext import commands
+from discord.ext.commands import Bot,cooldown
+from discord.voice_client import VoiceClient
+from datetime import datetime
+from random import randint
+from dateutil import tz
+from aiohttp_proxy import ProxyConnector,ProxyType
+from dotenv import load_dotenv
+from descriptions import *
+from checks import *
+from utility import *
+
 env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
 load_dotenv(dotenv_path=env_path)
-
 #quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
-#connector = ProxyConnector.from_url(quota_url)
-#session = aiohttp.ClientSession(connector=connector)
 
-#quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 connector = ProxyConnector(
     proxy_type=ProxyType.SOCKS5,
     host='54.72.12.1',#'eu-west-static-03.quotaguard.com',
@@ -33,7 +33,19 @@ connector = ProxyConnector(
     rdns=True
 )
 
+#bot properties
+OWM_API_Key = 'c19412f77f267f8de7781eb6b6ffb56d'
+TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM' #token for discord api
+clientid = '701125311047401474'
+clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
+ipapi.location(ip=None, key=None, field=None)
+#owm.set_API_key('6Lp$0UY220_HaSB45') - to use only if api key changes
+
+#bot instances
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
+owm = OWM(OMW_API_key) #language='it' can be added to change language
+
+
 bot_status = True
 last_update = ''
 
@@ -43,7 +55,6 @@ async def on_ready_():
     print('Creation Date: ',bot.user.created_at)
     print('Websocket Gateway: ',bot.ws)
     print('----------------')
-
     mych = await bot.fetch_channel(int(bot_testing))
     await mych.send("Bot has logged in 🟢")
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
@@ -52,12 +63,6 @@ async def on_disconnect_():
     print("Logging off: ",bot.user)
     mych = await bot.fetch_channel(int(bot_testing))
     await mych.send("Bot has logged off 🔴")
-
-#bot properties
-TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM' #token for discord api
-clientid = '701125311047401474'
-clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
-ipapi.location(ip=None, key=None, field=None)
 
 #test friends tags
 ignick_lory = 'loryconti'
@@ -82,11 +87,7 @@ qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/' #NO
 qc_directory2 = './qlashclans2/' #this one is the right one
 
-#<<<<<<< HEAD
-TOKEN2 = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImUyOTQ3MjlhLWE5YjYtNDIxNy05MTdlLTUxZDJhYzRmOWI4NSIsImlhdCI6MTU5MDI3MDMwNywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.RODZQwDO2YZZF_JAazFccdrg1YiPcaqGmxtPe40ZN-zvVDK3sXuX1-yqGWwjBdd-MoyTqfrsPxhS3V_IUNf9qQ'
-#=======
 LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImUyOTQ3MjlhLWE5YjYtNDIxNy05MTdlLTUxZDJhYzRmOWI4NSIsImlhdCI6MTU5MDI3MDMwNywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.RODZQwDO2YZZF_JAazFccdrg1YiPcaqGmxtPe40ZN-zvVDK3sXuX1-yqGWwjBdd-MoyTqfrsPxhS3V_IUNf9qQ'
-DaddeToken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjZjMTU2MzBkLTQ0N2UtNDU3Zi1iNTczLWU4OGI2NjE3Y2NhZSIsImlhdCI6MTU5MDA5NzM0MSwic3ViIjoiZGV2ZWxvcGVyLzAwNWYyOWI0LTVjMTMtYTNkMC1iYzBhLTMwYzQ5NTBkZTVmMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMzcuMTYwLjY0LjE1NyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.nXcEEkmIDFmG0KAI3FBbQUql-aZ7-izRYF5OXr5hjAbgxbjgd7bePT7UCvY3td3A2jKp4PxaPLxfgdH1ewv2gw'
 #connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
 myclient = brawlstats.Client(LoryToken,is_async=True,debug=True,connector=connector)
 
@@ -96,95 +97,13 @@ to_zone = tz.tzlocal() #local
 
 #*****************************************************************************************************************
 #*****************************************************************************************************************
-#******************************************       NON-ASYNC     **************************************************
-#*****************************************************************************************************************
-#*****************************************************************************************************************
-
-#FUNCTION REPLACING HAS_ANY_ROLE
-def checkforrole(member: discord.Member, *roles):
-	temp = " ".join(roles[:])
-	searchingrole = temp.split(" ") #contains the roles that member must have (list)
-	for role in member.roles:
-		if role.name in searchingrole:
-			return True
-	return False
-
-def removeEmoji(inputString):
-    return inputString.encode('ascii', 'ignore').decode('ascii')
-
-def CommandLogs(ctx,commandname):
-    author = ctx.message.author
-    time = datetime.now()
-    logfile = open('command_logs.txt','a+')
-    logfile.write(str(author)+" has called the command "+str(commandname)+" at time "+str(time)+'\n')
-    logfile.close()
-
-def LoadCsv():
-    df = pd.DataFrame(columns = ['Name','Tag'])
-    sourcefile = 'qlash_clans.csv'
-    file = open(sourcefile,'r+')
-    content = file.read()
-    lines = content.split('\n')
-    for i in range(len(lines)-1):
-        ll = lines[i].split(',')
-        cols = {'Name':[ll[0]],'Tag':[ll[1]]}
-        df_temp = pd.DataFrame(cols,columns = ['Name','Tag'])
-        df = df.append(df_temp,ignore_index = True)
-    file.close()
-    #print(df)
-    return df
-
-def is_me(m):
-    return m.author == client.user
-
-
-def tail(file_name, N):
-    # Create an empty list to keep the track of last N lines
-    list_of_lines = []
-    # Open file for reading in binary mode
-    with open(file_name, 'rb') as read_obj:
-        # Move the cursor to the end of the file
-        read_obj.seek(0, os.SEEK_END)
-        # Create a buffer to keep the last read line
-        buffer = bytearray()
-        # Get the current position of pointer i.e eof
-        pointer_location = read_obj.tell()
-        # Loop till pointer reaches the top of the file
-        while pointer_location >= 0:
-            # Move the file pointer to the location pointed by pointer_location
-            read_obj.seek(pointer_location)
-            # Shift pointer location by -1
-            pointer_location = pointer_location -1
-            # read that byte / character
-            new_byte = read_obj.read(1)
-            # If the read byte is new line character then it means one line is read
-            if new_byte == b'\n':
-                # Save the line in list of lines
-                list_of_lines.append(buffer.decode()[::-1])
-                # If the size of list reaches N, then return the reversed list
-                if len(list_of_lines) == N:
-                    return list(reversed(list_of_lines))
-                # Reinitialize the byte array to save next line
-                buffer = bytearray()
-            else:
-                # If last read character is not eol then add it in buffer
-                buffer.extend(new_byte)
-
-        # As file is read completely, if there is still data in buffer, then its first line.
-        if len(buffer) > 0:
-            list_of_lines.append(buffer.decode()[::-1])
-    # return the reversed list
-    return list(reversed(list_of_lines))
-
-
-#*****************************************************************************************************************
-#*****************************************************************************************************************
 #**************************************       COMMAND FUNCTIONS     **********************************************
 #*****************************************************************************************************************
 #*****************************************************************************************************************
 
 
-#stile banlist:  days of ban, tag ingame, nome ingame,
+##******** BANLIST FUNCTION: writes to a specific channel whether a banned user is in a QLASH Clan
+#banlist layout:  ingame name, ingame tag, days of ban (or perma)
 async def CheckBanlist(ctx):
 	count=0
 	channel = bot.get_channel(int(entry_exit))
@@ -194,7 +113,6 @@ async def CheckBanlist(ctx):
 	messages = await channel.history(limit=150).flatten()
 	now = datetime.now()
 	for message in messages:
-
 		#convert utc time to est
 		creationDate = message.created_at
 		creationDate = creationDate.replace(tzinfo=from_zone)
@@ -298,12 +216,7 @@ def GetClanTag(df,name):
     print("Not Found")
     return
 
-async def Check(ctx,member):
-    allowed = ["Daddedavided#2841","Lore#5934"]
-    if member not in allowed:
-        await ctx.send("You do not have the permission for this command! ")
-        return False
-    return True
+
 
 async def getplayer(ctx,tag):
 	role=''

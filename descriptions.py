@@ -133,6 +133,37 @@ Get the discord role for the QLASH clan you belong to in Brawl Stars.
 If you already have the right role, it will give it again. If you do not belong to an official clan, it will tell you explicitly.
 The parameter required is your INGAME tag that you can find in your ingame profile."""
 
+desc_weather_current = """Utility command
+60 seconds cooldown per user \n
+Get excellent information on the weather of a city. The parameters are <city> and <country_code>.
+Both parameters are case insensitive, but need to be exact or the command will give an error.
+Some country codes are:
+    -Italy: IT
+    -Great Britain: GB / United Kingdom: UK  --> Some functions take GB while some take UK, be careful
+    -Spain: ES
+    -France: FR
+    -United States: US
+    -Germany: DE
+    -Marocco: MA
+    -etc...
+"""
+
+desc_weather_5days = """Utility command
+60 seconds cooldown per user \n
+Get excellent information on a 5-days weather forecast of a city. The parameters are <city> and <country_code>.
+Both parameters are case insensitive, but need to be exact or the command will give an error.
+Only the most important information is desplayed, such as general weather and minimum/maximum temperature.
+Some country codes are:
+    -Italy: IT
+    -Great Britain: GB / United Kingdom: UK  --> Some functions take GB while some take UK, be careful
+    -Spain: ES
+    -France: FR
+    -United States: US
+    -Germany: DE
+    -Marocco: MA
+    -etc...
+"""
+
 #*****************************************************************************************************************
 #********************************************       VARIOUS     **************************************************
 #*****************************************************************************************************************
