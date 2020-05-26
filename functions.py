@@ -255,6 +255,7 @@ def LoadBadWords():
 
 
 async def check_bad_words(message):
+    mychannel = bot.get_channel(int(qlash_bot))
     message_content = message.content.lower()
     author = message.author
     badword_dict = LoadBadWords()
@@ -270,7 +271,7 @@ async def check_bad_words(message):
             embed.add_field(name="Channel",value="#"+message.channel.name, inline = True)
             embed.add_field(name="ID",value=message.id)
             embed.set_footer(text="Created By Lore")
-            await ctx.send(embed=embed)
+            await mychannel.send(embed=embed)
 
 
 async def getplayer(ctx,tag):
