@@ -567,12 +567,10 @@ async def purge_(ctx,amount):
 	await msg.delete(delay=5.0)
 
 async def commandlog_view_(ctx,limit):
-    await mychannel.trigger_typing()
+    await ctx.trigger_typing()
     response = "``` \n"
     sourcefile = 'command_logs.txt'
-    print("test1")
     list = tail(sourcefile,limit)
-    print(list)
     for item in list:
         response += item+'\n'
     response+='```'
