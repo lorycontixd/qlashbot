@@ -377,7 +377,7 @@ async def maintainance(ctx):
         await ctx.send("You do not have permissions for this command!")
         return
     await mychannel.send("Bot is closing for maintainance. If you need support, please contact a "+botdev.mention)
-    await bot.logout()
+    await bot.login()
 
 try:
 	bot.run(DISCORD_TOKEN)

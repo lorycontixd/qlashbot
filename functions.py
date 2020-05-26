@@ -7,6 +7,7 @@ import os
 import aiohttp
 import subprocess
 import pytz
+import asyncio
 
 from pyowm import OWM
 from discord.ext import commands
@@ -253,7 +254,6 @@ def LoadBadWords():
     return dict
 
 
-
 async def check_bad_words(message):
     mychannel = bot.get_channel(int(qlash_bot))
     message_content = message.content.lower()
@@ -261,7 +261,6 @@ async def check_bad_words(message):
     badword_dict = LoadBadWords()
     for badword in badword_dict:
         if badword in message_content:
-            print("found badword in language "+badword_dict[badword])
             channel = bot.get_channel(int(qlash_bot))
             embed=discord.Embed(title="Detected Bad Word usage from user "+str(author), color=0xff4013)
             embed.set_author(name="QLASH Bot")
@@ -272,7 +271,24 @@ async def check_bad_words(message):
             embed.add_field(name="ID",value=message.id)
             embed.set_footer(text="Created By Lore")
             await mychannel.send(embed=embed)
+            mess = await mychannel.send("Do I have permission to delete the message? (A moderator has to react within 10 minutes)")
+            await mess.add_reaction('✅')
+            await mess.add_reaction('❌')
 
+            def check(reaction,user):
+                return str(reaction.emoji)=='✅' or str(reaction.emoji) == '❌'
+            try:
+                await asyncio.sleep(1)
+                reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
+                if str(reaction.emoji) == '✅':
+                    await message.delete()
+                    await mychannel.send("Message was successfully deleted.")
+                    return
+                elif str(reaction.emoji) == '❌':
+                    await mychannel.send("Message was NOT deleted.")
+                    return
+            except asyncio.TimeoutError:
+                await channel.send('Timeout Error 👎')
 
 async def getplayer(ctx,tag):
 	role=''
