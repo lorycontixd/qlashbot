@@ -584,11 +584,9 @@ async def purge_(ctx,amount):
 	await msg.delete(delay=5.0)
 
 async def commandlog_view_(ctx,limit):
-    print("1")
     await ctx.trigger_typing()
     response = "``` \n"
     sourcefile = 'command_logs.txt'
-    print("2")
     list = tail(sourcefile,limit)
     for item in list:
         response += item+'\n'

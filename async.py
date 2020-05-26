@@ -87,10 +87,10 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send('This command has been disabled.')
         reason = 'DisabledCommand'
-    else:
-        await ctx.send('We got something unexpected...')
-        await ctx.send(error)
-        reason = 'ExternalError'
+    #else:
+    #    await ctx.send('We got something unexpected...')
+    #    await ctx.send(error)
+    #    reason = 'ExternalError'
     CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
@@ -326,6 +326,7 @@ async def role_give(ctx,member: discord.Member , *rolename):
 
 @mod.command(name='view-members',brief='(MOD) (BS30+) Get a list of players that left ingame clubs.',description=desc_view_members )
 async def viewmembers(ctx):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
@@ -333,6 +334,7 @@ async def viewmembers(ctx):
 
 @mod.command(name='write-members',brief="(MOD) (BS30+) Write all clan members to database",description=desc_write_members)
 async def writemembers(ctx):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
@@ -352,15 +354,14 @@ async def view_database_(ctx):
 
 @sys.command(name='commandlog-view',hidden=False,brief='(SYS) View the logs of recorded commands',description=desc_commandlog_view)
 async def commandlog_view(ctx,limit:int):
-    print("0")
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    print("0.5")
     await commandlog_view_(ctx,limit)
 
 @sys.command(name='commandlog-clear',hidden=False,brief='(SYS) Clears the log file of recorded commands',description=desc_commandlog_clear)
 async def commandlog_clear(ctx):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
