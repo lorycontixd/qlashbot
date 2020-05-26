@@ -347,6 +347,7 @@ async def writemembers(ctx):
 
 @sys.command(name='database-view',hidden=False,brief='(SYS) View registered QLASH clans',description=desc_database_view)
 async def view_database_(ctx):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
@@ -354,6 +355,7 @@ async def view_database_(ctx):
 
 @sys.command(name='commandlog-view',hidden=False,brief='(SYS) View the logs of recorded commands',description=desc_commandlog_view)
 async def commandlog_view(ctx,limit:int):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
