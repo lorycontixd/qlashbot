@@ -4,8 +4,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
-
 def is_me(m):
     return m.author == client.user
 
