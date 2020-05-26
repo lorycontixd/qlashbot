@@ -8,7 +8,7 @@ import aiohttp
 import subprocess
 import pytz
 import asyncio
-import holidayapi
+#import holidayapi
 
 from pyowm import OWM
 from discord.ext import commands
@@ -65,8 +65,8 @@ h_parameters = {
 #connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
 myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector)
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
-hapi = holidayapi.v1(HOLIDAY_TOKEN)
-holidays = hapi.holidays(h_parameters)
+#hapi = holidayapi.v1(HOLIDAY_TOKEN)
+#holidays = hapi.holidays(h_parameters)
 ipapi.location(ip=None, key=None, field=None)
 
 ##
