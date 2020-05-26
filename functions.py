@@ -628,6 +628,25 @@ async def poke(ctx, member: discord.Member, *args):
 	await member.dm_channel.send(" ".join(args[:]))
 	await mess.add_reaction('✅')
 
+async def bot_stats_(ctx):
+    e=discord.Embed(title="Bot info: "+str(bot.user.name), color=0xe392ff)
+	e.set_author(name="QLASH Bot")
+	e.add_field(name="Name", value=bot.user.mention, inline=True)
+    e.add_field(name="ID",value=str(bot.user.id),inline=True)
+    e.add_field(name="Is a Bot",value=str(bot.user.bot),inline=True)
+    e.add_field(name="Creation Date",value=str(bot.user.created_at),inline=True)
+    e.add_field(name="Latency",value=str(bot.latency),inline=True)
+    e.add_field(name="Language",value=str(bot.user.locale),inline=True)
+
+
+
+async def bot_info_(ctx):
+    role = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
+    response = "This bot was written in the language of Python by a few users "+role.mention+" with a passion for informatics and programming. \nThe core library used is the API offered by Discord called discordpy which grants access to an enormous amount of functions and events."
+    response2 = "The brawlstats API was also used to gather information from the game, which allows to access a few but useful pieces of information. The bot commands can be viewed by typing ^help and navigating using groups (mod,util,sys and fun)"
+    await ctx.send(response)
+    await ctx.send(response2)
+
 async def member_info_(ctx,member:discord.Member):
 	e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
 	e.set_author(name="QLASH Bot")

@@ -165,7 +165,7 @@ async def unflip_(ctx):
 async def tstatus_(ctx):
     await tstatus(ctx)
 
-@commands.cooldown(1,60,commands.BucketType.channel)
+@commands.cooldown(1,30,commands.BucketType.channel)
 @fun.command(name='bs-puns',brief='Post a random and very funny pun about Brawl Stars',description=desc_bs_puns)
 async def bs_puns(ctx):
     await bs_puns_(ctx)
@@ -214,6 +214,16 @@ async def weather_current(ctx,city,country_code):
 @util.command(name='weather-5days',brief='(UTIL) Shows 5-days weather forecase for a city',description=desc_weather_5days)
 async def weather_five_days(ctx,city,country_code):
     await weather_five_days_(ctx,city,country_code)
+
+@commands.cooldown(1,30,commands.BucketType.channel)
+@util.command(name='bot-info',brief="(UTIL) Shows some details about the bot's development")
+async def bot_info(ctx):
+    await bot_info_(ctx)
+
+@commands.cooldown(1,60,commands.BucketType.channel)
+@util.command(name='bot-stats',brief='(UTIL) Shows information about QLASH Bot')
+async def bot_stats(ctx):
+    await bot_stats_(ctx)
 
 #@util.command(name='test_hol')
 #async def test_hol(ctx):
