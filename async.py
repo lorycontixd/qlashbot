@@ -18,7 +18,7 @@ from weather import *
 from checks import *
 
 
-DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0WYw.5qhIQzevEc6cwwy6HcKeKSDOFkc'
+DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
@@ -83,10 +83,10 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send('This command has been disabled.')
         reason = 'DisabledCommand'
-    #else:
-    #    await ctx.send('We got something unexpected...')
-    #    await ctx.send(error)
-    #    reason = 'ExternalError'
+    else:
+        await ctx.send('We got something unexpected...')
+        await ctx.send(error)
+        reason = 'ExternalError'
     CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
@@ -371,6 +371,6 @@ async def commandlog_clear(ctx):
 
 
 try:
-	bot.run(DISCORD_TOKEN)
+    bot.run(DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:
 	print("Login unsuccessful.")
