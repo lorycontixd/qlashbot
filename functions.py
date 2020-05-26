@@ -73,8 +73,6 @@ ipapi.location(ip=None, key=None, field=None)
 bot_status = True
 last_update = ''
 
-
-
 async def on_ready_():
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
@@ -675,6 +673,22 @@ async def commandlog_clear_(ctx):
     sourcefile = 'command_logs.txt'
     open(sourcefile, 'w+').close()
     await ctx.send("Command Log File cleared!")
+
+async def registry_view_(ctx):
+    sourcefile = './registered.txt'
+    response="```"
+    file = open(sourcefile,'r+')
+    content = file.read()
+    lines = content.split('\n')
+    file.close()
+    for i in range(len(lines)-1):
+        ll = lines[i].split("\t")
+        discord = str(ll[0])
+        gametag = str(ll[1])
+        time = str(ll[2])
+        response += discord+'\t'+gametag+'\t'+time+'\n'
+    response+="```"
+    await ctx.send(response)
 
 #******************************** ENTRA/ESCI *******************************
 
