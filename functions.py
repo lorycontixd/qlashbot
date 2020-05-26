@@ -44,12 +44,6 @@ ipapi.location(ip=None, key=None, field=None)
 #bot instances
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
 
-#roles
-botdev = discord.utils.get(ctx.guild.roles, name='BotDeveloper')
-mods = discord.utils.get(ctx.guild.roles, name='Moderator')
-subcoord = discord.utils.get(ctx.guild.roles, name='Sub-Coordinator')
-coord = discord.utils.get(ctx.guild.roles, name='Coordinator')
-
 ##
 bot_status = True
 last_update = ''
@@ -110,9 +104,17 @@ qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/' #NO
 qc_directory2 = './qlashclans2/' #this one is the right one
 
-LoryToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImUyOTQ3MjlhLWE5YjYtNDIxNy05MTdlLTUxZDJhYzRmOWI4NSIsImlhdCI6MTU5MDI3MDMwNywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.RODZQwDO2YZZF_JAazFccdrg1YiPcaqGmxtPe40ZN-zvVDK3sXuX1-yqGWwjBdd-MoyTqfrsPxhS3V_IUNf9qQ'
+#roles
+botdev = discord.utils.get(ctx.guild.roles, name='BotDeveloper')
+mods = discord.utils.get(ctx.guild.roles, name='Moderator')
+subcoord = discord.utils.get(ctx.guild.roles, name='Sub-Coordinator')
+coord = discord.utils.get(ctx.guild.roles, name='Coordinator')
+
+
+
+BS_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImUyOTQ3MjlhLWE5YjYtNDIxNy05MTdlLTUxZDJhYzRmOWI4NSIsImlhdCI6MTU5MDI3MDMwNywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.RODZQwDO2YZZF_JAazFccdrg1YiPcaqGmxtPe40ZN-zvVDK3sXuX1-yqGWwjBdd-MoyTqfrsPxhS3V_IUNf9qQ'
 #connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
-myclient = brawlstats.Client(LoryToken,is_async=True,debug=True,connector=connector)
+myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector)
 
 #time zones
 from_zone = tz.tzutc() #utc
