@@ -18,7 +18,7 @@ from weather import *
 from checks import *
 
 
-DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
+DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0WYw.5qhIQzevEc6cwwy6HcKeKSDOFkc'
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
@@ -369,15 +369,6 @@ async def commandlog_clear(ctx):
         return
     await commandlog_clear_(ctx)
 
-@sys.command(name='maintainance',brief='(SYS) Close the Bot for maintainance purposes')
-async def maintainance(ctx):
-    mychannel = bot.get_channel(int(bot_testing))
-    botdev = discord.utils.get(ctx.guild.roles, name='BotDeveloper')
-    if not Check(ctx,ctx.message.author):
-        await ctx.send("You do not have permissions for this command!")
-        return
-    await mychannel.send("Bot is closing for maintainance. If you need support, please contact a "+botdev.mention)
-    await bot.login()
 
 try:
 	bot.run(DISCORD_TOKEN)
