@@ -367,19 +367,19 @@ async def set_(ctx,gametag):
 		await ctx.send("BadArguement: GameTag needs to start with #")
 		return
     gametag = gametag.upper()
-	mess = ctx.message
-	author = mess.author
-	clanname = ''
-	membergamename = ''
-	rolename = ''
-	readfile = 'qlash_clans.csv'
-	writefile = 'registered.txt'
-	file = open(readfile,'r+')
-	content = file.read()
-	lines = content.split('\n')
-	foundRole = False
-	file.close()
-	for i in range(len(lines)-1): #cycle through clans
+    mess = ctx.message
+    author = mess.author
+    clanname = ''
+    membergamename = ''
+    rolename = ''
+    readfile = 'qlash_clans.csv'
+    writefile = 'registered.txt'
+    file = open(readfile,'r+')
+    content = file.read()
+    lines = content.split('\n')
+    foundRole = False
+    file.close()
+    for i in range(len(lines)-1): #cycle through clans
 		ll=lines[i].split(",")
 		nname = str(ll[0])
 		role = discord.utils.get(author.guild.roles, name=nname)
