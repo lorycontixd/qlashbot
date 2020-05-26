@@ -6,6 +6,7 @@ import time
 import os
 import aiohttp
 import subprocess
+import pytz
 
 from pyowm import OWM
 from discord.ext import commands
@@ -585,16 +586,12 @@ async def purge_(ctx,amount):
 
 async def commandlog_view_(ctx,limit):
     await ctx.trigger_typing()
-    print("1")
     response = "``` \n"
     sourcefile = 'command_logs.txt'
-    print("2")
     list = tail(sourcefile,limit)
-    print(list)
     for item in list:
         response += item+'\n'
     response+='```'
-    print('3')
     await ctx.send(response)
 
 async def commandlog_clear_(ctx):

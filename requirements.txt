@@ -7,9 +7,10 @@ pandas
 datetime
 schedule
 request
-pyowm
 ipapi
 aiohttp_proxy
+pytz
+pyowm
 python-dateutil
 python-dotenv
 pymongo

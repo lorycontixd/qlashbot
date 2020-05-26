@@ -1,11 +1,12 @@
 #UTILITY FUNCTIONS (mostly non-async)
 import discord
+import os
+import pytz
+
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from datetime import datetime
-import os
-
 
 ##***** TAIL FUNCTION -> Grab the last N lines from a file. Returns a list of the last N lines.
 
@@ -51,7 +52,7 @@ def tail(file_name, N):
 
 def CommandLogs(ctx,commandname):
     author = ctx.message.author
-    time = datetime.now()
+    time = datetime.now(pytz.est)
     logfile = open('command_logs.txt','a+')
     logfile.write(str(author)+" has called the command "+str(commandname)+" at time "+str(time)+'\n')
     logfile.close()
