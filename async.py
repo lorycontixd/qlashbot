@@ -87,10 +87,10 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send('This command has been disabled.')
         reason = 'DisabledCommand'
-    #else:
-    #    await ctx.send('We got something unexpected...')
-    #    await ctx.send(error)
-    #    reason = 'ExternalError'
+    else:
+        await ctx.send('We got something unexpected...')
+        await ctx.send(error)
+        reason = 'ExternalError'
     CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
@@ -352,9 +352,11 @@ async def view_database_(ctx):
 
 @sys.command(name='commandlog-view',hidden=False,brief='(SYS) View the logs of recorded commands',description=desc_commandlog_view)
 async def commandlog_view(ctx,limit:int):
+    print("0")
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
         await ctx.send("You don't have the permission for this command!")
         return
+    print("0.5")
     await commandlog_view_(ctx,limit)
 
 @sys.command(name='commandlog-clear',hidden=False,brief='(SYS) Clears the log file of recorded commands',description=desc_commandlog_clear)
