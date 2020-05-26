@@ -15,6 +15,7 @@ from utility import *
 from functions import *
 from descriptions import *
 from weather import *
+from checks import *
 
 
 DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM'
@@ -37,22 +38,9 @@ async def on_disconnect():
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged off 🔴")
 
-watchouts = ['spongebob']
 @bot.event
 async def on_member_join(member:discord.Member):
-    mychannel = bot.get_channel(int(qlash_bot))
-    membername = str(member.name).lower()
-    for item in watchouts:
-        if item in membername:
-            embed=discord.Embed(title="Suspicious member has joined the server"+str(member), color=0xe32400)
-            embed.set_author(name="QLASH Bot")
-            embed.add_field(name="Account Creation Date", value=str(member.created_at), inline=True)
-            embed.add_field(name="User ID", value=str(member.id), inline=True)
-            embed.add_field(name="Mentionable", value=str(member.mention), inline=True)
-            embed.add_field(name="Status", value=str(member.status), inline=True)
-            embed.set_footer(text="Created by Lore")
-            await mychannel.send(embed=embed)
-
+    await member_join_check(member)
 
 #@bot.event
 #async def on_member_join(member:discord.Member):
@@ -99,10 +87,10 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send('This command has been disabled.')
         reason = 'DisabledCommand'
-    else:
-        await ctx.send('We got something unexpected...')
-        await ctx.send(error)
-        reason = 'ExternalError'
+    #else:
+    #    await ctx.send('We got something unexpected...')
+    #    await ctx.send(error)
+    #    reason = 'ExternalError'
     CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
