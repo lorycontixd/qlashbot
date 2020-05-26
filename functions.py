@@ -629,6 +629,7 @@ async def poke(ctx, member: discord.Member, *args):
 	await mess.add_reaction('✅')
 
 async def bot_stats_(ctx):
+    role = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
     e=discord.Embed(title="Bot info: "+str(bot.user.name), color=0xe392ff)
     e.set_author(name="QLASH Bot")
     e.add_field(name="Name", value=bot.user.mention, inline=True)
@@ -637,8 +638,8 @@ async def bot_stats_(ctx):
     e.add_field(name="Creation Date",value=str(bot.user.created_at),inline=True)
     e.add_field(name="Latency",value=str(bot.latency),inline=True)
     e.add_field(name="Language",value=str(bot.user.locale),inline=True)
-
-
+    e.set_footer(text="Bot created by "+role.mention)
+    ctx.send(embed=e)
 
 async def bot_info_(ctx):
     role = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
