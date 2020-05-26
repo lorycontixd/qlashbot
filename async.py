@@ -5,6 +5,7 @@ import schedule
 import random
 import requests
 import urllib
+import holidayapi
 
 from urllib.request import Request, urlopen
 from datetime import datetime
@@ -213,6 +214,10 @@ async def weather_current(ctx,city,country_code):
 @util.command(name='weather-5days',brief='(UTIL) Shows 5-days weather forecase for a city',description=desc_weather_5days)
 async def weather_five_days(ctx,city,country_code):
     await weather_five_days_(ctx,city,country_code)
+
+@util.command(name='test_hol')
+async def test_hol(ctx):
+    print(holidays["holidays"])
 #*****************************************************************************************************************
 #**********************************************       MOD     ****************************************************
 #*****************************************************************************************************************

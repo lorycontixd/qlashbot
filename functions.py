@@ -8,6 +8,7 @@ import aiohttp
 import subprocess
 import pytz
 import asyncio
+import holidayapi
 
 from pyowm import OWM
 from discord.ext import commands
@@ -36,18 +37,43 @@ connector = ProxyConnector(
 )
 
 #bot properties
+BS_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImUyOTQ3MjlhLWE5YjYtNDIxNy05MTdlLTUxZDJhYzRmOWI4NSIsImlhdCI6MTU5MDI3MDMwNywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.RODZQwDO2YZZF_JAazFccdrg1YiPcaqGmxtPe40ZN-zvVDK3sXuX1-yqGWwjBdd-MoyTqfrsPxhS3V_IUNf9qQ'
+
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM' #token for discord api
+
+HOLIDAY_TOKEN = 'c1512589-4ee9-40eb-9d65-9c6063113c3f'
+
 clientid = '701125311047401474'
 clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
-ipapi.location(ip=None, key=None, field=None)
+
 #owm.set_API_key('6Lp$0UY220_HaSB45') - to use only if api key changes
 
+h_parameters = {
+	# Required
+	'country': 'IT',
+	'year':    2019,
+	# Optional
+	# 'month':    7,
+	# 'day':      4,
+	# 'previous': True,
+	# 'upcoming': True,
+    'public':   True,
+	# 'pretty':   True,
+}
+
 #bot instances
+#connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
+myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector)
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
+hapi = holidayapi.v1(HOLIDAY_TOKEN)
+holidays = hapi.holidays(h_parameters)
+ipapi.location(ip=None, key=None, field=None)
 
 ##
 bot_status = True
 last_update = ''
+
+
 
 async def on_ready_():
     print('Logged in as: ',bot.user)
@@ -79,8 +105,6 @@ async def member_join_check(member:discord.Member):
             embed.set_footer(text="Created by Lore")
             await mychannel.send(embed=embed)
 
-
-
 #test friends tags
 ignick_lory = 'loryconti'
 igtag_lory = '#20VYUG2L'
@@ -105,9 +129,7 @@ qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/' #NO
 qc_directory2 = './qlashclans2/' #this one is the right one
 
-BS_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImUyOTQ3MjlhLWE5YjYtNDIxNy05MTdlLTUxZDJhYzRmOWI4NSIsImlhdCI6MTU5MDI3MDMwNywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.RODZQwDO2YZZF_JAazFccdrg1YiPcaqGmxtPe40ZN-zvVDK3sXuX1-yqGWwjBdd-MoyTqfrsPxhS3V_IUNf9qQ'
-#connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
-myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector)
+
 
 #time zones
 from_zone = tz.tzutc() #utc

@@ -1,0 +1,4 @@
+Lore#5934 has called the command test(failed: CommandNotFound) at time 2020-05-26 16:24:39.390379+02:00
+Lore#5934 has called the command test at time 2020-05-26 16:24:47.182140+02:00
+Lore#5934 has called the command util at time 2020-05-26 16:25:51.320689+02:00
+Lore#5934 has called the command test_hold at time 2020-05-26 16:26:08.700603+02:00
