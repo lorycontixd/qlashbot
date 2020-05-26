@@ -362,10 +362,10 @@ async def getclan(ctx,tag):
 
 #---- SET FUNCTION (GIVE ROLE TO MEMBERS FOR CURRENT CLAN)
 async def set_(ctx,gametag):
-	await ctx.trigger_typing()
-	if gametag[0] != '#':
-		await ctx.send("BadArguement: GameTag needs to start with #")
-		return
+    await ctx.trigger_typing()
+    if gametag[0] != '#':
+        await ctx.send("BadArguement: GameTag needs to start with #")
+        return
     gametag = gametag.upper()
     mess = ctx.message
     author = mess.author
@@ -380,54 +380,54 @@ async def set_(ctx,gametag):
     foundRole = False
     file.close()
     for i in range(len(lines)-1): #cycle through clans
-		ll=lines[i].split(",")
-		nname = str(ll[0])
-		role = discord.utils.get(author.guild.roles, name=nname)
-		if role in author.roles and role.name!="QLASH Girl":
-			await author.remove_roles(role)
-		tag = str(ll[1])
-		club = await myclient.get_club(tag)
-		for member in club.members:
-			if member.tag == gametag:
-				foundRole = True
-				await ctx.send("Position found in clan: "+str(club.name))
-				#role = discord.utils.get(author.guild.roles, name=nname)
-				await author.add_roles(role)
-				membergamename = member.name
-				clanname = nname
-				rolename = str(role)
-				break
-		if foundRole == True:
-			break
+        ll=lines[i].split(",")
+        nname = str(ll[0])
+        role = discord.utils.get(author.guild.roles, name=nname)
+        if role in author.roles and role.name!="QLASH Girl":
+            await author.remove_roles(role)
+        tag = str(ll[1])
+        club = await myclient.get_club(tag)
+        for member in club.members:
+            if member.tag == gametag:
+                foundRole = True
+                await ctx.send("Position found in clan: "+str(club.name))
+                #role = discord.utils.get(author.guild.roles, name=nname)
+                await author.add_roles(role)
+                membergamename = member.name
+                clanname = nname
+                rolename = str(role)
+                break
+        if foundRole == True:
+            break
 	#await ctx.trigger_typing()
-	now = datetime.now()
-	dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
-	filetemp = open('registered.txt','r+')
-	contenttemp = filetemp.read()
-	linestemp = contenttemp.split('\n')
-	filetemp.close()
-	exists = False
-	for k in range(len(linestemp)-1): #cycle through users in database
-		lltemp=linestemp[k].split("\t")
-		if str(author)==str(lltemp[0]):
-			print("Found in database")
-			exists = True
-			break
-	file2 = open(writefile,'a+')
-	if exists == False:
-		file2.write( str(ctx.author)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
-		print("Registered")
-	else:
-		print("Already registered")
-	file2.close()
-	if foundRole==True:
-		await mess.add_reaction('✅')
-		await ctx.send("Role set for member "+author.mention+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
-		return
-	else:
-		await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
-		return
+    filetemp = open('registered.txt','r+')
+    contenttemp = filetemp.read()
+    linestemp = contenttemp.split('\n')
+    filetemp.close()
+    exists = False
+    for k in range(len(linestemp)-1): #cycle through users in database
+        lltemp=linestemp[k].split("\t")
+        if str(author)==str(lltemp[0]):
+            print("Found in database")
+            exists = True
+            break
+    file2 = open(writefile,'a+')
+    if exists == False:
+        file2.write( str(ctx.author)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
+        print("Registered")
+    else:
+        print("Already registered")
+    file2.close()
+    if foundRole==True:
+        await mess.add_reaction('✅')
+        await ctx.send("Role set for member "+author.mention+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
+        return
+    else:
+        await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
+        return
 
 #---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
 async def search_member(ctx,name,clubtag):
