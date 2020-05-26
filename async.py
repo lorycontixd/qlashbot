@@ -63,6 +63,7 @@ async def on_member_join(member:discord.Member):
 @bot.event
 async def on_message(message):
     await check_bad_words(message)
+    await bot.process_commands(message)
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -127,7 +128,12 @@ async def sys(ctx):
 @fun.command(name='roll',brief='(FUN) Roll a 6 sided dice.',description='Fun Command \n 30 seconds cooldown per user \n \n'
 +'Roll a 6 sided dice to get a random number from 1 to 6.')
 async def roll(ctx):
-    await roll_(ctx)
+    try:
+        print("roll called")
+        await roll_(ctx)
+        print("hi")
+    except:
+        print("Failed")
 
 #BucketType.user can be changed to default: global ratelimit, channel: channel ratelimit, guild: server ratelimit, user: user ratelimit /for that command
 

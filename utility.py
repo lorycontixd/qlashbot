@@ -52,7 +52,8 @@ def tail(file_name, N):
 
 def CommandLogs(ctx,commandname):
     author = ctx.message.author
-    time = datetime.now(pytz.est)
+    tz = pytz.timezone('Europe/Rome')
+    time = datetime.now(tz=tz)
     logfile = open('command_logs.txt','a+')
     logfile.write(str(author)+" has called the command "+str(commandname)+" at time "+str(time)+'\n')
     logfile.close()
