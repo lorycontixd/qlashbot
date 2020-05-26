@@ -110,6 +110,12 @@ desc_tstatus = """Fun command
 Check the flip status of the table. It does not reset automatically.
 """
 
+desc_bs_puns = """Fun command
+60 seconds cooldown per channel \n
+Post a random and very funny pun about Brawl Stars.
+"""
+
+
 #*****************************************************************************************************************
 #*********************************************       UTIL     ****************************************************
 #*****************************************************************************************************************

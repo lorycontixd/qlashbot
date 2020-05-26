@@ -35,7 +35,6 @@ connector = ProxyConnector(
 )
 
 #bot properties
-
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM' #token for discord api
 clientid = '701125311047401474'
 clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
@@ -45,6 +44,13 @@ ipapi.location(ip=None, key=None, field=None)
 #bot instances
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description)
 
+#roles
+botdev = discord.utils.get(ctx.guild.roles, name='BotDeveloper')
+mods = discord.utils.get(ctx.guild.roles, name='Moderator')
+subcoord = discord.utils.get(ctx.guild.roles, name='Sub-Coordinator')
+coord = discord.utils.get(ctx.guild.roles, name='Coordinator')
+
+##
 bot_status = True
 last_update = ''
 
@@ -58,10 +64,10 @@ async def on_ready_():
     await mych.send("Bot has logged in 🟢")
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
-async def on_disconnect_():
-    print("Logging off: ",bot.user)
-    mych = await bot.fetch_channel(int(bot_testing))
-    await mych.send("Bot has logged off 🔴")
+#async def on_disconnect_():
+    #print("Logging off: ",bot.user)
+    #mych = await bot.fetch_channel(int(bot_testing))
+    #await mych.send("Bot has logged off 🔴")
 
 watchouts = ['spongebob']
 async def member_join_check(member:discord.Member):
@@ -205,6 +211,11 @@ async def qlash_(ctx):
 async def roll_(ctx):
     value = randint(1,6)
     await ctx.send("You rolled a "+str(value))
+
+async def bs_puns_(ctx):
+    choices = ['What do you call it when you get killed by a bull main? Bull-shit.','What do you call it when you get killed by a Shelly main? Shell shock.','What do you call it when you get killed by a Poco main? Hacks.','What do you call a team of crows? Toxic','How is franks super? Literally stunning','What is Nita without her super? UnBearable',"El primo isn't really a jokester, but he can pack quite a punch line",'Killing that little cactus man will give you a decent Spike in ego.','My club has barley any members.','All these puns are literally Tara-ble.','El Primo jumping in the enemy base with 11 gems.']
+    myint = randint(1,len(choices))
+    await ctx.send(str(choices[myint]))
 
 
 #*********************************************  VARIOUS  *******************************************

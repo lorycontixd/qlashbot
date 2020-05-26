@@ -162,6 +162,10 @@ async def unflip_(ctx):
 async def tstatus_(ctx):
     await tstatus(ctx)
 
+@commands.cooldown(1,60,commands.BucketType.channel)
+@fun.command(name='bs-puns',brief='Post a random and very funny pun about Brawl Stars',description=desc_bs_puns)
+async def bs_puns(ctx):
+    await bs_puns_(ctx)
 
 #*****************************************************************************************************************
 #**********************************************       UTILS     **************************************************
@@ -369,8 +373,14 @@ async def commandlog_clear(ctx):
         return
     await commandlog_clear_(ctx)
 
-
-
+@sys.command(name='maintainance',brief='(SYS) Close the Bot for maintainance purposes')
+async def maintainance(ctx):
+    mychannel = bot.get_channel(int(bot_testing))
+    if not Check(ctx,ctx.message.author):
+		await ctx.send("You do not have permissions for this command!")
+		return
+    await mychannel.send("Bot is closing for maintainance. If you need support, please contact a "+botdev.mention)
+    await bot.logout()
 
 try:
 	bot.run(DISCORD_TOKEN)
