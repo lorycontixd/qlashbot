@@ -174,7 +174,7 @@ async def qlash(ctx):
     await qlash_(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
-@util.command(name='qlash-allclans',brief='(UTIL) (BS30+) List all ingame qlash clans.',description = desc_qlash_allclans)
+@util.command(name='qlash-allclans',hidden=True,brief='(UTIL) (BS30+) List all ingame qlash clans.',description = desc_qlash_allclans)
 async def qlash_allclans(ctx):
     await qlash_trophies(ctx)
 
