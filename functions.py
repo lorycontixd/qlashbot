@@ -366,6 +366,7 @@ async def set_(ctx,gametag):
 	if gametag[0] != '#':
 		await ctx.send("BadArguement: GameTag needs to start with #")
 		return
+    gametag = gametag.upper()
 	mess = ctx.message
 	author = mess.author
 	clanname = ''
