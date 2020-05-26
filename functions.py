@@ -104,14 +104,6 @@ qlash_clans_file = './qlash_clans.csv'
 qc_directory = './qlashclans/' #NO
 qc_directory2 = './qlashclans2/' #this one is the right one
 
-#roles
-botdev = discord.utils.get(ctx.guild.roles, name='BotDeveloper')
-mods = discord.utils.get(ctx.guild.roles, name='Moderator')
-subcoord = discord.utils.get(ctx.guild.roles, name='Sub-Coordinator')
-coord = discord.utils.get(ctx.guild.roles, name='Coordinator')
-
-
-
 BS_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImUyOTQ3MjlhLWE5YjYtNDIxNy05MTdlLTUxZDJhYzRmOWI4NSIsImlhdCI6MTU5MDI3MDMwNywic3ViIjoiZGV2ZWxvcGVyLzMwMWI3NDk1LWE0OTQtYmIzNy05MWFlLWM5MGEyZmRjMDBjOSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.RODZQwDO2YZZF_JAazFccdrg1YiPcaqGmxtPe40ZN-zvVDK3sXuX1-yqGWwjBdd-MoyTqfrsPxhS3V_IUNf9qQ'
 #connector = ProxyConnector.from_url('http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293')#os.environ['QUOTAGUARDSTATIC_URL'])
 myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector)
@@ -246,6 +238,39 @@ def GetClanTag(df,name):
     print("Not Found")
     return
 
+
+def LoadBadWords():
+    dict = {}
+    FILEPATH = './bad_words.csv'
+    file = open(FILEPATH,'r+')
+    content = file.read()
+    lines = content.split('\n')
+    for i in range(len(lines)-1):
+        ll = lines[i].split(',')
+        badword = str(ll[0])
+        language = str(ll[1])
+        dict[badword]=language
+    return dict
+
+
+
+async def check_bad_words(message):
+    message_content = message.content.lower()
+    author = message.author
+    badword_dict = LoadBadWords()
+    for badword in badword_dict:
+        if badword in message_content:
+            print("found badword in language "+badword_dict[badword])
+            channel = bot.get_channel(int(qlash_bot))
+            embed=discord.Embed(title="Detected Bad Word usage from user "+str(author), color=0xff4013)
+            embed.set_author(name="QLASH Bot")
+            embed.add_field(name="Author", value=author.mention, inline=True)
+            embed.add_field(name="Bad Word", value=str(badword), inline=True)
+            embed.add_field(name="Language", value=str(badword_dict[badword]), inline=True)
+            embed.add_field(name="Channel",value="#"+message.channel.name, inline = True)
+            embed.add_field(name="ID",value=message.id)
+            embed.set_footer(text="Created By Lore")
+            await ctx.send(embed=embed)
 
 
 async def getplayer(ctx,tag):

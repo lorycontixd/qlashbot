@@ -60,13 +60,9 @@ async def on_member_join(member:discord.Member):
 #    await channel.send( "Registered: "+str(member)+'\t'+str(content)+'\t'+str(datetime.now()) )
 
 
-#@bot.event
-#async def on_message(message):
-#    print(message.author)
-#    print(message.channel)
-#    print(message.content)
-#    print(" ")
-#    await bot.process_commands(message)
+@bot.event
+async def on_message(message):
+    await check_bad_words(message)
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -376,6 +372,7 @@ async def commandlog_clear(ctx):
 @sys.command(name='maintainance',brief='(SYS) Close the Bot for maintainance purposes')
 async def maintainance(ctx):
     mychannel = bot.get_channel(int(bot_testing))
+    botdev = discord.utils.get(ctx.guild.roles, name='BotDeveloper')
     if not Check(ctx,ctx.message.author):
         await ctx.send("You do not have permissions for this command!")
         return
