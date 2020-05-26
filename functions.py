@@ -630,8 +630,8 @@ async def poke(ctx, member: discord.Member, *args):
 
 async def bot_stats_(ctx):
     e=discord.Embed(title="Bot info: "+str(bot.user.name), color=0xe392ff)
-	e.set_author(name="QLASH Bot")
-	e.add_field(name="Name", value=bot.user.mention, inline=True)
+    e.set_author(name="QLASH Bot")
+    e.add_field(name="Name", value=bot.user.mention, inline=True)
     e.add_field(name="ID",value=str(bot.user.id),inline=True)
     e.add_field(name="Is a Bot",value=str(bot.user.bot),inline=True)
     e.add_field(name="Creation Date",value=str(bot.user.created_at),inline=True)
