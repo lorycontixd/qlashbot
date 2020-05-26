@@ -570,7 +570,9 @@ async def commandlog_view_(ctx,limit):
     await mychannel.trigger_typing()
     response = "``` \n"
     sourcefile = 'command_logs.txt'
+    print("test1")
     list = tail(sourcefile,limit)
+    print(list)
     for item in list:
         response += item+'\n'
     response+='```'
