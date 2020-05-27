@@ -324,9 +324,7 @@ async def set_(ctx,player:discord.Member,gametag):
     if not clanname:
         clanname = "None"
 
-    print("test1")
     member_dict = check_member(player)
-    print("test2")
     if member_dict == None:
         print("member_dict None")
         register_member(str(player),str(gametag),clanname,str(dt_string))
