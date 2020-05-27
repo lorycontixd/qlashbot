@@ -97,7 +97,7 @@ async def CheckBanlist(ctx):
         list = LoadClans()
         for i in range(len(list)):
             clubName = list[i]["Name"]
-			clubTag = list[i]["Tag"]
+            clubTag = list[i]["Tag"]
             cclub = await myclient.get_club(clubTag)
             for member in cclub.members:
                 if str(member.tag) == str(playerTag):
