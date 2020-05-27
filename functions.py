@@ -608,7 +608,7 @@ async def commandlog_view_(ctx,limit):
     response = "``` \n"
     list = view_commandlog(limit)
     for item in list:
-        response+="User: "+str(item["User"])+"\tTime: "+str(item["Time"])+"\tCommand: "+str(item["Command"])+"\tFailed: "+str(item["Failed"])+"\tReason: "+str(item["Reason"])+"\n"
+        response+="User: "+str(item["User"])+" Time: "+str(item["Time"])+" Command: "+str(item["Command"])+" Failed: "+str(item["Failed"])+" Reason: "+str(item["Reason"])+"\n"
     response+="```"
     await ctx.send(response)
 
