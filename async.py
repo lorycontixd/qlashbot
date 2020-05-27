@@ -190,11 +190,6 @@ async def qlash_allclans(ctx):
 async def qlash_clan(ctx,name_or_tag):
     await qlash_cclan(ctx,name_or_tag)
 
-@commands.cooldown(1, 60, commands.BucketType.user)
-@util.command(name='set',brief="(UTIL)(BS1) Get the discord role for the clan you belong to.",description=desc_set)
-async def set(ctx,player:discord.Member,ingame_tag):
-    await set_(ctx,player,ingame_tag)
-
 @commands.cooldown(1,60,commands.BucketType.user)
 @util.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.',description=desc_channels)
 async def channels(ctx):
@@ -228,9 +223,19 @@ async def bot_stats(ctx):
 #@util.command(name='test_hol')
 #async def test_hol(ctx):
 #    print(holidays["holidays"])
+
 #*****************************************************************************************************************
 #**********************************************       MOD     ****************************************************
 #*****************************************************************************************************************
+
+### SET ###
+@mod.command(name='set',brief="(UTIL)(BS1) Get the discord role for the clan you belong to.",description=desc_set)
+async def set(ctx,player:discord.Member,ingame_tag):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await set_(ctx,player,ingame_tag)
 
 #ADMIN
 @mod.command(name='bs-playerinfo',brief='(MOD) (BS1) Search for information about a generic ingame player.',description=desc_bs_playerinfo)

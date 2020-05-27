@@ -325,30 +325,17 @@ async def set_(ctx,player:discord.Member,gametag):
                 break
         if foundRole == True:
             break
-	#await ctx.trigger_typing()
     tz = pytz.timezone('Europe/Rome')
     now = datetime.now(tz=tz)
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
-    filetemp = open('registered.txt','r+')
-    contenttemp = filetemp.read()
-    linestemp = contenttemp.split('\n')
-    filetemp.close()
-    exists = False
-    for k in range(len(linestemp)-1): #cycle through users in database
-        lltemp=linestemp[k].split("\t")
-        if str(player)==str(lltemp[0]):
-            print("Found in database")
-            exists = True
-            break
-    #file2 = open(writefile,'a+')
-    if exists == False:
-        #file2.write( str(ctx.author)+'\t'+str(gametag)+'\t'+str(dt_string)+'\n' )
-        register_member(str(author),str(gametag),clanname,str(dt_string))
-        print("Registered")
+    member_dict = check_member(player)
+    if member_dict == None:
+        register_member(str(player),str(gametag),clanname,str(dt_string))
+        print("Registered "+str(player))+" to database ("+str(gametag)+")"
     else:
         print("Already registered")
-    #file2.close()
+
     if foundRole==True:
         await mess.add_reaction('✅')
         await ctx.send("Role set for member "+player.mention+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
