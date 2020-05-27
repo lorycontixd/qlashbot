@@ -22,9 +22,10 @@ def register_member(discord,gametag,clan,time):
 
 def check_member(discord):
     document = coll_registered.find_one({"Discord":{"$eq":str(discord)}})
-    if document == None:
-        print("MONGO_DB: Nothing returned from Check Member ")
     return document #type <dict>
+
+def remove_member(discord,tag):
+    coll_registered.find_one({"Discord":{"$eq":str(discord)},"Tag":{"$eq":str(discord)}})
 
 async def view_database(ctx):
     response='```\n'
@@ -35,15 +36,17 @@ async def view_database(ctx):
     response+='```'
     await ctx.send(response)
 
+
+
+#*****************************************************************************************************************
+#*********************************************       CLANS     ***************************************************
+#*****************************************************************************************************************
+
 def LoadClans():
     list = []
     for document in coll_qlashclans.find():
         list.append(document)
     return list #list of dicts ("Name","Tag")
-
-#*****************************************************************************************************************
-#*********************************************       CLANS     ***************************************************
-#*****************************************************************************************************************
 
 def register_clan(tag,name):
     mydict = {

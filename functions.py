@@ -328,7 +328,9 @@ async def set_(ctx,player:discord.Member,gametag):
         register_member(str(player),str(gametag),clanname,str(dt_string))
         print("Registered "+str(player)+" to database ("+str(gametag)+")")
     else:
+        remove_member(str(player),str(gametag))
         print("Already registered")
+        register_member(str(player),str(gametag),clanname,str(dt_string))
 
     if foundRole==True:
         await mess.add_reaction('✅')
