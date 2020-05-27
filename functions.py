@@ -463,6 +463,7 @@ async def clan_add_(ctx,tag,*cname):
     content = str(clanname)+","+str(tag)+"\n"
     file.write(content)
     file.close()
+    register_clan(tag,clanname)
     await ctx.send("Added QLASH clan: "+clanname+" ("+tag+") to the database")
     return
 
@@ -476,6 +477,7 @@ async def clan_remove_(ctx,*cname):
     content = file.read()
     lines = content.split('\n')
     file.close()
+    remove_clan(clanname)
     await ctx.send("Removed clan: "+clanname)
 
     file2 = open(sourcefile,'w+')
