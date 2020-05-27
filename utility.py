@@ -7,6 +7,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from datetime import datetime
+from instances import *
 
 ##***** TAIL FUNCTION -> Grab the last N lines from a file. Returns a list of the last N lines.
 

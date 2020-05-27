@@ -3,6 +3,7 @@ from pyowm import OWM
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
+from instances import *
 import datetime
 
 OWM_API_Key = 'c19412f77f267f8de7781eb6b6ffb56d'
@@ -37,7 +38,7 @@ async def weather_current_(ctx,city,country_code):
     except:
         error = "ExceptionError: Please check that you have spelled the city and the country CODE correctly! \nExample of country codes are: Italy-IT, Great Britain-GB, United States-US, Germany-DE, Spain-ES, Marocco-MA, France-FR, etc.. \nCities are to be written in English: EG. Milan is correct, Milano is wrong."
         await ctx.send(error)
-        
+
 
 async def weather_five_days_(ctx,city,country_code):
     try:
