@@ -229,7 +229,7 @@ async def bot_stats(ctx):
 #*****************************************************************************************************************
 
 ### SET ###
-@mod.command(name='set',brief="(UTIL)(BS1) Get the discord role for the clan you belong to.",description=desc_set)
+@mod.command(name='set',brief="(MOD)(BS1) Get the discord role for the clan you belong to.",description=desc_set)
 async def set(ctx,player:discord.Member,ingame_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
@@ -241,7 +241,7 @@ async def set(ctx,player:discord.Member,ingame_tag):
 @mod.command(name='bs-playerinfo',brief='(MOD) (BS1) Search for information about a generic ingame player.',description=desc_bs_playerinfo)
 async def bs_pinfo(ctx,player_tag):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await getplayer(ctx,player_tag)
@@ -250,7 +250,7 @@ async def bs_pinfo(ctx,player_tag):
 @mod.command(name='bs-claninfo',brief='(MOD) (BS1) Search for information about an ingame clan.',description=desc_bs_claninfo,)
 async def bs_cinfo(ctx,clan_tag):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await getclan(ctx,clan_tag)
@@ -259,35 +259,19 @@ async def bs_cinfo(ctx,clan_tag):
 @mod.command(name='bs-memberinfo',brief='(MOD) (BS1) Search for information about a member within a given clan.',description=desc_bs_memberinfo)
 async def bs_minfo(ctx,name,clan_tag):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await search_member(ctx,name,clan_tag)
 
 
-#ADMIN
-@mod.command(name='clan-add',brief='(MOD) Add a qlash clan to the database.',description=desc_clan_add)
-async def clan_add(ctx,tag,*clan_name):
-    author = ctx.message.author
-    if not checkforrole(author, "Moderator", "Sub-Coordinator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await clan_add_(ctx,tag,*clan_name)
 
-#ADMIN
-@mod.command(name='clan-remove',brief='(MOD) Remove a qlash clan from the database.',description=desc_clann_remove)
-async def clan_remove(ctx,*clan_name):
-    author = ctx.message.author
-    if not checkforrole(author, "Moderator", "Sub-Coordinator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await clan_remove_(ctx,*clan_name)
 
 #ADMIN
 @mod.command(name='qlash-clan-members',brief='(MOD) (BS1) Shows a list of all members of a given QLASH clan.')
 async def qlashclanmembers(ctx,clanname_or_tag):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await GetClanMembers(ctx,clanname_or_tag)
@@ -303,7 +287,7 @@ async def locate(ctx,ip):
 @mod.command(name='member-info',brief='(MOD) Show information of a discord member',description=desc_memberinfo)
 async def memberinfo(ctx,member:discord.Member):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
     CommandLogs(ctx,'member-info')
@@ -402,6 +386,24 @@ async def registry_view(ctx):
         await ctx.send("You don't have the permission for this command!")
         return
     await registry_view_(ctx)
+
+#ADMIN
+@sys.command(name='clan-add',brief='(SYS) Add a qlash clan to the database.',description=desc_clan_add)
+async def clan_add(ctx,tag,*clan_name):
+    author = ctx.message.author
+    if not checkforrole(author, "Moderator", "Sub-Coordinator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await clan_add_(ctx,tag,*clan_name)
+
+#ADMIN
+@sys.command(name='clan-remove',brief='(SYS) Remove a qlash clan from the database.',description=desc_clann_remove)
+async def clan_remove(ctx,*clan_name):
+    author = ctx.message.author
+    if not checkforrole(author, "Moderator", "Sub-Coordinator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await clan_remove_(ctx,*clan_name)
 
 try:
     bot.run(DISCORD_TOKEN)

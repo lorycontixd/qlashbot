@@ -292,6 +292,7 @@ async def set_(ctx,player:discord.Member,gametag):
     if gametag[0] != '#':
         await ctx.send("BadArguement: GameTag needs to start with #")
         return
+    botdev = discord.utils.get(player.guild.roles, name="BotDeveloper")
     gametag = gametag.upper()
     mess = ctx.message
     author = mess.author
@@ -299,7 +300,6 @@ async def set_(ctx,player:discord.Member,gametag):
     membergamename = ''
     rolename = ''
     readfile = 'qlash_clans.csv'
-    writefile = 'registered.txt'
     file = open(readfile,'r+')
     content = file.read()
     lines = content.split('\n')
@@ -341,7 +341,7 @@ async def set_(ctx,player:discord.Member,gametag):
         await ctx.send("Role set for member "+player.mention+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
         return
     else:
-        await ctx.send("No role found. If you think this is a mistake, please contact our staff. Thank you!")
+        await ctx.send("No role found. If you think this is a mistake, please contact our staff or a "+botdev.mention+". Thank you!")
         return
 
 #---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
