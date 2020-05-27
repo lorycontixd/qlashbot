@@ -94,12 +94,10 @@ async def CheckBanlist(ctx):
 			if difference>=int(dayBan):
 				await writechannel.send("Ban for player "+str(temp[0])+" has expired.")
 				continue
-		file = open(qlash_clans_file,'r+')
-		content = file.read()
-		lines = content.split('\n')
-		for i in range(len(lines)-1):
-			ll = lines[i].split(',')
-			clubTag = str(ll[1])
+        list = LoadClans()
+		for i in range(len(list)):
+            clubName = list[i]["Name"]
+			clubTag = list[i]["Tag"]
 			cclub = await myclient.get_club(clubTag)
 			for member in cclub.members:
 				if str(member.tag) == str(playerTag):
@@ -300,19 +298,14 @@ async def set_(ctx,player:discord.Member,gametag):
     clanname = ''
     membergamename = ''
     rolename = ''
-    readfile = 'qlash_clans.csv'
-    file = open(readfile,'r+')
-    content = file.read()
-    lines = content.split('\n')
     foundRole = False
-    file.close()
-    for i in range(len(lines)-1): #cycle through clans
-        ll=lines[i].split(",")
-        nname = str(ll[0])
+    list = LoadClans()
+    for i in range(len(list)): #cycle through clans
+        nname = str(list[i]["Name"])
         role = discord.utils.get(player.guild.roles, name=nname)
         if role in author.roles and role.name!="QLASH Girl":
             await author.remove_roles(role)
-        tag = str(ll[1])
+        tag = str(list[i]["Tag"])
         club = await myclient.get_club(tag)
         for member in club.members:
             if member.tag == gametag:
@@ -453,32 +446,20 @@ async def GetClanMembers(ctx,name_tag):
     await ctx.send(stringa)
 ###******************************* READ / WRITE / ADD / DELETE ***********
 async def clan_add_(ctx,tag,*cname):
-    sourcefile = 'qlash_clans.csv'
     if tag[0] != '#':
-        await ctx.send("Invalid Argument "+str(tag)+"! Please add # in front" )
+        await ctx.send("Invalid Argument "+str(tag)+". Please add # in front!" )
         return
     clanname = " ".join(cname[:])
-    #print(clanname)
-    file = open(sourcefile,'a+')
-    content = str(clanname)+","+str(tag)+"\n"
-    file.write(content)
-    file.close()
     register_clan(tag,clanname)
-    await ctx.send("Added QLASH clan: "+clanname+" ("+tag+") to the database")
+    await ctx.send("Added QLASH clan: "+clanname+" ("+tag+") to the database.")
     return
 
 async def clan_remove_(ctx,*cname):
     if not await Check(ctx,str(ctx.message.author)):
         return
-    sourcefile = 'qlash_clans.csv'
-    removedline = ''
     clanname = " ".join(cname[:])
-    file = open(sourcefile,'r+')
-    content = file.read()
-    lines = content.split('\n')
-    file.close()
     remove_clan(clanname)
-    await ctx.send("Removed clan: "+clanname)
+    await ctx.send("Removed clan "+clanname+" from the database.")
 
     file2 = open(sourcefile,'w+')
     for line in lines:
