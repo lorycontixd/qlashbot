@@ -94,7 +94,7 @@ async def on_command_error(ctx, error):
         await ctx.send('We got something unexpected...')
         await ctx.send(error)
         reason = 'ExternalError'
-    register_commandlog(author,commandname,str(time),str(failed),reason)
+    register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
@@ -106,7 +106,7 @@ async def on_command_completion(ctx):
     time = nnow.strftime("%d/%m/%Y %H:%M:%S")
     reason = 'None'
     failed=False
-    register_commandlog(author,commandname,str(time),str(failed),reason)
+    register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname)
 
 #*****************************************************************************************************************
