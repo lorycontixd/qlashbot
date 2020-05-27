@@ -605,14 +605,14 @@ async def purge_(ctx,amount):
 	await msg.delete(delay=5.0)
 
 async def commandlog_view_(ctx,limit):
-    await ctx.trigger_typing()
     response = "``` \n"
-    sourcefile = 'command_logs.txt'
-    list = tail(sourcefile,limit)
+    list = view_commandlog(limit)
     for item in list:
-        response += item+'\n'
-    response+='```'
+        response+="User: "+str(item["User"])+"\tTime: "+str(item["Time"])+"\tCommand: "+str(item["Command"])+"\tFailed: "+str(item["Failed"])+"\tReason: "+str(item["Reason"])+"\n"
+    response+="```"
     await ctx.send(response)
+
+
 
 async def commandlog_clear_(ctx):
     sourcefile = 'command_logs.txt'

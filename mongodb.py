@@ -43,8 +43,15 @@ def register_commandlog(user,command,time,failed,reason):
     }
     coll_commandlogs.insert_one(mydict)
 
+def view_commandlog(int):
+    list = []
+    for document in coll_commandlogs.find():
+        list.append(document)
+    list = list[-i:]
+    return list
+
 #*****************************************************************************************************************
 #*********************************************       LOGS     ****************************************************
 #*****************************************************************************************************************
-
+view_commandlog()
 #collection.insert_one(mydict1)
