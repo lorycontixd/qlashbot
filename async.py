@@ -415,6 +415,10 @@ async def clan_remove(ctx,*clan_name):
         return
     await clan_remove_(ctx,*clan_name)
 
+
+
+
+
 try:
     bot.run(DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:
