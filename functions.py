@@ -322,6 +322,8 @@ async def set_(ctx,player:discord.Member,gametag):
     tz = pytz.timezone('Europe/Rome')
     now = datetime.now(tz=tz)
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    if not clanname:
+        clanname = "None"
 
     member_dict = check_member(player)
     if member_dict == None:
