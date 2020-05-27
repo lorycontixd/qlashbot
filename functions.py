@@ -323,6 +323,7 @@ async def set_(ctx,player:discord.Member,gametag):
     now = datetime.now(tz=tz)
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     if not clanname:
+        print("clan name empty")
         clanname = "None"
 
     member_dict = check_member(player)
