@@ -90,7 +90,4 @@ entries_discord = '714161674432806972'
 qlash_bot = '714161674432806972'
 
 #database directories
-qlash_clans_file = './qlash_clans.csv'
-qc_directory = './qlashclans/' #NO
 qc_directory2 = './qlashclans2/' #this one is the right one
-registered = './registered.txt'
