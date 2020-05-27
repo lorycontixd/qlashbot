@@ -18,7 +18,7 @@ from dateutil import tz
 from descriptions import *
 from checks import *
 from utility import *
-from tournament import *
+from mongodb import *
 from instances import *
 
 ##

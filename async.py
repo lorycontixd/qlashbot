@@ -69,7 +69,12 @@ async def on_message(message):
 @bot.event
 async def on_command_error(ctx, error):
     commandname = ctx.invoked_with
+    author = ctx.message.author
+    tz = pytz.timezone('Europe/Rome')
+    now = datetime.now(tz=tz)
+    time = now.strftime("%d/%m/%Y %H:%M:%S")
     reason = ''
+    failed=True
     if isinstance(error, commands.errors.CheckFailure):
         await ctx.send('PermissionError: You do not have the correct permissions for this command. 😥')
         reason = 'PermissionMissing'
@@ -89,13 +94,20 @@ async def on_command_error(ctx, error):
         await ctx.send('We got something unexpected...')
         await ctx.send(error)
         reason = 'ExternalError'
-    CommandLogs(ctx,commandname+'(failed: '+reason+')')
+    register_commandlog(author,commandname,str(time),str(failed),reason)
+    #CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
 async def on_command_completion(ctx):
-    mychannel = bot.get_channel(int(bot_testing))
     commandname = ctx.invoked_with
-    CommandLogs(ctx,commandname)
+    author = ctx.message.author
+    tz = pytz.timezone('Europe/Rome')
+    now = datetime.now(tz=tz)
+    time = now.strftime("%d/%m/%Y %H:%M:%S")
+    reason = 'None'
+    failed=False
+    register_commandlog(author,commandname,str(time),str(failed),reason)
+    #CommandLogs(ctx,commandname)
 
 #*****************************************************************************************************************
 #*******************************************       GROUPS     ****************************************************
