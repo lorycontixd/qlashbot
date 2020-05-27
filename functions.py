@@ -201,6 +201,7 @@ def LoadBadWords():
 
 
 async def check_bad_words(message):
+    mod = role = discord.utils.get(player.guild.roles, name="Moderator")
     mychannel = bot.get_channel(int(qlash_bot))
     message_content = message.content.lower()
     author = message.author
@@ -217,7 +218,7 @@ async def check_bad_words(message):
             embed.add_field(name="ID",value=message.id)
             embed.set_footer(text="Created By Lore")
             await mychannel.send(embed=embed)
-            mess = await mychannel.send("Do I have permission to delete the message? (A moderator has to react within 10 minutes)")
+            mess = await mychannel.send("Do I have permission to delete the message? (A "+mod.mention+" has to react within 10 minutes)")
             await mess.add_reaction('✅')
             await mess.add_reaction('❌')
 
