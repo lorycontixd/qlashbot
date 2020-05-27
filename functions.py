@@ -311,7 +311,6 @@ async def set_(ctx,player:discord.Member,gametag):
             if member.tag == gametag:
                 foundRole = True
                 await ctx.send("Position found in clan: "+str(club.name))
-                #role = discord.utils.get(author.guild.roles, name=nname)
                 await player.add_roles(role)
                 membergamename = member.name
                 clanname = nname
@@ -323,11 +322,13 @@ async def set_(ctx,player:discord.Member,gametag):
     now = datetime.now(tz=tz)
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     if not clanname:
-        print("clan name empty")
         clanname = "None"
 
+    print("test1")
     member_dict = check_member(player)
+    print("test2")
     if member_dict == None:
+        print("member_dict None")
         register_member(str(player),str(gametag),clanname,str(dt_string))
         print("Registered "+str(player)+" to database ("+str(gametag)+")")
     else:
