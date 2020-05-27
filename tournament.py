@@ -21,9 +21,6 @@ def register_member(discord,gametag,clan,time):
 
 def check_member(discord):
     document = coll_registered.find_one({"Discord":{"$eq":str(discord)}})
-    if document = None:
-        print("MONGO_DB: Nothing returned from Check Member ")
-        return
     return document #type <dict>
 
 
