@@ -71,8 +71,8 @@ async def on_command_error(ctx, error):
     commandname = ctx.invoked_with
     author = ctx.message.author
     tz = pytz.timezone('Europe/Rome')
-    now = datetime.now(tz=tz)
-    time = now.strftime("%d/%m/%Y %H:%M:%S")
+    nnow = datetime.now(tz=tz)
+    time = nnow.strftime("%d/%m/%Y %H:%M:%S")
     reason = ''
     failed=True
     if isinstance(error, commands.errors.CheckFailure):
@@ -102,8 +102,8 @@ async def on_command_completion(ctx):
     commandname = ctx.invoked_with
     author = ctx.message.author
     tz = pytz.timezone('Europe/Rome')
-    now = datetime.now(tz=tz)
-    time = now.strftime("%d/%m/%Y %H:%M:%S")
+    nnow = datetime.now(tz=tz)
+    time = nnow.strftime("%d/%m/%Y %H:%M:%S")
     reason = 'None'
     failed=False
     register_commandlog(author,commandname,str(time),str(failed),reason)
@@ -142,9 +142,7 @@ async def sys(ctx):
 +'Roll a 6 sided dice to get a random number from 1 to 6.')
 async def roll(ctx):
     try:
-        print("roll called")
         await roll_(ctx)
-        print("hi")
     except:
         print("Failed")
 
