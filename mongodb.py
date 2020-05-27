@@ -25,7 +25,7 @@ def check_member(discord):
     return document #type <dict>
 
 def remove_member(discord,tag):
-    coll_registered.delete_one({"Discord":{"$eq":str(discord)},"Tag":{"$eq":str(discord)}})
+    coll_registered.delete_one({"Discord":{"$eq":str(discord)}})
 
 async def view_database(ctx):
     response='```\n'
