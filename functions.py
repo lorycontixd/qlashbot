@@ -201,7 +201,7 @@ def LoadBadWords():
 
 
 async def check_bad_words(message):
-    mod = role = discord.utils.get(player.guild.roles, name="Moderator")
+    mod = discord.utils.get(message.guild.roles, name="Moderator")
     mychannel = bot.get_channel(int(qlash_bot))
     message_content = message.content.lower()
     author = message.author
