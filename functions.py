@@ -554,7 +554,7 @@ async def bot_stats_(ctx):
     e.add_field(name="Latency",value=str(bot.latency),inline=True)
     e.add_field(name="Language",value=str(bot.user.locale),inline=True)
     e.set_footer(text="Bot created by "+role.mention)
-    ctx.send(embed=e)
+    await ctx.send(embed=e)
 
 async def bot_info_(ctx):
     role = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
@@ -618,19 +618,6 @@ async def commandlog_clear_(ctx):
     sourcefile = 'command_logs.txt'
     open(sourcefile, 'w+').close()
     await ctx.send("Command Log File cleared!")
-
-#async def registry_view_(ctx,player):
-#    role = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
-#    member_dict = check_member(player)
-#    if member_dict == None:
-#        await ctx.send("Player does not exist in the database. If you think this is a mistake please contact a "+role.mention)
-#        return
-#    else:
-#        e=discord.Embed(title="Member: "+str(member), description=str(member.mention), color=0x74a7ff)
-#        e.set_author(name="QLASH Bot")
-#        e.add_field(name="Created", value=str(member.created_at), inline=True)
-
-
 
 #******************************** ENTRA/ESCI *******************************
 
