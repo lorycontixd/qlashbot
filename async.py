@@ -192,8 +192,8 @@ async def qlash_clan(ctx,name_or_tag):
 
 @commands.cooldown(1, 60, commands.BucketType.user)
 @util.command(name='set',brief="(UTIL)(BS1) Get the discord role for the clan you belong to.",description=desc_set)
-async def set(ctx,ingame_tag):
-    await set_(ctx,ingame_tag)
+async def set(ctx,player:discord.Member,ingame_tag):
+    await set_(ctx,player,ingame_tag)
 
 @commands.cooldown(1,60,commands.BucketType.user)
 @util.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.',description=desc_channels)
