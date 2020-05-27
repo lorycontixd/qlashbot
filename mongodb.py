@@ -47,7 +47,7 @@ def view_commandlog(int):
     list = []
     for document in coll_commandlogs.find():
         list.append(document)
-    list = list[-i:]
+    list = list[-int:]
     return list
 
 #*****************************************************************************************************************
