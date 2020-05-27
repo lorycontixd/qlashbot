@@ -78,4 +78,4 @@ def view_commandlog(int):
     return list
 
 def delete_commandlogs():
-    coll_commandlogs.deleteMany({})
+    coll_commandlogs.delete_many({})
