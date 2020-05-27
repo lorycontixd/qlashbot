@@ -566,7 +566,7 @@ async def bot_info_(ctx):
 async def member_info_(ctx,member:discord.Member):
     member_dict = check_member(member)
     e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
-	e.set_author(name="QLASH Bot")
+    e.set_author(name="QLASH Bot")
     if member_dict != None:
         ingame_tag = member_dict["Gametag"]
         registered_clan = member_dict["Clan"]
@@ -574,18 +574,18 @@ async def member_info_(ctx,member:discord.Member):
         e.add_field(name="Game Tag ", value=str(ingame_tag), inline=True)
         e.add_field(name="Last DB_Registered Clan ", value=str(registered_clan), inline=True)
         e.add_field(name="DB_Registration Date ", value=str(registered_date), inline=True)
-	e.add_field(name="Created", value=str(member.created_at), inline=True)
-	e.add_field(name="ID", value=str(member.id), inline=True)
-	e.add_field(name="Joined Server", value=str(member.joined_at), inline=True)
-	e.add_field(name="Premium Since", value=str(member.premium_since), inline=True)
-	e.add_field(name="Status", value=str(member.status), inline=True)
-	e.add_field(name="Mobile status", value=str(member.mobile_status),inline=True)
-	e.add_field(name="Desktop status", value=str(member.desktop_status),inline=True)
-	e.add_field(name="Top Role", value=str(member.top_role), inline=True)
-	e.add_field(name="Permissions ", value=str(member.guild_permissions), inline=True)
-	#e.set_image(member.default_avatar)
-	e.set_footer(text="Bot created by Lore")
-	await ctx.send(embed=e)
+    e.add_field(name="Created", value=str(member.created_at), inline=True)
+    e.add_field(name="ID", value=str(member.id), inline=True)
+    e.add_field(name="Joined Server", value=str(member.joined_at), inline=True)
+    e.add_field(name="Premium Since", value=str(member.premium_since), inline=True)
+    e.add_field(name="Status", value=str(member.status), inline=True)
+    e.add_field(name="Mobile status", value=str(member.mobile_status),inline=True)
+    e.add_field(name="Desktop status", value=str(member.desktop_status),inline=True)
+    e.add_field(name="Top Role", value=str(member.top_role), inline=True)
+    e.add_field(name="Permissions ", value=str(member.guild_permissions), inline=True)
+    #e.set_image(member.default_avatar)
+    e.set_footer(text="Bot created by Lore")
+    await ctx.send(embed=e)
 
 async def write_message(ctx,channelname,*message):
     msg = ctx.message
