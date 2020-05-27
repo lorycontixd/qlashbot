@@ -360,9 +360,9 @@ async def qlash_trophies(ctx): #all qlash clans with requires trophies
     e=discord.Embed(title="List of all registered QLASH Clans", description="------------------------------------------------", color=0xffb43e)
     e2=discord.Embed(color=0xffb43e)
     e.set_author(name="QLASH Bot")
-	for i in range(len(list)):
+    for i in range(len(list)):
         tag = list[i]["Tag"]
-		club = await myclient.get_club(str(tag))
+        club = await myclient.get_club(str(tag))
         if i<21:
             e.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
         else:
