@@ -596,8 +596,6 @@ async def commandlog_view_(ctx,limit):
     response+="```"
     await ctx.send(response)
 
-
-
 async def commandlog_clear_(ctx):
     sourcefile = 'command_logs.txt'
     open(sourcefile, 'w+').close()
