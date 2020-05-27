@@ -348,7 +348,7 @@ async def set_(ctx,player:discord.Member,gametag):
         print("Registered")
     else:
         print("Already registered")
-    file2.close()
+    #file2.close()
     if foundRole==True:
         await mess.add_reaction('✅')
         await ctx.send("Role set for member "+player.mention+'\t'+"Role: "+str(rolename)+"\t"+"Time: "+str(dt_string))
