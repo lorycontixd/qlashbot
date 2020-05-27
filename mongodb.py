@@ -39,9 +39,10 @@ def register_clan(tag,name):
 
 def remove_clan(name):
     document = coll_registered.find_one({"Name":{"$eq":str(name)}})
+    list = [document]
     if document == None:
         print("MONGO_DB: Nothing returned from Clan Remove")
-    coll_qlashclans.delete_one(document)
+    coll_qlashclans.delete_one(list)
 
 #*****************************************************************************************************************
 #******************************************       COMMAND LOGS     ***********************************************
