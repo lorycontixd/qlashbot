@@ -58,24 +58,3 @@ def CommandLogs(ctx,commandname):
     logfile = open('command_logs.txt','a+')
     logfile.write(str(author)+" has called the command "+str(commandname)+" at time "+str(time)+'\n')
     logfile.close()
-
-
-#**********+ Load CSV - Loads the QLASH Clans in a Pandas dataframe (sort of a matrix)
-
-def LoadCsv():
-    df = pd.DataFrame(columns = ['Name','Tag'])
-    sourcefile = 'qlash_clans.csv'
-    file = open(sourcefile,'r+')
-    content = file.read()
-    lines = content.split('\n')
-    for i in range(len(lines)-1):
-        ll = lines[i].split(',')
-        cols = {'Name':[ll[0]],'Tag':[ll[1]]}
-        df_temp = pd.DataFrame(cols,columns = ['Name','Tag'])
-        df = df.append(df_temp,ignore_index = True)
-    file.close()
-    #print(df)
-    return df
-
-
-##********** Remove Emoji -- Remove an emoji from a string (not tested)

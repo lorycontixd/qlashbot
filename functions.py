@@ -353,97 +353,24 @@ async def search_member(ctx,name,clubtag):
             await ctx.send(embed=e)
 
 async def qlash_trophies(ctx): #all qlash clans with requires trophies
-	print("Function qlash clans called")
-	await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
-	await ctx.trigger_typing()
-	df = LoadCsv()
-	e=discord.Embed(title="List of all registered QLASH Clans", description="------------------------------------------------", color=0xffb43e)
-	e2=discord.Embed(color=0xffb43e)
-	e.set_author(name="QLASH Bot")
-	for i in range(21):
-		club = await myclient.get_club(str(df.iloc[i][1]))
-		print("Club: "+str(df.iloc[i][0])+"/"+str(df.iloc[i][1]))
-		e.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
-	for i in range(22,len(df.index)):
-		club = await myclient.get_club(str(df.iloc[i][1]))
-		print("Club: "+str(df.iloc[i][0])+"/"+str(df.iloc[i][1]))
-		e2.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
-	e2.set_footer(text="Created By Lore")
-	await ctx.send(embed=e)
-	await ctx.send(embed=e2)
-	print(" ")
-
-async def qlash_cclan(ctx,name_tag):
-    if not await Check(ctx,str(ctx.message.author)):
-        return
-    presname = ''
-    prestr = ''
-    qlashnames = ['QLASH','Qlash','qlash']
-    name_tag = name_tag.capitalize()
-    #if name_tag in qlashnames:
-    #    await ctx.send("Invalid clan name: "+name_tag)
-    #    return
-    thetag = ''
-    df = LoadCsv()
-    for i in range(len(df.index)):
-        if name_tag in str(df.iloc[i][0]):
-            thetag = str(df.iloc[i][1])
-            break
-        elif name_tag == str(df.iloc[i][1]):
-            thetag = str(df.iloc[i][1])
-            break
-    if not thetag:
-        await ctx.send("Could not find QLASH Clan")
-        return
-    clan = await myclient.get_club(thetag)
-    members = clan.members
-    for member in members:
-        if str(member.role).lower() == 'president':
-            presname = str(member.name)
-            prestr = str(member.trophies)
-    await ctx.send("Collecting information for QLASH Clan: "+name_tag)
-    e=discord.Embed(title="Qlash Clan Info: "+str(clan), description="------------------------------------------------", color=0x53d6fd)
+    print("Function qlash clans called")
+    await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
+    await ctx.trigger_typing()
+    list = LoadClans
+    e=discord.Embed(title="List of all registered QLASH Clans", description="------------------------------------------------", color=0xffb43e)
+    e2=discord.Embed(color=0xffb43e)
     e.set_author(name="QLASH Bot")
-    e.add_field(name="Clan", value=str(clan), inline=False)
-    e.add_field(name="Member Count", value=str(len(clan.members)), inline=True)
-    e.add_field(name="Description", value=str(clan.description), inline=True)
-    e.add_field(name="Trophies", value=str(clan.trophies), inline=True)
-    e.add_field(name="Required Trophies", value=str(clan.required_trophies), inline=True)
-    e.add_field(name="Type", value=str(clan.type), inline=True)
-    e.add_field(name="President",value=presname+'\n'+prestr,inline=True)
-    e.add_field(name="Top member", value=str(members[0].name)+'\n'+str(members[0].trophies)+'\n'+str(members[0].role), inline=True)
-    e.set_footer(text="Created By Lore")
+	for i in range(len(list)):
+        tag = list[i]["Tag"]
+		club = await myclient.get_club(str(tag))
+        if i<21:
+            e.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
+        else:
+            e2.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
+    e2.set_footer(text="Created By Lore")
     await ctx.send(embed=e)
+    await ctx.send(embed=e2)
 
-async def GetClanMembers(ctx,name_tag):
-    thename = ''
-    thetag = ''
-    df = LoadCsv()
-    stringa = '```'
-    for i in range(len(df.index)):
-        if name_tag in str(df.iloc[i][0]):
-            thename = str(df.iloc[i][0])
-            thetag = str(df.iloc[i][1])
-            break
-        elif name_tag == str(df.iloc[i][1]):
-            thename = str(df.iloc[i][1])
-            thetag = str(df.iloc[i][1])
-            break
-    if not thetag:
-        await ctx.send("Could not find QLASH Clan")
-        return
-    club = await myclient.get_club(thetag)
-    e=discord.Embed(title="List of members for clan "+str(thename), description="------------------------------------------------", color=0xffb43e)
-    e.set_author(name="QLASH Bot")
-    i=1
-    for member in club.members:
-        stringa = stringa + str(member.name)+'\t'+str(member.role)+'\t'+str(member.tag)+'\n'
-        #e.add_field(name="("+str(i)+") Member: "+str(member.name),value=str(member.trophies)+","+str(member.role),inline=True)
-        #i=i+1
-    #e.set_footer(text="Created By Lore")
-    #await ctx.send(embed=e)
-    stringa = stringa + '```'
-    await ctx.send(stringa)
 ###******************************* READ / WRITE / ADD / DELETE ***********
 async def clan_add_(ctx,tag,*cname):
     if tag[0] != '#':

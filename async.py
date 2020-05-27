@@ -195,11 +195,6 @@ async def qlash(ctx):
 async def qlash_allclans(ctx):
     await qlash_trophies(ctx)
 
-@commands.cooldown(1, 60, commands.BucketType.channel)
-@util.command(name='qlash-clan',hidden=True,brief="(UTIL)(BS1) Search for information about a specific QLASH clan.",description=desc_qlash_clan)
-async def qlash_clan(ctx,name_or_tag):
-    await qlash_cclan(ctx,name_or_tag)
-
 @commands.cooldown(1,60,commands.BucketType.user)
 @util.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.',description=desc_channels)
 async def channels(ctx):
@@ -273,18 +268,6 @@ async def bs_minfo(ctx,name,clan_tag):
         await ctx.send("You don't have the permission for this command!")
         return
     await search_member(ctx,name,clan_tag)
-
-
-
-
-#ADMIN
-@mod.command(name='qlash-clan-members',brief='(MOD) (BS1) Shows a list of all members of a given QLASH clan.')
-async def qlashclanmembers(ctx,clanname_or_tag):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await GetClanMembers(ctx,clanname_or_tag)
 
 @mod.command(name='locate',brief = '(MOD) Locate an ip address',description=desc_ip)
 async def locate(ctx,ip):
@@ -388,6 +371,14 @@ async def commandlog_clear(ctx):
         await ctx.send("You don't have the permission for this command!")
         return
     await commandlog_clear_(ctx)
+
+#@sys.command(name='registry-view')
+#async def registry_view(ctx):
+#    author = ctx.message.author
+#    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+#        await ctx.send("You don't have the permission for this command!")
+#        return
+#    await registry_view_(ctx)
 
 #ADMIN
 @sys.command(name='clan-add',brief='(SYS) Add a qlash clan to the database.',description=desc_clan_add)
