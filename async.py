@@ -232,7 +232,7 @@ async def bot_stats(ctx):
 @mod.command(name='set',brief="(UTIL)(BS1) Get the discord role for the clan you belong to.",description=desc_set)
 async def set(ctx,player:discord.Member,ingame_tag):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await set_(ctx,player,ingame_tag)
@@ -303,7 +303,7 @@ async def locate(ctx,ip):
 @mod.command(name='member-info',brief='(MOD) Show information of a discord member',description=desc_memberinfo)
 async def memberinfo(ctx,member:discord.Member):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader"):
         await ctx.send("You don't have the permission for this command!")
         return
     CommandLogs(ctx,'member-info')
