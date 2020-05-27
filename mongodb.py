@@ -26,6 +26,15 @@ def check_member(discord):
         print("MONGO_DB: Nothing returned from Check Member ")
     return document #type <dict>
 
+async def view_database(ctx):
+    response='```\n'
+    for document in coll_qlashclans.find():
+        name = str(document["Name"])
+        tag = str(document["Tag"])
+        response += name+'\t'+tag+'\n'
+    response+='```'
+    await ctx.send(response)
+
 #*****************************************************************************************************************
 #*********************************************       CLANS     ***************************************************
 #*****************************************************************************************************************
@@ -36,6 +45,7 @@ def register_clan(tag,name):
         "Tag" : tag
     }
     coll_qlashclans.insert_one(mydict)
+
 
 def remove_clan(name):
     result = coll_qlashclans.delete_one({"Name":{"$eq":str(name)}})
