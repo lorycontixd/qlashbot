@@ -572,7 +572,8 @@ async def member_info_(ctx,member:discord.Member):
         registered_clan = member_dict["Clan"]
         registered_date = member_dict["Date"]
         e.add_field(name="Game Tag ", value=str(ingame_tag), inline=True)
-        e.add_field(name="Last DB_Registered Clan ", value=str(registered_clan), inline=True)
+        if registered_clan:
+            e.add_field(name="Last DB_Registered Clan ", value=str(registered_clan), inline=True)
         e.add_field(name="DB_Registration Date ", value=str(registered_date), inline=True)
     e.add_field(name="Created", value=str(member.created_at), inline=True)
     e.add_field(name="ID", value=str(member.id), inline=True)
