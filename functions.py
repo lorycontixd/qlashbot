@@ -80,6 +80,9 @@ async def temp(message):
                 elif str(reaction.emoji) == '❌':
                     role = discord.utils.get(message.guild.roles, name="IG-EUROPE")
                     await message.author.add_roles(role)
+                msg2 = await ch.send("Thank you for your answer "+str(message.author.name)+"!")
+                await msg.delete(delay=2.0)
+                await msg2.delete(delay=5.0)
             except asyncio.TimeoutError:
                 await channel.send('Timeout Error 👎')
 
