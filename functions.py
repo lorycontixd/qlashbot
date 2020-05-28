@@ -63,7 +63,7 @@ async def temp(message):
     ch = message.channel
     if ch.name == "bot-testing":
         if message.author.name=="Lore":
-            msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)")
+            msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)\nThis information is important for you to enter.")
             await msg.add_reaction('✅')
             await msg.add_reaction('❌')
 
@@ -75,10 +75,10 @@ async def temp(message):
                 reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
                 if str(reaction.emoji) == '✅':
                     role = discord.utils.get(message.guild.roles, name="IG-AMERICA")
-                    message.author.add_roles(role)
+                    await message.author.add_roles(role)
                 elif str(reaction.emoji) == '❌':
                     role = discord.utils.get(message.guild.roles, name="IG-EUROPE")
-                    message.author.add_roles(role)
+                    await message.author.add_roles(role)
             except asyncio.TimeoutError:
                 await channel.send('Timeout Error 👎')
 
