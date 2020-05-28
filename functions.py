@@ -64,8 +64,8 @@ async def temp(message):
     if ch.name == "bot-testing":
         if message.author.name=="Lore":
             msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)")
-            msg.add_reaction('✅')
-            msg.add_reaction('❌')
+            await msg.add_reaction('✅')
+            await msg.add_reaction('❌')
 
             def check(reaction,user):
                 return str(reaction.emoji)=='✅' or str(reaction.emoji) == '❌'
