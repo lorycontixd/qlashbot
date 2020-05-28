@@ -88,6 +88,7 @@ banlist_testing = '713322449915215923'
 entry_exit = '713735004827418625'
 entries_discord = '714161674432806972'
 qlash_bot = '714161674432806972'
+ig_role_channel = '703596640593903716'
 
 #database directories
 qc_directory2 = './qlashclans2/' #this one is the right one
