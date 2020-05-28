@@ -60,6 +60,21 @@ from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local
 
 
+async def testfunction(ctx):
+    channel = bot.get_channel(int(bot_testing))
+    qlashbotch = bot.get_channel(int(qlash_bot))
+    messages = await channel.history(limit=4).flatten()
+    for message in messages:
+        att_list = message.attachments
+        if message.author.name=="Lore":
+            author = message.author
+            await author.create_dm()
+        	await author.dm_channel.send("Hello "+str(author.name)+". Can you please tell me within 5 minutes if you are from Europe or from America?")
+            await author.dm_channel.send("Ciao "+str(author.name)+". Mi potresti per favore dire (entro 2 minuti) se sei Europeo oppure Americano?")
+            msg = await client.wait_for('message',timeout=200.0)
+            await qlashbotch.send("Member: "+str(author)+"\tAnswer: "+str(msg.content))
+            print("Role IG-Tournament given to member: "+str(author))
+
 #*****************************************************************************************************************
 #*****************************************************************************************************************
 #**************************************       COMMAND FUNCTIONS     **********************************************
