@@ -21,6 +21,19 @@ from utility import *
 from mongodb import *
 from instances import *
 
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
+async def scheduled_job():
+    ch_it = bot.get_channel(int(it_general))
+    ch_en = bot.get_channel(int(en_general))
+    faces = ['😏','🐋','🤪','👋','🕘','😳','🤩']
+    it_random = ["Buongiorno splendori!","Buongiorno stelline!","Buongiorno fagiolini","Ciao a tutti!","Ben svegliati cuccioli!","Buongiorno!!"]
+    en_random = ["Good morning everyone!","Good morning!"]
+    it_int = randint(1,len(it_random))
+    en_int = randint(1,len(en_random))
+    emoji_int = randint(1,len(faces))
+    await ch_it.send(str(it_random[it_int])+str(faces[emoji_int]))
+    await ch_en.send(str(en_random[en_int])+str(faces[emoji_int]))
+
 ##
 bot_status = True
 last_update = ''
@@ -85,7 +98,7 @@ async def temp(message):
                 await msg2.delete(delay=5.0)
                 await message.add_reaction('✅')
             except asyncio.TimeoutError:
-                await channel.send('Timeout Error 👎')
+                await channel.send('Timeout for user '+str(message.author.name)+' 👎 ')
 
 
 

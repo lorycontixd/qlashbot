@@ -10,6 +10,7 @@ from discord.voice_client import VoiceClient
 from datetime import datetime
 from dotenv import load_dotenv
 from aiohttp_proxy import ProxyConnector,ProxyType
+from apscheduler.schedulers.blocking import BlockingScheduler
 from descriptions import *
 
 #*****************************************************************************************************************
@@ -62,6 +63,8 @@ myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connect
 bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD
 ipapi.location(ip=None, key=None, field=None) #IP
 mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm',retryWrites=False) #MONGODB
+
+sched = BlockingScheduler()
 
 #hapi = holidayapi.v1(HOLIDAY_TOKEN)
 #holidays = hapi.holidays(h_parameters)
