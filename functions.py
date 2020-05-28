@@ -69,8 +69,7 @@ async def testfunction(ctx):
         if message.author.name=="Lore":
             author = message.author
             await author.create_dm()
-            await author.dm_channel.send("Hello "+str(author.name)+". Can you please tell me within 5 minutes if you are from Europe or from America? It is important that you respond quickly to this message with Europe or America.")
-            await author.dm_channel.send("Ciao "+str(author.name)+". Mi potresti per favore dire (entro 5 minuti) se sei Europeo oppure Americano? è importante che rispondi a questo messaggio con Europa o America")
+            await author.dm_channel.send("Hello "+str(author.name)+". Can you please tell me within 5 minutes if you are from Europe or from America? It is important that you respond quickly to this message with Europe or America.\nCiao "+str(author.name)+". Mi potresti per favore dire (entro 5 minuti) se sei Europeo oppure Americano? è importante che rispondi a questo messaggio con Europa o America")
             msg = await bot.wait_for('message',timeout=350.0)
             await qlashbotch.send("Member: "+str(author)+"\tAnswer: "+str(msg.content))
             print("Role IG-Tournament given to member: "+str(author))
