@@ -62,6 +62,7 @@ to_zone = tz.tzlocal() #local
 async def temp(message):
     ch = message.channel
     if ch.type == "text" and ch.name == "insta-roles":
+        print("att: "+str(len(message.attachments)))
         if len(message.attachments)!=0:
             msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)\nThis information is important for you to enter.")
             await msg.add_reaction('✅')
