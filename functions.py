@@ -59,6 +59,30 @@ async def member_join_check(member:discord.Member):
 from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local
 
+async def temp(message):
+    ch = message.channel
+    if ch.name == "bot_testing":
+        if message.author.name=="Lore":
+            msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)")
+            msg.add_reaction('✅')
+            msg.add_reaction('❌')
+
+            def check(reaction,user):
+                return str(reaction.emoji)=='✅' or str(reaction.emoji) == '❌'
+
+            try:
+                await asyncio.sleep(1)
+                reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
+                if str(reaction.emoji) == '✅':
+                    role = discord.utils.get(message.guild.roles, name="IG-AMERICA")
+                    message.author.add_roles(role)
+                elif str(reaction.emoji) == '❌':
+                    role = discord.utils.get(message.guild.roles, name="IG-EUROPE")
+                    message.author.add_roles(role)
+            except asyncio.TimeoutError:
+                await channel.send('Timeout Error 👎')
+
+
 
 #*****************************************************************************************************************
 #*****************************************************************************************************************

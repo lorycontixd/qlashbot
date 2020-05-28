@@ -64,6 +64,7 @@ async def on_member_join(member:discord.Member):
 @bot.event
 async def on_message(message):
     await check_bad_words(message)
+    await temp(message)
     await bot.process_commands(message)
 
 @bot.event
