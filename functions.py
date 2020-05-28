@@ -61,7 +61,7 @@ to_zone = tz.tzlocal() #local
 
 async def temp(message):
     ch = message.channel
-    if ch.name == "bot_testing":
+    if ch.name == "bot-testing":
         if message.author.name=="Lore":
             msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)")
             msg.add_reaction('✅')
