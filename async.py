@@ -31,7 +31,6 @@ DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
 @bot.event
 async def on_ready():
     await on_ready_()
-    sched.start()
 
 
 @bot.event
