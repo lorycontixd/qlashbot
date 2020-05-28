@@ -68,7 +68,7 @@ async def temp(message):
             await msg.add_reaction('❌')
 
             def check(reaction,user):
-                return str(reaction.emoji)=='✅' or str(reaction.emoji) == '❌'
+                return str(message.author.name)==str(user.name)
 
             try:
                 await asyncio.sleep(1)
