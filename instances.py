@@ -59,7 +59,7 @@ clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
 #*********************************************       CLIENTS     *************************************************
 #*****************************************************************************************************************
 myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector) #BRAWLSTATS
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('^'), description = bot_description) #DISCORD
+bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD
 ipapi.location(ip=None, key=None, field=None) #IP
 mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm',retryWrites=False) #MONGODB
 
