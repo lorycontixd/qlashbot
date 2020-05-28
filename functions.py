@@ -54,6 +54,7 @@ async def member_join_check(member:discord.Member):
             embed.add_field(name="Status", value=str(member.status), inline=True)
             embed.set_footer(text="Created by Lore")
             await mychannel.send(embed=embed)
+            await mychannel.send("@Moderator")
 
 #time zones
 from_zone = tz.tzutc() #utc
