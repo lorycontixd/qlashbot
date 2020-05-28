@@ -98,7 +98,7 @@ async def temp(message):
                 await msg2.delete(delay=5.0)
                 await message.add_reaction('✅')
             except asyncio.TimeoutError:
-                await channel.send('Timeout for user '+str(message.author.name)+' 👎 ')
+                await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
 
 
 
