@@ -138,15 +138,6 @@ async def sys(ctx):
 #*****************************************************************************************************************
 
 
-@bot.command(name="temp")
-async def temp(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await testfunction(ctx)
-
-
 @commands.cooldown(1, 30, commands.BucketType.user)
 @fun.command(name='roll',brief='(FUN) Roll a 6 sided dice.',description='Fun Command \n 30 seconds cooldown per user \n \n'
 +'Roll a 6 sided dice to get a random number from 1 to 6.')

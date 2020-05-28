@@ -60,17 +60,6 @@ from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local
 
 
-async def testfunction(ctx):
-    channel = bot.get_channel(int(ig_role_channel))
-    messages = await channel.history(limit=123).flatten()
-    for message in messages:
-        att_list = message.attachments
-        if len(att_list) != 0:
-            author = message.author
-            role = discord.utils.get(message.guild.roles, name="IG-Tournament")
-            await author.add_rols(role)
-            print("Role IG-Tournament given to member: "+str(author))
-
 #*****************************************************************************************************************
 #*****************************************************************************************************************
 #**************************************       COMMAND FUNCTIONS     **********************************************
