@@ -81,7 +81,7 @@ async def temp(message):
                     role = discord.utils.get(message.guild.roles, name="IG-EUROPE")
                     await message.author.add_roles(role)
                 msg2 = await ch.send("Thank you for your answer "+str(message.author.name)+"!")
-                await msg.delete(delay=2.0)
+                await msg.delete(delay=4.0)
                 await msg2.delete(delay=5.0)
                 await message.add_reaction('✅')
             except asyncio.TimeoutError:
