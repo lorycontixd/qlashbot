@@ -39,7 +39,7 @@ bot_status = True
 last_update = ''
 
 ig_t_it= """🇮🇹
-Una volta ricevuto il ruolo “IG-EUROPE” o "IG-AMERICA" e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
+Una volta ricevuto il ruolo “IG-EUROPE” e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
 !createteam <Nome squadra> <nickname in game>
 
 Se avrai fatto tutto correttamente il bot genererà un codice team che dovrai condividere solo con i tuoi due compagni di squadra.
