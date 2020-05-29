@@ -451,7 +451,6 @@ async def giverole(ctx,member: discord.Member , *rolename):
 		await ctx.send("You do not have permissions for this command!")
 		return
 	therolename = " ".join(rolename[:])
-	mychannel = bot.get_channel(int(bot_logs))
 	role = discord.utils.get(ctx.guild.roles, name=therolename)
 	if not role:
 		await ctx.send("ArguementError: Role "+therolename+" does not exist. 😭")
