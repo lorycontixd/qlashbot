@@ -38,7 +38,7 @@ from instances import *
 bot_status = True
 last_update = ''
 
-ig_tournament_message= """🇮🇹
+ig_t_it= """🇮🇹
 Una volta ricevuto il ruolo “IG-EUROPE” o "IG-AMERICA" e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
 !createteam <Nome squadra> <nickname in game>
 
@@ -51,8 +51,10 @@ Se avrai fatto tutto correttamente il bot genererà un codice team che dovrai co
 - Tutte le informazioni su come completare l'iscrizione puoi trovarle in #tournament-announcement
 
 
+"""
 
-🇬🇧
+
+ig_t_en="""🇬🇧
 Once you'll get the role “IG-EUROPE” or “IG-AMERICA” and get the access into the registration's lobby Instagram Tournament – EU/AM - 07/06), if you're the captain, you have to put the command !register and you will have a window in private messages in which you can do the registration as it follows:
 !createteam <Team's name> <In game nickname>
 
@@ -65,8 +67,10 @@ If you'll do all correctly the bot will generate a Team code that you have to sh
 - You can find all the information about how to complete the registration in #tournament-announcement
 
 
+"""
 
-🇪🇦
+
+ig_t_es="""🇪🇦
 Una vez que tengas el rol “IG-EUROPE” o “IG-AMERICA” y el acceso al lobby de registro, si eres el capitán, debes poner el comando !register y tendrás una ventana privada en la que puedes hacer el registro de la siguiente manera:
 !createteam <Nombre del equipo> <Apodo en el juego>
 
@@ -140,7 +144,9 @@ async def temp(message):
                 await msg2.delete(delay=5.0)
                 await message.add_reaction('✅')
                 await auth.create_dm()
-                await auth.dm_channel.send(ig_tournament_message)
+                await auth.dm_channel.send(ig_t_it)
+                await auth.dm_channel.send(ig_t_en)
+                await auth.dm_channel.send(ig_t_es)
             except asyncio.TimeoutError:
                 await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
 
