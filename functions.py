@@ -98,47 +98,46 @@ async def temp(message):
                 await msg2.delete(delay=5.0)
                 await message.add_reaction('✅')
                 await message.author.create_dm()
-                message = """
-            🇮🇹
-            Una volta ricevuto il ruolo “IG-EUROPE” o "IG-AMERICA" e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
-            !createteam <Nome squadra> <nickname in game>
+                message = """🇮🇹
+                Una volta ricevuto il ruolo “IG-EUROPE” o "IG-AMERICA" e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
+                !createteam <Nome squadra> <nickname in game>
 
-            Se avrai fatto tutto correttamente il bot genererà un codice team che dovrai condividere solo con i tuoi due compagni di squadra.
-            - Per unirti ad una squadra già creata, dopo il comando !register scrivi al bot in privato il seguente comando:
-            !jointeam <code team> <nickname in game>
+                Se avrai fatto tutto correttamente il bot genererà un codice team che dovrai condividere solo con i tuoi due compagni di squadra.
+                - Per unirti ad una squadra già creata, dopo il comando !register scrivi al bot in privato il seguente comando:
+                !jointeam <code team> <nickname in game>
 
-            -Regole: #📕tournament-rules  sotto la voce "regole generali valide" per ogni modalità e "#Regole 3v3"
-            -Premi: #💰tournament-prizes
-            - Tutte le informazioni su come completare l'iscrizione puoi trovarle in #tournament-announcement
-
-
-
-            🇬🇧
-            Once you'll get the role “IG-EUROPE” or “IG-AMERICA” and get the access into the registration's lobby Instagram Tournament – EU/AM - 07/06), if you're the captain, you have to put the command !register and you will have a window in private messages in which you can do the registration as it follows:
-            !createteam <Team's name> <In game nickname>
-
-            If you'll do all correctly the bot will generate a Team code that you have to share with your 2 teammates.
-            - To join in a Team already created, after the command !register write to the bot in private messages the following command:
-            !jointeam <Team code> <In game nickname>
-
-            -Rules: #📕tournament-rules  under #Rules 3v3
-            -Prizes: #💰tournament-prizes
-            - You can find all the information about how to complete the registration in #tournament-announcement
+                -Regole: #📕tournament-rules  sotto la voce "regole generali valide" per ogni modalità e "#Regole 3v3"
+                -Premi: #💰tournament-prizes
+                - Tutte le informazioni su come completare l'iscrizione puoi trovarle in #tournament-announcement
 
 
 
-            🇪🇦
-            Una vez que tengas el rol “IG-EUROPE” o “IG-AMERICA” y el acceso al lobby de registro, si eres el capitán, debes poner el comando !register y tendrás una ventana privada en la que puedes hacer el registro de la siguiente manera:
-            !createteam <Nombre del equipo> <Apodo en el juego>
+                🇬🇧
+                Once you'll get the role “IG-EUROPE” or “IG-AMERICA” and get the access into the registration's lobby Instagram Tournament – EU/AM - 07/06), if you're the captain, you have to put the command !register and you will have a window in private messages in which you can do the registration as it follows:
+                !createteam <Team's name> <In game nickname>
 
-            Si haces todo correctamente, el bot generará un código de equipo que debes compartir con tus 2 compañeros de equipo.
-            - Para unirte a un equipo ya creado, después del registro de comando escribe al bot en privado el siguiente comando:
-            !jointeam <Código de equipo> <Apodo en el juego>
+                If you'll do all correctly the bot will generate a Team code that you have to share with your 2 teammates.
+                - To join in a Team already created, after the command !register write to the bot in private messages the following command:
+                !jointeam <Team code> <In game nickname>
 
-            -Reglas: #📕tournament-rules  abajo #Rules 3v3
-            - Premios: #💰tournament-prizes
-            - Puedes encontrar todas las informaciones sobre como registrarse en #tournament-announcement
-            """
+                -Rules: #📕tournament-rules  under #Rules 3v3
+                -Prizes: #💰tournament-prizes
+                - You can find all the information about how to complete the registration in #tournament-announcement
+
+
+
+                🇪🇦
+                Una vez que tengas el rol “IG-EUROPE” o “IG-AMERICA” y el acceso al lobby de registro, si eres el capitán, debes poner el comando !register y tendrás una ventana privada en la que puedes hacer el registro de la siguiente manera:
+                !createteam <Nombre del equipo> <Apodo en el juego>
+
+                Si haces todo correctamente, el bot generará un código de equipo que debes compartir con tus 2 compañeros de equipo.
+                - Para unirte a un equipo ya creado, después del registro de comando escribe al bot en privado el siguiente comando:
+                !jointeam <Código de equipo> <Apodo en el juego>
+
+                -Reglas: #📕tournament-rules  abajo #Rules 3v3
+                - Premios: #💰tournament-prizes
+                - Puedes encontrar todas las informaciones sobre como registrarse en #tournament-announcement
+                """
             	await message.author.dm_channel.send(message)
             except asyncio.TimeoutError:
                 await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
