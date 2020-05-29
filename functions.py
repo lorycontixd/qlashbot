@@ -459,9 +459,9 @@ async def giverole(ctx,member: discord.Member , *rolename):
 	await member.add_roles(role)
 
 async def removerole(ctx,member:discord.Member , *rolename):
-	if not Check(ctx,ctx.message.author):
-		await ctx.send("You do not have permissions for this command!")
-		return
+    if not Check(ctx,ctx.message.author):
+        await ctx.send("You do not have permissions for this command!")
+        return
     therolename = " ".join(rolename[:])
     role = discord.utils.get(ctx.guild.roles, name=therolename)
     if not role:
