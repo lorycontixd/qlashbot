@@ -329,6 +329,10 @@ async def purge(ctx,amount):
 async def role_give(ctx,member: discord.Member , *rolename):
     await giverole(ctx,member,*rolename)
 
+@bot.command(name="role-remove",hidden=True,pass_context=True)
+async def role_rem(ctx,member: discord.Member , *rolename):
+    await removerole(ctx,member,*rolename)
+
 @mod.command(name='view-members',brief='(MOD) (BS30+) Get a list of players that left ingame clubs.',description=desc_view_members )
 async def viewmembers(ctx):
     author = ctx.message.author
