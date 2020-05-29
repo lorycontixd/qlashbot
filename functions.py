@@ -458,6 +458,18 @@ async def giverole(ctx,member: discord.Member , *rolename):
 	print(member,role)
 	await member.add_roles(role)
 
+async def removerole(ctx,member:discord.Member , *rolename):
+	if not Check(ctx,ctx.message.author):
+		await ctx.send("You do not have permissions for this command!")
+		return
+    therolename = " ".join(rolename[:])
+    role = discord.utils.get(ctx.guild.roles, name=therolename)
+    if not role:
+        await ctx.send("ArguementError: Role "+therolename+" does not exist. 😭")
+        return
+    print(member,role)
+    await member.remove_roles(role)
+
 async def locate_(ctx,ip):
     print("Searching for location...")
     mydict = ipapi.location(ip)
