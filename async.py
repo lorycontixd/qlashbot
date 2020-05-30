@@ -239,7 +239,7 @@ async def bot_stats(ctx):
 @mod.command(name='set',brief="(MOD)(BS1) Get the discord role for the clan you belong to.",description=desc_set)
 async def set(ctx,player:discord.Member,ingame_tag):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
     await set_(ctx,player,ingame_tag)
