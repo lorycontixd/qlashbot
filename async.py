@@ -17,7 +17,6 @@ from functions import *
 from descriptions import *
 from weather import *
 from checks import *
-from test import *
 
 
 DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
