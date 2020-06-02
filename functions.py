@@ -162,7 +162,7 @@ async def temp(message:discord.Message):
                 except asyncio.TimeoutError:
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
             else:
-                await ch.send("You are already given the instagram role "+foundrole)
+                await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a @BotDeveloper. Thank you")
 
 
 #*****************************************************************************************************************
