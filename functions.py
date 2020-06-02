@@ -119,7 +119,7 @@ from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local
 
 existing_roles = ["IG-EUROPE","IG-AMERICA"]
-async def temp(message):
+async def temp(message:discord.Message):
     ch = message.channel
     auth = message.author
     registered = False
@@ -127,7 +127,7 @@ async def temp(message):
     if ch.name == "insta-roles":
         if len(message.attachments)!=0:
             for r in existing_roles:
-                if r in author.roles:
+                if r in auth.roles:
                     registered = True
                     foundrole = r
                     break
