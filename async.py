@@ -406,7 +406,7 @@ async def clan_remove(ctx,*clan_name):
 
 @bot.command(name='testwrite')
 async def testwrite_(ctx):
-    await testwrite()
+    await testwrite(ctx)
 
 
 

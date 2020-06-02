@@ -121,6 +121,7 @@ to_zone = tz.tzlocal() #local
 
 existing_roles = ["IG-EUROPE","IG-AMERICA"]
 async def temp(message:discord.Message):
+    dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
     ch = message.channel
     if type(ch)!=discord.TextChannel:
         return
@@ -163,7 +164,7 @@ async def temp(message:discord.Message):
                 except asyncio.TimeoutError:
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
             else:
-                await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a @BotDeveloper. Thank you")
+                await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a "+dev.mention+". Thank you")
 
 
 #*****************************************************************************************************************
