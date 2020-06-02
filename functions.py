@@ -126,8 +126,8 @@ async def temp(message:discord.Message):
     foundrole = ''
     if ch.name == "insta-roles":
         if len(message.attachments)!=0:
-            for r in existing_roles:
-                if r in auth.roles:
+            for r in auth.roles:
+                if r.name in existing_roles:
                     registered = True
                     foundrole = r
                     break
