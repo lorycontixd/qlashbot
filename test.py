@@ -6,7 +6,7 @@ gc = gspread.service_account(filename=credentials_path)
 async def testwrite(ctx):
     sheet = gc.open("Registrations")
     colA = "A"
-    colB
+    colB = "B"
     int = 2
     for member in ctx.guild.members:
         row = str(int)
