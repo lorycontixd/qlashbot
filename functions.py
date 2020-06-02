@@ -121,6 +121,7 @@ to_zone = tz.tzlocal() #local
 existing_roles = ["IG-EUROPE","IG-AMERICA"]
 async def temp(message:discord.Message):
     ch = message.channel
+    assert type(ch)==discord.TextChannel
     auth = message.author
     registered = False
     foundrole = ''
