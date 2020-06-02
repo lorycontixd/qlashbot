@@ -129,7 +129,7 @@ async def temp(message:discord.Message):
             for r in auth.roles:
                 if r.name in existing_roles:
                     registered = True
-                    foundrole = r
+                    foundrole = r.name
                     break
 
             if registered==False:
