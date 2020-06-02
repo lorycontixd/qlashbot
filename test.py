@@ -14,6 +14,7 @@ async def testwrite(ctx):
         cell2 = colB+row
         sheet.update(cell1,str(member))
         sheet.update(cell2,str(member.joined_at))
+        i+=1
     print("test write done")
 
 async def xcel_member_search(name):
