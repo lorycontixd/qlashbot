@@ -17,6 +17,7 @@ from functions import *
 from descriptions import *
 from weather import *
 from checks import *
+from test import *
 
 
 DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
@@ -404,6 +405,9 @@ async def clan_remove(ctx,*clan_name):
         return
     await clan_remove_(ctx,*clan_name)
 
+@bot.command(name='testwrite')
+async def testwrite_(ctx):
+    await testwrite()
 
 
 
