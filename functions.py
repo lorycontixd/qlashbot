@@ -104,7 +104,7 @@ async def member_join_check(member:discord.Member):
     membername = str(member.name).lower()
     for item in watchouts:
         if item in membername:
-            embed=discord.Embed(title="Suspicious member has joined the server"+str(member), color=0xe32400)
+            embed=discord.Embed(title="Suspicious member has joined the server: "+str(member), color=0xe32400)
             embed.set_author(name="QLASH Bot")
             embed.add_field(name="Account Creation Date", value=str(member.created_at), inline=True)
             embed.add_field(name="User ID", value=str(member.id), inline=True)
@@ -118,38 +118,49 @@ async def member_join_check(member:discord.Member):
 from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local
 
+existing_roles = ["IG-EUROPE","IG-AMERICA"]
 async def temp(message):
     ch = message.channel
+    auth = message.author
+    registered = False
+    foundrole = ''
     if ch.name == "insta-roles":
         if len(message.attachments)!=0:
-            msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)\nThis information is important for you to enter.")
-            await msg.add_reaction('✅')
-            await msg.add_reaction('❌')
+            for r in existing_roles:
+                if r in author.roles:
+                    registered = True
+                    foundrole = r
+                    break
 
-            def check(reaction,user):
-                return str(message.author.name)==str(user.name)
+            if registered==False:
+                msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)\nThis information is important for you to enter.")
+                await msg.add_reaction('✅')
+                await msg.add_reaction('❌')
 
-            try:
-                await asyncio.sleep(1)
-                reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
-                if str(reaction.emoji) == '✅':
-                    role = discord.utils.get(message.guild.roles, name="IG-AMERICA")
-                    await message.author.add_roles(role)
-                elif str(reaction.emoji) == '❌':
-                    role = discord.utils.get(message.guild.roles, name="IG-EUROPE")
-                    await message.author.add_roles(role)
-                msg2 = await ch.send("Thank you for your answer "+str(message.author.name)+"!")
-                auth = message.author
-                await msg.delete(delay=4.0)
-                await msg2.delete(delay=5.0)
-                await message.add_reaction('✅')
-                await auth.create_dm()
-                await auth.dm_channel.send(ig_t_it)
-                await auth.dm_channel.send(ig_t_en)
-                await auth.dm_channel.send(ig_t_es)
-            except asyncio.TimeoutError:
-                await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
+                def check(reaction,user):
+                    return str(message.author.name)==str(user.name)
 
+                try:
+                    await asyncio.sleep(1)
+                    reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
+                    if str(reaction.emoji) == '✅':
+                        role = discord.utils.get(message.guild.roles, name="IG-AMERICA")
+                        await message.author.add_roles(role)
+                    elif str(reaction.emoji) == '❌':
+                        role = discord.utils.get(message.guild.roles, name="IG-EUROPE")
+                        await message.author.add_roles(role)
+                    msg2 = await ch.send("Thank you for your answer "+str(message.author.name)+"!")
+                    await msg.delete(delay=4.0)
+                    await msg2.delete(delay=5.0)
+                    await message.add_reaction('✅')
+                    await auth.create_dm()
+                    await auth.dm_channel.send(ig_t_it)
+                    await auth.dm_channel.send(ig_t_en)
+                    await auth.dm_channel.send(ig_t_es)
+                except asyncio.TimeoutError:
+                    await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
+            else:
+                await ch.send("You are already given the instagram role "+foundrole)
 
 
 #*****************************************************************************************************************
