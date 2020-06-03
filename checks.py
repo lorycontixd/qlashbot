@@ -24,7 +24,9 @@ async def Check(ctx,member):
 
 async def check_roles_assignement(message:discord.Message):
     author = message.author
+    print("author: ",author)
     att = len(message.attachments)
+    print("len att: ",att)
     mod = discord.utils.get(message.guild.roles, name="Moderator")
     #helper = discord.utils.get(message.guild.roles, name="Helper")
     #subcoord = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
