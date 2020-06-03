@@ -31,7 +31,7 @@ async def check_roles_assignement(message:discord.Message):
     #helper = discord.utils.get(message.guild.roles, name="Helper")
     #subcoord = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
     print(message.channel.name)
-    if message.channel.name == "roles-assignement":
+    if message.channel.name == "roles-assignment":
         print("in roles ass")
         if att==0:
             print("no attachments")
