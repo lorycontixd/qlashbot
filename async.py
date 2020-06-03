@@ -409,7 +409,7 @@ async def add_single(ctx,date,membercount):
         return
     await addsingle(ctx,date,membercount)
 
-@sys.command(name='graph-get',brief="(MOD) Get a graph to view member count through the month")
+@sys.command(name='graph-get',brief="(SYS) Get a graph to view member count through the month")
 async def graph_get(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):

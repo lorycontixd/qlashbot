@@ -16,7 +16,6 @@ async def addsingle(ctx,date,member):
     }
     coll_membercount.insert_one(mydict)
     msg = await ctx.send("Member count added to the database")
-    await msg.delete(delay=5.0)
 
 async def record(ctx):
     membercount = ctx.guild.member_count
@@ -28,12 +27,10 @@ async def record(ctx):
     }
     coll_membercount.insert_one(mydict)
     msg = await ctx.send("Registered today's member count")
-    await msg.delete(delay=5.0)
 
 async def removeall(ctx):
     coll_membercount.delete_many({})
     msg = await ctx.send("Cleared!")
-    await msg.delete(delay=5.0)
 
 async def analyze(ctx):
     firstdays = ['01','02','03','04','05','06','07','08','09']
