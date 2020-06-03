@@ -15,7 +15,7 @@ async def addsingle(date,member):
     }
     coll_membercount.insert_one(mydict)
 
-async def record():
+def record():
     guild = bot.get_guild(int(qlash_bs_id))
     membercount = guild.member_count
     #membercount = 14540
