@@ -1,7 +1,6 @@
 #record
 
 import asyncio
-from scheduler import *
 from instances import *
 
 async def record2():
