@@ -54,5 +54,3 @@ async def analyze(ctx):
     plt.savefig(pathname,bbox_inches='tight')
     #cloudinary.uploader.upload(pathname)
     await ctx.send(file=discord.File(pathname))
-
-sync(record())
