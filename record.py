@@ -28,10 +28,10 @@ async def hello():
     name = str(bot2.user)
     print(name)
 
-@bot.event
+@bot2.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(bot))
-    #await record2()
+    print('We have logged in as {0.user}'.format(bot2))
+    await hello()
     #await bot.close()
 
 try:
