@@ -7,6 +7,7 @@ from datetime import date
 from datetime import datetime
 from instances import *
 from mongodb import *
+from syncer import sync
 
 async def addsingle(date,member):
     mydict = {
@@ -15,7 +16,7 @@ async def addsingle(date,member):
     }
     coll_membercount.insert_one(mydict)
 
-def record():
+async def record():
     guild = bot.get_guild(int(qlash_bs_id))
     membercount = guild.member_count
     #membercount = 14540
@@ -54,4 +55,4 @@ async def analyze(ctx):
     #cloudinary.uploader.upload(pathname)
     await ctx.send(file=discord.File(pathname))
 
-record()
+sync(record())

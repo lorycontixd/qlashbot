@@ -20,3 +20,4 @@ gspread
 matplotlib
 google-cloud-datastore
 cloudinary
+syncer
