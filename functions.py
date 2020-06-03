@@ -97,6 +97,10 @@ async def on_ready_():
     #await mych.send("Bot has logged in 🟢")
     await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
 
+async def get_member_count():
+    guild = bot.user.id
+    print(guild)
+
 #async def on_disconnect_():
     #print("Logging off: ",bot.user)
     #mych = await bot.fetch_channel(int(bot_testing))

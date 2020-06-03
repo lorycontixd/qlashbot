@@ -412,6 +412,9 @@ async def clan_remove(ctx,*clan_name):
 async def writeall_(ctx):
     await writeall(ctx)
 
+@bot.command(name='membercount')
+async def mcount():
+    await get_member_count()
 
 try:
     bot.run(DISCORD_TOKEN)
