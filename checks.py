@@ -30,6 +30,7 @@ async def check_roles_assignement(message:discord.Message):
     mod = discord.utils.get(message.guild.roles, name="Moderator")
     #helper = discord.utils.get(message.guild.roles, name="Helper")
     #subcoord = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
+    print(message.channel.name)
     if message.channel.name == "roles-assignement":
         print("in roles ass")
         if att==0:
