@@ -31,6 +31,7 @@ async def hello():
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     await record2()
+    await bot.close()
 
 try:
     bot.run(DISCORD_TOKEN)
