@@ -66,6 +66,7 @@ async def on_member_join(member:discord.Member):
 async def on_message(message):
     await check_bad_words(message)
     await temp(message)
+    await check_roles_assignement(message)
     await bot.process_commands(message)
 
 @bot.event
