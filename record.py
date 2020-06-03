@@ -12,6 +12,7 @@ bot = discord.Client()
 async def record2():
     guild = bot.get_guild(int(qlash_bs_id))
     membercount = guild.member_count
+    print(membercount)
     #membercount = 14540
     today = date.today()
     mydict = {
@@ -29,7 +30,7 @@ async def hello():
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
-    await hello()
+    await record2()
 
 try:
     bot.run(DISCORD_TOKEN)
