@@ -7,10 +7,11 @@ from instances import *
 
 DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
 
-bot = discord.Client()
+bot2 = discord.Client()
 
 async def record2():
-    guild = bot.get_guild(int(qlash_bs_id))
+    guild = bot2.get_guild(int(qlash_bs_id))
+    print(guild)
     membercount = guild.member_count
     print(membercount)
     #membercount = 14540
@@ -24,16 +25,16 @@ async def record2():
 
 
 async def hello():
-    name = str(bot.user)
+    name = str(bot2.user)
     print(name)
 
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
-    await record2()
-    await bot.close()
+    #await record2()
+    #await bot.close()
 
 try:
-    bot.run(DISCORD_TOKEN)
+    bot2.run(DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:
 	print("Login unsuccessful.")
