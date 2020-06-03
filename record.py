@@ -1,11 +1,18 @@
 #record
 
 import asyncio
+import discord
+from scheduler import *
 from instances import *
+
+DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
+
+bot = discord.Client()
 
 async def record2():
     guild = bot.get_guild(int(qlash_bs_id))
     membercount = guild.member_count
+    print(membercount)
     #membercount = 14540
     today = date.today()
     mydict = {
@@ -20,9 +27,13 @@ async def hello():
     name = str(bot.user)
     print(name)
 
-async def daily_record():
+@bot.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(bot))
     await record2()
+    await bot.close()
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(hello())
-loop.close()
+try:
+    bot.run(DISCORD_TOKEN)
+except discord.errors.LoginFailure as e:
+	print("Login unsuccessful.")
