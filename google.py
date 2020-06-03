@@ -3,7 +3,7 @@ import os
 credentials_path = './google-api/qlash-bot-c0a45565e4f0.json'
 gc = gspread.service_account(filename=credentials_path)
 
-async def testwrite(ctx):
+async def writeall(ctx):
     sheet = gc.open("Registrations").sheet1
     colA = "A"
     colB = "B"
@@ -27,6 +27,5 @@ async def xcel_member_remove(cell):
     sheet = gc.open("Registrations").sheet1
     sheet.update(cell,"")
     print("member removed")
-
 
 #async def xcel_member_add(name,):

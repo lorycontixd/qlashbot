@@ -27,7 +27,6 @@ async def BombSet():
     t = threading.Timer(10.0, BombExplode)
     bombIsSet = True
     t.start()
-
     return t
 
 async def BombDefuse(timer):
@@ -40,7 +39,7 @@ async def BombDefuse(timer):
         timer.cancel()
     else:
         print("wrong")
-        BombExplode()
+        await BombExplode()
 
 timer = BombSet()
 BombDefuse(timer)
