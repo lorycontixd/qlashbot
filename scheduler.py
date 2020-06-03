@@ -45,7 +45,7 @@ async def analyze(ctx):
         date = int(date)
         list_date.append(date)
         list_members.append(mcount)
-    plt.title("Member counts for "+month+" "+year
+    plt.title("Member counts for "+month+" "+year)
     plt.xlabel("Date of "+month)
     plt.ylabel("Number of members in server")
     plt.plot(list_date,list_members)
