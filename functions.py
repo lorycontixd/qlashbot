@@ -21,6 +21,9 @@ from checks import *
 from utility import *
 from mongodb import *
 from instances import *
+from scheduler import *
+from google import *
+from weather import *
 
 #@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
 #async def scheduled_job():
@@ -162,6 +165,7 @@ async def temp(message:discord.Message):
                     await auth.dm_channel.send(ig_t_en)
                     await auth.dm_channel.send(ig_t_es)
                 except asyncio.TimeoutError:
+                    await msg.delete()
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
             else:
                 await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a "+dev.mention+". Thank you")

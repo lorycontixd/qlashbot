@@ -12,13 +12,7 @@ from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from utility import *
 from functions import *
-from descriptions import *
-from weather import *
-from checks import *
-from google import *
-
 
 DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
 
@@ -351,6 +345,14 @@ async def writemembers(ctx):
         return
     await WriteMembersToFile2(ctx)
 
+@mod.command(name='graph-get',bried="(MOD) Get a graph to view member count through the month")
+async def graphget(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await analyze(ctx)
+
 #*****************************************************************************************************************
 #**********************************************       SYS     ****************************************************
 #*****************************************************************************************************************
@@ -409,8 +411,6 @@ async def clan_remove(ctx,*clan_name):
 @bot.command(name='writeall')
 async def writeall_(ctx):
     await writeall(ctx)
-
-
 
 
 try:

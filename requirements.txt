@@ -17,3 +17,6 @@ python-dotenv
 pymongo
 APScheduler==3.0.0
 gspread
+matplotlib
+calendar
+google-cloud-datastore

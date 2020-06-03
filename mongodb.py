@@ -6,6 +6,7 @@ db = mongoclient.heroku_q2z34tjm
 coll_registered = db.QLASHBot_Registered
 coll_commandlogs = db.QLASHBot_CommandLogs
 coll_qlashclans = db.QLASHBot_Clans
+coll_membercount = db.QLASHBot_MemberCount
 
 #*****************************************************************************************************************
 #********************************************       MEMBERS     **************************************************

@@ -58,3 +58,5 @@ def CommandLogs(ctx,commandname):
     logfile = open('command_logs.txt','a+')
     logfile.write(str(author)+" has called the command "+str(commandname)+" at time "+str(time)+'\n')
     logfile.close()
+
+#******************************************************************************
