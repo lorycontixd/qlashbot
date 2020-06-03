@@ -48,5 +48,5 @@ async def analyze(ctx):
     plt.title("Member counts for "+month+" "+year)
     plt.plot(list_date,list_members)
     pathname = './graphs/'+month+year
-    plt.savefig(pathname,format='png')
-    await ctx.send(file=discord.File(pathname+'.png'))
+    plt.savefig(pathname)
+    await ctx.send(file=discord.File(pathname)
