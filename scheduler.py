@@ -9,14 +9,16 @@ from instances import *
 from mongodb import *
 from syncer import sync
 
-async def addsingle(date,member):
+async def addsingle(ctx,date,member):
     mydict = {
         "Date":str(date),
         "Members":int(member)
     }
     coll_membercount.insert_one(mydict)
+    msg = await ctx.send("Member count added to the database")
+    await msg.delete(delay=5.0)
 
-async def record():
+async def record(ctx):
     membercount = await get_member_count()
     #membercount = 14540
     today = date.today()
@@ -26,7 +28,7 @@ async def record():
     }
     coll_membercount.insert_one(mydict)
 
-async def removeall():
+async def removeall(ctx):
     coll_membercount.delete_many({})
 
 async def analyze(ctx):

@@ -345,13 +345,6 @@ async def writemembers(ctx):
         return
     await WriteMembersToFile2(ctx)
 
-@mod.command(name='graph-get',bried="(MOD) Get a graph to view member count through the month")
-async def graphget(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await analyze(ctx)
 
 #*****************************************************************************************************************
 #**********************************************       SYS     ****************************************************
@@ -408,13 +401,44 @@ async def clan_remove(ctx,*clan_name):
         return
     await clan_remove_(ctx,*clan_name)
 
-@bot.command(name='writeall')
-async def writeall_(ctx):
-    await writeall(ctx)
+@sys.command(name='graph-addsingle',brief='(SYS) Add a member count to the database')
+async def add_single(ctx,date,membercount):
+    author = ctx.message.author
+    if not checkforrole(author, "Moderator", "Sub-Coordinator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await addsingle(ctx,date,membercount)
 
-@bot.command(name='membercount')
-async def q(ctx):
-    await get_member_count(ctx)
+@sys.command(name='graph-get',brief="(MOD) Get a graph to view member count through the month")
+async def graph_get(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await analyze(ctx)
+
+@sys.command(name='graph-reset',brief='(SYS) Clears a graph completely')
+async def graph_reset(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await removeall(ctx)
+
+@sys.command(name='graph-today',brief="(SYS) Record today's member count in the database")
+async def graph_today(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await record(ctx)
+
+
+#to write all members on a google spreadsheet
+#@bot.command(name='writeall')
+#async def writeall_(ctx):
+#    await writeall(ctx)
+
 
 try:
     bot.run(DISCORD_TOKEN)

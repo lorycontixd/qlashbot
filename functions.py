@@ -498,7 +498,7 @@ async def clan_add_(ctx,tag,*cname):
         await ctx.send("Invalid Argument "+str(tag)+". Please add # in front!" )
         return
     clanname = " ".join(cname[:])
-    register_clan(tag,clanname)
+    register_clan(tag,clanname) #frmo mongodb.py
     await ctx.send("Added QLASH clan: "+clanname+" ("+tag+") to the database.")
     return
 
@@ -506,20 +506,8 @@ async def clan_remove_(ctx,*cname):
     if not await Check(ctx,str(ctx.message.author)):
         return
     clanname = " ".join(cname[:])
-    remove_clan(clanname)
+    remove_clan(clanname) #from mongodb.py
     await ctx.send("Removed clan "+clanname+" from the database.")
-
-    file2 = open(sourcefile,'w+')
-    for line in lines:
-        if clanname not in line:
-            file2.write(line+'\n')
-        elif clanname in line:
-            print(line)
-            removedline = line
-            await ctx.send("Successfully removed "+str(removedline)+" from the database")
-    if not removedline:
-        await ctx.send("Could not find the clan you are looking for!")
-    return
 
 async def giverole(ctx,member: discord.Member , *rolename):
 	if not Check(ctx,ctx.message.author):
