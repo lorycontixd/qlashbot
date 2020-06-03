@@ -29,7 +29,7 @@ async def record():
 async def removeall():
     coll_membercount.delete_many({})
 
-async def analyze():
+async def analyze(ctx):
     firstdays = ['01','02','03','04','05','06','07','08','09']
     list_date = []
     list_members = []
