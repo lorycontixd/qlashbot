@@ -21,7 +21,7 @@ from checks import *
 from utility import *
 from mongodb import *
 from instances import *
-#from scheduler import *
+from scheduler import *
 from google import *
 from weather import *
 

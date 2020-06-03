@@ -50,10 +50,3 @@ async def analyze(ctx):
     pathname = './graphs/'+month+year
     plt.savefig(pathname,format='png')
     await ctx.send(file=discord.File(pathname))
-
-
-schedule.every().day.at("22:00").do(record)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
