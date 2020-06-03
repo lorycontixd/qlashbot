@@ -1,6 +1,10 @@
+#record
+import asyncio
 from scheduler import *
 
-async def rec():
+async def r():
     await record()
 
-rec()
+loop = loop = asyncio.get_event_loop()
+loop.run_until_complete(r())
+loop.close()
