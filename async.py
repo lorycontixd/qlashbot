@@ -345,13 +345,13 @@ async def writemembers(ctx):
         return
     await WriteMembersToFile2(ctx)
 
-#@mod.command(name='graph-get',bried="(MOD) Get a graph to view member count through the month")
-#async def graphget(ctx):
-#    author = ctx.message.author
-#    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-#        await ctx.send("You don't have the permission for this command!")
-#        return
-#    await analyze(ctx)
+@mod.command(name='graph-get',bried="(MOD) Get a graph to view member count through the month")
+async def graphget(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await analyze(ctx)
 
 #*****************************************************************************************************************
 #**********************************************       SYS     ****************************************************
@@ -382,13 +382,13 @@ async def commandlog_clear(ctx):
         return
     await commandlog_clear_(ctx)
 
-@sys.command(name='registry-view')
-async def registry_view(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await registry_view_(ctx)
+#@sys.command(name='registry-view')
+#async def registry_view(ctx):
+#    author = ctx.message.author
+#    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+#        await ctx.send("You don't have the permission for this command!")
+#        return
+#    await registry_view_(ctx)
 
 #ADMIN
 @sys.command(name='clan-add',brief='(SYS) Add a qlash clan to the database.',description=desc_clan_add)
