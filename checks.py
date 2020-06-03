@@ -29,8 +29,11 @@ async def check_roles_assignement(message:discord.Message):
     #helper = discord.utils.get(message.guild.roles, name="Helper")
     #subcoord = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
     if message.channel.name == "roles-assignement":
+        print("in roles ass")
         if att==0:
+            print("no attachments")
             if author.top_role < mod:
+                print("role lower than mod")
                 await message.delete()
                 msg = await message.channel.send("You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you")
                 await msg.delete(delay=5.0)
