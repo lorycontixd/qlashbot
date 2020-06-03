@@ -29,3 +29,10 @@ async def xcel_member_remove(cell):
     print("member removed")
 
 #async def xcel_member_add(name,):
+
+#########################################################
+
+async def xcel_responses():
+    worksheet = gc.open("QLASH Brawl Stars -- Community Club Membership (Responses)")
+    s1 = worksheet.sheet1
+    
