@@ -345,13 +345,13 @@ async def writemembers(ctx):
         return
     await WriteMembersToFile2(ctx)
 
-@mod.command(name='graph-get',bried="(MOD) Get a graph to view member count through the month")
-async def graphget(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("You don't have the permission for this command!")
-        return
-    await analyze(ctx)
+#@mod.command(name='graph-get',bried="(MOD) Get a graph to view member count through the month")
+#async def graphget(ctx):
+#    author = ctx.message.author
+#    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+#        await ctx.send("You don't have the permission for this command!")
+#        return
+#    await analyze(ctx)
 
 #*****************************************************************************************************************
 #**********************************************       SYS     ****************************************************
