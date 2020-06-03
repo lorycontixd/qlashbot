@@ -17,9 +17,13 @@ async def record2():
     #msg = await ctx.send("Registered today's member count")
 
 
+async def hello():
+    name = str(bot.user)
+    print(name)
+
 async def daily_record():
     await record2()
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(daily_record())
+loop.run_until_complete(hello())
 loop.close()
