@@ -52,7 +52,7 @@ async def analyze(ctx):
     await ctx.send(file=discord.File('pathname'))
 
 
-schedule.every().day.at("22.00").do(record)
+schedule.every().day.at("22:00").do(record)
 
 while True:
     schedule.run_pending()
