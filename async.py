@@ -413,8 +413,8 @@ async def writeall_(ctx):
     await writeall(ctx)
 
 @bot.command(name='membercount')
-async def mcount():
-    await get_member_count()
+async def q(ctx):
+    await get_member_count(ctx)
 
 try:
     bot.run(DISCORD_TOKEN)
