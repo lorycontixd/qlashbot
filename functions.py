@@ -170,7 +170,9 @@ async def temp(message:discord.Message):
             else:
                 await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a "+dev.mention+". Thank you")
 
-
+async def hi():
+    ch = bot.get_channel(int(bot_testing))
+    await ch.send("hi")
 #*****************************************************************************************************************
 #*****************************************************************************************************************
 #**************************************       COMMAND FUNCTIONS     **********************************************

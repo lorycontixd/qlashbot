@@ -412,6 +412,11 @@ async def clan_remove(ctx,*clan_name):
 async def writeall_(ctx):
     await writeall(ctx)
 
+#schedule.every().day.at("22:00").do(record)
+schedule.every(1).minutes.do(hi)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
 try:
     bot.run(DISCORD_TOKEN)
