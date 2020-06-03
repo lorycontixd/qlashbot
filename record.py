@@ -24,7 +24,7 @@ async def record2():
     #msg = await ctx.send("Registered today's member count")
 
 
-async def hello():
+async def hello(): 
     name = str(bot2.user)
     print(name)
 
