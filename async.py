@@ -13,7 +13,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
-
+from scheduler import *
 DISCORD_TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.Xs0bXg.anf5etgix45lRISsKaN6ANzMdYY'
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249
@@ -411,6 +411,7 @@ async def clan_remove(ctx,*clan_name):
 @bot.command(name='writeall')
 async def writeall_(ctx):
     await writeall(ctx)
+
 
 try:
     bot.run(DISCORD_TOKEN)
