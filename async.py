@@ -412,9 +412,6 @@ async def clan_remove(ctx,*clan_name):
 async def writeall_(ctx):
     await writeall(ctx)
 
-#schedule.every().day.at("22:00").do(record)
-schedule.every(1).minutes.do(hi)
-
 try:
     bot.run(DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:

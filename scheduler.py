@@ -54,7 +54,4 @@ async def analyze(ctx):
     #cloudinary.uploader.upload(pathname)
     await ctx.send(file=discord.File(pathname))
 
-#addsingle('2020-06-01',15654)
-#addsingle('2020-06-02',15120)
-#addsingle('2020-06-03',13564)
-#analyze()
+record()
