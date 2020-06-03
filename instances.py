@@ -3,6 +3,10 @@ import os
 import discord
 import brawlstats
 import ipapi
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 from pymongo import MongoClient
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
@@ -43,6 +47,7 @@ h_parameters = {
 	# 'pretty':   True,
 }
 
+
 #*****************************************************************************************************************
 #*********************************************       TOKENS     **************************************************
 #*****************************************************************************************************************
@@ -52,6 +57,11 @@ BS_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFl
 TOKEN = 'NzAxMTI1MzExMDQ3NDAxNDc0.XpyBZQ.RAsYlvnkrzI08mwFuXK8QF5K3BM' #token for discord api
 
 HOLIDAY_TOKEN = 'c1512589-4ee9-40eb-9d65-9c6063113c3f'
+
+cloudinary_name = 'hhqbheeei'
+cloudinary_api_key = '171123752436489'
+cloudinary_api_secret = 'NRtgMGzkwO3vk-i89Axtwj8NhLE'
+cloudinary_api_env_var = 'cloudinary://171123752436489:NRtgMGzkwO3vk-i89Axtwj8NhLE@hhqbheeei'
 
 qlash_bs_id = '415221296247341066'
 clientid = '701125311047401474'
@@ -69,6 +79,13 @@ mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@
 
 #hapi = holidayapi.v1(HOLIDAY_TOKEN)
 #holidays = hapi.holidays(h_parameters)
+
+cloudinary.config(
+  cloud_name = cloudinary_name,
+  api_key = cloudinary_api_key,
+  api_secret = cloudinary_api_secret
+)
+
 
 #*****************************************************************************************************************
 #********************************************       CHANNELS     *************************************************
