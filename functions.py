@@ -137,7 +137,7 @@ async def temp(message:discord.Message):
                     break
 
             if registered==False:
-                msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)\nThis information is important for you to enter.")
+                msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)\nThis information is important for you to enter. \nPlease select the right region, or you may be disqualified.")
                 await msg.add_reaction('✅')
                 await msg.add_reaction('❌')
 
