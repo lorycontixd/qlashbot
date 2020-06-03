@@ -49,4 +49,4 @@ async def analyze(ctx):
     plt.plot(list_date,list_members)
     pathname = './graphs/'+month+year
     plt.savefig(pathname,format='png')
-    await ctx.send(file=discord.File(pathname))
+    await ctx.send(file=discord.File(pathname+'.png'))
