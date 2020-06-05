@@ -32,7 +32,7 @@ async def xcel_member_remove(cell):
 
 #########################################################
 
+#timestamp, ingame tag,
 async def xcel_responses():
     worksheet = gc.open("QLASH Brawl Stars -- Community Club Membership (Responses)")
     s1 = worksheet.sheet1
-    

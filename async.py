@@ -411,7 +411,7 @@ async def add_single(ctx,date,membercount):
 @sys.command(name='graph-get',brief="(SYS) Get a graph to view member count through the month")
 async def graph_get(ctx):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
         await ctx.send("You don't have the permission for this command!")
         return
     await analyze(ctx)
