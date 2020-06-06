@@ -95,7 +95,7 @@ async def on_ready_():
     print('----------------')
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged in 🟢")
-    await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help"))
+    await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help for help"))
 
 async def get_member_count(ctx):
     guild = bot.get_guild(int(qlash_bs_id))

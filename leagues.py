@@ -12,12 +12,12 @@ gc = gspread.service_account(filename=credentials_path)
 worksheet = gc.open("League Database")
 
 leagues = ['Bronze','Silver','Gold','Diamond','Master']
-async def get_league(player):
+async def get_league(ctx,player):
     for role in player.roles:
         if role.name in leagues:
             return role
 
-async def get_sheet(player):
+async def get_sheet(ctx,player):
     role = get_league(player)
     if role.name == 'Bronze':
         sheet = worksheet.sheet1
@@ -32,7 +32,13 @@ async def get_sheet(player):
     else:
         return
 
-async def get_cell(player):
+async def get_cell(ctx,player):
     sheet = get_sheet(player)
     cell = sheet.find(name)
     return cell
+
+async def get_player_league(ctx,player):
+    role = get_league(ctx,player)
+    cell = get_cell(ctx,player)
+    await ctx.send(player.name+" is in league "+role.name")
+    print(cell)

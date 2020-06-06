@@ -14,6 +14,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
 from scheduler import *
+#from leagues import *
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
@@ -437,6 +438,13 @@ async def graph_today(ctx):
 #@bot.command(name='writeall')
 #async def writeall_(ctx):
 #    await writeall(ctx)
+
+#@bot.command(name='test-getleague')
+#async def getleague(ctx,player:discord.Member):
+#    await get_player_league(ctx,player)
+
+#@bot.command(name='test-addpoints')
+#async def addpoints(ctx,player):
 
 
 try:
