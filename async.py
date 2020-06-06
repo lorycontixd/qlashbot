@@ -270,7 +270,7 @@ async def bs_minfo(ctx,name,clan_tag):
 @mod.command(name='locate',brief = '(MOD) Locate an ip address',description=desc_ip)
 async def locate(ctx,ip):
     author = ctx.message.author
-    if Check(ctx,author):
+    if await Check(ctx,author):
         await locate_(ctx,ip)
     else:
         return
