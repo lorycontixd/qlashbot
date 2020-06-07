@@ -168,7 +168,7 @@ async def CheckBanlist(ctx):
                 await ctx.send("Ban for player "+str(temp[0])+" has expired.")
                 continue
         list = LoadClans()
-        for i in range(len(list)):
+        for i in range(len(list)-1):
             clubName = list[i]["Name"]
             clubTag = list[i]["Tag"]
             cclub = await myclient.get_club(clubTag)
