@@ -11,6 +11,7 @@ credentials_path = './google-api/qlash-bot-c0a45565e4f0.json'
 gc = gspread.service_account(filename=credentials_path)
 worksheet = gc.open("League Database")
 
+
 leagues = ['Bronze','Silver','Gold','Diamond','Master']
 async def get_league(ctx,player):
     for role in player.roles:
@@ -30,7 +31,7 @@ async def get_sheet(ctx,player):
     elif role.name == 'Master':
         sheet = worksheet.sheet5
     else:
-        return
+        return sheet
 
 async def get_cell(ctx,player):
     sheet = get_sheet(player)
@@ -42,3 +43,5 @@ async def get_player_league(ctx,player):
     cell = get_cell(ctx,player)
     await ctx.send(player.name+" is in league "+role.name")
     print(cell)
+
+async def add_player(ctx,player):

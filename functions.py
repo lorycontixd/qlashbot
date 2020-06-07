@@ -99,9 +99,9 @@ async def check_instarole(message:discord.Message):
                     break
 
             if registered==False:
-                msg = await ch.send("Hi "+message.author.mention+". Are you from America? (North and South)\nThis information is important for you to enter. \nPlease select the right region, or you may be disqualified.")
-                await msg.add_reaction('✅')
-                await msg.add_reaction('❌')
+                msg = await ch.send("Hi "+message.author.mention+". Are you from North or South America? If **YES**, please react to the American Flag. If **NO**, please react to the World Emoji.\nThis information is important for you to enter. \nPlease select the right region, or you may be disqualified.")
+                await msg.add_reaction('🇺🇸')
+                await msg.add_reaction('🌎')
 
                 def check(reaction,user):
                     return str(message.author.name)==str(user.name)
@@ -109,10 +109,10 @@ async def check_instarole(message:discord.Message):
                 try:
                     await asyncio.sleep(1)
                     reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
-                    if str(reaction.emoji) == '✅':
+                    if str(reaction.emoji) == '🇺🇸':
                         role = discord.utils.get(message.guild.roles, name="IG-AMERICA")
                         await message.author.add_roles(role)
-                    elif str(reaction.emoji) == '❌':
+                    elif str(reaction.emoji) == '🌎':
                         role = discord.utils.get(message.guild.roles, name="IG-EUROPE")
                         await message.author.add_roles(role)
                     msg2 = await ch.send("Thank you for your answer "+str(message.author.name)+"!")
