@@ -147,7 +147,7 @@ async def CheckBanlist(ctx):
     write_channel = bot.get_channel(int(banlist_testing))
     tempmsg = await ctx.send("Calculating and reporting bans in channel: "+channel.mention)
     await channel.trigger_typing()
-    messages = await channel.history(limit=150).flatten()
+    messages = await write_channel.history(limit=150).flatten()
     now = datetime.now()
     for message in messages:
         #convert utc time to est
