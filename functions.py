@@ -42,51 +42,6 @@ from weather import *
 bot_status = True
 last_update = ''
 
-ig_t_it= """🇮🇹
-Una volta ricevuto il ruolo “IG-EUROPE” e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
-!createteam <Nome squadra> <nickname in game>
-
-Se avrai fatto tutto correttamente il bot genererà un codice team che dovrai condividere solo con i tuoi due compagni di squadra.
-- Per unirti ad una squadra già creata, dopo il comando !register scrivi al bot in privato il seguente comando:
-!jointeam <code team> <nickname in game>
-
--Regole: #📕tournament-rules  sotto la voce "regole generali valide" per ogni modalità e "#Regole 3v3"
--Premi: #💰tournament-prizes
-- Tutte le informazioni su come completare l'iscrizione puoi trovarle in #tournament-announcement
-
-
-"""
-
-
-ig_t_en="""🇬🇧
-Once you'll get the role “IG-EUROPE” or “IG-AMERICA” and get the access into the registration's lobby Instagram Tournament – EU/AM - 07/06), if you're the captain, you have to put the command !register and you will have a window in private messages in which you can do the registration as it follows:
-!createteam <Team's name> <In game nickname>
-
-If you'll do all correctly the bot will generate a Team code that you have to share with your 2 teammates.
-- To join in a Team already created, after the command !register write to the bot in private messages the following command:
-!jointeam <Team code> <In game nickname>
-
--Rules: #📕tournament-rules  under #Rules 3v3
--Prizes: #💰tournament-prizes
-- You can find all the information about how to complete the registration in #tournament-announcement
-
-
-"""
-
-
-ig_t_es="""🇪🇦
-Una vez que tengas el rol “IG-EUROPE” o “IG-AMERICA” y el acceso al lobby de registro, si eres el capitán, debes poner el comando !register y tendrás una ventana privada en la que puedes hacer el registro de la siguiente manera:
-!createteam <Nombre del equipo> <Apodo en el juego>
-
-Si haces todo correctamente, el bot generará un código de equipo que debes compartir con tus 2 compañeros de equipo.
-- Para unirte a un equipo ya creado, después del registro de comando escribe al bot en privado el siguiente comando:
-!jointeam <Código de equipo> <Apodo en el juego>
-
--Reglas: #📕tournament-rules  abajo #Rules 3v3
-- Premios: #💰tournament-prizes
-- Puedes encontrar todas las informaciones sobre como registrarse en #tournament-announcement
-"""
-
 async def on_ready_():
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
@@ -188,7 +143,7 @@ async def hi():
 #banlist layout:  ingame name, ingame tag, days of ban (or perma)
 async def CheckBanlist(ctx):
     count=0
-    channel = bot.get_channel(int(entry_exit))
+    channel = bot.get_channel(int(qlash_bot))
     write_channel = bot.get_channel(int(banlist_testing))
     tempmsg = await ctx.send("Calculating and reporting bans in channel: "+channel.mention)
     await channel.trigger_typing()
@@ -210,7 +165,7 @@ async def CheckBanlist(ctx):
         dayBan = str(temp[2])
         if dayBan !='perma':
             if difference>=int(dayBan):
-                await writechannel.send("Ban for player "+str(temp[0])+" has expired.")
+                await ctx.send("Ban for player "+str(temp[0])+" has expired.")
                 continue
         list = LoadClans()
         for i in range(len(list)):
@@ -220,9 +175,9 @@ async def CheckBanlist(ctx):
             for member in cclub.members:
                 if str(member.tag) == str(playerTag):
                     count+=1
-                    await writechannel.send("Player "+str(member.name)+" found in clan "+str(cclub.name))
+                    await ctx.send("Player "+str(member.name)+" found in clan "+str(cclub.name))
     if count==0: #if no players were found in clans
-        await writechannel.send("No banned players found in qlash clans")
+        await ctx.send("No banned players found in qlash clans")
     await tempsmg.delete() #deletes bot message
 
 #************************************************ FUN **********************************************

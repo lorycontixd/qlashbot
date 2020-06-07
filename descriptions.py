@@ -180,15 +180,60 @@ desc_channels = """Print a list of the mosts important channels in the server an
 channels_response = """
 ```
 Here is a list of the main channels in this server:
-- #welcome: here you can read our main rules in order to establish order in the server. We advise you to read them carefully
-- #🔥announcements: we use this channel to announce changes, tournaments, competitions, applications and more things within the server
-- #👑all-qlash-clans: here you can find all official QLASH clans in Brawl Stars, with the corresponding trophy limit.
-- #roles-assignment: in this channel you can send a screenshot as a proof of your position in a qlash clan to unlock benefits such as tournaments, dedicated channels and more..
-- there are various general chats for most of the languages worldwide. Please chat in the right channel based on the language you are speaking.
+- #welcome: here you can read our main rules, that were written in order to establish order in the server. We advise you to read them carefully.
+- #🔥announcements: we use this channel to announce changes, tournaments, competitions, application availability and more things within the server.
+- #👑all-qlash-clans: here you can find a list of all official QLASH clans in Brawl Stars, with the corresponding trophy requirement.
+- #roles-assignment: in this channel you can send a screenshot as a proof of your position in a qlash clan to unlock benefits such as tournaments, dedicated channels and more.
+- there are various general chats for most of the languages worldwide. Please chat in the right channel based on the languages you speak.
 - #📗support: in this channel you can publicly ask for help at any time and our staff will contact you as soon as possible.
-- #🤖bot-spam: in this channel you can interact with our bots. We do this to avoid confusion in channels for normal conversation.
-- #📢tournament-announcements: here we give announcements on qlash tournaments
+- #🤖bot-spam: in this channel you can interact with our bots. We use this channel to avoid confusion in rooms for normal conversation.
+- #📢tournament-announcements: here we give announcements on new qlash tournaments!
 
 If you have more questions about channels, do not hesitate to contact our staff.
 ```
+"""
+
+ig_t_it= """🇮🇹
+Una volta ricevuto il ruolo “IG-EUROPE” e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
+!createteam <Nome squadra> <nickname in game>
+
+Se avrai fatto tutto correttamente il bot genererà un codice team che dovrai condividere solo con i tuoi due compagni di squadra.
+- Per unirti ad una squadra già creata, dopo il comando !register scrivi al bot in privato il seguente comando:
+!jointeam <code team> <nickname in game>
+
+-Regole: #📕tournament-rules  sotto la voce "regole generali valide" per ogni modalità e "#Regole 3v3"
+-Premi: #💰tournament-prizes
+- Tutte le informazioni su come completare l'iscrizione puoi trovarle in #tournament-announcement
+
+
+"""
+
+
+ig_t_en="""🇬🇧
+Once you'll get the role “IG-EUROPE” or “IG-AMERICA” and get the access into the registration's lobby Instagram Tournament – EU/AM - 07/06), if you're the captain, you have to put the command !register and you will have a window in private messages in which you can do the registration as it follows:
+!createteam <Team's name> <In game nickname>
+
+If you'll do all correctly the bot will generate a Team code that you have to share with your 2 teammates.
+- To join in a Team already created, after the command !register write to the bot in private messages the following command:
+!jointeam <Team code> <In game nickname>
+
+-Rules: #📕tournament-rules  under #Rules 3v3
+-Prizes: #💰tournament-prizes
+- You can find all the information about how to complete the registration in #tournament-announcement
+
+
+"""
+
+
+ig_t_es="""🇪🇦
+Una vez que tengas el rol “IG-EUROPE” o “IG-AMERICA” y el acceso al lobby de registro, si eres el capitán, debes poner el comando !register y tendrás una ventana privada en la que puedes hacer el registro de la siguiente manera:
+!createteam <Nombre del equipo> <Apodo en el juego>
+
+Si haces todo correctamente, el bot generará un código de equipo que debes compartir con tus 2 compañeros de equipo.
+- Para unirte a un equipo ya creado, después del registro de comando escribe al bot en privado el siguiente comando:
+!jointeam <Código de equipo> <Apodo en el juego>
+
+-Reglas: #📕tournament-rules  abajo #Rules 3v3
+- Premios: #💰tournament-prizes
+- Puedes encontrar todas las informaciones sobre como registrarse en #tournament-announcement
 """
