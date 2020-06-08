@@ -4,8 +4,8 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 
-def is_me(m):
-    return m.author == client.user
+def is_me(message):
+    return message.author == client.user
 
 def checkforrole(member: discord.Member, *roles):
 	temp = " ".join(roles[:])
@@ -32,10 +32,10 @@ async def check_roles_assignement(message:discord.Message):
         if att==0:
             if author.top_role < mod:
                 await message.delete()
-                msg = await message.channel.send("You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you")
+                msg = await message.channel.send("You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you!")
                 await msg.delete(delay=5.0)
 
-def check_equal_lists(x,y):
+def check_equal_lists(x,y): #x,y two lists
     if set(x)==set(y):
         return True
     else:
