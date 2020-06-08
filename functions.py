@@ -81,7 +81,7 @@ async def on_member_update_role(before,after):
     if not check_equal_lists(before.roles,after.roles):
         list = LoadClans()
         clannames = [d["Name"] for d in list]
-        for role in after.roles:
+        for role in after.roles if not role in before.roles:
             if role.name in clannames:
                 print(after.name+" was given the role "+role.name)
                 id = role.id
