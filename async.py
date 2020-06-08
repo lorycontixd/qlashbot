@@ -434,6 +434,9 @@ async def graph_today(ctx):
         return
     await record(ctx)
 
+@bot.command(name='print-report')
+async def print_report(ctx):
+    await print_report_(ctx)
 
 #to write all members on a google spreadsheet
 #@bot.command(name='writeall')

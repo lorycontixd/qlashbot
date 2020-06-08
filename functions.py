@@ -689,3 +689,24 @@ async def CompareMembers(ctx):
 	print("Action Completed!")
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+async def print_report_(ctx):
+    author = ctx.author
+    guild = ctx.guild
+    list = LoadClans()
+    e=discord.Embed(title="Report for roles", color=0xfffc40)
+	e.set_author(name="QLASH Bot")
+    for clan in list:
+        clubName = clan["Name"]
+        clubTag = clan["Tag"]
+        role = discord.utils.get(ctx.guild.roles, name=clubName)
+        e.add_field(name=role.name, value=str(len(role.members)), inline=True)
+        if role == None:
+            await ctx.send(clubName+" role not found")
+        else:
+            e.add_field(name=role.name, value=str(len(role.members)), inline=True)
+    wfr = discord.utils.get(ctx.guild.roles, name="waiting-for-role")
+    wfr_count = len(wfr.members)
+    e.add_field(name=wfr.name,value=str(wfr_count))
+    e.set_footer(text="Bot created by Lore")
+    await ctx.send(embed=e)
