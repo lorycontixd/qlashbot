@@ -429,7 +429,7 @@ async def graph_reset(ctx):
 @sys.command(name='graph-today',brief="(SYS) Record today's member count in the database")
 async def graph_today(ctx):
     author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
         await ctx.send("You don't have the permission for this command!")
         return
     await record(ctx)
