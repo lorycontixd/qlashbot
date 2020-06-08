@@ -408,8 +408,8 @@ async def set_(ctx,player:discord.Member,gametag):
     for i in range(len(list)): #cycle through clans
         nname = str(list[i]["Name"])
         role = discord.utils.get(player.guild.roles, name=nname)
-        if role in author.roles and role.name!="QLASH Girl":
-            await author.remove_roles(role)
+        if role in player.roles and role.name!="QLASH Girl":
+            await player.remove_roles(role)
         tag = str(list[i]["Tag"])
         club = await myclient.get_club(tag)
         for member in club.members:
