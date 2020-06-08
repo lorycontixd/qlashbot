@@ -691,34 +691,34 @@ async def CompareMembers(ctx):
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 async def print_report_(ctx):
+    await ctx.trigger_typing()
     author = ctx.author
     guild = ctx.guild
     list = LoadClans()
-    e=discord.Embed(title="Report for roles", color=0xfffc40)
-    e2=discord.Embed(color=0xfffc40)
-    e.set_author(name="QLASH Bot")
-    i=0
-    for clan in list:
-        clubName = clan["Name"]
-        clubTag = clan["Tag"]
+    total_clans = len(list)
+    sections = int(total_clans/21)+1
+    list_embeds = []
+    for k in range(sections):
+        if k==0:
+            e=discord.Embed(title="Report for roles",color=0xf6ec00)
+            e.set_author(name="QLASH Bot")
+        else:
+            e=discord.Embed(color=0xf6ec00)
+        list_embeds.append(e)
+
+    for i in range(total_clans-1):
+        current_section = int(i/sections)+1
+        print(current_section)
+        clubName = list[i]["Name"]
+        clubTag = list[i]["Tag"]
         role = discord.utils.get(ctx.guild.roles, name=clubName)
-        #e.add_field(name=role.name, value=str(len(role.members)), inline=True)
         if role == None:
             await ctx.send(clubName+" role not found")
         else:
-            if i>17:
-                e2.add_field(name=role.name, value=str(len(role.members)), inline=True)
-            else:
-                e.add_field(name=role.name, value=str(len(role.members)), inline=True)
-        i+=1
+            e[current_section].add_field(name=role.name,value=str(len(role.members)))
     wfr = discord.utils.get(ctx.guild.roles, name="waiting-for-role")
     wfr_count = len(wfr.members)
-    if i>=17:
-        e2.add_field(name=wfr.name,value=str(wfr_count))
-        e2.set_footer(text="Bot created by Lore")
-        await ctx.send(embed=e)
-        await ctx.send(embed=e2)
-    else:
-        e.add_field(name=wfr.name,value=str(wfr_count))
-        e.set_footer(text="Bot created by Lore")
-        await ctx.send(embed=e)
+    list_embeds[-1].add_field(name=wfr.name,value=str(wfr_count))
+    list_embeds[-1].set_footer(text='Bot Created by Lore')
+    for emb in list_embeds:
+        await ctx.send(embed=emb)
