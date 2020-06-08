@@ -38,6 +38,10 @@ async def on_disconnect():
 async def on_member_join(member:discord.Member):
     await member_join_check(member)
 
+@bot.event
+async def on_member_update(before,after):
+    await on_member_update_role(before,after)
+
 #@bot.event
 #async def on_member_join(member:discord.Member):
 #    channel = bot.get_channel(int(entries_discord))

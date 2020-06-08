@@ -77,6 +77,26 @@ async def member_join_check(member:discord.Member):
             await mychannel.send(embed=embed)
             await mychannel.send("@Moderator")
 
+async def on_member_update_role(before,after):
+    if not check_equal_lists(before.roles,after.roles):
+        list = LoadClans()
+        clannames = [d["Name"] for d in list]
+        for role in after.roles:
+            if role.name in clannames:
+                print(after.name+" was given the role "+role.name)
+                id = role.id
+                file = open('message.csv','r+')
+                content = file.read()
+                lines = content.split('\n')
+                for line in lines:
+                    ll=line.split(',')
+                    roleID = int(ll[1])
+                    channelID = int(ll[2])
+                    if roleID == id:
+                        ch = bot.get_channel(channelID)
+                        await ch.send("Hello "+role.mention+". Please give a warm welcome to "+after.mention+" who just joined your clan!")
+
+
 #time zones
 from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local

@@ -34,3 +34,9 @@ async def check_roles_assignement(message:discord.Message):
                 await message.delete()
                 msg = await message.channel.send("You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you")
                 await msg.delete(delay=5.0)
+
+def check_equal_lists(x,y):
+    if set(x)==set(y):
+        return True
+    else:
+        return False
