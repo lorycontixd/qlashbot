@@ -721,7 +721,7 @@ async def print_report_(ctx):
     ig_america = discord.utils.get(ctx.guild.roles, name="IG-AMERICA")
     listembeds[-1].add_field(name=wfr.name,value=str(wfr_count))
     listembeds[-1].add_field(name=ig_europe.name,value=str(len(ig_europe.members)))
-    listembeds[-1].add_field(name=ig_america.name,value=str(len(ig_europe.members)))
+    listembeds[-1].add_field(name=ig_america.name,value=str(len(america.members)))
     listembeds[-1].set_footer(text='Bot Created by Lore')
     for emb in listembeds:
         await ctx.send(embed=emb)
