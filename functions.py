@@ -697,7 +697,7 @@ async def print_report_(ctx):
     list = LoadClans()
     total_clans = len(list)
     sections = int(total_clans/21)+1
-    listembeds = []
+    listembeds=[]
     for k in range(sections):
         if k==0:
             e=discord.Embed(title="Report for roles",color=0xf6ec00)
