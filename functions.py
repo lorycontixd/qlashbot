@@ -696,7 +696,10 @@ async def print_report_(ctx):
     list = LoadClans()
     e=discord.Embed(title="Report for roles", color=0xfffc40)
     e.set_author(name="QLASH Bot")
+    i=0
     for clan in list:
+        if i==5:
+            break
         clubName = clan["Name"]
         clubTag = clan["Tag"]
         role = discord.utils.get(ctx.guild.roles, name=clubName)
@@ -705,6 +708,7 @@ async def print_report_(ctx):
             await ctx.send(clubName+" role not found")
         else:
             e.add_field(name=role.name, value=str(len(role.members)), inline=True)
+        i+=1
     wfr = discord.utils.get(ctx.guild.roles, name="waiting-for-role")
     wfr_count = len(wfr.members)
     e.add_field(name=wfr.name,value=str(wfr_count))
