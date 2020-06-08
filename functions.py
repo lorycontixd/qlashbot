@@ -695,7 +695,7 @@ async def print_report_(ctx):
     guild = ctx.guild
     list = LoadClans()
     e=discord.Embed(title="Report for roles", color=0xfffc40)
-	e.set_author(name="QLASH Bot")
+    e.set_author(name="QLASH Bot")
     for clan in list:
         clubName = clan["Name"]
         clubTag = clan["Tag"]
