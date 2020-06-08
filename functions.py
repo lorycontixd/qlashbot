@@ -707,8 +707,7 @@ async def print_report_(ctx):
         listembeds.append(e)
 
     for i in range(total_clans-1):
-        current_section = int(i/sections)+1
-        print(current_section)
+        current_section = int(i/21)
         clubName = list[i]["Name"]
         clubTag = list[i]["Tag"]
         role = discord.utils.get(ctx.guild.roles, name=clubName)
