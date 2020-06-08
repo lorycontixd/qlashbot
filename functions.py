@@ -700,7 +700,7 @@ async def print_report_(ctx):
         clubName = clan["Name"]
         clubTag = clan["Tag"]
         role = discord.utils.get(ctx.guild.roles, name=clubName)
-        e.add_field(name=role.name, value=str(len(role.members)), inline=True)
+        #e.add_field(name=role.name, value=str(len(role.members)), inline=True)
         if role == None:
             await ctx.send(clubName+" role not found")
         else:
