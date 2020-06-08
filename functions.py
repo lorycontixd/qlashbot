@@ -695,11 +695,10 @@ async def print_report_(ctx):
     guild = ctx.guild
     list = LoadClans()
     e=discord.Embed(title="Report for roles", color=0xfffc40)
+    e2=discord.Embed(color=0xfffc40)
     e.set_author(name="QLASH Bot")
     i=0
     for clan in list:
-        if i==5:
-            break
         clubName = clan["Name"]
         clubTag = clan["Tag"]
         role = discord.utils.get(ctx.guild.roles, name=clubName)
@@ -707,10 +706,19 @@ async def print_report_(ctx):
         if role == None:
             await ctx.send(clubName+" role not found")
         else:
-            e.add_field(name=role.name, value=str(len(role.members)), inline=True)
+            if i>17:
+                e2.add_field()
+            else:
+                e.add_field(name=role.name, value=str(len(role.members)), inline=True)
         i+=1
     wfr = discord.utils.get(ctx.guild.roles, name="waiting-for-role")
     wfr_count = len(wfr.members)
-    e.add_field(name=wfr.name,value=str(wfr_count))
-    e.set_footer(text="Bot created by Lore")
-    await ctx.send(embed=e)
+    if i>=17:
+        e2.add_field(name=wfr.name,value=str(wfr_count))
+        e2.set_footer(text="Bot created by Lore")
+        await ctx.send(embed=e)
+        await ctx.send(embed=e2)
+    else:
+        e.add_field(name=wfr.name,value=str(wfr_count))
+        e.set_footer(text="Bot created by Lore")
+        await ctx.send(embed=e)
