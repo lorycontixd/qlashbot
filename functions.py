@@ -160,7 +160,9 @@ async def insta_role_ended(message):
     auth = message.author
     if ch.name == "insta-roles":
         if len(message.attachments)!=0:
-            await ch.send("Hello "+auth.mention+". The Instagram Tournament finished in the evening of the 7th of June. \nPlease check the calendar or the announcement channels to keep updated with new tournaments that you can join. Thank you very much!")
+            msg = await ch.send("Hello "+auth.mention+". The Instagram Tournament finished in the evening of the 7th of June. \nPlease check the calendar or the announcement channels to keep updated with new tournaments that you can join. Thank you very much!")
+            await message.delete(delay=6.0)
+            await msg.delete(delay=6.0)
 
 async def hi():
     ch = bot.get_channel(int(bot_testing))
