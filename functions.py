@@ -707,7 +707,7 @@ async def print_report_(ctx):
             await ctx.send(clubName+" role not found")
         else:
             if i>17:
-                e2.add_field()
+                e2.add_field(name=role.name, value=str(len(role.members)), inline=True)
             else:
                 e.add_field(name=role.name, value=str(len(role.members)), inline=True)
         i+=1
