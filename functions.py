@@ -86,7 +86,7 @@ async def on_member_update_role(before,after):
             if not role in before.roles:
                 if role.name in clannames:
                     messages = ['We are delighted to have '+after.mention+' join us in '+role.mention,'Hello '+role.mention+'. Welcome to the team '+after.mention+'!','Hello '+role.mention+'. We would like to welcome '+after.mention+' to the club.',"We're glad you are here, "+after.mention+"! "+role.mention]
-                    int = randint(1,len(messages))
+                    myint = randint(1,len(messages))
                     print(after.name+" was given the role "+role.name)
                     id = role.id
                     file = open('message.csv','r+')
@@ -98,7 +98,7 @@ async def on_member_update_role(before,after):
                         channelID = int(ll[2])
                         if roleID == id:
                             ch = bot.get_channel(channelID)
-                            await ch.send(messages[int])
+                            await ch.send(messages[myint])
 
 
 #time zones
