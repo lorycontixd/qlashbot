@@ -688,7 +688,7 @@ async def CompareMembers(ctx):
 	await tempmsg.delete()
 	print("Action Completed!")
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 async def print_report_(ctx):
     await ctx.trigger_typing()
@@ -723,5 +723,43 @@ async def print_report_(ctx):
     listembeds[-1].add_field(name=ig_europe.name,value=str(len(ig_europe.members)))
     listembeds[-1].add_field(name=ig_america.name,value=str(len(ig_america.members)))
     listembeds[-1].set_footer(text='Bot Created by Lore')
+    for emb in listembeds:
+        await ctx.send(embed=emb)
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def check_in_dict(dict,name):
+    if name in dict:
+        return True
+    else:
+        return False
+
+async def get_tournament_members(ctx,tournament_rolee):
+    tournament_role = discord.utils.get(ctx.guild.roles, name=tournament_rolee)
+    mydict = {} #
+    list = LoadClans()
+    clannames = [d["Name"] for d in list]
+    for member in tournament_role.members:
+        for role in member.roles:
+            if role.name in clannames:
+                if not check_in_dict(mydict,role.name):
+                    mydict[role.name]=1
+                else:
+                    mydict[role.name]+=1
+
+    total_clans = len(mydict)
+    sections = int(total_clans/21)+1
+    listembeds=[]
+    for k in range(sections):
+        if k==0:
+            e=discord.Embed(title="Report for roles",color=0xf6ec00)
+            e.set_author(name="QLASH Bot")
+        else:
+            e=discord.Embed(color=0xf6ec00)
+        listembeds.append(e)
+    for i in range(total_clans):
+        current_section = int(i/21)
+        clubName = mydict[i]
+        club_count = mydict[clubName]
+        listembeds[current_section].add_field(name=clubName,value=str(club_count))
     for emb in listembeds:
         await ctx.send(embed=emb)

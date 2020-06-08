@@ -438,6 +438,10 @@ async def graph_today(ctx):
 async def print_report(ctx):
     await print_report_(ctx)
 
+#@bot.command(name='tournament-members')
+#async def get_tournament_members_(ctx,tournament_role):
+#    await get_tournament_members(ctx,tournament_role)
+
 #to write all members on a google spreadsheet
 #@bot.command(name='writeall')
 #async def writeall_(ctx):
