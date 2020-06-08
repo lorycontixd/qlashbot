@@ -706,7 +706,7 @@ async def print_report_(ctx):
             e=discord.Embed(color=0xf6ec00)
         listembeds.append(e)
 
-    for i in range(total_clans-1):
+    for i in range(total_clans):
         current_section = int(i/21)
         clubName = list[i]["Name"]
         clubTag = list[i]["Tag"]
