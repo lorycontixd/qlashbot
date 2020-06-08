@@ -129,6 +129,15 @@ async def check_instarole(message:discord.Message):
             else:
                 await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a "+dev.mention+". Thank you")
 
+async def insta_role_ended(message):
+    ch = message.channel
+    if type(ch)!=discord.TextChannel:
+        return
+    auth = message.author
+    if ch.name == "insta-roles":
+        if len(message.attachments)!=0:
+            await ch.send("Hello "+auth.mention+". The Instagram Tournament finished in the evening of the 7th of June. \nPlease check the calendar or the announcement channels to keep updated with new tournaments that you can join. Thank you very much!")
+
 async def hi():
     ch = bot.get_channel(int(bot_testing))
     await ch.send("hi")
