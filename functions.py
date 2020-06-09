@@ -776,7 +776,7 @@ async def print_rolemembers_(ctx,*role_name):
         current_section = int(i/21)
         nname = str(memberlist[i])
         vvalue = str(memberlist[i].status)
-        listembeds[current_section].add_field(name=nname,value=vvalue)
+        listembeds[current_section].add_field(name=nname,value=vvalue,inline=True)
     listembeds[-1].set_footer(text='Bot Created by Lore')
     for e in listembeds:
         await ctx.send(embed=e)
