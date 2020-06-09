@@ -752,6 +752,35 @@ async def print_report_(ctx):
     for emb in listembeds:
         await ctx.send(embed=emb)
 
+async def print_rolemembers_(ctx,rolename):
+    await ctx.trigger_typing()
+    author = ctx.author
+    guild = ctx.guild
+    role = discord.utils.get(ctx.guild.roles, name=rolename)
+    memberlist = role.members
+    if role == None:
+        await ctx.send("No role found with that name!")
+        return
+    membercount = len(memberlist)
+    sections = int(membercount/21)+1
+    listembeds=[]
+    for k in range(sections):
+        if k==0:
+            e=discord.Embed(title="Members in role "+str(role.name),color=0xf6ec00)
+            e.set_author(name="QLASH Bot")
+        else:
+            e=discord.Embed(color=0xf6ec00)
+        listembeds.append(e)
+    for i in range(membercount):
+        current_section = int(i/21)
+        nname = str(memberlist[i])
+        vvalue = str(memberlist[i].status)
+        embedlist[current_section].add_field(name=nname,value=vvalue)
+    listembeds[-1].set_footer(text='Bot Created by Lore')
+    for e in listembeds:
+        await ctx.send(embed=e)
+
+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def check_in_dict(dict,name):
     if name in dict:

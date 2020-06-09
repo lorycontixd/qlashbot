@@ -438,9 +438,14 @@ async def graph_today(ctx):
         return
     await record(ctx)
 
-@bot.command(name='print-report')
+@mod.command(name='all-roles')
 async def print_report(ctx):
     await print_report_(ctx)
+
+@mod.command(name='role-members')
+async def print_rolemembers(ctx,rolename):
+    await print_rolemembers_(ctx,rolename)
+
 
 #@bot.command(name='tournament-members')
 #async def get_tournament_members_(ctx,tournament_role):
