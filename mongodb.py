@@ -49,7 +49,7 @@ def LoadClans():
         list.append(document)
     return list #list of dicts ("Name","Tag","RoleID","ChannelID")
 
-def register_clan(tag,name,roleID,channelID):
+def register_clan(roleID,channelID,tag,name):
     mydict = {
         "Name" : name,
         "Tag" : tag,
