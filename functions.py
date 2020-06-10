@@ -452,6 +452,8 @@ async def set_(ctx,player:discord.Member,gametag):
         return
     else:
         await ctx.send("No role found. If you think this is a mistake, please contact our staff or a "+botdev.mention+". Thank you!")
+        wfr2 = discord.utils.get(player.guild.roles, name="waiting-for-role")
+        await player.add_roles(wfr2)
         return
 
 
