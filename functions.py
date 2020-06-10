@@ -490,12 +490,12 @@ async def qlash_trophies(ctx): #all qlash clans with requires trophies
     await ctx.send(embed=e2)
 
 ###******************************* READ / WRITE / ADD / DELETE ***********
-async def clan_add_(ctx,tag,*cname):
+async def clan_add_(ctx,roleID,channelID,tag,*cname):
     if tag[0] != '#':
         await ctx.send("Invalid Argument "+str(tag)+". Please add # in front!" )
         return
     clanname = " ".join(cname[:])
-    register_clan(tag,clanname) #frmo mongodb.py
+    register_clan(roleID,channelID,tag,clanname) #frmo mongodb.py
     await ctx.send("Added QLASH clan: "+clanname+" ("+tag+") to the database.")
     return
 
