@@ -7,6 +7,7 @@ import subprocess
 import pytz
 import asyncio
 import threading
+import random
 #import holidayapi
 
 from pyowm import OWM
