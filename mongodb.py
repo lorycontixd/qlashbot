@@ -45,7 +45,6 @@ async def view_database(ctx):
 
 def get_clan(*nname):
     name = " ".join(nname[:])
-    print("name: ",name)
     document = coll_qlashclans.find_one({"Name":{"$eq":str(name)}})
     return document #type <dict>
 
