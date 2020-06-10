@@ -389,12 +389,12 @@ async def commandlog_clear(ctx):
 
 #ADMIN
 @sys.command(name='clan-add',brief='(SYS) Add a qlash clan to the database.',description=desc_clan_add)
-async def clan_add(ctx,tag,*clan_name):
+async def clan_add(ctx,roleID,channelID,tag,*clan_name):
     author = ctx.message.author
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
         await ctx.send("You don't have the permission for this command!")
         return
-    await clan_add_(ctx,tag,*clan_name)
+    await clan_add_(ctx,roleID,channelID,tag,*clan_name)
 
 #ADMIN
 @sys.command(name='clan-remove',brief='(SYS) Remove a qlash clan from the database.',description=desc_clann_remove)
