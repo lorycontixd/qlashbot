@@ -413,6 +413,7 @@ async def set_(ctx,player:discord.Member,gametag):
     list = LoadClans()
     for i in range(len(list)): #cycle through clans
         nname = str(list[i]["Name"])
+        print(nname)
         role = discord.utils.get(player.guild.roles, name=nname)
         if role in player.roles and role.name!="QLASH Girl":
             await player.remove_roles(role)
