@@ -90,13 +90,16 @@ async def on_member_update_role(before,after):
                     #myint = randint(1,len(messages))
                     print(after.name+" was given the role "+role.name)
                     id = role.id
-                    file = open('message.csv','r+')
-                    content = file.read()
-                    lines = content.split('\n')
-                    for line in lines:
-                        ll=line.split(',')
-                        roleID = int(ll[1])
-                        channelID = int(ll[2])
+                    #file = open('message.csv','r+')
+                    #content = file.read()
+                    #lines = content.split('\n')
+                    #for line in lines:
+                    ##    ll=line.split(',')
+                    #    roleID = int(ll[1])
+                    #    channelID = int(ll[2])
+                    clan_doc = get_clan(str(role.name))
+                    roleID = clan_doc["RoleID"]
+                    channelID = clan_doc["ChannelID"]
                         if roleID == id:
                             ch = bot.get_channel(channelID)
                             await ch.send(random.choice(messages))
