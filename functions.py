@@ -101,7 +101,7 @@ async def on_member_update_role(before,after):
                     roleID = clan_doc["RoleID"]
                     channelID = clan_doc["ChannelID"]
                     if int(roleID) == id:
-                        ch = bot.get_channel(channelID)
+                        ch = bot.get_channel(int(channelID))
                         await ch.send(random.choice(messages))
 
 
