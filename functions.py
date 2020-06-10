@@ -617,11 +617,13 @@ async def member_info_(ctx,member:discord.Member):
     e.set_footer(text="Bot created by Lore")
     await ctx.send(embed=e)
 
-async def write_message(ctx,channel:discord.TextChannel,*message):
+async def write_message(ctx,channelname,*message):
     msg = ctx.message
     temp = " ".join(message[:])
     guild = ctx.guild
-    await channel.send(temp)
+    for channel in guild.text_channels:
+        if str(channel) == str(channelname):
+            await channel.send(temp)
     await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):
