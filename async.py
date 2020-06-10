@@ -325,13 +325,21 @@ async def test(ctx):
 async def purge(ctx,amount):
     await purge_(ctx,amount)
 
-@bot.command(name="role-give",hidden=True,pass_context=True)
+@mod.command(name="role-give",hidden=True,pass_context=True)
 async def role_give(ctx,member: discord.Member , *rolename):
     await giverole(ctx,member,*rolename)
 
-@bot.command(name="role-remove",hidden=True,pass_context=True)
+@mod.command(name="role-remove",hidden=True,pass_context=True)
 async def role_rem(ctx,member: discord.Member , *rolename):
     await removerole(ctx,member,*rolename)
+
+@mod.command(name='role-count')
+async def role_count(ctx,*rolename):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await role_count_(ctx,*rolename)
 
 @mod.command(name='view-members',brief='(MOD) (BS30+) Get a list of players that left ingame clubs.',description=desc_view_members )
 async def viewmembers(ctx):
