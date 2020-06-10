@@ -622,7 +622,9 @@ async def write_message(ctx,channelname,*message):
     temp = " ".join(message[:])
     guild = ctx.guild
     for channel in guild.text_channels:
-        if str(channel) == str(channelname):
+        if str(channel.name) == str(channelname):
+            print("channel: ",str(channel))
+            print("channelname: ",str(channelname))
             await channel.send(temp)
     await msg.add_reaction('✅')
 
@@ -722,6 +724,16 @@ async def CompareMembers(ctx):
 	print("Action Completed!")
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+async def role_count_(ctx,*rolename):
+    role_name = " ".join(rolename[:])
+    dev = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
+    for role in ctx.guild.roles:
+        if role.name == str(role_name):
+            rolecount = int(len(role.members))
+            await ctx.send("In the role "+str(role.name)+" there are "+str(rolecount)+" members! ")
+            return
+    await ctx.send("No roles found for role "+role_name+"! If you think this is a mistake please contact a "+dev.mention)
 
 async def print_report_(ctx):
     await ctx.trigger_typing()
