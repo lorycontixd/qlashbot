@@ -420,6 +420,9 @@ async def set_(ctx,player:discord.Member,gametag):
                 foundRole = True
                 await ctx.send("Position found in clan: "+str(club.name))
                 await player.add_roles(role)
+                wfr = discord.utils.get(player.guild.roles, name="waiting-for-role")
+                if wfr in player.roles:
+                    await player.remove_roles(wfr)
                 membergamename = member.name
                 clanname = nname
                 rolename = str(role)
@@ -449,6 +452,9 @@ async def set_(ctx,player:discord.Member,gametag):
     else:
         await ctx.send("No role found. If you think this is a mistake, please contact our staff or a "+botdev.mention+". Thank you!")
         return
+
+
+
 
 #---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
 async def search_member(ctx,name,clubtag):
