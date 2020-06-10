@@ -501,7 +501,7 @@ async def clan_remove_(ctx,*cname):
 
 async def giverole(ctx,member: discord.Member , *rolename):
 	if not await Check(ctx,ctx.message.author):
-		await ctx.send("You do not have permissions for this command!")
+		#await ctx.send("You do not have permissions for this command!")
 		return
 	therolename = " ".join(rolename[:])
 	role = discord.utils.get(ctx.guild.roles, name=therolename)
@@ -513,7 +513,7 @@ async def giverole(ctx,member: discord.Member , *rolename):
 
 async def removerole(ctx,member:discord.Member , *rolename):
     if not await Check(ctx,ctx.message.author):
-        await ctx.send("You do not have permissions for this command!")
+        #await ctx.send("You do not have permissions for this command!")
         return
     therolename = " ".join(rolename[:])
     role = discord.utils.get(ctx.guild.roles, name=therolename)
