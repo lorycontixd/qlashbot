@@ -31,13 +31,14 @@ def remove_member(discord,tag):
 async def view_database(ctx):
     response='```\n'
     response+="Name\tTag\tRoleID\tChannelID\n"
-    response+="-----------------------------------"
+    i=1
     for document in coll_qlashclans.find():
         name = str(document["Name"])
         tag = str(document["Tag"])
         roleID = str(document["RoleID"])
         channelID = str(document["ChannelID"])
-        response += name+'\t'+tag+'\t'+roleID+'\t'+channelID+'\n'
+        response += str(i)+'. '+name+'\t'+tag+'\t'+roleID+'\t'+channelID+'\n'
+        i+=1
     response+='```'
     await ctx.send(response)
 
