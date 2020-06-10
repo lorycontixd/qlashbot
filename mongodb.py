@@ -47,12 +47,14 @@ def LoadClans():
     list = []
     for document in coll_qlashclans.find():
         list.append(document)
-    return list #list of dicts ("Name","Tag")
+    return list #list of dicts ("Name","Tag","RoleID","ChannelID")
 
-def register_clan(tag,name):
+def register_clan(tag,name,roleID,channelID):
     mydict = {
         "Name" : name,
-        "Tag" : tag
+        "Tag" : tag,
+        "RoleID": str(roleID),
+        "ChannelID": str(channelID)
     }
     coll_qlashclans.insert_one(mydict)
 
