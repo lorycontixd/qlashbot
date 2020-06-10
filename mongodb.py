@@ -37,7 +37,7 @@ async def view_database(ctx):
         tag = str(document["Tag"])
         roleID = str(document["RoleID"])
         channelID = str(document["ChannelID"])
-        response += str(i)+'. '+name+'\t'+tag+'\t'+roleID+'\t'+channelID+'\n'
+        response += str(i)+'. '+name+'\t'+tag+'\n'
         i+=1
     response+='```'
     await ctx.send(response)
