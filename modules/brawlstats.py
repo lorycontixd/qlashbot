@@ -74,7 +74,7 @@ def read_tags(session, lines):
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
     return clubs
 
-def count(gametags):
+def count_clubs(gametags):
     session = requests.Session()
     session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
     clubs = read_tags(session, gametags)

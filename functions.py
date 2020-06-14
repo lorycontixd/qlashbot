@@ -852,9 +852,6 @@ async def read_file(message):
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
             content = await att.read()
-            content_lines = content.decode('utf-8').split('\n')
-            for line in content_lines:
-                await ch.send(line)
-                break;
-            result = brawlstats.count(content_lines)
+            gametags = content.decode('utf-8').split('\n')
+            result = brawlstats.count_clubs(gametags)
             await ch.send(result)
