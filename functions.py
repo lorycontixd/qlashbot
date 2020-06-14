@@ -859,15 +859,14 @@ async def read_file(message):
             gametags = content.decode('utf-8').split('\n')
             clubs = brawlstats.count_clubs(gametags)
             file = io.StringIO()
-            file.write("\n")
+            # Uknown
             brawlstats.add_file_lines(file, clubs, False, True, False, False, True)
-            file.write("\n")
+            # Invalid
             brawlstats.add_file_lines(file, clubs, False, True, False, True, False)
             file.write("\n")
             file.write("Printing found clubs and no. participants:\n")
             brawlstats.add_file_lines(file, clubs, True, False, True, False, False)
-            file.write("\n")
-            #file.write("Printing found club members:\n")
+            # Club members
             brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
             file.write("\n")
             file.seek(0)
