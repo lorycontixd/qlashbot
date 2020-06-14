@@ -108,13 +108,13 @@ def achievement_register_(ctx,parameters): #name,description,value
     list = re.findall("\<(.*?)\>", parameters)
     print(list)
     mydict = {
-        "Name" : list[0],
-        "Description" : list[1],
+        "Name" : str(list[0]),
+        "Description" : str(list[1]),
         "Value" : int(list[2]),
         "Date" : str(date.today())
     }
     coll_achievements.insert_one(mydict)
-    await ctx.send("Achievent "+str(list[0])+" added to the database!")
+    await ctx.send("Achievement "+str(list[0])+" added to the database!")
 
 def achievement_removeall_(ctx):
     coll_achievements.delete_many({})
