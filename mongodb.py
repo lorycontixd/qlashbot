@@ -124,4 +124,4 @@ def achievement_removeall_(ctx):
 #    document = coll_achievements.find_one({"Name":{"$eq":str(name)}})
 #    #
 
-achievement_register_("<Tournament Player> <Participated in 5 tournaments in a row> <100>")
+#achievement_register_("<Tournament Player> <Participated in 5 tournaments in a row> <100>")
