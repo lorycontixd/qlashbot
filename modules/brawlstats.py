@@ -38,7 +38,23 @@ def _print(clubs, print_clubs = True, print_members = False, print_found = True,
                 print(gametag,playerName)
 
 def add_embed_lines(embed, clubs):
-    embed.add_field(name="Account Creation Date", value=str(2020), inline=True)
+    for k in clubs:
+        if k == INVALID_CLUB and not print_invalid:
+            continue
+        elif k == NOT_FOUND_CLUB and not print_not_found:
+            continue
+        elif not print_found and k != NOT_FOUND_CLUB and k != INVALID_CLUB:
+            continue
+        if (print_clubs):
+            embed.add_field(name="Club", value=str(k), inline=True)
+            embed.add_field(name="No. participants", value=str(len(k)), inline=True)
+        if (print_members):
+            embed.add_field(name="{CLUB} members:".format(CLUB = k), value=str(k))
+            for members in clubs[k]:
+                gametag, playerName = members
+                embed.add_field(name="{CLUB} members:".format(CLUB = k), value=str(k))
+                embed.add_field(name="Gametag", value=str(gametag), inline=True)
+                embed.add_field(name="PlayerName", value=str(pplayerName), inline=True)
 
 def _check_response_code(r):
     if r.status_code != 200:
