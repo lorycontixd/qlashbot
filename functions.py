@@ -114,10 +114,11 @@ to_zone = tz.tzlocal() #local
 
 existing_roles = ["IG-EUROPE","IG-AMERICA"]
 async def check_instarole(message:discord.Message):
-    dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
+
     ch = message.channel
     if type(ch)!=discord.TextChannel:
         return
+    dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
     auth = message.author
     registered = False
     foundrole = ''
