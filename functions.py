@@ -855,5 +855,7 @@ async def read_file(message):
             content_lines = content.decode('utf-8').split('\n')
             for line in content_lines:
                 await ch.send(line)
-            await ch.send(brawlstats.count())
+                break;
+            #result = brawlstats.count()
+            await ch.send("#")
         #
