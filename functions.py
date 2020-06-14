@@ -852,7 +852,7 @@ async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
         if len(message.attachments)!=0:
-            if not message.author.bot
+            if not message.author.bot:
                 start = timeit.default_timer()
                 await ch.trigger_typing()
                 att = message.attachments[0]
