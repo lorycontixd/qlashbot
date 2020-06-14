@@ -20,4 +20,5 @@ gspread
 matplotlib
 google-cloud-datastore
 cloudinary
+lxml
 syncer
