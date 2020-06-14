@@ -847,8 +847,10 @@ async def get_tournament_members(ctx,tournament_rolee):
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
+        print("in file_managing")
         if len(message.attachments)!=0:
+            print("len not 0")
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
-            content = att.read()
+            content = str(att.read())
             await ch.send(content)
