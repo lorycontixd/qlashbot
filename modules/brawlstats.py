@@ -49,7 +49,7 @@ def add_file_lines(f, clubs, print_clubs = True, print_members = False, print_fo
             f.write("{CLUB} members:".format(CLUB = k))
             for members in clubs[k]:
                 gametag, playerName = members
-                f.write(gametag,playerName)
+                f.write("{GAMETAG} {PLAYER_NAME}".format(GAMETAG = gametag, PLAYER_NAME = playerName))
 
 def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
     for k in clubs:
