@@ -872,4 +872,4 @@ async def read_file(message):
             await ch.send(embed=not_found_embed)
             await ch.send(embed=found_embed)
             f = io.StringIO("Text")
-            await ch.send(content="Sample", file=File(fp=f, filename="tournament_info.txt"))
+            await ch.send(content="Sample", file=discord.File(fp=f, filename="tournament_info.txt"))
