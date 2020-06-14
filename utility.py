@@ -60,3 +60,9 @@ def CommandLogs(ctx,commandname):
     logfile.close()
 
 #******************************************************************************
+
+def fileread(filename):
+    file = open(filename,'r+')
+    content = file.read()
+    lines = content.split("\n")
+    return lines
