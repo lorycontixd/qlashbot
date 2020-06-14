@@ -144,7 +144,7 @@ async def check_instarole(message:discord.Message):
 
                 try:
                     await asyncio.sleep(1)
-                    reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check2)
+                    reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
                     if str(reaction.emoji) == '🇺🇸':
                         role = discord.utils.get(message.guild.roles, name="IG-AMERICA")
                         await message.author.add_roles(role)
@@ -856,8 +856,8 @@ async def get_tournament_members(ctx,tournament_rolee):
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
-        if len(message.attachments)!=0:
-            if not message.author.bot:
+        if not message.author.bot:
+            if len(message.attachments)!=0:
                 start = timeit.default_timer()
                 await ch.trigger_typing()
                 att = message.attachments[0]
@@ -901,7 +901,7 @@ async def read_file(message):
                 except asyncio.TimeoutError:
                     await msg.delete()
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
-        else:
-            dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
-            alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
-            alert1.delete(delay=6.0)
+            else:
+                dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
+                alert1 = ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
+                alert1.delete(delay=6.0)
