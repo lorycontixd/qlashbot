@@ -849,9 +849,7 @@ async def read_file(message):
     ch = message.channel
     await ch.trigger_typing()
     if ch.id == int(file_managing):
-        #print("in file_managing")
         if len(message.attachments)!=0:
-            #print("len not 0")
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
             content = await att.read()
@@ -860,7 +858,7 @@ async def read_file(message):
             embed.set_author(name="QLASH Bot")
             embed.set_footer(text="Created by Lore")
             clubs = brawlstats.count_clubs(gametags)
-            brawlstats.add_embed_lines(embed,clubs)
-
+            brawlstats.add_embed_lines(embed,clubs, False, True, False, False, True)
+            brawlstats.add_embed_lines(embed,clubs, False, True, False, True, False)
+            brawlstats.add_embed_lines(embed,clubs, True, False, True, False, False)
             await ch.send(embed=embed)
-            #await ch.send(result)
