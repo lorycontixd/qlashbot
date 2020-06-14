@@ -846,7 +846,7 @@ async def get_tournament_members(ctx,tournament_rolee):
 #++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
 
 
-async def read_file(message):s
+async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
         if len(message.attachments)!=0:
