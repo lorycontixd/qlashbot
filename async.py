@@ -443,7 +443,8 @@ async def graph_today(ctx):
     await record(ctx)
 
 @sys.command(name='achievement-add')
-async def achievement_add(ctx,parameters):
+async def achievement_add(ctx,*params):
+    parameters = " ".join(params[:])
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
         await ctx.send("You don't have the permission for this command!")
