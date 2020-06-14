@@ -37,7 +37,7 @@ def _print(clubs, print_clubs = True, print_members = False, print_found = True,
                 gametag, playerName = members
                 print(gametag,playerName)
 
-def add_embed_lines(clubs, embed):
+def add_embed_lines(embed, clubs):
     embed.add_field(name="Account Creation Date", value=str(2020), inline=True)
 
 def _check_response_code(r):
