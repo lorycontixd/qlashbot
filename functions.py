@@ -854,7 +854,7 @@ async def read_file(message):
             start = timeit.default_timer()
             await ch.trigger_typing()
             att = message.attachments[0]
-            await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
+            await ch.send("Message received: \tName"+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id))
             content = await att.read()
             gametags = content.decode('utf-8').split('\n')
             clubs = brawlstats.count_clubs(gametags)
