@@ -882,4 +882,4 @@ async def read_file(message):
             file.write("\n")
             brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
 
-            await ch.send(content="Sample", file=discord.File(fp=f, filename="tournament_info.txt"))
+            await ch.send(content="Sample", file=discord.File(fp=file, filename="tournament_info.txt"))
