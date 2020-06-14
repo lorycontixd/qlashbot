@@ -105,6 +105,7 @@ def delete_commandlogs():
 #*****************************************************************************************************************
 
 def achievement_register_(parameters): #name,description,value
+    print(parameters)
     list = re.findall("\<(.*?)\>", parameters)
     print(list)
     mydict = {
@@ -122,3 +123,5 @@ def achievement_removeall_(ctx):
 #    name = " ".join(achievementname[:])
 #    document = coll_achievements.find_one({"Name":{"$eq":str(name)}})
 #    #
+
+achievement_register_("<Tournament Player> <Participated in 5 tournaments in a row> <100>")
