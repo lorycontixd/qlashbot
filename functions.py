@@ -873,6 +873,8 @@ async def read_file(message):
                     await asyncio.sleep(1)
                     reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
                     if str(reaction.emoji) == '❌':
+                        await message.delete(delay=3.0)
+                        await msg.delete(delay=2.0)
                         return
                     content = await att.read()
                     gametags = content.decode('utf-8').split('\n')
