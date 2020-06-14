@@ -857,7 +857,7 @@ async def read_file(message):
             embed.set_author(name="QLASH Bot")
             embed.set_footer(text="Created by Lore")
             clubs = brawlstats.count_clubs(gametags)
-            #embed.add_field(name="Account Creation Date", value=str(2020), inline=True)
+            embed.add_field(name="Account Creation Date", value=str(2020), inline=True)
             brawlstats.add_embed_lines(embed,clubs)
 
             await ch.send(embed=embed)
