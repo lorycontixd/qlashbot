@@ -82,12 +82,7 @@ def retrieve_player(session,playerID):
 
 def read_tags(session, lines):
     clubs = defaultdict(list)
-    i=0
-    j=1
     for line in lines:
-        if i%20==0:
-            print("Checkpoint "+str(j))
-            j+=1
         gametag = line.rstrip()
         if not gametag:
             break;
@@ -97,7 +92,6 @@ def read_tags(session, lines):
             sleep(1)
         else:
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
-        i+=1
     return clubs
 
 def count_clubs(gametags):

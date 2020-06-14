@@ -851,41 +851,52 @@ async def get_tournament_members(ctx,tournament_rolee):
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
-        if len(message.attachments)!=0 and not message.author.bot:
-            start = timeit.default_timer()
-            await ch.trigger_typing()
-            att = message.attachments[0]
-            msg = await ch.send("Message received: \tName: "+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id)+'\nDo you want to process the information?')
-            await msg.add_reaction('✅')
-            await msg.add_reaction('❌')
+        if len(message.attachments)!=0:
+            if not message.author.bot
+                start = timeit.default_timer()
+                await ch.trigger_typing()
+                att = message.attachments[0]
+                msg = await ch.send("Message received: \tName: "+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id)+'\nDo you want to process the information?')
+                await msg.add_reaction('✅')
+                await msg.add_reaction('❌')
 
-            def check(reaction,user):
-                return str(message.author.name)==str(user.name)
+                def check(reaction,user):
+                    return str(message.author.name)==str(user.name)
 
-            try:
-                await asyncio.sleep(1)
-                reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
-                if str(reaction.emoji) == '❌':
-                    return
-                content = await att.read()
-                gametags = content.decode('utf-8').split('\n')
-                clubs = brawlstats.count_clubs(gametags)
-                file = io.StringIO()
-                file.write("\n")
-                brawlstats.add_file_lines(file, clubs, False, True, False, False, True)
-                file.write("\n")
-                brawlstats.add_file_lines(file, clubs, False, True, False, True, False)
-                file.write("\n")
-                file.write("Printing found clubs and no. participants:\n")
-                brawlstats.add_file_lines(file, clubs, True, False, True, False, False)
-                file.write("\n")
-                #file.write("Printing found club members:\n")
-                brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
-                file.seek(0)
-                await ch.send(content=message.author.mention+", please see the file below to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
-                file.close()
-                end = timeit.default_timer()
-                await ch.send("The command took {EXECUTION_TIME:2f} seconds".format(EXECUTION_TIME = end - start))
-            except asyncio.TimeoutError:
-                await msg.delete()
-                await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
+                try:
+                    await asyncio.sleep(1)
+                    reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
+                    if str(reaction.emoji) == '❌':
+                        return
+                    content = await att.read()
+                    gametags = content.decode('utf-8').split('\n')
+                    clubs = brawlstats.count_clubs(gametags)
+                    file = io.StringIO()
+                    file.write("\n")
+                    brawlstats.add_file_lines(file, clubs, False, True, False, False, True)
+                    file.write("\n")
+                    msg1 = await ch.send("List 1 complete")
+                    msg1.delete(delay=2.0)
+                    brawlstats.add_file_lines(file, clubs, False, True, False, True, False)
+                    file.write("\n")
+                    msg2 = await ch.send("List 2 complete")
+                    msg2.delete(delay=2.0)
+                    file.write("Printing found clubs and no. participants:\n")
+                    brawlstats.add_file_lines(file, clubs, True, False, True, False, False)
+                    file.write("\n")
+                    msg3 = await ch.send("List 3 complete")
+                    msg3.delete(delay=2.0)
+                    #file.write("Printing found club members:\n")
+                    brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
+                    file.seek(0)
+                    await ch.send(content=message.author.mention+", please see the file below to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
+                    file.close()
+                    end = timeit.default_timer()
+                    await ch.send("The command took {EXECUTION_TIME:2f} seconds".format(EXECUTION_TIME = end - start))
+                except asyncio.TimeoutError:
+                    await msg.delete()
+                    await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
+        else:
+            dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
+            alert1 = ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
+            alert1.delete(delay=6.0)
