@@ -856,5 +856,5 @@ async def read_file(message):
             for line in content_lines:
                 await ch.send(line)
                 break;
-            result = brawlstats.count()
+            result = brawlstats.count(content_lines)
             await ch.send(result)

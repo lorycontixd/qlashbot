@@ -60,9 +60,9 @@ def retrieve_player(session,playerID):
     else:
         return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
 
-def read_tags(session):
+def read_tags(session, lines):
     clubs = defaultdict(list)
-    for line in stdin:
+    for line in lines:
         gametag = line.rstrip()
         if not gametag:
             break;
@@ -74,10 +74,10 @@ def read_tags(session):
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
     return clubs
 
-def count():
-    # session = requests.Session()
-    # session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
-    # clubs = read_tags(session)
+def count(gametags):
+    session = requests.Session()
+    session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
+    clubs = read_tags(session, gametags)
     # print ("These members were not found:")
     # print("")
     # _print(clubs, False, True, False, False, True)
@@ -89,5 +89,5 @@ def count():
     # print("Printing found clubs and no. participants:")
     # print("")
     # _print(clubs, True, False, True, False, False)
-    # session.close()
-    return "#"
+    session.close()
+    return str(clubs)
