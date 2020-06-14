@@ -848,17 +848,25 @@ async def get_tournament_members(ctx,tournament_rolee):
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
-        await ch.trigger_typing()
         if len(message.attachments)!=0:
+            await ch.trigger_typing()
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
             content = await att.read()
             gametags = content.decode('utf-8').split('\n')
-            embed=discord.Embed(title="Title", color=0xe32400)
-            embed.set_author(name="QLASH Bot")
-            embed.set_footer(text="Created by Lore")
+            invalid_embed=discord.Embed(title="Title", color=0xe32400)
+            invalid_embed.set_author(name="QLASH Bot")
+            invalid_embed.set_footer(text="Created by Lore")
+            not_found_embed=discord.Embed(title="Title", color=0xe32400)
+            not_found_embed.set_author(name="QLASH Bot")
+            not_found_embed.set_footer(text="Created by Lore")
+            found_embed=discord.Embed(title="Title", color=0xe32400)
+            found_embed.set_author(name="QLASH Bot")
+            found_embed.set_footer(text="Created by Lore")
             clubs = brawlstats.count_clubs(gametags)
-            brawlstats.add_embed_lines(embed, clubs, False, True, False, False, True)
-            brawlstats.add_embed_lines(embed, clubs, False, True, False, True, False)
-            brawlstats.add_embed_lines(embed, clubs, True, False, True, False, False)
-            await ch.send(embed=embed)
+            brawlstats.add_embed_lines(invalid_embed, clubs, False, True, False, False, True)
+            brawlstats.add_embed_lines(not_found_embed, clubs, False, True, False, True, False)
+            brawlstats.add_embed_lines(found_embed, clubs, True, False, True, False, False)
+            await ch.send(embed=invalid_embed)
+            await ch.send(embed=not_found_embed)
+            await ch.send(embed=found_embed)

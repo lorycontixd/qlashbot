@@ -54,7 +54,7 @@ def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, pri
                 gametag, playerName = members
                 embed.add_field(name="{CLUB} members:".format(CLUB = k), value=str(k))
                 embed.add_field(name="Gametag", value=str(gametag), inline=True)
-                embed.add_field(name="PlayerName", value=str(pplayerName), inline=True)
+                embed.add_field(name="PlayerName", value=str(playerName), inline=True)
 
 def _check_response_code(r):
     if r.status_code != 200:
