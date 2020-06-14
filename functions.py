@@ -870,7 +870,6 @@ async def read_file(message):
             file.write("\n")
             #file.write("Printing found club members:\n")
             brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
-            file.write("\n")
             file.seek(0)
             await ch.send(content=message.author.mention+", please see the file below to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
             file.close()
