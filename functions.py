@@ -25,6 +25,7 @@ from instances import *
 
 from google import *
 from weather import *
+from modules import brawlstats
 
 #@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
 #async def scheduled_job():
@@ -840,8 +841,6 @@ async def get_tournament_members(ctx,tournament_rolee):
         listembeds[current_section].add_field(name=clubName,value=str(club_count))
     for emb in listembeds:
         await ctx.send(embed=emb)
-
-from modules import brawlstats
 
 #++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
 async def read_file(message):
