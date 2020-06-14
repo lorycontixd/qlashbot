@@ -853,7 +853,7 @@ async def read_file(message):
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
             content = await att.read()
-            content_lines = content.decode('utf-8')
+            content_lines = content.decode('utf-8').split('\n')
             for line in content_lines:
                 await ch.send(line)
                 break;
