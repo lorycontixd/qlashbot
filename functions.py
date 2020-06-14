@@ -25,6 +25,7 @@ from instances import *
 
 from google import *
 from weather import *
+from modules import brawlstats
 
 #@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
 #async def scheduled_job():
@@ -841,8 +842,6 @@ async def get_tournament_members(ctx,tournament_rolee):
     for emb in listembeds:
         await ctx.send(embed=emb)
 
-
-
 #++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
 
 
@@ -853,6 +852,15 @@ async def read_file(message):
         if len(message.attachments)!=0:
             print("len not 0")
             att = message.attachments[0]
-            await ch.send("Message received: "+att.filename+"\t"+str(att.size)+"\t"+str(att.id))
-            lines = fileread(att.filename)
-            return lines
+            await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
+            content = await att.read()
+            gametags = content.decode('utf-8').split('\n')
+            embed=discord.Embed(title="Title", color=0xe32400)
+            embed.set_author(name="QLASH Bot")
+            embed.set_footer(text="Created by Lore")
+            clubs = brawlstats.count_clubs(gametags)
+            embed.add_field(name="Account Creation Date", value=str(2020), inline=True)
+            brawlstats.add_embed_lines(embed,clubs)
+
+            await ch.send(embed=embed)
+            #await ch.send(result)
