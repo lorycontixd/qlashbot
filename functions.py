@@ -904,5 +904,5 @@ async def read_file(message):
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
             else:
                 dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
-                alert1 = ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
+                alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
                 await alert1.delete(delay=6.0)
