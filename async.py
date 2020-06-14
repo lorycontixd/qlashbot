@@ -323,6 +323,21 @@ async def role_count(ctx,*rolename):
         return
     await role_count_(ctx,*rolename)
 
+@mod.command(name='all-roles')
+async def print_report(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await print_report_(ctx)
+
+@mod.command(name='role-members')
+async def print_rolemembers(ctx,*rolename):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await print_rolemembers_(ctx,*rolename)
+
 @mod.command(name='view-members',brief='(MOD) (BS30+) Get a list of players that left ingame clubs.',description=desc_view_members )
 async def viewmembers(ctx):
     author = ctx.message.author
@@ -427,13 +442,15 @@ async def graph_today(ctx):
         return
     await record(ctx)
 
-@mod.command(name='all-roles')
-async def print_report(ctx):
-    await print_report_(ctx)
+@sys.command(name='achievement-add')
+async def achievement_add(ctx,parameters):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await achievement_register_(ctx,parameters)
 
-@mod.command(name='role-members')
-async def print_rolemembers(ctx,*rolename):
-    await print_rolemembers_(ctx,*rolename)
+
 
 
 #@bot.command(name='tournament-members')
