@@ -855,8 +855,9 @@ async def read_file(message):
             gametags = content.decode('utf-8').split('\n')
             embed=discord.Embed(title="Title", color=0xe32400)
             embed.set_author(name="QLASH Bot")
-            embed.add_field(name="Account Creation Date", value=str(2020), inline=True)
             embed.set_footer(text="Created by Lore")
+            clubs = brawlstats.count_clubs(gametags)
+            brawlstats.add_embed_lines(embed,clubs)
+            
             await ch.send(embed=embed)
-            #result = brawlstats.count_clubs(gametags)
             #await ch.send(result)

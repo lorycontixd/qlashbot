@@ -37,6 +37,9 @@ def _print(clubs, print_clubs = True, print_members = False, print_found = True,
                 gametag, playerName = members
                 print(gametag,playerName)
 
+def add_embed_lines(clubs, embed):
+    embed.add_field(name="Account Creation Date", value=str(2020), inline=True)
+
 def _check_response_code(r):
     if r.status_code != 200:
         raise Exception("page retrieval error.", playerID)
@@ -90,4 +93,4 @@ def count_clubs(gametags):
     # print("")
     # _print(clubs, True, False, True, False, False)
     session.close()
-    return str(clubs)
+    return clubs
