@@ -849,7 +849,7 @@ async def get_tournament_members(ctx,tournament_rolee):
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
-        if len(message.attachments)!=0 and not message.member.bot:
+        if len(message.attachments)!=0 and not message.author.bot:
             await ch.trigger_typing()
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
@@ -871,5 +871,8 @@ async def read_file(message):
             await ch.send(embed=invalid_embed)
             await ch.send(embed=not_found_embed)
             await ch.send(embed=found_embed)
-            f = io.StringIO("Text")
+            f = io.StringIO()
+            brawlstats.add_file_lines(invalid_embed, f, False, True, False, False, True)
+            brawlstats.add_file_lines(not_found_embed, f, False, True, False, True, False)
+            brawlstats.add_file_lines(found_embed, f, True, False, True, False, False)
             await ch.send(content="Sample", file=discord.File(fp=f, filename="tournament_info.txt"))
