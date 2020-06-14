@@ -854,7 +854,7 @@ async def read_file(message):
             start = timeit.default_timer()
             await ch.trigger_typing()
             att = message.attachments[0]
-            await ch.send("Message received: \tName"+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id))
+            await ch.send("Message received: \tName: "+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id))
             content = await att.read()
             gametags = content.decode('utf-8').split('\n')
             clubs = brawlstats.count_clubs(gametags)
@@ -871,7 +871,7 @@ async def read_file(message):
             brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
             file.write("\n")
             file.seek(0)
-            await ch.send(content="Please see the file attachment to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
+            await ch.send(content=message.author.mention+", please see the file below to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
             file.close()
             end = timeit.default_timer()
             await ch.send("The command took {EXECUTION_TIME:2f} seconds".format(EXECUTION_TIME = end - start))
