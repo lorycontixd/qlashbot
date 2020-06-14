@@ -46,9 +46,9 @@ def add_file_lines(f, clubs, print_clubs = True, print_members = False, print_fo
         elif not print_found and k != NOT_FOUND_CLUB and k != INVALID_CLUB:
             continue
         if (print_clubs):
-            f.write("{CLUB} {NO_PARTICIPANTS}".format(CLUB = k, NO_PARTICIPANTS = len(clubs[k])))
+            f.write("{CLUB} {NO_PARTICIPANTS}\n".format(CLUB = k, NO_PARTICIPANTS = len(clubs[k])))
         if (print_members):
-            f.write("{CLUB} members:".format(CLUB = k))
+            f.write("{CLUB} members:\n\n".format(CLUB = k))
             for members in clubs[k]:
                 gametag, playerName = members
                 f.write("{GAMETAG} {PLAYER_NAME}\n".format(GAMETAG = gametag, PLAYER_NAME = playerName))
