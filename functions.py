@@ -849,7 +849,7 @@ async def get_tournament_members(ctx,tournament_rolee):
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
-        if len(message.attachments)!=0:
+        if len(message.attachments)!=0 and not message.member.roles.get('712394591692652709')):
             await ch.trigger_typing()
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
