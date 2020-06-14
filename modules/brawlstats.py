@@ -46,10 +46,13 @@ def add_file_lines(f, clubs, print_clubs = True, print_members = False, print_fo
         elif not print_found and k != NOT_FOUND_CLUB and k != INVALID_CLUB:
             continue
         if (print_clubs):
+            f.write("{CLUB} {NO_PARTICIPANTS}".format(CLUB = k, NO_PARTICIPANTS = len(clubs[k])))
+        if (print_members):
             f.write("{CLUB} members:".format(CLUB = k))
             for members in clubs[k]:
                 gametag, playerName = members
                 f.write("{GAMETAG} {PLAYER_NAME}\n".format(GAMETAG = gametag, PLAYER_NAME = playerName))
+
 
 def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
     for k in clubs:
@@ -108,16 +111,5 @@ def count_clubs(gametags):
     session = requests.Session()
     session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
     clubs = read_tags(session, gametags)
-    # print ("These members were not found:")
-    # print("")
-    # _print(clubs, False, True, False, False, True)
-    # print("")
-    # print ("These gametags were not valid:")
-    # print("")
-    # _print(clubs, False, True, False, True, False)
-    # print("")
-    # print("Printing found clubs and no. participants:")
-    # print("")
-    # _print(clubs, True, False, True, False, False)
     session.close()
     return clubs
