@@ -7,6 +7,7 @@ from sys import stdin
 from time import sleep
 from lxml import html
 from collections import defaultdict
+from modules import brawlstats
 
 INVALID_PLAYER_NAME = "Invalid Tag"
 INVALID_CLUB = "Invalid"
@@ -74,23 +75,26 @@ def read_tags(session):
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
     return clubs
 
-def main_program():
-    session = requests.Session()
-    session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
-    clubs = read_tags(session)
+    def count():
+        return "#";
 
-    print ("These members were not found:")
-    print("")
-    _print(clubs, False, True, False, False, True)
-    print("")
-    print ("These gametags were not valid:")
-    print("")
-    _print(clubs, False, True, False, True, False)
-    print("")
-    print("Printing found clubs and no. participants:")
-    print("")
-    _print(clubs, True, False, True, False, False)
-
-    session.close()
-
-main_program()
+    # def main_program():
+    #     session = requests.Session()
+    #     session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
+    #     clubs = read_tags(session)
+    #
+    #     print ("These members were not found:")
+    #     print("")
+    #     _print(clubs, False, True, False, False, True)
+    #     print("")
+    #     print ("These gametags were not valid:")
+    #     print("")
+    #     _print(clubs, False, True, False, True, False)
+    #     print("")
+    #     print("Printing found clubs and no. participants:")
+    #     print("")
+    #     _print(clubs, True, False, True, False, False)
+    #
+    #     session.close()
+    #
+    # main_program()

@@ -841,7 +841,7 @@ async def get_tournament_members(ctx,tournament_rolee):
     for emb in listembeds:
         await ctx.send(embed=emb)
 
-
+from modules import brawlstats
 
 #++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
 async def read_file(message):
@@ -856,4 +856,5 @@ async def read_file(message):
             content_lines = content.decode('utf-8').split('\n')
             for line in content_lines:
                 await ch.send(line)
-                break;
+            await ch.send(brawlstats.count())
+        #
