@@ -840,3 +840,15 @@ async def get_tournament_members(ctx,tournament_rolee):
         listembeds[current_section].add_field(name=clubName,value=str(club_count))
     for emb in listembeds:
         await ctx.send(embed=emb)
+
+
+
+#++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
+async def read_file(message):
+    ch = message.channel
+    if ch.id == int(file_managing):
+        if len(message.attachments)!=0:
+            att = message.attachments[0]
+            await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
+            content = att.read()
+            await ch.send(content)

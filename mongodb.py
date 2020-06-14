@@ -115,6 +115,7 @@ def achievement_register_(parameters): #name,description,value
         "Date" : str(date.today())
     }
     coll_achievements.insert_one(mydict)
+    return list[0]
 
 def achievement_removeall_(ctx):
     coll_achievements.delete_many({})

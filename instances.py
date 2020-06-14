@@ -110,6 +110,7 @@ entry_exit = '713735004827418625'
 entries_discord = '714161674432806972'
 qlash_bot = '714161674432806972'
 ig_role_channel = '703596640593903716'
+file_managing = '721658324327858236'
 
 #database directories
 qc_directory2 = './qlashclans2/' #this one is the right one

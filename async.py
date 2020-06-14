@@ -48,6 +48,7 @@ async def on_message(message):
     #await check_instarole(message)
     await insta_role_ended(message)
     await check_roles_assignement(message)
+    await read_file(message)
     await bot.process_commands(message)
 
 @bot.event
@@ -442,6 +443,8 @@ async def graph_today(ctx):
         return
     await record(ctx)
 
+#********************************* achievements *************************************
+
 @sys.command(name='achievement-add')
 async def achievement_add(ctx,*params):
     parameters = " ".join(params[:])
@@ -449,11 +452,19 @@ async def achievement_add(ctx,*params):
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
         await ctx.send("You don't have the permission for this command!")
         return
-    await achievement_register_(parameters)
-    await ctx.send("Achievement "+str(list[0])+" added to the database!")
+    name = achievement_register_(parameters)
+    await ctx.send("Achievement "+str(name)+" added to the database!")
 
+@sys.command(name='achievement-removeall')
+async def achievement_removeall(ctx):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    achievement_removeall_(ctx)
+    await ctx.send("All achievements were removed from the database")
 
-
+#********************************* tournaments *************************************
 
 #@bot.command(name='tournament-members')
 #async def get_tournament_members_(ctx,tournament_role):
