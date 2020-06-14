@@ -48,7 +48,7 @@ def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, pri
         if (print_clubs):
             embed.add_field(name=str(k), value=str(len(clubs[k])))
         if (print_members):
-            embed.add_field(name=str(k), value="")
+            embed.add_field(name=str(k), value=" ")
             for members in clubs[k]:
                 gametag, playerName = members
                 embed.add_field(name=str(gametag), value=str(playerName), inline=True)
