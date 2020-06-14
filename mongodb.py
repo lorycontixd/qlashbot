@@ -2,6 +2,7 @@
 from pprint import pprint
 from datetime import date
 from instances import *
+import re
 
 db = mongoclient.heroku_q2z34tjm
 coll_registered = db.QLASHBot_Registered
