@@ -9,6 +9,7 @@ import pytz
 import asyncio
 import threading
 import random
+import timeit
 #import holidayapi
 
 from pyowm import OWM
@@ -850,27 +851,13 @@ async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
         if len(message.attachments)!=0 and not message.author.bot:
+            start = timeit.default_timer()
             await ch.trigger_typing()
             att = message.attachments[0]
             await ch.send("Message received: "+str(att.filename)+"\t"+str(att.size)+"\t"+str(att.id))
             content = await att.read()
             gametags = content.decode('utf-8').split('\n')
-            invalid_embed=discord.Embed(title="Invalid gametags", color=0xe32400)
-            invalid_embed.set_author(name="QLASH Bot")
-            invalid_embed.set_footer(text="Created by Lore")
-            not_found_embed=discord.Embed(title="Not found gametags", color=0xe32400)
-            not_found_embed.set_author(name="QLASH Bot")
-            not_found_embed.set_footer(text="Created by Lore")
-            found_embed=discord.Embed(title="Found clubs", color=0x77bb40)
-            found_embed.set_author(name="QLASH Bot")
-            found_embed.set_footer(text="Created by Lore")
             clubs = brawlstats.count_clubs(gametags)
-            brawlstats.add_embed_lines(invalid_embed, clubs, False, True, False, False, True)
-            brawlstats.add_embed_lines(not_found_embed, clubs, False, True, False, True, False)
-            brawlstats.add_embed_lines(found_embed, clubs, True, False, True, False, False)
-            await ch.send(embed=invalid_embed)
-            await ch.send(embed=not_found_embed)
-            await ch.send(embed=found_embed)
             file = io.StringIO()
             file.write("These members were not found:\n")
             file.write("\n")
@@ -888,3 +875,5 @@ async def read_file(message):
             file.seek(0)
             await ch.send(content="Please see the file attachment to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
             file.close()
+            end = timeit.default_timer()
+            await ch.send("The command took {EXECUTION_TIME:2f} seconds".format(EXECUTION_TIME = end - start))

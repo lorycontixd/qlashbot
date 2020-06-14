@@ -48,27 +48,10 @@ def add_file_lines(f, clubs, print_clubs = True, print_members = False, print_fo
         if (print_clubs):
             f.write("{CLUB} {NO_PARTICIPANTS}\n".format(CLUB = k, NO_PARTICIPANTS = len(clubs[k])))
         if (print_members):
-            f.write("{CLUB} members:\n".format(CLUB = k))
+            f.write("\n{CLUB} members:\n".format(CLUB = k))
             for members in clubs[k]:
                 gametag, playerName = members
                 f.write("{GAMETAG} {PLAYER_NAME}\n".format(GAMETAG = gametag, PLAYER_NAME = playerName))
-
-
-def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
-    for k in clubs:
-        if k == INVALID_CLUB and not print_invalid:
-            continue
-        elif k == NOT_FOUND_CLUB and not print_not_found:
-            continue
-        elif not print_found and k != NOT_FOUND_CLUB and k != INVALID_CLUB:
-            continue
-        if (print_clubs):
-            embed.add_field(name=str(k), value=str(len(clubs[k])))
-        if (print_members):
-            embed.add_field(name="{CLUB} members:".format(CLUB = k), value=str(k))
-            for members in clubs[k]:
-                gametag, playerName = members
-                embed.add_field(name=str(gametag), value=str(playerName), inline=True)
 
 def _check_response_code(r):
     if r.status_code != 200:
