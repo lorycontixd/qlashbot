@@ -847,6 +847,7 @@ async def get_tournament_members(ctx,tournament_rolee):
 #++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
 
 
+
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
@@ -859,14 +860,15 @@ async def read_file(message):
             gametags = content.decode('utf-8').split('\n')
             clubs = brawlstats.count_clubs(gametags)
             file = io.StringIO()
-            # Uknown
+            file.write("\n")
             brawlstats.add_file_lines(file, clubs, False, True, False, False, True)
-            # Invalid
+            file.write("\n")
             brawlstats.add_file_lines(file, clubs, False, True, False, True, False)
             file.write("\n")
             file.write("Printing found clubs and no. participants:\n")
             brawlstats.add_file_lines(file, clubs, True, False, True, False, False)
-            # Club members
+            file.write("\n")
+            #file.write("Printing found club members:\n")
             brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
             file.write("\n")
             file.seek(0)
