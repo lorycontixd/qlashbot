@@ -46,7 +46,7 @@ def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, pri
         elif not print_found and k != NOT_FOUND_CLUB and k != INVALID_CLUB:
             continue
         if (print_clubs):
-            embed.add_field(name="Club", value=str(k), inline)
+            embed.add_field(name="Club", value=str(k))
             embed.add_field(name="No. participants", value=str(len(k)), inline=True)
         if (print_members):
             embed.add_field(name="{CLUB} members:".format(CLUB = k), value=str(k))
