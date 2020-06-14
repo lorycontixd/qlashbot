@@ -25,7 +25,7 @@ from instances import *
 
 from google import *
 from weather import *
-#from modules import brawlstats
+from modules import brawlstats
 
 #@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
 #async def scheduled_job():

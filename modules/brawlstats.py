@@ -75,8 +75,8 @@ def read_tags(session):
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
     return clubs
 
-    def count():
-        return "#";
+def count():
+    return "###"
 
     # def main_program():
     #     session = requests.Session()
