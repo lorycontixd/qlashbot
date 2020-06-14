@@ -37,7 +37,7 @@ def _print(clubs, print_clubs = True, print_members = False, print_found = True,
                 gametag, playerName = members
                 print(gametag,playerName)
 
-def add_file_lines(file, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
+def add_file_lines(f, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
     for k in clubs:
         if k == INVALID_CLUB and not print_invalid:
             continue
@@ -46,10 +46,10 @@ def add_file_lines(file, clubs, print_clubs = True, print_members = False, print
         elif not print_found and k != NOT_FOUND_CLUB and k != INVALID_CLUB:
             continue
         if (print_clubs):
-            file.write("{CLUB} members:".format(CLUB = k))
+            f.write("{CLUB} members:".format(CLUB = k))
             for members in clubs[k]:
                 gametag, playerName = members
-                file.write(gametag,playerName)
+                f.write(gametag,playerName)
 
 def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
     for k in clubs:
