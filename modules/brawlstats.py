@@ -7,7 +7,6 @@ from sys import stdin
 from time import sleep
 from lxml import html
 from collections import defaultdict
-from modules import brawlstats
 
 INVALID_PLAYER_NAME = "Invalid Tag"
 INVALID_CLUB = "Invalid"
