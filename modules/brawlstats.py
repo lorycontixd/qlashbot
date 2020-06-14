@@ -37,7 +37,7 @@ def _print(clubs, print_clubs = True, print_members = False, print_found = True,
                 gametag, playerName = members
                 print(gametag,playerName)
 
-def add_embed_lines(embed, clubs, print_found = True, print_invalid =  False, print_not_found = False):
+def add_embed_lines(embed, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
     for k in clubs:
         if k == INVALID_CLUB and not print_invalid:
             continue
