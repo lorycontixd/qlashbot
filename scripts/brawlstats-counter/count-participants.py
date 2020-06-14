@@ -1,5 +1,7 @@
 import requests
 import re
+import asyncio
+import timeit
 
 from sys import stdin
 from time import sleep
@@ -61,7 +63,7 @@ def read_tags(session):
             clubs["Invalid"].append((gametag, "Invalid"))
     return clubs
 
-def main_program():
+async def main_program():
     session = requests.Session()
     session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
     clubs = read_tags(session)

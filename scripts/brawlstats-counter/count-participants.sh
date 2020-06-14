@@ -1,1 +1,1 @@
-cat sample-gametags.txt | python count-participants.py
+cat sample-gametags.txt | python3 count-participants.py

@@ -1,5 +1,6 @@
 #tournament count file
 from pprint import pprint
+from datetime import date
 from instances import *
 
 db = mongoclient.heroku_q2z34tjm
@@ -7,17 +8,19 @@ coll_registered = db.QLASHBot_Registered
 coll_commandlogs = db.QLASHBot_CommandLogs
 coll_qlashclans = db.QLASHBot_Clans
 coll_membercount = db.QLASHBot_MemberCount
+coll_achievements = db.QLASHBot_Achievements
 
 #*****************************************************************************************************************
 #********************************************       MEMBERS     **************************************************
 #*****************************************************************************************************************
 
-def register_member(discord,gametag,clan,time):
+def register_member(member,gametag):
     mydict = {
-        "Discord" : discord,
+        "Discord" : str(member),
+        "DiscordID" : int(member.id),
         "Gametag" : gametag,
-        "Clan" : clan,
-        "Date" : time
+        "Date" : str(date.today()),
+        "Achievements" : []
     }
     coll_registered.insert_one(mydict)
 
@@ -97,5 +100,23 @@ def delete_commandlogs():
     coll_commandlogs.delete_many({})
 
 #*****************************************************************************************************************
-#*******************************************       TOURNAMENTS     ***********************************************
+#******************************************       ACHIEVEMENTS     ***********************************************
 #*****************************************************************************************************************
+
+def achievement_register_(ctx,parameters): #name,gametag,value
+    list = re.findall("\<(.*?)\>", parameters)
+    mydict = {
+        "Name" : list[0],
+        "Description" : list[1],
+        "Value" : int(list[2]),
+        "Date" : str(date.today())
+    }
+    coll_achievements.insert_one(mydict)
+
+def achievement_removeall_(ctx):
+    coll_achievements.delete_many({})
+    
+#def achievement_removeone(ctx,*achievementname):
+#    name = " ".join(achievementname[:])
+#    document = coll_achievements.find_one({"Name":{"$eq":str(name)}})
+#    #
