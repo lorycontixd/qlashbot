@@ -860,7 +860,7 @@ async def read_file(message):
             not_found_embed=discord.Embed(title="Title", color=0xe32400)
             not_found_embed.set_author(name="QLASH Bot")
             not_found_embed.set_footer(text="Created by Lore")
-            found_embed=discord.Embed(title="Title", color=0xe32400)
+            found_embed=discord.Embed(title="Title", color=0x77bb40)
             found_embed.set_author(name="QLASH Bot")
             found_embed.set_footer(text="Created by Lore")
             clubs = brawlstats.count_clubs(gametags)
