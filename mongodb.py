@@ -104,7 +104,7 @@ def delete_commandlogs():
 #******************************************       ACHIEVEMENTS     ***********************************************
 #*****************************************************************************************************************
 
-def achievement_register_(ctx,parameters): #name,description,value
+def achievement_register_(parameters): #name,description,value
     list = re.findall("\<(.*?)\>", parameters)
     print(list)
     mydict = {
@@ -114,7 +114,6 @@ def achievement_register_(ctx,parameters): #name,description,value
         "Date" : str(date.today())
     }
     coll_achievements.insert_one(mydict)
-    await ctx.send("Achievement "+str(list[0])+" added to the database!")
 
 def achievement_removeall_(ctx):
     coll_achievements.delete_many({})

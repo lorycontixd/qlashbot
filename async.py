@@ -448,7 +448,8 @@ async def achievement_add(ctx,parameters):
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
         await ctx.send("You don't have the permission for this command!")
         return
-    await achievement_register_(ctx,parameters)
+    await achievement_register_(parameters)
+    await ctx.send("Achievement "+str(list[0])+" added to the database!")
 
 
 
