@@ -137,9 +137,14 @@ async def check_instarole(message:discord.Message):
                 def check(reaction,user):
                     return str(message.author.name)==str(user.name)
 
+                def check2(reaction,user):
+                    mod = discord.utils.get(message.guild.roles, name="Moderator")
+                    sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
+                    return mod in user.roles or sub in user.roles
+
                 try:
                     await asyncio.sleep(1)
-                    reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
+                    reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check2)
                     if str(reaction.emoji) == '🇺🇸':
                         role = discord.utils.get(message.guild.roles, name="IG-AMERICA")
                         await message.author.add_roles(role)
@@ -898,5 +903,5 @@ async def read_file(message):
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
         else:
             dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
-            alert1 = ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
+            alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
             alert1.delete(delay=6.0)
