@@ -882,7 +882,7 @@ async def read_file(message):
             file.write("Printing found clubs and no. participants:\n")
             brawlstats.add_file_lines(file, clubs, True, False, True, False, False)
             file.write("\n")
-            file.write("Printing found club members:\n")
+            #file.write("Printing found club members:\n")
             brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
             file.write("\n")
             file.seek(0)

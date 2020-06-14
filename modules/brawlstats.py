@@ -5,7 +5,7 @@ import timeit
 
 from sys import stdin
 from time import sleep
-from lxml import html
+from lxml import etree, html
 from collections import defaultdict
 
 INVALID_PLAYER_NAME = "Invalid Tag"
@@ -86,8 +86,12 @@ def _check_missing_element(function, htmlPage, playerID):
 def retrieve_player(session,playerID):
     url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = playerID[1:])
     r = session.get(url)
+    if r.encoding is None:
+        r.encoding = 'utf-8'
     _check_response_code(r)
-    htmlPage = html.fromstring(r.content)
+    myparser = etree.HTMLParser(encoding="utf-8")
+    htmlPage = etree.HTML(r.content, parser=myparser)
+#    htmlPage = html.fromstring(r.content)
     if (_check_missing_element(_retrieve_playerName, htmlPage, playerID) and _check_missing_element(_retrieve_playerClub, htmlPage, playerID)):
         return _retrieve_playerName(htmlPage), _retrieve_playerClub(htmlPage)
     else:
