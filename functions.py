@@ -341,7 +341,9 @@ async def check_bad_words(message):
             await mess.add_reaction('❌')
 
             def check(reaction,user):
-                return str(reaction.emoji)=='✅' or str(reaction.emoji) == '❌'
+                sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
+                return sub in user.roles
+
             try:
                 await asyncio.sleep(1)
                 reaction,user = await bot.wait_for('reaction_add', timeout=600.0, check=check)
