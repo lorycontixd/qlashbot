@@ -25,16 +25,17 @@ async def Check(ctx,member):
 async def check_roles_assignement(message:discord.Message):
     author = message.author
     att = len(message.attachments)
+    ch=message.channel
     #helper = discord.utils.get(message.guild.roles, name="Helper")
     #subcoord = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
     if type(ch)!=discord.TextChannel:
         return
-    if message.channel.name == "roles-assignment":
+    if ch.name == "roles-assignment":
         if att==0:
             mod = discord.utils.get(message.guild.roles, name="Moderator")
             if author.top_role < mod:
                 await message.delete()
-                msg = await message.channel.send("You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you!")
+                msg = await ch.send("You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you!")
                 await msg.delete(delay=5.0)
 
 def check_equal_lists(x,y): #x,y two lists
