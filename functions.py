@@ -162,7 +162,7 @@ async def check_instarole(message:discord.Message):
                     await auth.dm_channel.send(ig_t_es)
                 except asyncio.TimeoutError:
                     await msg.delete()
-                    await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
+                    await ch.send('Timeout for user '+str(message.author.name)+' 👎\nPlease send a screenshot again and reply to the message')
             else:
                 await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a "+dev.mention+". Thank you")
 

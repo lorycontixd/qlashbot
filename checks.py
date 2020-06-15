@@ -27,6 +27,8 @@ async def check_roles_assignement(message:discord.Message):
     att = len(message.attachments)
     #helper = discord.utils.get(message.guild.roles, name="Helper")
     #subcoord = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
+    if type(ch)!=discord.TextChannel:
+        return
     if message.channel.name == "roles-assignment":
         if att==0:
             mod = discord.utils.get(message.guild.roles, name="Moderator")
