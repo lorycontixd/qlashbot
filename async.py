@@ -55,26 +55,37 @@ async def on_message(message):
 async def on_command_error(ctx, error):
     commandname = ctx.invoked_with
     author = ctx.message.author
+    message = ctx.message
     tz = pytz.timezone('Europe/Rome')
     nnow = datetime.now(tz=tz)
     time = nnow.strftime("%d/%m/%Y %H:%M:%S")
     reason = ''
     failed=True
     if isinstance(error, commands.errors.CheckFailure):
-        await ctx.send('PermissionError: You do not have the correct permissions for this command. 😥')
+        msg = await ctx.send('PermissionError: You do not have the correct permissions for this command. 😥')
         reason = 'PermissionMissing'
+        await msg.delete(delay=4.0)
+        await message.delete(delay=5.0)
     elif isinstance(error, commands.errors.UserInputError):
-        await ctx.send('ArguementError: Bad arguement was given. 😕')
+        msg = await ctx.send('ArguementError: Bad arguement was given. 😕')
         reason = 'UserInputError'
+        await msg.delete(delay=4.0)
+        await message.delete(delay=5.0)
     elif isinstance(error, commands.CommandOnCooldown):
-        await ctx.send('CommandError: Command is on cooldown. 😞')
+        msg = await ctx.send('CommandError: Command is on cooldown. 😞')
         reason = 'CommandOnCooldown'
+        await msg.delete(delay=4.0)
+        await message.delete(delay=5.0)
     elif isinstance(error, commands.CommandNotFound):
-        await ctx.send('CommandError: Command was not found. 😞')
+        msg = await ctx.send('CommandError: Command was not found. 😞')
         reason = 'CommandNotFound'
+        await msg.delete(delay=4.0)
+        await message.delete(delay=5.0)
     elif isinstance(error, commands.DisabledCommand):
-        await ctx.send('This command has been disabled.')
+        msg = await ctx.send('This command has been disabled.')
         reason = 'DisabledCommand'
+        await msg.delete(delay=4.0)
+        await message.delete(delay=5.0)
     else:
         await ctx.send('We got something unexpected...')
         await ctx.send(error)

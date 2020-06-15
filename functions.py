@@ -89,7 +89,7 @@ async def on_member_update_role(before,after):
         for role in after.roles:
             if not role in before.roles:
                 if role.name in clannames:
-                    messages = ['We are delighted to have '+after.mention+' join us in '+role.mention,'Hello '+role.mention+'. Welcome to the team '+after.mention+'!','Hello '+role.mention+'. We would like to welcome '+after.mention+' to the club.',"We're glad you are here, "+after.mention+"! "+role.mention]
+                    messages = ['We are delighted to have '+after.mention+' join us in '+role.name,'Hello '+role.name+'. Welcome to the team '+after.mention+'!','Hello '+role.name+'. We would like to welcome '+after.mention+' to the club.',"We're glad you are here, "+after.mention+"! "+role.name]
                     #myint = randint(1,len(messages))
                     print(after.name+" was given the role "+role.name)
                     id = role.id
