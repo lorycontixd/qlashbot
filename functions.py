@@ -881,7 +881,7 @@ async def read_file(message):
                     temp = await ch.send("--- Starting ---")
                     content = await att.read()
                     gametags = content.decode('utf-8').split('\n')
-                    loading_msg = await ch,.send("0 out of {TAGS}".format(TAGS = len(gametags)))
+                    loading_msg = await ch.send("0 out of {TAGS}".format(TAGS = len(gametags)))
                     clubs = brawlstats.count_clubs(gametags)
                     file = io.StringIO()
                     file.write("\n")
