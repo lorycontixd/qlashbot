@@ -53,7 +53,8 @@ def _check_missing_element(function, htmlPage, playerID):
 async def retrieve_player(session, playerID):
     url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = playerID[1:])
     async with session.get(url) as r:
-        assert r.status == 200
+        if r.status != 200:
+            return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
         myparser = etree.HTMLParser(encoding="utf-8")
         htmlPage = etree.HTML(await r.text(), parser=myparser)
         if (_check_missing_element(_retrieve_playerName, htmlPage, playerID) and _check_missing_element(_retrieve_playerClub, htmlPage, playerID)):
@@ -72,18 +73,18 @@ async def read_tags(session, lines, loading_msg = None):
             playerName, playerClub = await retrieve_player(session, gametag)
             clubs[playerClub].append((gametag,playerName))
             if loading_msg is not None:
-                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
                 current += 1
+                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
             await asyncio.sleep(1)
         else:
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
             if loading_msg is not None:
-                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
                 current += 1
+                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
     return clubs
 
 async def count_clubs(gametags, loading_msg = None):
-    connector = aiohttp.TCPConnector(limit_per_host=1)
+    connector = aiohttp.TCPConnector(limit_per_host=2)
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
 
     async with aiohttp.ClientSession(connector=connector,headers=headers) as session:
