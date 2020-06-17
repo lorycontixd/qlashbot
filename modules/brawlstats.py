@@ -52,7 +52,7 @@ def _check_missing_element(function, htmlPage, playerID):
 
 async def retrieve_player(session, playerID):
     url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = playerID[1:])
-    async with client.get(url) as r:
+    async with session.get(url) as r:
         assert r.status == 200
         myparser = etree.HTMLParser(encoding="utf-8")
         htmlPage = etree.HTML(await r.text(), parser=myparser)
@@ -61,8 +61,9 @@ async def retrieve_player(session, playerID):
         else:
             return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
 
-async def read_tags(session, clubs, lines, loading_msg):
+async def read_tags(session, lines, loading_msg = None):
     clubs = defaultdict(list)
+    current = 0
     for line in lines:
         gametag = _retrieve_gametag(line)
         if not gametag:
@@ -70,13 +71,21 @@ async def read_tags(session, clubs, lines, loading_msg):
         elif _is_valid_gametag(gametag):
             playerName, playerClub = await retrieve_player(session, gametag)
             clubs[playerClub].append((gametag,playerName))
-            asyncio.sleep(1)
+            if loading_msg is not None:
+                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
+                current += 1
+            await asyncio.sleep(1)
         else:
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
+            if loading_msg is not None:
+                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
+                current += 1
     return clubs
 
-async def count_clubs(gametags, loading_msg):
+async def count_clubs(gametags, loading_msg = None):
+    connector = aiohttp.TCPConnector(limit_per_host=1)
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
-    async with aiohttp.ClientSession(headers=headers) as session:
+
+    async with aiohttp.ClientSession(connector=connector,headers=headers) as session:
         clubs = await read_tags(session, gametags, loading_msg)
         return clubs
