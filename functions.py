@@ -858,8 +858,14 @@ async def get_tournament_members(ctx,tournament_rolee):
 async def gametags_process(ch,message):
     start = timeit.default_timer()
     await ch.trigger_typing()
-    att = message.attachments[0]
-    msg = await ch.send("Message received: \tName: "+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id)+'\nDo you want to process the information?')
+    att = None
+    if len(message.attachments)!=0:
+        att = message.attachments[0]
+    msg = None
+    if len(message.attachments)!=0:
+        msg = await ch.send("Message received: \tName: "+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id)+'\nDo you want to process the information?')
+    else:
+        msg =  await ch.send("Message received:\nDo you want to process the information?")
     await msg.add_reaction('✅')
     await msg.add_reaction('❌')
 
