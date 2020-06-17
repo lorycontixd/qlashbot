@@ -20,6 +20,10 @@ def _retrieve_playerName(htmlPage):
     return htmlPage.xpath('//div[@class="_3lMfMVxY-knKo2dnVHMCWG _21sSMvccqXG6cJU-5FNqzv yVyPKdb4lsiRak5TAnxs3"]/text()')[0].split("\n")[1].strip()
 def _retrieve_playerClub(htmlPage):
     return htmlPage.xpath('//div[@class="_3lMfMVxY-knKo2dnVHMCWG _21sSMvccqXG6cJU-5FNqzv yVyPKdb4lsiRak5TAnxs3"]//..//div[2]//div/text()')[0].split("\n")[1].strip()
+def _retrieve_gametag(gametag):
+    gametag = gametag.rstrip()
+    gametag = gametag.replace('O','0')
+    return gametag
 
 def _print(clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
     for k in clubs:
@@ -67,7 +71,6 @@ def _check_missing_element(function, htmlPage, playerID):
     return found
 
 def retrieve_player(session,playerID):
-    playerID = playerID.replace('O','0')
     url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = playerID[1:])
     r = session.get(url)
     if r.encoding is None:
@@ -84,7 +87,7 @@ def retrieve_player(session,playerID):
 def read_tags(session, lines):
     clubs = defaultdict(list)
     for line in lines:
-        gametag = line.rstrip()
+        gametag = _retrieve_gametag(line)
         if not gametag:
             break;
         elif _is_valid_gametag(gametag):
