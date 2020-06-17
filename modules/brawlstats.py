@@ -82,8 +82,9 @@ def retrieve_player(session,playerID):
     else:
         return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
 
-def read_tags(session, lines):
+def read_tags(session, lines, loading_msg):
     clubs = defaultdict(list)
+    current = 0
     for line in lines:
         gametag = _retrieve_gametag(line)
         if not gametag:
@@ -91,14 +92,20 @@ def read_tags(session, lines):
         elif _is_valid_gametag(gametag):
             playerName, playerClub = retrieve_player(session,gametag)
             clubs[playerClub].append((gametag,playerName))
+            if loading_msg is not None:
+                loading_msg.edit(content = "{n} out of {TAGS} gametags processed".format(n = current, TAGS = len(gametags)))
+                current += 1
             sleep(1)
         else:
             clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
+            if loading_msg is not None:
+                loading_msg.edit(content = "{n} out of {TAGS} gametags processed".format(n = current, TAGS = len(gametags)))
+                current += 1
     return clubs
 
-def count_clubs(gametags):
+def count_clubs(gametags, loading_msg = None):
     session = requests.Session()
     session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
-    clubs = read_tags(session, gametags)
+    clubs = read_tags(session, gametags, loading_msg)
     session.close()
     return clubs
