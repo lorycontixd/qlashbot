@@ -67,6 +67,7 @@ def _check_missing_element(function, htmlPage, playerID):
     return found
 
 def retrieve_player(session,playerID):
+    playerID = playerID.replace('O','0')
     url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = playerID[1:])
     r = session.get(url)
     if r.encoding is None:
