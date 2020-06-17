@@ -881,6 +881,7 @@ async def read_file(message):
                     temp = await ch.send("--- Starting ---")
                     content = await att.read()
                     gametags = content.decode('utf-8').split('\n')
+                    loading_msg = await ch,.send("0 out of {TAGS}".format(TAGS = len(gametags)))
                     clubs = brawlstats.count_clubs(gametags)
                     file = io.StringIO()
                     file.write("\n")
@@ -899,6 +900,7 @@ async def read_file(message):
                     end = timeit.default_timer()
                     await ch.send("The command took {EXECUTION_TIME:2f} seconds".format(EXECUTION_TIME = end - start))
                     await temp.delete(delay=1.0)
+                    await loading_msg.edit(content="All tags processed")
                 except asyncio.TimeoutError:
                     await msg.delete()
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎 ')
