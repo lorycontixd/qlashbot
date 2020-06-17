@@ -464,7 +464,7 @@ async def achievement_add(ctx,*params):
         await ctx.send("You don't have the permission for this command!")
         return
     name = achievement_register_(parameters)
-    await ctx.send("Achievement "+str(name)+" added to the database!")
+    await ctx.send("Achievement '"+str(name)+"' added to the database!")
 
 @sys.command(name='achievement-removeall')
 async def achievement_removeall(ctx):
