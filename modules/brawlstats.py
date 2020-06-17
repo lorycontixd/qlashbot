@@ -21,7 +21,7 @@ def _retrieve_playerName(htmlPage):
 def _retrieve_playerClub(htmlPage):
     return htmlPage.xpath('//div[@class="_3lMfMVxY-knKo2dnVHMCWG _21sSMvccqXG6cJU-5FNqzv yVyPKdb4lsiRak5TAnxs3"]//..//div[2]//div/text()')[0].split("\n")[1].strip()
 def _retrieve_gametag(gametag):
-    gametag = gametag.rstrip()
+    #gametag = gametag.rstrip()
     gametag = gametag.replace('O','0')
     return gametag
 
