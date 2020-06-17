@@ -106,6 +106,6 @@ async def read_tags(session, lines, loading_msg):
 async def count_clubs(gametags, loading_msg = None):
     session = requests.Session()
     session.headers.update({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'})
-    clubs = await read_tags(session, gametags, loading_msg)
+    clubs = read_tags(session, gametags, loading_msg)
     session.close()
     return clubs
