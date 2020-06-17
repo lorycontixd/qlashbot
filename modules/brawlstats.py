@@ -85,7 +85,7 @@ def retrieve_player(session,playerID):
 def read_tags(session, lines):
     clubs = defaultdict(list)
     for line in lines:
-        gametag = _retrieve_gametag(line)
+        gametag = line.rstrip()
         if not gametag:
             break;
         elif _is_valid_gametag(gametag):
