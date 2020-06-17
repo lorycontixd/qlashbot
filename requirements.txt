@@ -9,6 +9,7 @@ datetime
 schedule
 request
 ipapi
+aiohttp
 aiohttp_proxy
 pytz
 pyowm
