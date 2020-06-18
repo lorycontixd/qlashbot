@@ -121,7 +121,8 @@ async def on_member_update_activity(before,after):
                     art = message.content.split('\t')[0]
                     count = int(message.content.split('\t')[1])
                     if a.artist == art:
-                        await message.edit(art+'\t'+str(count+1))
+                        response = str(art)+'\t'+str(count+1)
+                        await message.edit(response)
                         return
                 await ch.send(a.artist+'\t'+"1")
 
