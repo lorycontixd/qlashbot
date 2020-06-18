@@ -41,6 +41,7 @@ async def on_member_join(member:discord.Member):
 @bot.event
 async def on_member_update(before,after):
     await on_member_update_role(before,after)
+    await game1_nickname(before,after)
     #await on_member_update_activity(before,after)
 
 @bot.event
@@ -54,10 +55,7 @@ async def on_message(message):
 
 @bot.event
 async def on_raw_reaction_add(payload):
-    await check_message_reaction(payload)
-
-
-
+    await game1_reaction(payload)
 
 
 
