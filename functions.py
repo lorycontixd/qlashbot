@@ -127,7 +127,7 @@ async def on_member_update_activity(before,after):
                             await message.edit(content=response)
                             found = True
                             break
-                    if Founde==False:
+                    if found==False:
                         await ch.send(str(art)+'\t1')
 
 
