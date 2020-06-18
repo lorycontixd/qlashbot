@@ -118,8 +118,8 @@ async def on_member_update_activity(before,after):
             if a.type==discord.ActivityType.listening:
                 messages = await ch.history(limit=500).flatten()
                 for message in messages:
-                    art = message.split('\t')[0]
-                    count = int(message.split('\t')[1])
+                    art = message.content.split('\t')[0]
+                    count = int(message.content.split('\t')[1])
                     if a.artist == art:
                         await message.edit(art+'\t'+str(count+1))
                         return
