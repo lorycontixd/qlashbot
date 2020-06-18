@@ -32,7 +32,7 @@ async def game1_nickname(before,after):
     if before.nick != after.nick:
         if str(after.nick).lower() == 'bibi':
             await after.create_dm()
-            await after.dm_channel.send("In order to advance, please answer this quiz:\nWhich member of the staff is also the clan leader of QLASH Ares?")
+            await after.dm_channel.send("\nIn order to advance, please answer this quiz:\nWhich member of the staff is also the clan leader of QLASH Ares?")
 
             def check(message):
                 return message.channel.type == discord.ChannelType.private
