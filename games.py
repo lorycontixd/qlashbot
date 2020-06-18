@@ -30,15 +30,15 @@ async def game1_nickname(before,after):
     if role1 not in before.roles and role1 not in after.roles:
         return
     if before.nick != after.nick:
-        if str(after.nick).lower() == 'loree':
+        if str(after.nick).lower() == 'bibi':
             await after.create_dm()
-            await after.dm_channel.send("You passed step 2, well done!\n \nHere is the tip for the third step:\nWhich member of the staff is also the clan leader of QLASH Ares?")
+            await after.dm_channel.send("In order to advance, please answer this quiz:\nWhich member of the staff is also the clan leader of QLASH Ares?")
 
             def check(message):
                 return message.channel.type == discord.ChannelType.private
 
             reply = await bot.wait_for('message',timeout=60.0, check=check)
-            if reply.content.lower=="bibi":
+            if reply.content.lower=="lore":
                 role2 = discord.utils.get(after.guild.roles, name="step2")
                 await after.dm_channel.send("Well done, you passed step 2!")
                 await after.add_roles(role2)
