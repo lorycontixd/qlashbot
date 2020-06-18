@@ -16,7 +16,7 @@ async def game1_reaction(payload):
                 reply = await bot.wait_for('message',timeout=30.0, check=check)
                 if reply.content == 'Luca Pagano':
                     await payload.member.create_dm()
-                    await payload.member.dm_channel.send("Well done +"str(payload.member.name)+"for completing step 1.\n \nThe tip for the next step is the following:\n**I think I know the nickname of the brawler posted from Qlash_brawlstars on the 27th May**")
+                    await payload.member.dm_channel.send("Well done "+str(payload.member.name)+"for completing step 1.\n \nThe tip for the next step is the following:\n**I think I know the nickname of the brawler posted from Qlash_brawlstars on the 27th May**")
                     role = discord.utils.get(message.guild.roles, name="step1")
                     await payload.member.add_roles(role)
                     return
