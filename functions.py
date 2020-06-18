@@ -114,16 +114,8 @@ async def on_member_update_role(before,after):
 async def on_member_update_activity(before,after):
     if not check_equal_lists(before.activities,after.activities):
         for a in after.activities:
-            if a.type==discord.ActivityType.playing:
-                if a.name == 'Fortnite':
-                    det = a.details
-                    dig = ''
-                    for character in det:
-                        if character.isdigit():
-                            dig += character
-                    print(after," ",dig)
-                    if dig == 1:
-                        print(after.name+" has victory royale")
+            if a.type==discord.ActivityType.listening:
+                print(str(after)+" activities: ",after.activities)
 
 
 #time zones
