@@ -960,6 +960,6 @@ async def vice(ctx):
         club = await myclient.get_club(tag)
         count=0
         for member in club.members:
-            if member.role == 'vice-president':
+            if member.role == 'vicePresident':
                 count+=1
         await ctx.send(str(clans[i]["Name"])+": "+str(count))
