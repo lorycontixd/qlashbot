@@ -1,45 +1,13 @@
-#games
-import random
-import threading
-from instances import *
 
-
-#*****************************************************************************************************************
-#*********************************************       BOMB     ****************************************************
-#*****************************************************************************************************************
-
-math_expressions = {
-    "150x12":1800,
-    "220/5":44,
-    "330x9":2970,
-    "70x71":4970
-}
-
-bombIsSet = False
-
-async def BombExplode():
-    print("BOOOM")
-
-async def BombSet():
-
-    global bombIsSet
-    assert bombIsSet == False
-    t = threading.Timer(10.0, BombExplode)
-    bombIsSet = True
-    t.start()
-    return t
-
-async def BombDefuse(timer):
-    global math_expressions
-    choice = random.choice(list(math_expressions.keys()))
-    print("To defuse please solve "+str(choice))
-    x = input()
-    if int(x)==int(math_expressions[choice]):
-        print("bomb defused")
-        timer.cancel()
-    else:
-        print("wrong")
-        await BombExplode()
-
-timer = BombSet()
-BombDefuse(timer)
+async def check_message_reaction(reaction,user):
+    ch = bot.get_channel(int(testchannel))
+    chosenmsg = await ch.fetch_message(723161252020355214)
+    list = chosenmsg.reactions
+    for i in range(len(list)-1):
+        if list[i].emoji == ':qlash:':
+            if list[i].emoji == '🔝':
+                users = await list[i].users().flatten()
+                users2 = await list[i+1].users().flatten()
+                for u in users:
+                    if u in users2:
+                        print(str(u)+" has won")

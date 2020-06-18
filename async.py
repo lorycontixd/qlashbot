@@ -95,6 +95,10 @@ async def on_command_error(ctx, error):
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
 @bot.event
+async def on_reaction_add(reaction,user):
+    await check_message_reaction(reaction,user)
+
+@bot.event
 async def on_command_completion(ctx):
     commandname = ctx.invoked_with
     author = ctx.message.author
