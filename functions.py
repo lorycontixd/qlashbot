@@ -114,8 +114,8 @@ async def on_member_update_role(before,after):
 async def on_member_update_activity(before,after):
     if not check_equal_lists(before.activities,after.activities):
         for a in after.activities:
-            if a.type==discord.ActivityType.listening:
-                print(str(after)+" activities: ",after.activities)
+            if a.type==discord.ActivityType.playing:
+                print(a.name)
 
 
 #time zones
