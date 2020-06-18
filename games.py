@@ -35,7 +35,7 @@ async def game1_nickname(before,after):
             await after.dm_channel.send("\nIn order to advance, please answer this quiz:\nWhich member of the staff is also the clan leader of QLASH Ares?")
 
             def check(message):
-                return message.channel.type == discord.ChannelType.private
+                return type(message.channel)==discord.DMChannel
 
             reply = await bot.wait_for('message',timeout=60.0, check=check)
             if reply.content.lower=="lore":
