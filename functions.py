@@ -119,8 +119,8 @@ async def on_member_update_activity(before,after):
                 messages = await ch.history(limit=500).flatten()
                 a_list = a.artist.split(";")
                 for art in a_list:
-                    for message in messages:
-                        found = False
+                    found = False
+                    for message in messages:        
                         if art == message.content.split('\t')[0]:
                             count = int(message.content.split('\t')[1])
                             response = str(art)+'\t'+str(count+1)
