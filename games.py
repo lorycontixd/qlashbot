@@ -17,7 +17,7 @@ async def game1_reaction(payload):
                 if reply.content == '2017':
                     await payload.member.create_dm()
                     await payload.member.dm_channel.send("Well done "+str(payload.member.name)+" for completing step 1.\n \nThe tip for the next step is the following:\n**I think I know the nickname of the brawler posted from Qlash_brawlstars on the 27th May**")
-                    role = discord.utils.get(after.guild.roles, name="step1")
+                    role = discord.utils.get(payload.member.guild.roles, name="step1")
                     await payload.member.add_roles(role)
                     return
                 else:
@@ -30,7 +30,7 @@ async def game1_nickname(before,after):
     if role1 not in before.roles and role1 not in after.roles:
         return
     if before.nick != after.nick:
-        if str(after.nick).lower() == 'bibi':
+        if str(after.nick).lower() == 'Loree':
             await after.create_dm()
             await after.dm_channel.send("You passed step 2, well done!\n \nHere is the tip for the third step:\nWhich member of the staff is also the clan leader of QLASH Ares?")
 
@@ -38,7 +38,7 @@ async def game1_nickname(before,after):
                 return message.channel.type == discord.ChannelType.private
 
             reply = await bot.wait_for('message',timeout=60.0, check=check)
-            if reply.content.lower=="Lore":
+            if reply.content.lower=="bibi":
                 role2 = discord.utils.get(after.guild.roles, name="step2")
                 await after.dm_channel.send("Well done, you passed step 2!")
                 await after.add_roles(role2)
