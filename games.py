@@ -26,7 +26,7 @@ async def game1_reaction(payload):
                     return
 
 async def game1_nickname(before,after):
-    role1 = discord.utils.get(message.guild.roles, name="step1")
+    role1 = discord.utils.get(after.guild.roles, name="step1")
     if role1 not in before.roles and role1 not in after.roles:
         return
     if before.nick != after.nick:
