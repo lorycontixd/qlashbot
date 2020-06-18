@@ -24,6 +24,7 @@ from checks import *
 from utility import *
 from mongodb import *
 from instances import *
+from games import *
 
 from google import *
 from weather import *

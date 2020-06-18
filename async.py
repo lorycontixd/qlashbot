@@ -53,6 +53,15 @@ async def on_message(message):
     await bot.process_commands(message)
 
 @bot.event
+async def on_reaction_add(reaction,user):
+    await check_message_reaction(reaction,user)
+
+
+
+
+
+
+@bot.event
 async def on_command_error(ctx, error):
     commandname = ctx.invoked_with
     author = ctx.message.author
@@ -93,10 +102,6 @@ async def on_command_error(ctx, error):
         reason = 'ExternalError'
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
-
-@bot.event
-async def on_reaction_add(reaction,user):
-    await check_message_reaction(reaction,user)
 
 @bot.event
 async def on_command_completion(ctx):
