@@ -121,7 +121,7 @@ async def on_member_update_activity(before,after):
                     for character in det:
                         if character.isdigit():
                             dig += character
-                    print(dig)
+                    print(after," ",dig)
                     if dig == 1:
                         print(after.name+" has victory royale")
 
