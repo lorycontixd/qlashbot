@@ -141,6 +141,9 @@ async def sys(ctx):
 #**********************************************       FUN     ****************************************************
 #*****************************************************************************************************************
 
+@bot.command(name='start')
+async def start(ctx):
+    await ctx.send("You are starting the QLASH Brawl stars server treasure hunt. Here is your starting tip:\nQLASH emotes are always number 1")
 
 @commands.cooldown(1, 30, commands.BucketType.user)
 @fun.command(name='roll',brief='(FUN) Roll a 6 sided dice.',description='Fun Command \n 30 seconds cooldown per user \n \n'
