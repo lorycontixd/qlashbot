@@ -1,14 +1,11 @@
 
-async def check_message_reaction(reaction,user):
-    msg = reaction.message
-    if msg.id == 723161253631098931:
-        print("reaction added to 3"+str(reaction.emoji))
-        list = msg.reactions
-        for i in range(len(list-1)):
-            if list[i].emoji.name == ':qlash:':
-                if list[i+1].emoji == '🔝':
-                    users = await list[i].users().flatten()
-                    users2 = await list[i+1].users().flatten()
-                    for u in users:
-                        if u in users2:
-                            print(str(u)+" is the winner")
+async def check_message_reaction(payload):
+    ch = bot.get_channel(payload.channel_id)
+    if ch.id == int(testchannel):
+        print("in test channel")
+        if payload.message_id == 723161253631098931:
+            print("message 3")
+            msg3 = ch.fetch_message(int(payload.message_id))
+            list = msg3.reactions
+            if payload.emoji.name=='qlash':
+                print("winner"+str(payload.member))
