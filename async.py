@@ -41,7 +41,7 @@ async def on_member_join(member:discord.Member):
 @bot.event
 async def on_member_update(before,after):
     await on_member_update_role(before,after)
-    #await on_member_update_activity(before,after)
+    await on_member_update_activity(before,after)
 
 @bot.event
 async def on_message(message):

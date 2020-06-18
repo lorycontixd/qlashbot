@@ -117,15 +117,18 @@ async def on_member_update_activity(before,after):
         for a in after.activities:
             if a.type==discord.ActivityType.listening:
                 messages = await ch.history(limit=500).flatten()
-                for message in messages:
-                    art = message.content.split('\t')[0]
-                    count = int(message.content.split('\t')[1])
-                    if a.artist == art and int(datetime.now().strftime("%M"))-int(a.start.strftime("%M"))>1:
-                        response = str(art)+'\t'+str(count+1)
-                        await message.edit(content=response)
-                        return
-                await ch.send(a.artist+'\t'+"1")
-
+                a_list = a.artist.split(";")
+                for art in a_list:
+                    for message in messages:
+                        found = False
+                        if art == message.content.split('\t')[0]:
+                            count = int(message.content.split('\t')[1])
+                            response = str(art)+'\t'+str(count+1)
+                            await message.edit(content=response)
+                            found = True
+                            break
+                    if Founde==False:
+                        await ch.send(str(art)+'\t1')
 
 
 
