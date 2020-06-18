@@ -1,4 +1,4 @@
-
+from instances import *
 async def check_message_reaction(payload):
     ch = bot.get_channel(payload.channel_id)
     if ch.id == int(testchannel):
