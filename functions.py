@@ -81,6 +81,10 @@ async def member_join_check(member:discord.Member):
             await mychannel.send(embed=embed)
             await mychannel.send("@Moderator")
 
+async def member_join_welcome(member:discord.Member):
+    await member.create_dm()
+    await member.dm_channel.send(welcome_message)
+
 
 async def on_member_update_role(before,after):
     if not check_equal_lists(before.roles,after.roles):
@@ -106,6 +110,10 @@ async def on_member_update_role(before,after):
                     if int(roleID) == id:
                         ch = bot.get_channel(int(channelID))
                         await ch.send(random.choice(messages))
+
+async def on_member_update_activity(before,after):
+    if not check_equal_lists(before.activities,after.activities):
+        print(str(after)+" activities: ",after.activities)
 
 
 #time zones
