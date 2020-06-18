@@ -40,5 +40,5 @@ async def game1_nickname(before,after):
             reply = await bot.wait_for('message',timeout=60.0, check=check)
             if reply.content.lower=="Lore":
                 role2 = discord.utils.get(after.guild.roles, name="step2")
-                await after.dm_channel.send("Well done, you passed step 2!"
+                await after.dm_channel.send("Well done, you passed step 2!")
                 await after.add_roles(role2)
