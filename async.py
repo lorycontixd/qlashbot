@@ -53,8 +53,8 @@ async def on_message(message):
     await bot.process_commands(message)
 
 @bot.event
-async def on_reaction_add(reaction,user):
-    await check_message_reaction(reaction,user)
+async def on_raw_reaction_add(payload):
+    await check_message_reaction(payload)
 
 
 
