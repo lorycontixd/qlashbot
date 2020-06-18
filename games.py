@@ -8,4 +8,12 @@ async def check_message_reaction(payload):
             msg3 = await ch.fetch_message(int(payload.message_id))
             list = msg3.reactions
             if payload.emoji.name=='qlash':
-                print("winner"+str(payload.member))
+                await ch.send("Hi "+payload.member.mention+". Enter the password within 30 seconds please")
+
+                def check(message):
+                    return message.author == payload.member
+
+                reply = await bot.wait_for('message', check=check)
+                if reply.content == 'qlashforthewin':
+                    await ch.send("Well done "+payload.member.mention+". You won!")
+                    return
