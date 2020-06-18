@@ -952,3 +952,14 @@ async def read_file(message):
                 await message.delete(delay=3.0)
                 alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
                 await alert1.delete(delay=5.0)
+
+async def vice(ctx):
+    clans = LoadClans()#list of dicts
+    for i in range(11):
+        tag = clans[i]["Tag"]
+        club = await myclient.get_club(tag)
+        count=0
+        for member in club.members:
+            if member.role == 'vice-president':
+                count+=1
+        await ctx.send(str(clans[i]["Name"])+": "+str(count))

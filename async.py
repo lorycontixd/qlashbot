@@ -466,6 +466,9 @@ async def graph_today(ctx):
         return
     await record(ctx)
 
+@sys.command(name='vice-count')
+async def vice_(ctx):
+    await vice(ctx)
 #********************************* achievements *************************************
 
 @sys.command(name='achievement-add')
