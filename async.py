@@ -144,7 +144,7 @@ async def sys(ctx):
 @bot.command(name='start')
 async def start(ctx):
     auth=ctx.message.author
-    await ctx.send(auth.mention+"\nYou are starting the QLASH Brawl stars server treasure hunt. Here are a few rules to follow during the game:\n-> Don't spam channels -> This game doesnt require any kind of spam\n-> Don't ask for answers, only for misunerstandings and translations\n-> Don't use inappropriate channels during the game\n\nHere is the first tip:\n```QLASH reactions are always number __1__```")
+    await ctx.send(auth.mention+"\nYou are starting the QLASH Brawl stars server treasure hunt. Here are a few rules to follow during the game:\n-> Don't spam channels -> This game doesnt require any kind of spam\n-> Don't ask for answers, only for misunerstandings and translations\n-> Don't use inappropriate channels during the game\n\nHere is the first tip:\n```QLASH reactions are always number 1```")
 
 @commands.cooldown(1, 30, commands.BucketType.user)
 @fun.command(name='roll',brief='(FUN) Roll a 6 sided dice.',description='Fun Command \n 30 seconds cooldown per user \n \n'
