@@ -112,10 +112,22 @@ async def on_member_update_role(before,after):
                         await ch.send(random.choice(messages))
 
 async def on_member_update_activity(before,after):
+    ch = bot.get_channel(int(spotify_tracks))
     if not check_equal_lists(before.activities,after.activities):
         for a in after.activities:
             if a.type==discord.ActivityType.listening:
-                print(str(after)+" activities: ",after.activities)
+                messages = await ch.history(limit=500).flatten()
+                for message in messages:
+                    art = message.split('\t')[0]
+                    count = int(message.split('\t')[1])
+                    if a.artist == art:
+                        await message.edit(art+'\t'+str(count+1))
+                        return
+                await ch.send(a.artist+'\t'+"1")
+
+
+
+
 
 
 #time zones
