@@ -111,7 +111,6 @@ entries_discord = '714161674432806972'
 qlash_bot = '714161674432806972'
 ig_role_channel = '703596640593903716'
 file_managing = '721658324327858236'
-spotify_tracks = '723131895004659778'
 testchannel = '723161066124607599'
 
 #database directories

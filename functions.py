@@ -673,6 +673,21 @@ async def purge_(ctx,amount):
 	msg = await ctx.send("Deleted "+str(amount)+" messages from "+author.mention+" in channel "+str(ctx.message.channel))
 	await msg.delete(delay=5.0)
 
+async def purge_user_(ctx,channelname,member:discord.Member):
+    i=0
+    for channel in ctx.guild.channels:
+        if channel.name == channelname:
+            messages = await channel.history(limit=1999).flatten()
+            for message in messages:
+                if message.author == member:
+                    await message.delete()
+                    i+=1
+            msg = await ctx.send("Deleted all messages from user "+str(member)+" in channel "+channelname)
+            await msg.delete(delay=6.0)
+            return
+    await ctx.send(ctx.message.author.mention+", no channel found with name "+channelname)
+
+
 async def commandlog_view_(ctx,limit):
     response = "``` \n"
     list = view_commandlog(limit)

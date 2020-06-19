@@ -331,6 +331,10 @@ async def test(ctx):
 async def purge(ctx,amount):
     await purge_(ctx,amount)
 
+@mod.command(name='purge-user',brief="(MOD) Clear all messages from a user inside a give channel")
+async def purge_user(ctx,channelname,member:discord.Member):
+    await purge_user_(ctx,channelname,member)
+
 @mod.command(name="role-give",hidden=True,pass_context=True)
 async def role_give(ctx,member: discord.Member , *rolename):
     await giverole(ctx,member,*rolename)
