@@ -36,4 +36,4 @@ async def reg_member():
 
 async def hello():
     ch = bot.get_channel(int(bot_developer_channel))
-    await ch.send("Hello")
+    await ch.send("Goodmorning Alex, this message is scheduled!")

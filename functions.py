@@ -42,6 +42,7 @@ async def on_ready_():
     #await ch.send("Hi, I'm up and running.")
     apscheduler.start()
     apscheduler.add_job(reg_member, trigger='interval',days=1,start_date='2020-06-21 22:30:00',timezone=cest)
+    apscheduler.add_job(hello,trigger='interval',days=1,start_date='2020-06-21 10:00:00',timezone=cest)
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
     print('Creation Date: ',bot.user.created_at)
