@@ -62,31 +62,31 @@ async def retrieve_player(session, playerID):
         else:
             return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
 
-async def read_tags(session, lines, loading_msg = None):
-    clubs = defaultdict(list)
-    current = 0
-    for line in lines:
-        gametag = _retrieve_gametag(line)
-        if not gametag:
-            break;
-        elif _is_valid_gametag(gametag):
-            playerName, playerClub = await retrieve_player(session, gametag)
-            clubs[playerClub].append((gametag,playerName))
-            if loading_msg is not None:
-                current += 1
-                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
-            await asyncio.sleep(1)
-        else:
-            clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
-            if loading_msg is not None:
-                current += 1
-                await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = len(lines)))
-    return clubs
+async def read_tags(session, clubs, gametags, loading_msg, current, total_tags):
+    for gametag in gametags:
+        current += 1
+        await read_tag(session, clubs, gametag, loading_msg, current, total_tags)
+
+async def read_tag(session, clubs, gametag, loading_msg = None, current = 0, total_tags=0):
+    gametag = _retrieve_gametag(gametag)
+    if not gametag:
+        clubs[INVALID_CLUB].append(("Input not read", INVALID_PLAYER_NAME))
+        return
+    if _is_valid_gametag(gametag):
+        playerName, playerClub = await retrieve_player(session, gametag)
+        clubs[playerClub].append((gametag,playerName))
+    else:
+        clubs[INVALID_CLUB].append((gametag, INVALID_PLAYER_NAME))
+    if loading_msg is not None:
+        await loading_msg.edit(content="{no} out of {TAGS} gametags processed".format(no = current, TAGS = total_tags))
+        current += 1
+
 
 async def count_clubs(gametags, loading_msg = None):
     connector = aiohttp.TCPConnector(limit_per_host=2)
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
 
     async with aiohttp.ClientSession(connector=connector,headers=headers) as session:
-        clubs = await read_tags(session, gametags, loading_msg)
+        clubs = defaultdict(list)
+        await asyncio.gather(read_tags(session, clubs, gametags, loading_msg, 0, len(gametags)))
         return clubs

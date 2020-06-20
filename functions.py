@@ -905,8 +905,11 @@ async def gametags_process(ch,message):
     msg = None
     if len(message.attachments)!=0:
         msg = await ch.send("Message received: \tName: "+str(att.filename)+" \tSize: "+str(att.size)+" \tID: "+str(att.id)+'\nDo you want to process the information?')
-    else:
+    elif message.content.startswith('#'):
         msg =  await ch.send("Message received:\nDo you want to process the information?")
+    else:
+        await ch.send("Not processed.")
+        return
     await msg.add_reaction('✅')
     await msg.add_reaction('❌')
 
@@ -927,9 +930,12 @@ async def gametags_process(ch,message):
         if len(message.attachments)!=0:
             content = await att.read()
             gametags = content.decode('utf-8').split('\n')
-        else:
+        elif message.content.startswith('#'):
             content = message.content
             gametags = content.split('\n')
+        else:
+            await ch.send("Not processed.")
+            return
         loading_msg = await ch.send("0 out of {TAGS} gametags processed".format(TAGS = len(gametags)))
         clubs = await brawlstats.count_clubs(gametags, loading_msg)
         file = io.StringIO()
@@ -947,7 +953,7 @@ async def gametags_process(ch,message):
         await ch.send(content=message.author.mention+", please see the file below to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
         file.close()
         end = timeit.default_timer()
-        await ch.send("The command took {EXECUTION_TIME:2f} seconds".format(EXECUTION_TIME = end - start))
+        await ch.send("The command took {EXECUTION_TIME:2f} seconds (test bot)".format(EXECUTION_TIME = end - start))
         await temp.delete(delay=1.0)
         await loading_msg.edit(content="All tags processed")
     except asyncio.TimeoutError:
