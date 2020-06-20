@@ -9,6 +9,9 @@ class MyCog(commands.Cog):
         self.printer.cancel()
 
     @tasks.loop(seconds=5.0)
-    async def printer(self):
+    async def counter(self):
         print(self.index)
         self.index += 1
+
+    async def stopper(self):
+        self.printer.stop()
