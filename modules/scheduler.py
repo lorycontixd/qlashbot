@@ -5,6 +5,7 @@ from apscheduler.jobstores.mongodb import MongoDBJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 
 def init_scheduler(mongodb):
+    time.sleep(1)
     jobstores = {
         'mongo': MongoDBJobStore(client=mongodb)
     }
