@@ -20,7 +20,7 @@ async def reddit_webhook():
                 print("Sending to channel: "+ch.name)
                 await ch.send(await resp.text())
 
-@apscheduler.scheduled_job('cron', hour=22, minute=34)
+@apscheduler.scheduled_job('cron', hour=22, minute=36)
 async def goodmorning():
     frasi=[' fagiolini',' stelline',' cuccioli',' patatoni',' bomberoni','!']
     ch=bot.get_channel(int(it_general))
