@@ -19,13 +19,13 @@ WELCOME_MESSAGE_SECOND_SECTION = discord.Embed(title="QLASH -- Brawl Stars", des
 WELCOME_MESSAGE_SECOND_SECTION.set_author(name="QLASH -- Brawl Stars", url=constants.QLASH_BRAWLSTARS_DISCORD_URL, icon_url=WELCOME_MESSAGE_ICON_URL)
 WELCOME_MESSAGE_SECOND_SECTION.set_thumbnail(url=WELCOME_MESSAGE_THUMBNAIL_URL)
 WELCOME_MESSAGE_SECOND_SECTION.set_image(url=WELCOME_MESSAGE_IMAGE_URL)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Discord", value=constants.QLASH_BRAWLSTARS_DISCORD_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Home page", value=constants.QLASH_BRAWLSTARS_HOMEPAGE_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Facebook", value=constants.QLASH_BRAWLSTARS_FACEBOOK_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value=constants.QLASH_BRAWLSTARS_TWITTER_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value=constants.QLASH_BRAWLSTARS_INSTAGRAM_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value=constants.QLASH_BRAWLSTARS_YOUTUBE_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value=constants.QLASH_BRAWLSTARS_TELEGRAM_URL, inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Discord", value="[discord.gg/qlash-brawlstars]({url})".format(url=constants.QLASH_BRAWLSTARS_DISCORD_URL), inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Home page", value="[qlash.gg]({url})".format(url=constants.QLASH_BRAWLSTARS_HOMEPAGE_URL), inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Facebook", value="[Facebook]({url})".format(url=constants.QLASH_BRAWLSTARS_FACEBOOK_URL), inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value="[@brawlQLASH]({url})".format(url=constants.QLASH_BRAWLSTARS_TWITTER_URL), inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value="[@qlash_brawlstars]({url})".format(url=constants.QLASH_BRAWLSTARS_INSTAGRAM_URL), inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value="[QLASH YouTube]({url})".format(url=constants.QLASH_BRAWLSTARS_YOUTUBE_URL), inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value="[t.me/QLASHBS]({url})".format(url=constants.QLASH_BRAWLSTARS_TELEGRAM_URL), inline=False)
 
 WELCOME_MESSAGE_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723873104798941234/e50a80e8-6335-42c2-b82e-abf46b175893-profile_banner-480.png"
 
