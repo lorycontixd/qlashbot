@@ -112,6 +112,7 @@ qlash_bot = '714161674432806972'
 ig_role_channel = '703596640593903716'
 file_managing = '721658324327858236'
 testchannel = '723161066124607599'
+bot_developer_channel='720193411113680913'
 
 #database directories
 qc_directory2 = './qlashclans2/' #this one is the right one
