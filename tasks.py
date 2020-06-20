@@ -1,4 +1,3 @@
-import asyncpg
 import discord
 from discord.ext import tasks, commands
 from instances import *
