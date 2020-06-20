@@ -21,6 +21,6 @@ class MyCog(commands.Cog):
             if self.index == 15:
                 cog_unload(self)
 
-@apscheduler.scheduled_job('cron', hour=21, minute=43)
+@apscheduler.scheduled_job('cron', hour=21, minute=47)
 async def print_console_h():
     print("h")
