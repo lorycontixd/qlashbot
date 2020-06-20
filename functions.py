@@ -51,7 +51,7 @@ last_update = ''
 async def on_ready_():
     #ch = await bot.get_channel(int(bot_developer_channel))
     #await ch.send("Hi, I'm up and running.")
-    apscheduler.add_job(goodmorning, 'interval',seconds=4)
+    apscheduler.add_job(goodmorning, trigger='cron',hour='23',minute='55')
     apscheduler.start()
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
