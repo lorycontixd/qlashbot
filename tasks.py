@@ -26,4 +26,4 @@ async def goodmorning():
 #frasi=[' fagiolini',' stelline',' cuccioli',' patatoni',' bomberoni','!']
     ch=bot.get_channel(int(bot_developer_channel))
     #temp = random.choice(frasi)
-    await ch.send("Buongiorno")
+    await ch.send("^hello")
