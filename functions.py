@@ -49,6 +49,7 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
+    apscheduler.start()
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
     print('Creation Date: ',bot.user.created_at)

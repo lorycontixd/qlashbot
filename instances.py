@@ -79,7 +79,6 @@ ipapi.location(ip=None, key=None, field=None) #IP
 mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm',retryWrites=False) #MONGODB
 
 apscheduler = scheduler.init_scheduler(mongoclient)
-apscheduler.start()
 
 #sched = BlockingScheduler()
 
