@@ -1039,6 +1039,12 @@ async def read_file(message):
                 #alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
                 #await alert1.delete(delay=5.0)
 
+#****************
+
+async def get_audit_logs_(ctx,member:discord.Member):
+    entries = await guild.audit_logs(limit=None, user=member).flatten()
+    await ctx.send("First Audit Log entry for user"+str(member)+"\n"+str(entries[0]))
+
 #**************************++ webhooks ++********************************
 async def foo():
     async with aiohttp.ClientSession() as session:

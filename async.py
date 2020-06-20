@@ -401,6 +401,9 @@ async def writemembers(ctx):
 #**********************************************       SYS     ****************************************************
 #*****************************************************************************************************************
 
+@sys.command(name='audit-view')
+async def get_audit_logs(ctx,member:discord.Member):
+    await get_audit_logs_(ctx,member)
 
 @sys.command(name='database-view',hidden=False,brief='(SYS) View registered QLASH clans',description=desc_database_view)
 async def view_database_(ctx):
