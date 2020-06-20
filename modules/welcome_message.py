@@ -1,4 +1,8 @@
+import aiohttp
 import discord
+
+from io import BytesIO
+
 from modules import constants
 
 
@@ -17,9 +21,13 @@ WELCOME_MESSAGE_SECOND_SECTION.set_thumbnail(url=WELCOME_MESSAGE_THUMBNAIL_URL)
 WELCOME_MESSAGE_SECOND_SECTION.set_image(url=WELCOME_MESSAGE_IMAGE_URL)
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Discord", value=constants.QLASH_BRAWLSTARS_DISCORD_URL, inline=False)
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Home page", value=constants.QLASH_BRAWLSTARS_HOMEPAGE_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value=constants.QLASH_BRAWLSTARS_INSTAGRAM_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value=constants.QLASH_BRAWLSTARS_TELEGRAM_URL, inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Facebook", value=constants.QLASH_BRAWLSTARS_FACEBOOK_URL, inline=False)
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value=constants.QLASH_BRAWLSTARS_TWITTER_URL, inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value=constants.QLASH_BRAWLSTARS_INSTAGRAM_URL, inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value=constants.QLASH_BRAWLSTARS_YOUTUBE_URL, inline=False)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value=constants.QLASH_BRAWLSTARS_TELEGRAM_URL, inline=False)
+
+WELCOME_MESSAGE_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723873104798941234/e50a80e8-6335-42c2-b82e-abf46b175893-profile_banner-480.png"
 
 RULES_MESSAGE_FIRST_SECTION = """**Rules**
 
@@ -51,3 +59,8 @@ RULES_MESSAGE_SECOND_SECTION ="""
 """
 
 RULES_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723857824874233887/rules_discord.png"
+
+async def send_file(channel, url, filename):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            await channel.send(file=discord.File(BytesIO(await resp.read()),filename=filename))
