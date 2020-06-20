@@ -22,7 +22,7 @@ async def reddit_webhook():
                 #print("Sending to channel: "+ch.name)
                 await ch.send(await resp.text())
 
-@apscheduler.scheduled_job('date')
+@apscheduler.scheduled_job('interval',seconds=5)
 async def goodmorning():
     frasi=[' fagiolini',' stelline',' cuccioli',' patatoni',' bomberoni','!']
     #await bot.wait_until_ready()
