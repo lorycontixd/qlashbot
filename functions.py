@@ -49,6 +49,8 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
+    ch = bot.get_channel(int(bot_developer_channel))
+    await ch.send("Hi, I'm up and running.")
     apscheduler.start()
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
