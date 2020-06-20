@@ -52,8 +52,8 @@ async def on_ready_():
     #ch = await bot.get_channel(int(bot_developer_channel))
     #await ch.send("Hi, I'm up and running.")
 
-    apscheduler.start()
-    apscheduler.add_job(goodmorning, trigger='interval',seconds=5)
+    #apscheduler.start()
+    #apscheduler.add_job(goodmorning, trigger='interval',seconds=5)
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
     print('Creation Date: ',bot.user.created_at)
