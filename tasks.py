@@ -2,7 +2,6 @@ from discord.ext import tasks, commands
 from instances import *
 from datetime import datetime
 
-import aiohttp
 class MyCog(commands.Cog):
     def __init__(self):
         self.index = 0
@@ -15,11 +14,13 @@ class MyCog(commands.Cog):
     @tasks.loop(seconds=30.0)
     async def counter(self):
         t = datetime.now()
-        await self.ch.send("It's "+t.strftime("%d%m%Y , %H%M%S"))
-        self.index += 1
-        if self.index == 5:
-            cog_unload(self)
+        mins = t.strftime('%M')
+        if mins % 2==0:
+            await self.ch.send("It's "+t.strftime("%d%m%Y , %H%M"))
+            self.index += 1
+            if self.index == 15:
+                cog_unload(self)
 
-@apscheduler.scheduled_job('cron', hour=21, minute=38)
-async def print_console_h():
-    print("h")
+#@apscheduler.scheduled_job('cron', hour=21, minute=38)
+#async def print_console_h():
+#    print("h")
