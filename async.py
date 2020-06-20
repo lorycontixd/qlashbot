@@ -31,6 +31,8 @@ async def on_ready():
 @bot.event
 async def on_disconnect():
     print("Logging off: ",str(bot.user)+" "+str(datetime.now()))
+    ch = bot.get_channel(int(bot_developer_channel))
+    await ch.send("Hi, I'm logging off.")
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged off 🔴")
 
