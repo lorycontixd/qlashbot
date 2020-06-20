@@ -12,7 +12,7 @@ WELCOME_MESSAGE_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/72019341
 WELCOME_MESSAGE_FIRST_SECTION = """**Welcome to the QLASH Brawl Stars server!**
 Let us be the first to wish you a pleasant stay on our server.
 
-Please make yourself comfortable by reading up on our rules and check out our clans in #👑all-qlash-clans.
+Please make yourself comfortable by reading up on our rules and check out our clans in {ALL_QLASH_CLANS}.
 """
 
 WELCOME_MESSAGE_SECOND_SECTION = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Server QLASH Brawl Stars", color=0x00ccff)
