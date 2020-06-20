@@ -25,7 +25,7 @@ async def reddit_webhook():
 @apscheduler.scheduled_job('cron', hour=22, minute=55)
 async def goodmorning():
     frasi=[' fagiolini',' stelline',' cuccioli',' patatoni',' bomberoni','!']
-    await bot.wait_until_ready()
+    #await bot.wait_until_ready()
     ch=bot.get_channel(int(it_general))
     temp = random.choice(frasi)
     await ch.send("Buongiorno"+temp)
