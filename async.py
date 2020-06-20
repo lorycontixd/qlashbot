@@ -533,7 +533,8 @@ async def achievement_removeall(ctx):
 @bot.command(name='countstart')
 async def t1(ctx):
     a = MyCog()
-    print("doneee")
+
+
 
 
 try:
