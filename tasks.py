@@ -2,6 +2,7 @@ import aiohttp
 
 from discord.ext import tasks, commands
 from instances import *
+import random
 from datetime import datetime
 
 #ugly workaroudn to trigger immediately
@@ -18,3 +19,10 @@ async def reddit_webhook():
             if resp.status == 200:
                 print("Sending to channel: "+ch.name)
                 await ch.send(await resp.text())
+
+@apscheduler.scheduled_job('cron', hour=10)
+async def goodmorning():
+    frasi=[' fagiolini',' stelline',' cuccioli',' patatoni',' bomberoni','!']
+    ch=bot.get_channel(int(it_general))
+    temp = random.choice(frasi)
+    await ch.send("Buongiorno"+temp)
