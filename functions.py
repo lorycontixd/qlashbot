@@ -80,7 +80,8 @@ async def member_join_check(member:discord.Member):
             embed.add_field(name="Status", value=str(member.status), inline=True)
             embed.set_footer(text="Created by Lore")
             await mychannel.send(embed=embed)
-            await mychannel.send("@Moderator")
+            mod = discord.utils.get(message.guild.roles, name="Moderator")
+            await mychannel.send(mod.mention)
 
 async def member_join_welcome(member:discord.Member):
     await member.create_dm()
@@ -972,7 +973,7 @@ async def read_file(message):
                 dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
                 #await message.delete(delay=3.0)
                 #alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
-                #await alert1.delete(delay=5.0) 
+                #await alert1.delete(delay=5.0)
 
 async def vice(ctx):
     clans = LoadClans()#list of dicts

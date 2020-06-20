@@ -37,6 +37,7 @@ async def on_disconnect():
 @bot.event
 async def on_member_join(member:discord.Member):
     await member_join_check(member)
+    await member_join_welcome(member)
 
 @bot.event
 async def on_member_update(before,after):
