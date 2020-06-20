@@ -19,6 +19,6 @@ class MyCog(commands.Cog):
         if self.index == 5:
             cog_unload(self)
 
-@apscheduler.scheduled_job('interval', seconds=1)
-async def print_console_h():
-    print("h")
+# @apscheduler.scheduled_job('interval', seconds=1)
+# async def print_console_h():
+#     print("h")
