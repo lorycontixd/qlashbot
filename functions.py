@@ -953,7 +953,7 @@ async def gametags_process(ch,message):
         await ch.send(content=message.author.mention+", please see the file below to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
         file.close()
         end = timeit.default_timer()
-        await ch.send("The command took {EXECUTION_TIME:2f} seconds (test bot)".format(EXECUTION_TIME = end - start))
+        await ch.send("The command took {EXECUTION_TIME:2f} seconds".format(EXECUTION_TIME = end - start))
         await temp.delete(delay=1.0)
         await loading_msg.edit(content="All tags processed")
     except asyncio.TimeoutError:
