@@ -49,7 +49,7 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
-    apscheduler.add_job(goodmorning, 'cron', hour='23', minute='34')
+    apscheduler.add_job(goodmorning, 'cron', hour='23', minute='35')
     apscheduler.start()
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
