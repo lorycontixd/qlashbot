@@ -1,11 +1,14 @@
-import discord
 from discord.ext import tasks, commands
-from instances import *
 
-@tasks.loop(seconds=5.0, count=5)
-async def slow_count(ctx):
-    await ctx.end(slow_count.current_loop)
+class MyCog(commands.Cog):
+    def __init__(self):
+        self.index = 0
+        self.printer.start()
 
-@slow_count.after_loop
-async def after_slow_count(ctx):
-    await ctx.send('done!')
+    def cog_unload(self):
+        self.printer.cancel()
+
+    @tasks.loop(seconds=5.0)
+    async def printer(self):
+        print(self.index)
+        self.index += 1
