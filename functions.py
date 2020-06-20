@@ -85,6 +85,36 @@ async def member_join_check(member:discord.Member):
 
 async def member_join_welcome(member:discord.Member):
     await member.create_dm()
+    welcome_message = """
+    🇬🇧 **Welcome**
+
+    In #💫welcome-and-rules, you will find all the rules that need to be followed in this server.
+    In  #📅calendar you will find events for each month
+    In #📢tournament-announcements you can find the most relevant information about tournaments
+    In #👑all-qlash-clans you can find a list of all QLASH clans
+    In #roles-assignment you can request the role of the clan you are in by sending a screenshot
+    Finally in the lounge area you can talk with other players
+
+
+    🇪🇸 **Bienvenido**
+
+    En #💫welcome-and-rules, encontrará todas las reglas que deben seguirse en este servidor.
+    En #📅calendar encontrarás eventos para cada mes
+    En #📢tournament-ads puedes encontrar la información más relevante sobre torneos
+    En #👑all-qlash-clans puedes encontrar una lista de todos los clanes QLASH
+    En #roles-assignment puede solicitar el rol del clan en el que se encuentra enviando una captura de pantalla
+    Finalmente en lounge puedes hablar con otros jugadores.
+
+
+    🇮🇹 **Benvenuti**
+
+    Su #💫welcome-and-rules troverai tutte le regole del server da rispettare
+    In #📅calendar troverai gli eventi di ogni mese
+    In #📢tournament-announcements troverai le info più importanti sui tornei
+    In #👑all-qlash-clans è presente una lista con tutti i clan QLASH
+    In #roles-assignment puoi chiedere il ruolo rispettivo al tuo clan
+    Infine nell'area lounge potrai parlare con chiunque
+    """
     await member.dm_channel.send(welcome_message)
 
 
