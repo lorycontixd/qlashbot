@@ -16,4 +16,5 @@ async def reddit_webhook():
     async with aiohttp.ClientSession() as session:
         async with session.get('https://www.reddit.com/r/Brawlstars.json') as resp:
             if resp.status == 200:
-                    await ch.send(await resp.text())
+                print("Sending to channel: "+ch.name)
+                await ch.send(await resp.text())
