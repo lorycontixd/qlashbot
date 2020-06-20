@@ -3,11 +3,11 @@ from discord.ext import tasks, commands
 class MyCog(commands.Cog):
     def __init__(self):
         self.index = 0
-        self.printer.start()
+        self.counter.start()
 
     def cog_unload(self):
         print("stopping...")
-        self.printer.cancel()
+        self.counter.cancel()
 
     @tasks.loop(seconds=5.0)
     async def counter(self):
@@ -15,9 +15,6 @@ class MyCog(commands.Cog):
         self.index += 1
         if self.index == 15:
             cog_unload(self)
-
-    def cog_unload(self):
-        self.printer.cancel()
 
     @counter.before_loop
     async def before_counter(self):
