@@ -972,7 +972,7 @@ async def read_file(message):
                 dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
                 #await message.delete(delay=3.0)
                 #alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
-                #await alert1.delete(delay=5.0)
+                #await alert1.delete(delay=5.0) 
 
 async def vice(ctx):
     clans = LoadClans()#list of dicts
