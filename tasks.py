@@ -1,5 +1,6 @@
 from discord.ext import tasks, commands
 from instances import *
+from datetime import datetime
 
 class MyCog(commands.Cog):
     def __init__(self):
@@ -10,9 +11,12 @@ class MyCog(commands.Cog):
     def cog_unload(self):
         self.counter.cancel()
 
-    @tasks.loop(seconds=1.0)
+    @tasks.loop(minutes=1.0)
     async def counter(self):
-        await self.ch.send(self.index)
-        self.index += 1
-        if self.index == 15:
-            cog_unload(self)
+        t = datetime.now()
+        mins = t.strftime('%M')
+        if mins % 2==0:
+            await self.ch.send("It's "+t.strftime("%d%m%Y , %H%M"))
+            self.index += 1
+            if self.index == 15:
+                cog_unload(self)
