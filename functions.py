@@ -1042,7 +1042,7 @@ async def read_file(message):
 #****************
 
 async def get_audit_logs_(ctx,member:discord.Member):
-    entries = await guild.audit_logs(limit=None, user=member).flatten()
+    entries = await ctx.guild.audit_logs(limit=None, user=member).flatten()
     await ctx.send("First Audit Log entry for user"+str(member)+"\n"+str(entries[0]))
 
 #**************************++ webhooks ++********************************
