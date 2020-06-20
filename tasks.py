@@ -3,7 +3,9 @@ import aiohttp
 from discord.ext import tasks, commands
 from instances import *
 import random
+from mongodb import *
 from datetime import datetime
+
 
 
 #ugly workaroudn to trigger immediately
@@ -21,6 +23,17 @@ async def reddit_webhook():
                 await ch.send("Reddit?")
                 #await ch.send(await resp.text())
 
-#async def goodmorning():
-#    ch=bot.get_channel(int(bot_developer_channel))
-#    await 
+async def reg_member():
+    ch = bot.get_channel(int(bot_developer_channel))
+    #membercount = 14540
+    today = date.today()
+    mydict = {
+        "Date":str(today),
+        "Members":int(membercount)
+    }
+    coll_membercount.insert_one(mydict)
+    msg = await ch.send("Registered today's member count")
+
+async def hello():
+    ch = bot.get_channel(int(bot_developer_channel))
+    await ch.send("Hello")
