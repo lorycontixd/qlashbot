@@ -12,7 +12,7 @@ WELCOME_MESSAGE_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/72019341
 WELCOME_MESSAGE_FIRST_SECTION = """**Welcome to the QLASH Brawl Stars server!**
 Let us be the first to wish you a pleasant stay on our server.
 
-Please make yourself comfortable by reading up on our rules and check out our clans in {ALL_QLASH_CLANS}.
+Please make yourself comfortable by reading up on our rules and check out our clans in {ALL_QLASH_CLANS_CHANNEL}.
 """
 
 WELCOME_MESSAGE_SECOND_SECTION = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Server QLASH Brawl Stars", color=0x00ccff)
@@ -28,14 +28,6 @@ WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value="[@qlash_brawls
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value="[QLASH YouTube]({url})".format(url=constants.QLASH_BRAWLSTARS_YOUTUBE_URL), inline=False)
 
 WELCOME_MESSAGE_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723873104798941234/e50a80e8-6335-42c2-b82e-abf46b175893-profile_banner-480.png"
-
-WELCOME_MESSAGE_THIRD_SECTION = """**Channel layout**
-* In {WELCOME_AND_RULES_CHANNEL}, you will find all the rules that you must follow while staying on this server.
-* In {CLAN_RULES_CHANNEL}, you will find the rules that you must follow if you are a member of an official club.
-* In {CALENDAR_CHANNEL}, you will find the upcoming events for this month.
-* In {TOURNAMENT_ANNOUNCEMENT_CHANNEL} you will find information about participating in the tournaments.
-* In your club channel, you will be able to chat with other members of your club.
-"""
 
 RULES_MESSAGE_FIRST_SECTION = """**Rules**
 
