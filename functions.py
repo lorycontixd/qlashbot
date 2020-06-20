@@ -16,6 +16,7 @@ from pyowm import OWM
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
+from discord import Webhook, AsyncWebhookAdapter
 from datetime import datetime
 from random import randint
 from dateutil import tz
@@ -297,6 +298,12 @@ async def flip(ctx):
 		response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
 		await ctx.channel.send(response)
 
+async def invite_(ctx):
+    message = ctx.message
+    msg = await ctx.send("Creating invite..")
+    await message.channel.create_invite(reason='Advertisement purposes')
+    await msg.delete(delay=1.0)
+
 async def hello_(ctx):
     await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
 
@@ -463,6 +470,17 @@ async def getclan(ctx,tag):
     e.add_field(name="Top member", value=str(members[0].name)+'\n'+str(members[0].trophies)+'\n'+str(members[0].role), inline=True)
     e.set_footer(text="Created By Lore")
     await ctx.send(embed=e)
+
+async def vice(ctx): #count vicePresidents
+    clans = LoadClans()#list of dicts
+    for i in range(11):
+        tag = clans[i]["Tag"]
+        club = await myclient.get_club(tag)
+        count=0
+        for member in club.members:
+            if member.role == 'vicePresident':
+                count+=1
+        await ctx.send(str(clans[i]["Name"])+": "+str(count))
 
 #---- SET FUNCTION (GIVE ROLE TO MEMBERS FOR CURRENT CLAN)
 async def set_(ctx,player:discord.Member,gametag):
@@ -1026,13 +1044,8 @@ async def read_file(message):
                 #alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
                 #await alert1.delete(delay=5.0)
 
-async def vice(ctx):
-    clans = LoadClans()#list of dicts
-    for i in range(11):
-        tag = clans[i]["Tag"]
-        club = await myclient.get_club(tag)
-        count=0
-        for member in club.members:
-            if member.role == 'vicePresident':
-                count+=1
-        await ctx.send(str(clans[i]["Name"])+": "+str(count))
+#**************************++ webhooks ++********************************
+async def foo():
+    async with aiohttp.ClientSession() as session:
+        webhook = Webhook.from_url('https://www.google.com/', adapter=AsyncWebhookAdapter(session))
+        await webhook.send('Hello World', username='Foo')

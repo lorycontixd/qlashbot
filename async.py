@@ -200,6 +200,11 @@ async def bs_puns(ctx):
 async def qlash(ctx):
     await qlash_(ctx)
 
+@commands.cooldown(1,60,commands.BucketType.user)
+@util.command(name='invite',brief="(UTIL) Create an invite")
+async def invite(ctx):
+    await invite_(ctx)
+
 @commands.cooldown(1, 60, commands.BucketType.channel)
 @util.command(name='qlash-allclans',hidden=True,brief='(UTIL) (BS30+) List all ingame qlash clans.',description = desc_qlash_allclans)
 async def qlash_allclans(ctx):
