@@ -49,8 +49,8 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
-    g = bot.fetch_guild(415221296247341066)
-    ch = g.get_channel(int(bot_developer_channel))
+    g = await bot.fetch_guild(415221296247341066)
+    ch = await g.get_channel(int(bot_developer_channel))
     await ch.send("Hi, I'm up and running.")
     apscheduler.add_job(goodmorning, 'cron',hour='23', minute='39')
     apscheduler.start()
@@ -654,6 +654,8 @@ async def serverinfo_(ctx):
 	e.add_field(name="Member count:", value=str(guild.member_count), inline=True)
 	e.add_field(name="Premium Subscription count:", value=str(guild.premium_subscription_count), inline=True)
 	e.add_field(name="System Channel:", value=str(guild.system_channel), inline=True)
+    e.add_field(name="Rules Channel:",value=str(guild.rules_channel),inline=True)
+    e.add_field(name="Public Updates Channel:",value=str(guild.public_updates_channel),inline=True)
 	e.add_field(name="Role count:", value=str(len(guild.roles)), inline=True)
 	e.add_field(name="Creation date:", value=str(guild.created_at), inline=True)
 	e.set_footer(text="Bot created by Lore")
