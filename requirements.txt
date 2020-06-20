@@ -16,7 +16,7 @@ pyowm
 python-dateutil
 python-dotenv
 pymongo
-APScheduler==3.0.0
+APScheduler
 gspread
 matplotlib
 google-cloud-datastore

@@ -17,6 +17,8 @@ from aiohttp_proxy import ProxyConnector,ProxyType
 from apscheduler.schedulers.blocking import BlockingScheduler
 from descriptions import *
 
+from modules import scheduler
+
 #*****************************************************************************************************************
 #********************************************       SETTINGS     *************************************************
 #*****************************************************************************************************************
@@ -75,6 +77,9 @@ myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connect
 bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD
 ipapi.location(ip=None, key=None, field=None) #IP
 mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm',retryWrites=False) #MONGODB
+
+apscheduler = scheduler.init_scheduler(mongoclient)
+apscheduler.start()
 
 #sched = BlockingScheduler()
 
