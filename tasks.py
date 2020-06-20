@@ -5,6 +5,7 @@ from instances import *
 import random
 from datetime import datetime
 
+
 #ugly workaroudn to trigger immediately
 @apscheduler.scheduled_job('date')
 async def reddit_webhook_now():
@@ -13,17 +14,18 @@ async def reddit_webhook_now():
 #only triggers after 15 minutes (will be fixed in 4.0)
 @apscheduler.scheduled_job('interval', minutes=15)
 async def reddit_webhook():
+    await bot.wait_until_ready()
     ch = bot.get_channel(int(bot_developer_channel))
-    await ch.send("hi")
     async with aiohttp.ClientSession() as session:
         async with session.get('https://www.reddit.com/r/Brawlstars.json') as resp:
             if resp.status == 200:
-                print("Sending to channel: "+ch.name)
+                #print("Sending to channel: "+ch.name)
                 await ch.send(await resp.text())
 
-@apscheduler.scheduled_job('cron', hour=22, minute=42)
+@apscheduler.scheduled_job('cron', hour=22, minute=55)
 async def goodmorning():
     frasi=[' fagiolini',' stelline',' cuccioli',' patatoni',' bomberoni','!']
+    await bot.wait_until_ready()
     ch=bot.get_channel(int(it_general))
     temp = random.choice(frasi)
     await ch.send("Buongiorno"+temp)
