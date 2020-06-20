@@ -530,6 +530,12 @@ async def achievement_removeall(ctx):
 #async def addpoints(ctx,player):
 
 
+@bot.command(name='countstart')
+async def t1(ctx):
+    slow_count.start()
+    print("doneee")
+
+
 try:
     bot.run(DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:

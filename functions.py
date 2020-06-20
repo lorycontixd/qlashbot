@@ -26,7 +26,7 @@ from utility import *
 from mongodb import *
 from instances import *
 from games import *
-
+from tasks import *
 from google import *
 from weather import *
 from modules import brawlstats, welcome_message
