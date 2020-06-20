@@ -6,7 +6,7 @@ WELCOME_MESSAGE_ICON_URL = "https://cdn.discordapp.com/attachments/7201934111136
 WELCOME_MESSAGE_IMAGE_URL = "https://cdn.discordapp.com/banners/415221296247341066/5feac1eee07f969ecbc6aa346738edb6.jpg?size=512"
 WELCOME_MESSAGE_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
 WELCOME_MESSAGE_FIRST_SECTION = """**Welcome to the QLASH Brawl Stars server!**
-Let us be the first one to wish you a pleasant stay on our server.
+Let us be the first to wish you a pleasant stay on our server.
 
 Please make yourself comfortable by reading up on our rules and check out our clans in #👑all-qlash-clans.
 """
@@ -23,16 +23,13 @@ WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value=constants.QLASH_B
 
 RULES_SECTION = """**Rules**
 
-Before you start to chat in our community channels please read the rules:
+Before you start to chat in our community channels please read these rules. We inform all our users that by joining this server you give the tacit approval to all the following rules.
 
-Basic  info about the server
-
-We inform all our users that by joining this server you give the tacit approval to all the following rules.
-This server has members of all nationalities, beliefs, religions, ages, orientations etc., so be respectful of others while you are here.
+This server has members of all nationalities, beliefs, religions, ages and orientations, so be respectful of others while you are here.
 
 **General Rules**
 
-1- Intolerance, racism or any kind of vulgarity is prohibited in this server in any form (Audio, text, private chat, tags, images etc.) please to be respectful to every other user, otherwise you will be kicked/banned regardless of your role.
+1- Intolerance, racism or any kind of vulgarity is prohibited on this server in any form (audio, text, private chat, tags, images etc.) please to be respectful to every other user, otherwise you will be kicked/banned regardless of your role.
 2- Do not spam. This includes our discord channels and any users on the server; including, but not limited to admins, streamer, players, casters, influencers, moderators and coaches. This also includes spam of symbols, letters, images, links, emotes or videos.
 3- Inappropriate Usernames or Profile Pics are not allowed.
 4- No porn material is permitted in any form on this server, also sexism is forbidden.
@@ -43,7 +40,6 @@ This server has members of all nationalities, beliefs, religions, ages, orientat
 9- You can't share links to other servers/groups
 (Discord, telegram, etc...) without approval.
 10- You can't promote external Clans without approval.
-
 
 **Admin/Mod rules**
 
