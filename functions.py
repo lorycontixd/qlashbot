@@ -679,7 +679,8 @@ async def welcome_announcement(ctx,channelname):
             async with aiohttp.ClientSession() as session:
                 async with session.get(welcome_message.RULES_SECTION_IMAGE_URL) as resp:
                     await channel.send(file=discord.File(BytesIO(await resp.read()),filename="rules.png"))
-            await channel.send(welcome_message.RULES_SECTION)
+            await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
+            await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
     await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):

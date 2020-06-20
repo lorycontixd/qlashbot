@@ -21,7 +21,7 @@ WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value=constants.QLASH
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value=constants.QLASH_BRAWLSTARS_TELEGRAM_URL, inline=False)
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value=constants.QLASH_BRAWLSTARS_TWITTER_URL, inline=False)
 
-RULES_SECTION = """**Rules**
+RULES_MESSAGE_FIRST_SECTION = """**Rules**
 
 Before you start to chat in our community channels please read these rules. We inform all our users that by joining this server you give the tacit approval to all of the following rules.
 
@@ -39,7 +39,9 @@ This server has members of all nationalities, beliefs, religions, ages and orien
 8- BrawlStars Account sharing is also forbidden. So please don't ask for sharing account for pushing trophies or other things related to this topic.
 9- You can't advertise or share links to other servers/groups (Discord, telegram, etc...) without prior approval of management.
 10- You can't promote unofficial or external clans without prior approval from management.
+"""
 
+RULES_MESSAGE_SECOND_SECTION ="""
 **Admin/Moderator rules**
 
 1- Admins and Moderators keep the server under control, if they ask you to stop doing something, please listen to them.
