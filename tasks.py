@@ -20,6 +20,15 @@ class MyCog(commands.Cog):
         if self.index == 5:
             cog_unload(self)
 
-@apscheduler.scheduled_job('cron', hour=21, minute=38)
-async def print_console_h():
-    print("h")
+#ugly workaroudn to trigger immediately
+@apscheduler.scheduled_job('date')
+async def reddit_webhook_now():
+   await reddit_webhook()
+
+#only triggers after 15 minutes (will be fixed in 4.0)
+@apscheduler.scheduled_job('interval', minutes=15)
+async def reddit_webhook():
+    async with aiohttp.ClientSession() as session:
+        async with session.get('https://www.reddit.com/r/Brawlstars.json') as resp:
+            if resp.status == 200:
+                    print(await resp.text())
