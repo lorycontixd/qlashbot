@@ -29,6 +29,14 @@ WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value="[QLASH YouTube](
 
 WELCOME_MESSAGE_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723873104798941234/e50a80e8-6335-42c2-b82e-abf46b175893-profile_banner-480.png"
 
+WELCOME_MESSAGE_THIRD_SECTION = """**Channel layout**
+* In {WELCOME_AND_RULES_CHANNEL}, you will find all the rules that you must follow while staying on this server.
+* In {CLAN_RULES_CHANNEL}, you will find the rules that you must follow if you are a member of an official club.
+* In {CALENDAR_CHANNEL}, you will find the upcoming events for this month.
+* In {TOURNAMENT_ANNOUNCEMENT_CHANNEL} you will find information about participating in the tournaments.
+* In your club channel, you will be able to chat with other members of your club.
+"""
+
 RULES_MESSAGE_FIRST_SECTION = """**Rules**
 
 Before you start to chat in our community channels please read these rules. We inform all our users that by joining this server you give the tacit approval to all of the following rules.

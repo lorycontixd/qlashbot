@@ -706,6 +706,7 @@ async def welcome_announcement(ctx,channelname):
             await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
             await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS = bot.get_channel(566213862756712449).mention))
             await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
+            await channel.send(embed=welcome_message.WELCOME_MESSAGE_THIRD_SECTION)
             await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
             await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
             await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
