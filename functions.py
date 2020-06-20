@@ -1044,3 +1044,11 @@ async def read_file(message):
 async def get_audit_logs_(ctx,member:discord.Member):
     entries = await ctx.guild.audit_logs(limit=None, user=member).flatten()
     await ctx.send("First Audit Log entry for user"+str(member)+"\n"+str(entries[0]))
+
+#****************
+
+async def webhook_insta():
+    async with aiohttp.ClientSession() as session:
+        url = 'https://discordapp.com/api/webhooks/723918930766200892/HN79cUZPMfXtMbF4JnZkuRUkCepDR1cH_JvqBs4IOfU3h6KaehjSqPtAyHzLhZ5Vkd35'
+        webhook = Webhook.from_url(url, adapter=AsyncWebhookAdapter(session))
+        await webhook.send('Hello World', username='Foo')
