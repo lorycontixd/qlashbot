@@ -25,7 +25,7 @@ WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value="[t.me/QLASHBS](
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Facebook", value="[QLASH Brawl Stars]({url})".format(url=constants.QLASH_BRAWLSTARS_FACEBOOK_URL), inline=False)
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value="[@brawlQLASH]({url})".format(url=constants.QLASH_BRAWLSTARS_TWITTER_URL), inline=True)
 WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value="[@qlash_brawlstars]({url})".format(url=constants.QLASH_BRAWLSTARS_INSTAGRAM_URL), inline=True)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value="[QLASH YouTube]({url})".format(url=constants.QLASH_BRAWLSTARS_YOUTUBE_URL), inline=True)
+WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value="[QLASH YouTube]({url})".format(url=constants.QLASH_BRAWLSTARS_YOUTUBE_URL), inline=False)
 
 WELCOME_MESSAGE_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723873104798941234/e50a80e8-6335-42c2-b82e-abf46b175893-profile_banner-480.png"
 
