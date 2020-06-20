@@ -320,6 +320,14 @@ async def annouce(ctx,channel_name,*message):
         return
     await write_message(ctx,channel_name,*message)
 
+@mod.command(name='welcome',brief='(MOD) Send a welcome message to a specific channel by the bot.')
+async def welcome(ctx,channel_name):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("You don't have the permission for this command!")
+        return
+    await welcome_announcement(ctx,channel_name)
+
 @mod.command(name='refresh-banlist',brief='(MOD) (BS~) Get members who break the ingame banlist.',description=desc_refresh_banlist)
 async def test(ctx):
     author = ctx.message.author

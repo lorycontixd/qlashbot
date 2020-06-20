@@ -28,7 +28,7 @@ from games import *
 
 from google import *
 from weather import *
-from modules import brawlstats
+from modules import brawlstats, welcome_message
 
 #@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
 #async def scheduled_job():
@@ -666,6 +666,19 @@ async def write_message(ctx,channelname,*message):
             print("channel: ",str(channel))
             print("channelname: ",str(channelname))
             await channel.send(temp)
+    await msg.add_reaction('✅')
+
+async def welcome_announcement(ctx,channelname):
+    msg = ctx.message
+    guild = ctx.guild
+    for channel in guild.text_channels:
+        if str(channel.name) == str(channelname):
+            await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
+            await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS = bot.get_channel(566213862756712449).mention))
+            await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
+            await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
+            await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
+            await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
     await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):
