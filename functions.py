@@ -667,6 +667,29 @@ async def write_message(ctx,channelname,*message):
             await channel.send(temp)
     await msg.add_reaction('✅')
 
+WELCOME_MESSAGE_ICON_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850143480152114/PzQwxlPN_400x400.jpg"
+WELCOME_MESSAGE_IMAGE_URL = "https://cdn.discordapp.com/banners/415221296247341066/5feac1eee07f969ecbc6aa346738edb6.jpg?size=512"
+WELCOME_MESSAGE_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
+
+async def welcome_announcement(ctx,channelname):
+    msg = ctx.message
+    guild = ctx.guild
+    for channel in guild.text_channels:
+        if str(channel.name) == str(channelname):
+            embed=discord.Embed(title="QLASH -- Brawl Stars", url="https://www.discord.gg/qlash-brawlstars", description="Official Discord Server QLASH Brawl Stars", color=0x00ccff)
+            embed.set_author(name="QLASH -- Brawl Stars", url="https://www.discord.gg/qlash-brawlstars", icon_url=WELCOME_MESSAGE_ICON_URL)
+            embed.set_thumbnail(url=WELCOME_MESSAGE_THUMBNAIL_URL)
+            embed.set_image(url=WELCOME_MESSAGE_IMAGE_URL)
+            embed.add_field(name="Discord", value="https://www.discord.gg/qlash-brawlstars", inline=False)
+            embed.add_field(name="Home page", value="https://www.qlash.gg", inline=False)
+            embed.add_field(name="Instagram", value="https://www.instagram.com/qlash_brawlstars", inline=False)
+            embed.add_field(name="Telegram", value="https://www.telegram.me/QLASHBS", inline=False)
+            embed.add_field(name="Twitter", value="https://www.twitter.com/brawlqlash", inline=False)
+            #color=0x00ccff
+            #await self.bot.say(embed=embed)
+            await channel.send(embed=embed)
+    await msg.add_reaction('✅')
+
 async def purge_(ctx,amount):
 	author = ctx.message.author
 	await ctx.channel.purge(limit=int(amount)+1)
