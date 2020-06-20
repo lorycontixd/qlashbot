@@ -11,12 +11,10 @@ class MyCog(commands.Cog):
     def cog_unload(self):
         self.counter.cancel()
 
-    @tasks.loop(minutes=1.0)
+    @tasks.loop(seconds=30.0)
     async def counter(self):
         t = datetime.now()
-        mins = t.strftime('%M')
-        if mins % 2==0:
-            await self.ch.send("It's "+t.strftime("%d%m%Y , %H%M"))
-            self.index += 1
-            if self.index == 15:
-                cog_unload(self)
+        await self.ch.send("It's "+t.strftime("%d%m%Y , %H%M%S"))
+        self.index += 1
+        if self.index == 5:
+            cog_unload(self)
