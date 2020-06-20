@@ -300,7 +300,9 @@ async def flip(ctx):
 
 async def invite_(ctx):
     message = ctx.message
+    msg = await ctx.send("Creating invite..")
     await message.channel.create_invite(reason='Advertisement purposes')
+    await msg.delete(delay=1.0)
 
 async def hello_(ctx):
     await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
