@@ -28,7 +28,7 @@ from games import *
 
 from google import *
 from weather import *
-from modules import brawlstats
+from modules import brawlstats, welcome_message
 
 #@sched.scheduled_job('cron', day_of_week='mon-fri', hour=9)
 #async def scheduled_job():
@@ -46,11 +46,7 @@ from modules import brawlstats
 ##
 bot_status = True
 last_update = ''
-QLASH_BRAWLSTARS_HOMEPAGE_URL="https://www.qlash.gg"
-QLASH_BRAWLSTARS_DISCORD_URL="https://www.discord.gg/qlash-brawlstars"
-QLASH_BRAWLSTARS_TELEGRAM_URL="https://www.telegram.me/QLASHBS"
-QLASH_BRAWLSTARS_INSTAGRAM_URL="https://www.instagram.com/qlash_brawlstars"
-QLASH_BRAWLSTARS_TWITTER_URL="https://www.twitter.com/brawlqlash"
+
 async def on_ready_():
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
@@ -671,32 +667,19 @@ async def write_message(ctx,channelname,*message):
             await channel.send(temp)
     await msg.add_reaction('✅')
 
-WELCOME_MESSAGE_ICON_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850143480152114/PzQwxlPN_400x400.jpg"
-WELCOME_MESSAGE_IMAGE_URL = "https://cdn.discordapp.com/banners/415221296247341066/5feac1eee07f969ecbc6aa346738edb6.jpg?size=512"
-WELCOME_MESSAGE_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
-WELCOME_MESSAGE_FIRST_SECTION = """**Welcome to the QLASH Brawl Stars server!**
-
-Let us be the first one to wish you a pleasant stay on our server.
-
-Please make yourself comfortable by reading up on our rules and check out our clans in #👑all-qlash-clans.
-"""
-WELCOME_MESSAGE_SECOND_SECTION = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Server QLASH Brawl Stars", color=0x00ccff)
-WELCOME_MESSAGE_SECOND_SECTION.set_author(name="QLASH -- Brawl Stars", url=QLASH_BRAWLSTARS_DISCORD_URL, icon_url=WELCOME_MESSAGE_ICON_URL)
-WELCOME_MESSAGE_SECOND_SECTION.set_thumbnail(url=WELCOME_MESSAGE_THUMBNAIL_URL)
-WELCOME_MESSAGE_SECOND_SECTION.set_image(url=WELCOME_MESSAGE_IMAGE_URL)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Discord", value=QLASH_BRAWLSTARS_DISCORD_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Home page", value=QLASH_BRAWLSTARS_HOMEPAGE_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value=QLASH_BRAWLSTARS_INSTAGRAM_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value=QLASH_BRAWLSTARS_TELEGRAM_URL, inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value=QLASH_BRAWLSTARS_TWITTER_URL, inline=False)
+from io import BytesIO
 
 async def welcome_announcement(ctx,channelname):
     msg = ctx.message
     guild = ctx.guild
     for channel in guild.text_channels:
         if str(channel.name) == str(channelname):
-            await channel.send(WELCOME_MESSAGE_FIRST_SECTION)
-            await channel.send(embed=WELCOME_MESSAGE_SECOND_SECTION)
+            await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION)
+            await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
+            async with aiohttp.ClientSession() as session:
+                async with session.get(welcome_message.RULES_SECTION_IMAGE_URL) as resp:
+                    await channel.send(file=discord.File(BytesIO(await resp.read()),filename="rules.png"))
+            await channel.send(welcome_message.RULES_SECTION)
     await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):

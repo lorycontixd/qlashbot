@@ -1,0 +1,5 @@
+QLASH_BRAWLSTARS_HOMEPAGE_URL="https://www.qlash.gg"
+QLASH_BRAWLSTARS_DISCORD_URL="https://www.discord.gg/qlash-brawlstars"
+QLASH_BRAWLSTARS_TELEGRAM_URL="https://www.telegram.me/QLASHBS"
+QLASH_BRAWLSTARS_INSTAGRAM_URL="https://www.instagram.com/qlash_brawlstars"
+QLASH_BRAWLSTARS_TWITTER_URL="https://www.twitter.com/brawlqlash"
