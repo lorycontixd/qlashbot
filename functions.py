@@ -1044,9 +1044,3 @@ async def read_file(message):
 async def get_audit_logs_(ctx,member:discord.Member):
     entries = await ctx.guild.audit_logs(limit=None, user=member).flatten()
     await ctx.send("First Audit Log entry for user"+str(member)+"\n"+str(entries[0]))
-
-#**************************++ webhooks ++********************************
-async def foo():
-    async with aiohttp.ClientSession() as session:
-        webhook = Webhook.from_url('https://www.google.com/', adapter=AsyncWebhookAdapter(session))
-        await webhook.send('Hello World', username='Foo')
