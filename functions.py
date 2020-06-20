@@ -49,7 +49,8 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
-    ch = bot.get_channel(int(bot_developer_channel))
+    g = bot.fetch_guild(415221296247341066)
+    ch = g.get_channel(int(bot_developer_channel))
     await ch.send("Hi, I'm up and running.")
     apscheduler.add_job(goodmorning, 'cron',hour='23', minute='39')
     apscheduler.start()
