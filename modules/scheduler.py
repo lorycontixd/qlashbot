@@ -16,6 +16,6 @@ def init_scheduler(mongodb):
         'coalesce': False,
         'max_instances': 3
     }
-    scheduler = AsyncIOScheduler()
+    scheduler = AsyncIOScheduler(timezone=utc)
     #scheduler.configure(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
     return scheduler
