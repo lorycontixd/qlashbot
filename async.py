@@ -25,9 +25,6 @@ from functions import *
 
 @bot.event
 async def on_ready():
-    ch = instances.bot.get_channel(int(bot_developer_channel))
-    messages = ["Here I am. Hrmmm.", "Up and runnning I am.", "Hello again! I'm here. Yes. Hrmmmm.", "Back on track, I am."]
-    await ch.send(random.choice(messages))
     await on_ready_()
 
 @bot.event
