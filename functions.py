@@ -34,7 +34,7 @@ from modules import brawlstats, welcome_message, scheduler
 cest = timezone('Europe/Rome')
 ##
 bot_status = True
-last_update = ''
+last_update = '' 
 
 async def on_ready_():
     scheduler.add_default_tasks(apscheduler)
