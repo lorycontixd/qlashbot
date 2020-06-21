@@ -59,17 +59,17 @@ async def _process_banned_member(session, member, message):
         regex = re.compile("(\d+?)d")
         str_integer_match = regex.match(member['ban']).group(1)
         time_expire = int(str_integer_match)
+        if time_expire is None:
+            raise Exception
     except:
         await message.add_reaction('📅')
 
-    if time_expire is None:
-        await message.add_reaction('📅')
+
+    if(_check_time_expired(message.created_at.date(), time_expire)):
+        await message.delete()
+        return
     else:
-        if(_check_time_expired(message.created_at.date(), time_expire)):
-            await message.delete()
-            return
-        else:
-            pass
+        pass
 
     await message.remove_reaction('✅', instances.bot.user)
     await message.remove_reaction('❌', instances.bot.user)
@@ -111,7 +111,7 @@ def _check_time_expired(d0, time_expire):
     return delta.days >= time_expire
 
 async def reddit_webhook():
-   ch = instances.bot.get_channel(int(bot_developer_channel))
+   ch = instances.bot.get_channel(int(instances.bot_developer_channel))
    async with aiohttp.ClientSession() as session:
        async with session.get('https://www.reddit.com/r/Brawlstars.json') as resp:
            if resp.status == 200:
@@ -135,7 +135,7 @@ async def hello(param):
     await ch.send("Goodmorning, scheduled this message has been with " + param)
 
 async def check_banlist_channel():
-    botdev = instances.bot.get_channel(int(bot_developer_channel))
+    botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
     ch = instances.bot.get_channel(724193592536596490)#int(instances.bot_banlist_channel))
     messages = await ch.history(limit=200).flatten()
     connector = aiohttp.TCPConnector(limit_per_host=2)
