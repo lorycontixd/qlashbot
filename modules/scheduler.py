@@ -33,5 +33,5 @@ Example scheduler trigers:
 def add_default_tasks(scheduler):
     #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
     CEST = timezone('Europe/Rome')
-    scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='date',hour="18",minute="36",timezone=CEST,)
+    scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='cron',hour='18', minute='45',timezone=timezone('Europe/Berlin'))
     pass

@@ -51,7 +51,6 @@ async def _retrieve_member(session, gametag):
                 return NOT_FOUND
 
 
-
 async def _process_banned_member(session, member, message):
     time_expire = None
     try:
