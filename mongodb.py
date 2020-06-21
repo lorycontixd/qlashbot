@@ -60,7 +60,7 @@ async def view_database(ctx):
 #*****************************************************************************************************************
 
 def get_clan(*nname):
-    db = minstances.ongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     name = " ".join(nname[:])
     document = coll_qlashclans.find_one({"Name":{"$eq":str(name)}})
