@@ -81,7 +81,7 @@ async def on_command_error(ctx, error):
         await msg.delete(delay=4.0)
         await message.delete(delay=5.0)
     elif isinstance(error, commands.errors.UserInputError):
-        msg = await ctx.send('ArguementError: Given argument bad was.. 😕')
+        msg = await ctx.send('ArguementError: Given argument not accepted is.. 😕')
         reason = 'UserInputError'
         await msg.delete(delay=4.0)
         await message.delete(delay=5.0)
@@ -126,22 +126,22 @@ async def on_command_completion(ctx):
 @bot.group(pass_context=True,cog_name="Fun",case_insensitive=True)
 async def fun(ctx):
         if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed was - Fun ...")
+            await ctx.send("Invalid subcommand passed is - Fun ...")
 
 @bot.group(pass_context=True,cog_name="Mod",case_insensitive=True)
 async def mod(ctx):
         if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed was - Moderation ...")
+            await ctx.send("Invalid subcommand passed is - Moderation ...")
 
 @bot.group(pass_context=True,cog_name="Util",case_insensitive=True)
 async def util(ctx):
         if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed was - Utility ...")
+            await ctx.send("Invalid subcommand passed is - Utility ...")
 
 @bot.group(pass_context=True,cog_name="Sys",case_insensitive=True)
 async def sys(ctx):
         if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed was - System ...")
+            await ctx.send("Invalid subcommand passed is - System ...")
 
 #*****************************************************************************************************************
 #**********************************************       FUN     ****************************************************
