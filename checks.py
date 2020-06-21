@@ -18,7 +18,7 @@ def checkforrole(member: discord.Member, *roles):
 async def Check(ctx,member):
     allowed = ["Daddedavided#2841","Lore#5934"]
     if str(member) not in allowed:
-        await ctx.send("You do not have the permission for this command! ")
+        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
         return False
     return True
 
