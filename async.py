@@ -52,8 +52,8 @@ async def on_member_update(before,after):
 @bot.event
 async def on_message(message):
     await check_bad_words(message)
-    #await check_instarole(message)
-    await insta_role_ended(message)
+    await check_instarole(message)
+    #await insta_role_ended(message)
     await check_roles_assignement(message)
     await read_file(message)
     await bot.process_commands(message)
