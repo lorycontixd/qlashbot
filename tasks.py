@@ -1,9 +1,8 @@
 import aiohttp
 
-from discord.ext import tasks, commands
-from instances import *
 import random
 from mongodb import *
+import instances
 
 #ugly workaroudn to trigger immediately
 #@apscheduler.scheduled_job('date')
@@ -21,8 +20,9 @@ from mongodb import *
                 #await ch.send(await resp.text())
 
 async def reg_member():
-    ch = bot.get_channel(int(bot_developer_channel))
-    #membercount = 14540
+    ch = instances.bot.get_channel(int(instances.bot_developer_channel))
+    db = instances.mongoclient.heroku_q2z34tjm
+    coll_membercount = db.QLASHBot_MemberCount
     today = date.today()
     mydict = {
         "Date":str(today),
@@ -32,5 +32,5 @@ async def reg_member():
     msg = await ch.send("Registered today's member count")
 
 async def hello():
-    ch = bot.get_channel(int(bot_developer_channel))
+    ch = instances.bot.get_channel(int(instances.bot_developer_channel))
     await ch.send("Goodmorning Alex, this message is scheduled!")
