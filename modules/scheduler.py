@@ -26,4 +26,4 @@ def init_scheduler(mongodb):
 
 def add_default_tasks(scheduler):
 #    scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
-    scheduler.add_job(hello, id='hello', trigger='interval', seconds=1)
+    scheduler.add_job(hello, id='hello', trigger='interval', seconds=15)
