@@ -12,6 +12,7 @@ def extract_fields(message):
     string.close()
     return fields_dict.attrib
 
-fields = extract_fields(""" name="QLS | Lore" tag="#20VYYG2L" ban="40d" reason="Insults" discord="Lore#5934" """)
+fields = extract_fields(""" name = "QLS | Lore" tag= "#20VYYG2L"
+ban="40d" reason = "Insults" discord="Lore#5934" """)
 #{'name': 'QLS | Lore', 'tag': '#20VYYG2L', 'ban': '40d', 'reason': 'Insults', 'discord': 'Lore#5934'}
 print(fields)

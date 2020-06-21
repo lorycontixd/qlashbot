@@ -32,4 +32,5 @@ Example scheduler trigers:
 """
 def add_default_tasks(scheduler):
     #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
+    scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='date')
     pass
