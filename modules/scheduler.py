@@ -5,6 +5,7 @@ from apscheduler.jobstores.mongodb import MongoDBJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 
 from tasks import *
+CEST = timezone('Europe/Rome')
 
 def init_scheduler(mongodb):
     jobstores = {
@@ -32,5 +33,5 @@ Example scheduler trigers:
 """
 def add_default_tasks(scheduler):
     #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
-    scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='date')
+    scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='cron',hour="22",minute="00",timezone=CEST,)
     pass

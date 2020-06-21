@@ -107,6 +107,7 @@ async def hello(param):
     await ch.send("Goodmorning, scheduled this message has been with " + param)
 
 async def check_banlist_channel():
+    botdev = instances.bot.get_channel(int(bot_developer_channel))
     ch = instances.bot.get_channel(724193592536596490)#int(instances.bot_banlist_channel))
     messages = await ch.history(limit=200).flatten()
     connector = aiohttp.TCPConnector(limit_per_host=2)
@@ -117,3 +118,4 @@ async def check_banlist_channel():
             banned_member = _extract_banned_member(message.content)
             statements.append(_process_banned_member(session, banned_member, message))
         await asyncio.gather(*statements)
+    await botdev.send("Banlist was successfully checked!")
