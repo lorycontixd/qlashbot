@@ -108,7 +108,7 @@ async def hello(param):
 
 async def check_banlist_channel():
     ch = instances.bot.get_channel(724193592536596490)#int(instances.bot_banlist_channel))
-    messages = await ch.history(limit=123).flatten()
+    messages = await ch.history(limit=200).flatten()
     connector = aiohttp.TCPConnector(limit_per_host=2)
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
     async with aiohttp.ClientSession(connector=connector,headers=headers) as session:
