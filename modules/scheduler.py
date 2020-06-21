@@ -24,7 +24,15 @@ def init_scheduler(mongodb):
     scheduler.start()
     return scheduler
 
+"""
+Example scheduler trigers:
+    scheduler.add_job(hello, id='hello-interval', args=['interval scheduling'], trigger='interval', seconds=5)
+    scheduler.add_job(hello, id='hello-cron', args=['cron scheduling'], trigger='cron', second='5')
+    scheduler.add_job(hello, id='hello-date', args=['date scheduling'], trigger='date')
+"""
 def add_default_tasks(scheduler):
+    #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
+    scheduler.add_job(hello, id='hello-interval', args=['interval scheduling'], trigger='interval', seconds=5)
+    scheduler.add_job(hello, id='hello-cron', args=['cron scheduling'], trigger='cron', second='5')
+    scheduler.add_job(hello, id='hello-date', args=['date scheduling'], trigger='date')
     pass
-#    scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
-    #scheduler.add_job(hello, id='hello', trigger='interval', seconds=15)
