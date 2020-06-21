@@ -9,6 +9,10 @@ from xml.etree import ElementTree as ET
 from lxml import etree, html
 from io import StringIO
 
+INVALID_GAMETAG = "Invalid gametag"
+NOT_FOUND = "Not found"
+NOT_READ = "Input not read"
+
 def _extract_banned_member(message):
     string = StringIO()
     string.write("<banned>")
@@ -23,26 +27,35 @@ def _extract_banned_member(message):
 async def _retrieve_member(session, gametag):
     gametag = _retrieve_gametag(gametag)
     if not gametag:
-        return "Input not read"
+        return NOT_READ
     elif not _is_valid_gametag(gametag):
-        return "Invalid gametag"
+        return INVALID_GAMETAG
     else:
         url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = gametag[1:])
         async with session.get(url) as r:
             if r.status != 200:
-                print("Not found")
+                return NOT_FOUND
             myparser = etree.HTMLParser(encoding="utf-8")
             htmlPage = etree.HTML(await r.text(), parser=myparser)
             if (_check_missing_element(_retrieve_playerClub, htmlPage, gametag)):
                 club = _retrieve_playerClub(htmlPage)
                 return club
             else:
-                return "Not found"
+                return NOT_FOUND
 
-async def _process_banned_member(session, member, created_at):
-    #print(member, created_at)
+async def _process_banned_member(session, member, message):
     club = await _retrieve_member(session, member['tag'])
-    print(club)
+    #print(member, message.created_at,club)
+    await message.remove_reaction('✅', instances.bot.user)
+    await message.remove_reaction('❌', instances.bot.user)
+    await message.remove_reaction('❓', instances.bot.user)
+    if club in [INVALID_GAMETAG, NOT_FOUND, NOT_READ]:
+        await message.add_reaction('❓')
+    elif club.startswith("QLASH"):
+        await message.add_reaction('✅')
+    else:
+        await message.add_reaction('❌')
+
 def _check_missing_element(function, htmlPage, playerID):
     found = False
     try:
@@ -94,5 +107,5 @@ async def check_banlist_channel():
         statements = []
         for message in messages:
             banned_member = _extract_banned_member(message.content)
-            statements.append(_process_banned_member(session, banned_member, message.created_at))
+            statements.append(_process_banned_member(session, banned_member, message))
         await asyncio.gather(*statements)
