@@ -14,6 +14,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
 from previousscheduler import *
+from tasks import check_banlist_channel
 #from scheduler import *
 #from leagues import *
 
