@@ -2,7 +2,7 @@
 from pprint import pprint
 from datetime import date
 import re
-
+import instances
 
 # coll_registered = db.QLASHBot_Registered
 # coll_commandlogs = db.QLASHBot_CommandLogs
