@@ -100,7 +100,7 @@ async def reg_member():
         "Members":int(membercount)
     }
     coll_membercount.insert_one(mydict)
-    msg = await ch.send("Today's member count registered has been... Hrmm... Yes!")
+    msg = await ch.send("Today's member count registered has been registered!")
 
 async def hello(param):
     ch = instances.bot.get_channel(int(instances.bot_developer_channel))

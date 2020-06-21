@@ -13,6 +13,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
+#from previousscheduler import *
 #from scheduler import *
 #from leagues import *
 
@@ -532,9 +533,9 @@ async def achievement_removeall(ctx):
 #async def addpoints(ctx,player):
 
 
-@bot.command(name='countstart')
-async def t1(ctx):
-    a = MyCog()
+#@bot.command(name='countstart')
+#async def t1(ctx):
+#    a = MyCog()
 
 
 
