@@ -73,12 +73,26 @@ clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
 #*****************************************************************************************************************
 #*********************************************       CLIENTS     *************************************************
 #*****************************************************************************************************************
-myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector) #BRAWLSTATS
-bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD
-ipapi.location(ip=None, key=None, field=None) #IP
-mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm',retryWrites=False) #MONGODB
+myclient = None
 
-apscheduler = scheduler.init_scheduler(mongoclient)
+if myclient is None:
+    myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector) #BRAWLSTATS
+
+bot = None
+
+if bot is None:
+    bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD
+
+ipapi.location(ip=None, key=None, field=None) #IP
+
+mongoclient = None
+
+if mongoclient is None:
+    mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm',retryWrites=False) #MONGODB
+
+apscheduler = None
+if apscheduler is None:
+    apscheduler = scheduler.init_scheduler(mongoclient)
 
 #sched = BlockingScheduler()
 

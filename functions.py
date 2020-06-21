@@ -27,10 +27,9 @@ from utility import *
 from mongodb import *
 from instances import *
 from games import *
-from tasks import *
 from google import *
 from weather import *
-from modules import brawlstats, welcome_message
+from modules import brawlstats, welcome_message, scheduler
 
 cest = timezone('Europe/Rome')
 ##
@@ -38,9 +37,7 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
-    apscheduler.start()
-    apscheduler.add_job(reg_member, trigger='interval',days=1,start_date='2020-06-21 22:30:00',timezone=cest)
-    apscheduler.add_job(hello,trigger='interval',days=1,start_date='2020-06-21 10:00:00',timezone=cest)
+    scheduler.add_default_tasks(apscheduler)
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
     print('Creation Date: ',bot.user.created_at)

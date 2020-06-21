@@ -4,9 +4,6 @@ from discord.ext import tasks, commands
 from instances import *
 import random
 from mongodb import *
-from datetime import datetime
-
-
 
 #ugly workaroudn to trigger immediately
 #@apscheduler.scheduled_job('date')

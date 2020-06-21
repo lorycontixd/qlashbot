@@ -25,7 +25,7 @@ from scheduler import *
 
 @bot.event
 async def on_ready():
-    ch = await bot.get_channel(int(bot_developer_channel))
+    ch = bot.get_channel(int(bot_developer_channel))
     messages = ["Hi, I'm here.", "Hi, I'm up and runnning.", "I'm back!!", "Back on track, I am."]
     await ch.send(random.choice(messages))
     await on_ready_()
