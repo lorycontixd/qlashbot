@@ -257,7 +257,7 @@ async def bot_stats(ctx):
 async def set(ctx,player:discord.Member,ingame_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await set_(ctx,player,ingame_tag)
 
@@ -266,7 +266,7 @@ async def set(ctx,player:discord.Member,ingame_tag):
 async def bs_pinfo(ctx,player_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await getplayer(ctx,player_tag)
 
@@ -275,7 +275,7 @@ async def bs_pinfo(ctx,player_tag):
 async def bs_cinfo(ctx,clan_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await getclan(ctx,clan_tag)
 
@@ -284,7 +284,7 @@ async def bs_cinfo(ctx,clan_tag):
 async def bs_minfo(ctx,name,clan_tag):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await search_member(ctx,name,clan_tag)
 
@@ -300,7 +300,7 @@ async def locate(ctx,ip):
 async def memberinfo(ctx,member:discord.Member):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Clan-Leader","Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     CommandLogs(ctx,'member-info')
     await member_info_(ctx,member)
@@ -309,7 +309,7 @@ async def memberinfo(ctx,member:discord.Member):
 async def serverinfo(ctx):
     author = ctx.message.author
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await serverinfo_(ctx)
 
@@ -317,7 +317,7 @@ async def serverinfo(ctx):
 async def dm(ctx,member: discord.Member, *message):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await poke(ctx,member,*message)
 
@@ -325,7 +325,7 @@ async def dm(ctx,member: discord.Member, *message):
 async def annouce(ctx,channel_name,*message):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await write_message(ctx,channel_name,*message)
 
@@ -333,7 +333,7 @@ async def annouce(ctx,channel_name,*message):
 async def welcome(ctx,channel_name):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await welcome_announcement(ctx,channel_name)
 
@@ -341,7 +341,7 @@ async def welcome(ctx,channel_name):
 async def test(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await CheckBanlist(ctx)
 
@@ -365,7 +365,7 @@ async def role_rem(ctx,member: discord.Member , *rolename):
 async def role_count(ctx,*rolename):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await role_count_(ctx,*rolename)
 
@@ -373,14 +373,14 @@ async def role_count(ctx,*rolename):
 async def print_report(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await print_report_(ctx)
 
 @mod.command(name='role-members')
 async def print_rolemembers(ctx,*rolename):
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await print_rolemembers_(ctx,*rolename)
 
@@ -388,7 +388,7 @@ async def print_rolemembers(ctx,*rolename):
 async def viewmembers(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await CompareMembers(ctx)
 
@@ -396,7 +396,7 @@ async def viewmembers(ctx):
 async def writemembers(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await WriteMembersToFile2(ctx)
 
@@ -413,7 +413,7 @@ async def get_audit_logs(ctx,member:discord.Member):
 async def view_database_(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await view_database(ctx)
 
@@ -421,7 +421,7 @@ async def view_database_(ctx):
 async def commandlog_view(ctx,limit:int):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await commandlog_view_(ctx,limit)
 
@@ -429,7 +429,7 @@ async def commandlog_view(ctx,limit:int):
 async def commandlog_clear(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await commandlog_clear_(ctx)
 
@@ -446,7 +446,7 @@ async def commandlog_clear(ctx):
 async def clan_add(ctx,roleID,channelID,tag,*clan_name):
     author = ctx.message.author
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm..."))
         return
     await clan_add_(ctx,roleID,channelID,tag,*clan_name)
 
@@ -455,7 +455,7 @@ async def clan_add(ctx,roleID,channelID,tag,*clan_name):
 async def clan_remove(ctx,*clan_name):
     author = ctx.message.author
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await clan_remove_(ctx,*clan_name)
 
@@ -463,7 +463,7 @@ async def clan_remove(ctx,*clan_name):
 async def add_single(ctx,date,membercount):
     author = ctx.message.author
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await addsingle(ctx,date,membercount)
 
@@ -471,7 +471,7 @@ async def add_single(ctx,date,membercount):
 async def graph_get(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await analyze(ctx)
 
@@ -479,7 +479,7 @@ async def graph_get(ctx):
 async def graph_reset(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await removeall(ctx)
 
@@ -487,16 +487,22 @@ async def graph_reset(ctx):
 async def graph_today(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await record(ctx)
 
 @sys.command(name='vice-count')
 async def vice_(ctx):
+    if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
+        return
     await vice(ctx)
 
 @mod.command(name="check-banlist",brief="(MOD) Check if banned players are in a QLASH Clan")
 async def _banlist(ctx):
+    if not checkforrole(author,"Sub-Coordinator","Coordinator",):
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
+        return
     await check_banlist_channel()
 #********************************* achievements *************************************
 
@@ -505,7 +511,7 @@ async def achievement_add(ctx,*params):
     parameters = " ".join(params[:])
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     name = achievement_register_(parameters)
     await ctx.send("Achievement '"+str(name)+"' added to the database!")
@@ -514,7 +520,7 @@ async def achievement_add(ctx,*params):
 async def achievement_removeall(ctx):
     author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
-        await ctx.send("Permisison to use this command you do not have... Hrmmm...")
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     achievement_removeall_(ctx)
     await ctx.send("All achievements were removed from the database")
