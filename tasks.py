@@ -12,17 +12,21 @@ from io import StringIO
 INVALID_GAMETAG = "Invalid gametag"
 NOT_FOUND = "Not found"
 NOT_READ = "Input not read"
+XML_FORM_ERROR = "Input not read"
 
 def _extract_banned_member(message):
     string = StringIO()
     string.write("<banned>")
     string.write("<player " + message + " />")
     string.write("</banned>")
-    tree = ET.fromstring(string.getvalue())
+    try:
+        tree = ET.fromstring(string.getvalue())
+        string.close()
+        fields_dict = tree.find('.//player')
+        return fields_dict.attrib
+    except:
+        return NOT_READ
 
-    fields_dict = tree.find('.//player')
-    string.close()
-    return fields_dict.attrib
 
 async def _retrieve_member(session, gametag):
     gametag = _retrieve_gametag(gametag)
@@ -44,11 +48,15 @@ async def _retrieve_member(session, gametag):
                 return NOT_FOUND
 
 async def _process_banned_member(session, member, message):
-    club = await _retrieve_member(session, member['tag'])
-    #print(member, message.created_at,club)
     await message.remove_reaction('✅', instances.bot.user)
     await message.remove_reaction('❌', instances.bot.user)
     await message.remove_reaction('❓', instances.bot.user)
+
+    if(member == XML_FORM_ERROR):
+        await message.add_reaction('❓')
+        return
+
+    club = await _retrieve_member(session, member['tag'])
     if club in [INVALID_GAMETAG, NOT_FOUND, NOT_READ]:
         await message.add_reaction('❓')
     elif club.startswith("QLASH"):
