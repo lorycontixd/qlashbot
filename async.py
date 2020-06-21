@@ -52,8 +52,8 @@ async def on_member_update(before,after):
 @bot.event
 async def on_message(message):
     await check_bad_words(message)
-    await check_instarole(message)
-    #await insta_role_ended(message)
+    #await check_instarole(message)
+    await insta_role_ended(message)
     await check_roles_assignement(message)
     await read_file(message)
     await bot.process_commands(message)
@@ -347,10 +347,18 @@ async def test(ctx):
 
 @mod.command(name='purge',brief='(MOD) Clear messages in the channel.',description=desc_purge)
 async def purge(ctx,amount):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
+        return
     await purge_(ctx,amount)
 
 @mod.command(name='purge-user',brief="(MOD) Clear all messages from a user inside a give channel")
 async def purge_user(ctx,channelname,member:discord.Member):
+    author = ctx.message.author
+    if not checkforrole(author,"Sub-Coordinator","Moderator"):
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
+        return
     await purge_user_(ctx,channelname,member)
 
 @mod.command(name="role-give",hidden=True,pass_context=True)
@@ -379,6 +387,7 @@ async def print_report(ctx):
 
 @mod.command(name='role-members')
 async def print_rolemembers(ctx,*rolename):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
         await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
@@ -493,6 +502,7 @@ async def graph_today(ctx):
 
 @sys.command(name='vice-count')
 async def vice_(ctx):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Moderator","Coordinator","QLASH"):
         await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
@@ -500,6 +510,7 @@ async def vice_(ctx):
 
 @mod.command(name="check-banlist",brief="(MOD) Check if banned players are in a QLASH Clan")
 async def _banlist(ctx):
+    author = ctx.message.author
     if not checkforrole(author,"Sub-Coordinator","Coordinator",):
         await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
