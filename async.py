@@ -13,7 +13,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
-from scheduler import *
+#from scheduler import *
 #from leagues import *
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249

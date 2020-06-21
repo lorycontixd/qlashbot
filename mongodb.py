@@ -1,7 +1,6 @@
 #tournament count file
 from pprint import pprint
 from datetime import date
-from instances import *
 import re
 
 
@@ -16,7 +15,7 @@ import re
 #*****************************************************************************************************************
 
 def register_member(member,gametag):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_registered = db.QLASHBot_Registered
     mydict = {
         "Discord" : str(member),
@@ -28,7 +27,7 @@ def register_member(member,gametag):
     coll_registered.insert_one(mydict)
 
 def check_member(discord):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_registered = db.QLASHBot_Registered
     document = coll_registered.find_one({"Discord":{"$eq":str(discord)}})
     return document #type <dict>
@@ -39,7 +38,7 @@ def remove_member(discord,tag):
     coll_registered.delete_one({"Discord":{"$eq":str(discord)}})
 
 async def view_database(ctx):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     response='```\n'
     response+="Name\tTag\tRoleID\tChannelID\n"
@@ -61,14 +60,14 @@ async def view_database(ctx):
 #*****************************************************************************************************************
 
 def get_clan(*nname):
-    db = mongoclient.heroku_q2z34tjm
+    db = minstances.ongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     name = " ".join(nname[:])
     document = coll_qlashclans.find_one({"Name":{"$eq":str(name)}})
     return document #type <dict>
 
 def LoadClans():
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     list = []
     for document in coll_qlashclans.find():
@@ -76,7 +75,7 @@ def LoadClans():
     return list #list of dicts ("Name","Tag","RoleID","ChannelID")
 
 def register_clan(roleID,channelID,tag,name):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     mydict = {
         "Name" : name,
@@ -88,7 +87,7 @@ def register_clan(roleID,channelID,tag,name):
 
 
 def remove_clan(name):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     result = coll_qlashclans.delete_one({"Name":{"$eq":str(name)}})
 
@@ -97,7 +96,7 @@ def remove_clan(name):
 #*****************************************************************************************************************
 
 def register_commandlog(user,command,time,failed,reason):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_commandlogs = db.QLASHBot_CommandLogs
     mydict = {
         "User" : user,
@@ -109,7 +108,7 @@ def register_commandlog(user,command,time,failed,reason):
     coll_commandlogs.insert_one(mydict)
 
 def view_commandlog(int):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_commandlogs = db.QLASHBot_CommandLogs
     list = []
     for document in coll_commandlogs.find():
@@ -118,7 +117,7 @@ def view_commandlog(int):
     return list
 
 def delete_commandlogs():
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_commandlogs = db.QLASHBot_CommandLogs
     coll_commandlogs.delete_many({})
 
@@ -127,7 +126,7 @@ def delete_commandlogs():
 #*****************************************************************************************************************
 
 def achievement_register_(parameters): #name,description,value
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_achievements = db.QLASHBot_Achievements
     print(parameters)
     list = re.findall("\<(.*?)\>", parameters)
@@ -142,7 +141,7 @@ def achievement_register_(parameters): #name,description,value
     return list[0]
 
 def achievement_removeall_(ctx):
-    db = mongoclient.heroku_q2z34tjm
+    db = instances.mongoclient.heroku_q2z34tjm
     coll_achievements = db.QLASHBot_Achievements
     coll_achievements.delete_many({})
 
