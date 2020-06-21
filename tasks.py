@@ -1,6 +1,9 @@
 import aiohttp
 import asyncio
 
+from datetime import datetime,date
+import re
+
 import random
 from mongodb import *
 import instances
@@ -47,7 +50,27 @@ async def _retrieve_member(session, gametag):
             else:
                 return NOT_FOUND
 
+
+
 async def _process_banned_member(session, member, message):
+    time_expire = None
+    try:
+        await message.remove_reaction('📅', instances.bot.user)
+        regex = re.compile("(\d+?)d")
+        str_integer_match = regex.match(member['ban']).group(1)
+        time_expire = int(str_integer_match)
+    except:
+        await message.add_reaction('📅')
+
+    if time_expire is None:
+        await message.add_reaction('📅')
+    else:
+        if(_check_time_expired(message.created_at.date(), time_expire)):
+            await message.delete()
+            return
+        else:
+            pass
+
     await message.remove_reaction('✅', instances.bot.user)
     await message.remove_reaction('❌', instances.bot.user)
     await message.remove_reaction('❓', instances.bot.user)
@@ -81,6 +104,11 @@ def _retrieve_playerClub(htmlPage):
 
 def _is_valid_gametag(gametag):
     return re.search("^#[P, Y, L, Q, G, R, J, C, U, V, 0, 2, 8, 9]{5,14}$", gametag) is not None
+
+def _check_time_expired(d0, time_expire):
+    d1 = datetime.now().date()
+    delta = d1 - d0
+    return delta.days >= time_expire
 
 async def reddit_webhook():
    ch = instances.bot.get_channel(int(bot_developer_channel))
