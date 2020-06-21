@@ -446,7 +446,7 @@ async def commandlog_clear(ctx):
 async def clan_add(ctx,roleID,channelID,tag,*clan_name):
     author = ctx.message.author
     if not checkforrole(author, "Moderator", "Sub-Coordinator"):
-        await ctx.send("Permission to use this command you do not have... Hrmmm..."))
+        await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await clan_add_(ctx,roleID,channelID,tag,*clan_name)
 
