@@ -62,13 +62,12 @@ async def _process_banned_member(session, member, message):
             raise Exception
     except:
         await message.add_reaction('📅')
+        return
 
 
     if(_check_time_expired(message.created_at.date(), time_expire)):
         await message.delete()
         return
-    else:
-        pass
 
     await message.remove_reaction('✅', instances.bot.user)
     await message.remove_reaction('❌', instances.bot.user)

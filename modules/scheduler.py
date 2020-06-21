@@ -19,7 +19,7 @@ def init_scheduler(mongodb):
         'max_instances': 3,
         'misfire_grace_time': 15*60,
     }
-    scheduler = AsyncIOScheduler(job_defaults=job_defaults,timezone=timezone('UTC'))
+    scheduler = AsyncIOScheduler(job_defaults=job_defaults,timezone=timezone('Europe/Berlin'))
     #scheduler.configure(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
     scheduler.start()
     return scheduler
@@ -33,5 +33,5 @@ Example scheduler trigers:
 def add_default_tasks(scheduler):
     #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
     CEST = timezone('Europe/Rome')
-    scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='cron',hour='18', minute='45',timezone=timezone('Europe/Berlin'))
+    scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='cron',hour='18', minute='55')
     pass
