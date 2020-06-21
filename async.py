@@ -493,6 +493,10 @@ async def graph_today(ctx):
 @sys.command(name='vice-count')
 async def vice_(ctx):
     await vice(ctx)
+
+@mod.command(name="check-banlist",brief="(MOD) Check if banned players are in a QLASH Clan")
+async def _banlist(ctx):
+    await check_banlist_channel()
 #********************************* achievements *************************************
 
 @sys.command(name='achievement-add')
