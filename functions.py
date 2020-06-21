@@ -38,8 +38,6 @@ bot_status = True
 last_update = ''
 
 async def on_ready_():
-    #ch = await bot.get_channel(int(bot_developer_channel))
-    #await ch.send("Hi, I'm up and running.")
     apscheduler.start()
     apscheduler.add_job(reg_member, trigger='interval',days=1,start_date='2020-06-21 22:30:00',timezone=cest)
     apscheduler.add_job(hello,trigger='interval',days=1,start_date='2020-06-21 10:00:00',timezone=cest)

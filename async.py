@@ -25,14 +25,17 @@ from scheduler import *
 
 @bot.event
 async def on_ready():
+    ch = await bot.get_channel(int(bot_developer_channel))
+    messages = ["Hi, I'm here.", "Hi, I'm up and runnning.", "I'm back!!", "Back on track, I am."]
+    await ch.send(random.choice(messages))
     await on_ready_()
-
 
 @bot.event
 async def on_disconnect():
-    print("Logging off: ",str(bot.user)+" "+str(datetime.now()))
     ch = bot.get_channel(int(bot_developer_channel))
-    await ch.send("Hi, I'm logging off.")
+    messages = ["Hi, I'm logging off.", "I'm closing down the connection.", "I'm gone!!", "I'm signing off."]
+    await ch.send(random.choice(messages))
+    print("Logging off: ",str(bot.user)+" "+str(datetime.now()))
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged off 🔴")
 
