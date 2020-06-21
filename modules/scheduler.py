@@ -32,7 +32,4 @@ Example scheduler trigers:
 """
 def add_default_tasks(scheduler):
     #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
-    scheduler.add_job(hello, id='hello-interval', args=['interval scheduling'], trigger='interval', seconds=5)
-    scheduler.add_job(hello, id='hello-cron', args=['cron scheduling'], trigger='cron', second='5')
-    scheduler.add_job(hello, id='hello-date', args=['date scheduling'], trigger='date')
     pass
