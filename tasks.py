@@ -158,10 +158,11 @@ async def check_banlist_channel():
     await qlchannel.send(embed=e)
 
 async def hello_en():
+    botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
     ch = instances.bot.get_channel(int(instances.en_general))
     qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
     message="Goodmorning everyone!"
-    await ch.send(message)
+    await botdev.send(message)
     time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
     e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
     e.add_field(name="Event type",value="Message",inline=True)
