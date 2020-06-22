@@ -1046,3 +1046,28 @@ async def webhook_insta():
         url = 'https://discordapp.com/api/webhooks/723918930766200892/HN79cUZPMfXtMbF4JnZkuRUkCepDR1cH_JvqBs4IOfU3h6KaehjSqPtAyHzLhZ5Vkd35'
         webhook = Webhook.from_url(url, adapter=AsyncWebhookAdapter(session))
         await webhook.send('Hello World', username='Foo')
+
+
+
+
+
+
+
+
+async def giova():
+    g = bot.fetch_guild(415221296247341066)
+    member = discord.utils.get(g.members, name='Lore')
+    lines = fileread('./textfile/santi.txt')
+    for i in range(len(lines)):
+        ll=lines[i].split(":")
+        date = str(ll[0])
+        text = str(ll[1])
+        day=''
+        for c in date:
+            if c.isdigit():
+                day+=c
+        today=datetime.now().strftime("%D")
+        print(day," ",today)
+        if today==day:
+            await member.create_dm()
+            await member.dm_channel.send(text)
