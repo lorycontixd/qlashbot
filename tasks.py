@@ -3,7 +3,6 @@ import asyncio
 
 from datetime import datetime,date
 import re
-import discord
 
 import random
 from mongodb import *
@@ -53,29 +52,30 @@ async def _retrieve_member(session, gametag):
 
 
 async def _process_banned_member(session, member, message):
+    await message.remove_reaction('📅', instances.bot.user)
+    await message.remove_reaction('✅', instances.bot.user)
+    await message.remove_reaction('❌', instances.bot.user)
+    await message.remove_reaction('❓', instances.bot.user)
+
     if(member == XML_FORM_ERROR):
         await message.add_reaction('❓')
         return
 
-    time_expire = None
-    try:
-        await message.remove_reaction('📅', instances.bot.user)
-        regex = re.compile("(\d+?)d")
-        str_integer_match = regex.match(member['ban']).group(1)
-        time_expire = int(str_integer_match)
-        if time_expire is None:
-            raise Exception
-    except:
-        await message.add_reaction('📅')
-        return
+    if 'ban' in member:
+        time_expire = None
+        try:
+            regex = re.compile("(\d+?)d")
+            str_integer_match = regex.match(member['ban']).group(1)
+            time_expire = int(str_integer_match)
+            if time_expire is None:
+                raise Exception
+        except:
+            await message.add_reaction('📅')
+            return
 
-    if(_check_time_expired(message.created_at.date(), time_expire)):
-        await message.delete()
-        return
-
-    await message.remove_reaction('✅', instances.bot.user)
-    await message.remove_reaction('❌', instances.bot.user)
-    await message.remove_reaction('❓', instances.bot.user)
+        if(_check_time_expired(message.created_at.date(), time_expire)):
+            await message.delete()
+            return
 
     club = await _retrieve_member(session, member['tag'])
     if club in [INVALID_GAMETAG, NOT_FOUND, NOT_READ]:
@@ -118,7 +118,6 @@ async def reddit_webhook():
 
 async def reg_member():
     ch = instances.bot.get_channel(int(instances.bot_developer_channel))
-    qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
     db = instances.mongoclient.heroku_q2z34tjm
     coll_membercount = db.QLASHBot_MemberCount
     today = date.today()
@@ -127,18 +126,14 @@ async def reg_member():
         "Members":int(membercount)
     }
     coll_membercount.insert_one(mydict)
-    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
-    e.add_field(name="Event type",value="Registration",inline=True)
-    e.add_field(name="Variable",value="Server members",inline=True)
-    e.add_field(name="Channel",value="None",inline=True)
-    e.add_field(name="Date",value=str(time),inline=True)
-    e.set_footer(text="Created by Lore")
-    await qlchannel.send(embed=e)
+    msg = await ch.send("Today's member count registered has been registered!")
+
+async def hello(param):
+    ch = instances.bot.get_channel(int(instances.bot_developer_channel))
+    await ch.send("Goodmorning, scheduled this message has been with " + param)
 
 async def check_banlist_channel():
     botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
-    qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
     ch = instances.bot.get_channel(724193592536596490)#int(instances.bot_banlist_channel))
     messages = await ch.history(limit=200).flatten()
     connector = aiohttp.TCPConnector(limit_per_host=2)
@@ -149,37 +144,4 @@ async def check_banlist_channel():
             banned_member = _extract_banned_member(message.content)
             statements.append(_process_banned_member(session, banned_member, message))
         await asyncio.gather(*statements)
-    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
-    e.add_field(name="Event type",value="Check Banlist",inline=True)
-    e.add_field(name="Channel",value=ch.name,inline=True)
-    e.add_field(name="Date",value=str(time),inline=True)
-    e.set_footer(text="Created by Lore")
-    await qlchannel.send(embed=e)
-
-async def hello_en():
-    botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
-    ch = instances.bot.get_channel(int(instances.en_general))
-    qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
-    message="Goodmorning everyone!"
-    await botdev.send(message)
-    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
-    e.add_field(name="Event type",value="Message",inline=True)
-    e.add_field(name="Content",value=message,inline=True)
-    e.add_field(name="Channel",value=ch.name,inline=True)
-    e.add_field(name="Date",value=str(time),inline=True)
-    e.set_footer(text="Created by Lore")
-    await qlchannel.send(embed=e)
-
-async def art_competition(subject_it,subject_en,subject_es):
-    botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
-    message="Hey everyone, welcome to the new Art Competition :fire:\n\n🇬🇧We’ll accept only handmade drawings , on paper, with the technique you prefer, own inventiveness without any copy, only taking as examples. Subject '"+str(subject_en)+"'. All the participants who don't respect the guidelines will be sanctioned. 🇬🇧 \n\n🇪🇸 Solo se aceptarán dibujos hechos a mano, en papel, con la técnica que prefiera, , de propria invención no replicas o duplicados, como máximo se puede tomar inspiración de otros dibujos. Asunto '"+str(subject_es)+"'. Cualquier participante que no respete las pautas será sancionado. 🇪🇸 \n\n 🇮🇹 Saranno accettati solo ed unicamente disegni fatti a mano, su foglio, con la tecnica che preferite, di propria inventiva quindi non copie, al massimo prendere spunto. Soggetto '"+str(subject_it)+"'. Qualsiasi partecipante che non rispetterà le linee guida verrà sanzionato. 🇮🇹"
-    await botdev.send(message)
-    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
-    e.add_field(name="Event type",value="Message",inline=True)
-    e.add_field(name="Content",value="Art Competition",inline=True)
-    e.add_field(name="Channel",value=botdev.name,inline=True)
-    e.add_field(name="Date",value=str(time),inline=True)
-    e.set_footer(text="Created by Lore")
-    await qlchannel.send(embed=e)
+    await botdev.send("Banlist was successfully checked!")
