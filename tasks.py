@@ -179,7 +179,7 @@ async def check_banlist_channel():
 
 async def giova():
     #g = await bot.fetch_guild(415221296247341066)
-    member = await bot.fetch_user(349225999164243969)
+    member = await instances.bot.fetch_user(349225999164243969)
     if member==None:
         print("No member found with this ID")
     lines = fileread('./textfile/santi.txt')
