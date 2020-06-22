@@ -3,6 +3,7 @@ import asyncio
 
 from datetime import datetime,date
 import re
+import discord
 
 import random
 from mongodb import *
@@ -120,6 +121,7 @@ async def reddit_webhook():
 async def reg_member():
     ch = instances.bot.get_channel(int(instances.bot_developer_channel))
     db = instances.mongoclient.heroku_q2z34tjm
+
     coll_membercount = db.QLASHBot_MemberCount
     today = date.today()
     mydict = {
@@ -127,11 +129,30 @@ async def reg_member():
         "Members":int(membercount)
     }
     coll_membercount.insert_one(mydict)
-    msg = await ch.send("Today's member count registered has been registered!")
+    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    tz = pytz.timezone('Europe/Rome')
+    time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
+    embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
+    embed.add_field(name="Event Type", value="Member registration", inline=True)
+    embed.add_field(name="Content", value="None", inline=True)
+    embed.add_field(name="Channel", value="None", inline=True)
+    embed.add_field(name="Time", value=time, inline=True)
+    embed.set_footer(text="Created by Lore")
+    await (embed=embed)
 
 async def hello(param):
     ch = instances.bot.get_channel(int(instances.bot_developer_channel))
-    await ch.send("Goodmorning, scheduled this message has been with " + param)
+    await ch.send("Goodmorning everyone!")
+    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    tz = pytz.timezone('Europe/Rome')
+    time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
+    embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
+    embed.add_field(name="Event Type", value="Message", inline=True)
+    embed.add_field(name="Content", value="Good Morning", inline=True)
+    embed.add_field(name="Channel", value=ch.name, inline=True)
+    embed.add_field(name="Time", value=time, inline=True)
+    embed.set_footer(text="Created by Lore")
+    await (embed=embed)
 
 async def check_banlist_channel():
     botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
@@ -145,4 +166,69 @@ async def check_banlist_channel():
             banned_member = _extract_banned_member(message.content)
             statements.append(_process_banned_member(session, banned_member, message))
         await asyncio.gather(*statements)
-    await botdev.send("Banlist was successfully checked!")
+    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    tz = pytz.timezone('Europe/Rome')
+    time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
+    embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
+    embed.add_field(name="Event Type", value="Check Banlist", inline=True)
+    embed.add_field(name="Content", value="None", inline=True)
+    embed.add_field(name="Channel", value="None", inline=True)
+    embed.add_field(name="Time", value=time, inline=True)
+    embed.set_footer(text="Created by Lore")
+    await (embed=embed)
+
+async def giova():
+    #g = await bot.fetch_guild(415221296247341066)
+    member = await bot.fetch_user(349225999164243969)
+    if member==None:
+        print("No member found with this ID")
+    lines = fileread('./textfile/santi.txt')
+    for i in range(len(lines)):
+        ll=lines[i].split(":")
+        date = str(ll[0])
+        text = str(ll[1])
+        tz = pytz.timezone('Europe/Rome')
+        dday=str(datetime.now(tz=tz).strftime("%d"))
+        month = ""
+        mmonth = str(datetime.now(tz=tz).strftime("%m"))
+        if mmonth=='01':
+            month="gennaio"
+        elif mmonth=='02':
+            month="febbraio"
+        elif mmonth=='03':
+            month="marzo"
+        elif mmonth=='04':
+            month="aprile"
+        elif mmonth=='05':
+            month="maggio"
+        elif mmonth=='06':
+            month="giugno"
+        elif mmonth=='07':
+            month="luglio"
+        elif mmonth=='08':
+            month="agosto"
+        elif mmonth=='09':
+            month="settembre"
+        elif mmonth=='10':
+            month="ottobre"
+        elif mmonth=='11':
+            month="novembre"
+        elif mmonth=='12':
+            month="dicembre"
+        string = dday+" "+month
+        if string in date:
+            print(string)
+            await member.create_dm()
+            message="Bona jurnat Giova, oggi è il "+string+'\nEcco i santi di oggi:\n\n'+text
+            await member.dm_channel.send(text)
+            break
+    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    tz = pytz.timezone('Europe/Rome')
+    time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
+    embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
+    embed.add_field(name="Event Type", value="Message", inline=True)
+    embed.add_field(name="Content", value="Daily Saint", inline=True)
+    embed.add_field(name="Channel", value=str(member)+"'s DM'", inline=True)
+    embed.add_field(name="Time", value=time, inline=True)
+    embed.set_footer(text="Created by Lore")
+    await (embed=embed)
