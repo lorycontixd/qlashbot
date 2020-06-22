@@ -179,9 +179,10 @@ async def check_banlist_channel():
 
 async def giova():
     #g = await bot.fetch_guild(415221296247341066)
-    member = await instances.bot.fetch_user(349225999164243969)
+    member = await instances.bot.fetch_user(724346375755792446)
     if member==None:
         print("No member found with this ID")
+        return
     file = open('./textfile/santi.txt','r+')
     content = file.read()
     lines = content.split("\n")
@@ -221,7 +222,7 @@ async def giova():
         if string in date:
             print(string)
             await member.create_dm()
-            message="Bona jurnat Giova, oggi è il "+string+' e sono già le 9. Svegliati!\nEcco i santi di oggi:\n\n'+text
+            message="Bona jurnat Giova, oggi è il "+string+' e sono già le 10. Svegliati!\nEcco i santi di oggi:\n\n'+text
             await member.dm_channel.send(message)
             break
     logs = instances.bot.get_channel(int(instances.qlash_bot))
@@ -230,7 +231,7 @@ async def giova():
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
     embed.add_field(name="Event Type", value="Message", inline=True)
     embed.add_field(name="Content", value="Daily Saint", inline=True)
-    embed.add_field(name="Channel", value=str(member)+"'s DM'", inline=True)
+    embed.add_field(name="Channel", value=str(member)+"'s DMs'", inline=True)
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
     await logs.send(embed=embed)
