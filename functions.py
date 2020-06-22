@@ -1064,13 +1064,35 @@ async def giova():
         ll=lines[i].split(":")
         date = str(ll[0])
         text = str(ll[1])
-        day=''
-        for c in date:
-            if c.isdigit():
-                day+=c
-        today=str(datetime.now().strftime("%d"))
-        print(day," ",today)
-        if today==day:
+        dday=str(datetime.now().strftime("%d"))
+        month = ""
+        mmonth = str(datetime.now().strftime("%m"))
+        if mmonth==1:
+            month="gennaio"
+        elif mmonth==2:
+            month="febbraio"
+        elif mmonth==3:
+            month="marzo"
+        elif mmonth==4:
+            month="aprile"
+        elif mmonth==5:
+            month="maggio"
+        elif mmonth==6:
+            month="giugno"
+        elif mmonth==7:
+            month="luglio"
+        elif mmonth==8:
+            month="agosto"
+        elif mmonth==9:
+            month="settembre"
+        elif mmonth==10:
+            month="ottobre"
+        elif mmonth==11:
+            month="novembre"
+        elif mmonth==12:
+            month="dicembre"
+        string = dday+" "+month
+        if string in date:        
             print("inside if")
             await member.create_dm()
             await member.dm_channel.send(text)
