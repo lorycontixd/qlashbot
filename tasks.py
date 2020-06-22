@@ -117,6 +117,7 @@ async def reddit_webhook():
 
 async def reg_member():
     ch = instances.bot.get_channel(int(instances.bot_developer_channel))
+    qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
     db = instances.mongoclient.heroku_q2z34tjm
     coll_membercount = db.QLASHBot_MemberCount
     today = date.today()
@@ -125,14 +126,19 @@ async def reg_member():
         "Members":int(membercount)
     }
     coll_membercount.insert_one(mydict)
-    msg = await ch.send("Today's member count registered has been registered!")
+    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
+    e.add_field(name="Event type",value="Registration",inline=True)
+    e.add_field(name="Variable",value="Server members",inline=True)
+    e.add_field(name="Channel",value="None",inline=True)
+    e.add_field(name="Date",value=str(time),inline=True)
+    e.set_footer(text="Created by Lore")
+    await qlchannel.send(embed=e)
 
-async def hello(param):
-    ch = instances.bot.get_channel(int(instances.bot_developer_channel))
-    await ch.send("Goodmorning, scheduled this message has been with " + param)
 
 async def check_banlist_channel():
     botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
+    qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
     ch = instances.bot.get_channel(724193592536596490)#int(instances.bot_banlist_channel))
     messages = await ch.history(limit=200).flatten()
     connector = aiohttp.TCPConnector(limit_per_host=2)
@@ -143,4 +149,24 @@ async def check_banlist_channel():
             banned_member = _extract_banned_member(message.content)
             statements.append(_process_banned_member(session, banned_member, message))
         await asyncio.gather(*statements)
-    await botdev.send("Banlist was successfully checked!")
+    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
+    e.add_field(name="Event type",value="Check Banlist",inline=True)
+    e.add_field(name="Channel",value=ch.name,inline=True)
+    e.add_field(name="Date",value=str(time),inline=True)
+    e.set_footer(text="Created by Lore")
+    await qlchannel.send(embed=e)
+
+async def hello_en():
+    ch = instances.bot.get_channel(int(instances.en_general))
+    qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
+    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+    message="Goodmorning everyone!"
+    await ch.send(message)
+    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
+    e.add_field(name="Event type",value="Message",inline=True)
+    e.add_field(name="Content",value=message,inline=True)
+    e.add_field(name="Channel",value=ch.name,inline=True)
+    e.add_field(name="Date",value=str(time),inline=True)
+    e.set_footer(text="Created by Lore")
+    await qlchannel.send(embed=e)

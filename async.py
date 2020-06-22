@@ -63,7 +63,7 @@ async def on_raw_reaction_add(payload):
     await game1_reaction(payload)
 
 
-
+#command events
 @bot.event
 async def on_command_error(ctx, error):
     commandname = ctx.invoked_with
