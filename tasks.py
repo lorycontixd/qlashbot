@@ -7,7 +7,7 @@ import discord
 
 import random
 from mongodb import *
-from utility import *
+from utility import fileread
 import instances
 
 from xml.etree import ElementTree as ET
