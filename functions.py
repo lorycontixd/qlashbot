@@ -1055,7 +1055,7 @@ async def webhook_insta():
 
 
 async def giova():
-    g = bot.fetch_guild(415221296247341066)
+    g = await bot.fetch_guild(415221296247341066)
     member = discord.utils.get(g.members, name='Lore')
     lines = fileread('./textfile/santi.txt')
     for i in range(len(lines)):
