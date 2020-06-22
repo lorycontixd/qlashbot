@@ -1066,7 +1066,7 @@ async def giova():
         for c in date:
             if c.isdigit():
                 day+=c
-        today=datetime.now().strftime("%D")
+        today=datetime.now().strftime("%d")
         print(day," ",today)
         if today==day:
             await member.create_dm()
