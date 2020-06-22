@@ -1066,8 +1066,9 @@ async def giova():
         for c in date:
             if c.isdigit():
                 day+=c
-        today=datetime.now().strftime("%d")
+        today=str(datetime.now().strftime("%d"))
         print(day," ",today)
         if today==day:
+            print("inside if")
             await member.create_dm()
             await member.dm_channel.send(text)
