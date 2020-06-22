@@ -1058,7 +1058,7 @@ async def giova():
     g = await bot.fetch_guild(415221296247341066)
     if g==None:
         print("No guilds found with this ID")
-    member = discord.utils.find(lambda m: m.name == 'Lore', g.members)
+    member = discord.utils.find(lambda m: m.id == int('349225999164243969'), g.members)
     if member==None:
         print("No member found with name Lore")
     lines = fileread('./textfile/santi.txt')
