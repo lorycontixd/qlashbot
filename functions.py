@@ -1069,29 +1069,29 @@ async def giova():
         month = ""
         mmonth = str(datetime.now().strftime("%m"))
         print("Today's month ",mmonth)
-        if mmonth==1:
+        if mmonth=='01':
             month="gennaio"
-        elif mmonth==2:
+        elif mmonth=='02':
             month="febbraio"
-        elif mmonth==3:
+        elif mmonth=='03':
             month="marzo"
-        elif mmonth==4:
+        elif mmonth=='04':
             month="aprile"
-        elif mmonth==5:
+        elif mmonth=='05':
             month="maggio"
-        elif mmonth==6:
+        elif mmonth=='06':
             month="giugno"
-        elif mmonth==7:
+        elif mmonth=='07':
             month="luglio"
-        elif mmonth==8:
+        elif mmonth=='08':
             month="agosto"
-        elif mmonth==9:
+        elif mmonth=='09':
             month="settembre"
-        elif mmonth==10:
+        elif mmonth=='10':
             month="ottobre"
-        elif mmonth==11:
+        elif mmonth=='11':
             month="novembre"
-        elif mmonth==12:
+        elif mmonth=='12':
             month="dicembre"
         print("selected month: ",month)
         string = dday+" "+month
