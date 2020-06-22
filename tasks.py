@@ -52,29 +52,30 @@ async def _retrieve_member(session, gametag):
 
 
 async def _process_banned_member(session, member, message):
+    await message.remove_reaction('📅', instances.bot.user)
+    await message.remove_reaction('✅', instances.bot.user)
+    await message.remove_reaction('❌', instances.bot.user)
+    await message.remove_reaction('❓', instances.bot.user)
+
     if(member == XML_FORM_ERROR):
         await message.add_reaction('❓')
         return
 
-    time_expire = None
-    try:
-        await message.remove_reaction('📅', instances.bot.user)
-        regex = re.compile("(\d+?)d")
-        str_integer_match = regex.match(member['ban']).group(1)
-        time_expire = int(str_integer_match)
-        if time_expire is None and 'ban' in member:
-            raise Exception
-    except:
-        await message.add_reaction('📅')
-        return
+    if 'ban' in member:
+        time_expire = None
+        try:
+            regex = re.compile("(\d+?)d")
+            str_integer_match = regex.match(member['ban']).group(1)
+            time_expire = int(str_integer_match)
+            if time_expire is None:
+                raise Exception
+        except:
+            await message.add_reaction('📅')
+            return
 
     if(_check_time_expired(message.created_at.date(), time_expire)):
         await message.delete()
         return
-
-    await message.remove_reaction('✅', instances.bot.user)
-    await message.remove_reaction('❌', instances.bot.user)
-    await message.remove_reaction('❓', instances.bot.user)
 
     club = await _retrieve_member(session, member['tag'])
     if club in [INVALID_GAMETAG, NOT_FOUND, NOT_READ]:
