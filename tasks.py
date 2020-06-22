@@ -136,7 +136,6 @@ async def reg_member():
     e.set_footer(text="Created by Lore")
     await qlchannel.send(embed=e)
 
-
 async def check_banlist_channel():
     botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
     qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
@@ -161,13 +160,26 @@ async def check_banlist_channel():
 async def hello_en():
     ch = instances.bot.get_channel(int(instances.en_general))
     qlchannel = instances.bot.get_channel(int(instances.qlash_bot))
-    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
     message="Goodmorning everyone!"
     await ch.send(message)
+    time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
     e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
     e.add_field(name="Event type",value="Message",inline=True)
     e.add_field(name="Content",value=message,inline=True)
     e.add_field(name="Channel",value=ch.name,inline=True)
+    e.add_field(name="Date",value=str(time),inline=True)
+    e.set_footer(text="Created by Lore")
+    await qlchannel.send(embed=e)
+
+async def art_competition(subject_it,subject_en,subject_es):
+    botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
+    message=
+    "Hey everyone, welcome to the new Art Competition :fire:\n\n🇬🇧We’ll accept only handmade drawings , on paper, with the technique you prefer, own inventiveness without any copy, only taking as examples. Subject '"+str(subject_en)+"'. All the participants who don't respect the guidelines will be sanctioned. 🇬🇧 \n\n🇪🇸 Solo se aceptarán dibujos hechos a mano, en papel, con la técnica que prefiera, , de propria invención no replicas o duplicados, como máximo se puede tomar inspiración de otros dibujos. Asunto '"+str(subject_es)+"'. Cualquier participante que no respete las pautas será sancionado. 🇪🇸 \n\n 🇮🇹 Saranno accettati solo ed unicamente disegni fatti a mano, su foglio, con la tecnica che preferite, di propria inventiva quindi non copie, al massimo prendere spunto. Soggetto '"+str(subject_it)+"'. Qualsiasi partecipante che non rispetterà le linee guida verrà sanzionato. 🇮🇹"
+    await botdev.send(message)
+    e=discord.Embed(title="New scheduled event:", description="------------------------------------------------", color=0xd357fe)
+    e.add_field(name="Event type",value="Message",inline=True)
+    e.add_field(name="Content",value="Art Competition",inline=True)
+    e.add_field(name="Channel",value=botdev.name,inline=True)
     e.add_field(name="Date",value=str(time),inline=True)
     e.set_footer(text="Created by Lore")
     await qlchannel.send(embed=e)
