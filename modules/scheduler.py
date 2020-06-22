@@ -35,7 +35,7 @@ def add_default_tasks(scheduler):
     scheduler.add_job(check_banlist_channel, id='check_banlist_channel', trigger='cron',hour='22', minute='0')
     #scheduler.add_job(hello_en,id="hello-en",trigger='cron',hour='9',minute='0')
     scheduler.add_job(reg_member,id='register-member',trigger='cron',hour='22',minute='0')
-    scheduler.add_job(giova,id="daily-saint",trigger='cron',hour='1',minute='11')
+    scheduler.add_job(giova,id="daily-saint",trigger='cron',hour='9',minute='0')
     pass
 
 def _get_jobs(scheduler):

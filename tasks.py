@@ -221,8 +221,8 @@ async def giova():
         if string in date:
             print(string)
             await member.create_dm()
-            message="Bona jurnat Giova, oggi è il "+string+'\nEcco i santi di oggi:\n\n'+text
-            await member.dm_channel.send(text)
+            message="Bona jurnat Giova, oggi è il "+string+' e sono già le 9. Svegliati!\nEcco i santi di oggi:\n\n'+text
+            await member.dm_channel.send(message)
             break
     logs = instances.bot.get_channel(int(instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
