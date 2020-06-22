@@ -164,8 +164,3 @@ async def giova():
         if today==day:
             await member.create_dm()
             await member.dm_channel.send(text)
-
-
-
-    await member.create_dm()
-	await member.dm_channel.send()
