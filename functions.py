@@ -1065,8 +1065,10 @@ async def giova():
         date = str(ll[0])
         text = str(ll[1])
         dday=str(datetime.now().strftime("%d"))
+        print("Today's day ",dday)
         month = ""
         mmonth = str(datetime.now().strftime("%m"))
+        print("Today's month ",mmonth)
         if mmonth==1:
             month="gennaio"
         elif mmonth==2:
@@ -1091,8 +1093,10 @@ async def giova():
             month="novembre"
         elif mmonth==12:
             month="dicembre"
+        print("selected month: ",month)
         string = dday+" "+month
-        if string in date:        
+        print(string)
+        if string in date:
             print("inside if")
             await member.create_dm()
             await member.dm_channel.send(text)
