@@ -7,7 +7,6 @@ import discord
 
 import random
 from mongodb import *
-from utility import fileread
 import instances
 
 from xml.etree import ElementTree as ET
@@ -182,7 +181,9 @@ async def giova():
     member = await instances.bot.fetch_user(349225999164243969)
     if member==None:
         print("No member found with this ID")
-    lines = fileread('./textfile/santi.txt')
+    file = open('./textfile/santi.txt','r+')
+    content = file.read()
+    lines = content.split("\n")
     for i in range(len(lines)):
         ll=lines[i].split(":")
         date = str(ll[0])
