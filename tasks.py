@@ -138,7 +138,7 @@ async def reg_member():
     embed.add_field(name="Channel", value="None", inline=True)
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
-    await (embed=embed)
+    await logs.send(embed=embed)
 
 async def hello(param):
     ch = instances.bot.get_channel(int(instances.bot_developer_channel))
@@ -152,7 +152,7 @@ async def hello(param):
     embed.add_field(name="Channel", value=ch.name, inline=True)
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
-    await (embed=embed)
+    await logs.send(embed=embed)
 
 async def check_banlist_channel():
     botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
@@ -175,7 +175,7 @@ async def check_banlist_channel():
     embed.add_field(name="Channel", value="None", inline=True)
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
-    await (embed=embed)
+    await logs.send(embed=embed)
 
 async def giova():
     #g = await bot.fetch_guild(415221296247341066)
@@ -231,4 +231,4 @@ async def giova():
     embed.add_field(name="Channel", value=str(member)+"'s DM'", inline=True)
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
-    await (embed=embed)
+    await logs.send(embed=embed)
