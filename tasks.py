@@ -73,9 +73,9 @@ async def _process_banned_member(session, member, message):
             await message.add_reaction('📅')
             return
 
-    if(_check_time_expired(message.created_at.date(), time_expire)):
-        await message.delete()
-        return
+        if(_check_time_expired(message.created_at.date(), time_expire)):
+            await message.delete()
+            return
 
     club = await _retrieve_member(session, member['tag'])
     if club in [INVALID_GAMETAG, NOT_FOUND, NOT_READ]:
