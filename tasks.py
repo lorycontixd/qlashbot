@@ -178,8 +178,8 @@ async def check_banlist_channel():
     await logs.send(embed=embed)
 
 async def giova():
-    #g = await bot.fetch_guild(415221296247341066)
-    member = await instances.bot.fetch_user(724346375755792446)
+    #g = await bot.fetch_guild(335067221896200205)
+    member = await instances.bot.fetch_user(335067221896200205)
     if member==None:
         print("No member found with this ID")
         return
