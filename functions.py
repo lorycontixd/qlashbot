@@ -26,6 +26,7 @@ from checks import *
 from utility import *
 from mongodb import *
 from instances import *
+from tasks import giova
 from games import *
 from google import *
 from weather import *
@@ -168,7 +169,7 @@ async def check_instarole(message:discord.Message):
     ch = message.channel
     if type(ch)!=discord.TextChannel:
         return
-    dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
+    dev = discord.utils.get(message.guild.roles, name="DiscordDeveloper")
     auth = message.author
     registered = False
     foundrole = ''
@@ -480,7 +481,7 @@ async def set_(ctx,player:discord.Member,gametag):
     if gametag[0] != '#':
         await ctx.send("BadArguement: GameTag needs to start with #")
         return
-    botdev = discord.utils.get(player.guild.roles, name="BotDeveloper")
+    botdev = discord.utils.get(player.guild.roles, name="DiscordDeveloper")
     gametag = gametag.upper()
     mess = ctx.message
     author = mess.author
@@ -655,7 +656,7 @@ async def poke(ctx, member: discord.Member, *args):
 	await mess.add_reaction('✅')
 
 async def bot_stats_(ctx):
-    role = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
+    role = discord.utils.get(ctx.guild.roles, name="DiscordDeveloper")
     e=discord.Embed(title="Bot info: "+str(bot.user.name), color=0xe392ff)
     e.set_author(name="QLASH Bot")
     e.add_field(name="Name", value=bot.user.mention, inline=True)
@@ -668,7 +669,7 @@ async def bot_stats_(ctx):
     await ctx.send(embed=e)
 
 async def bot_info_(ctx):
-    role = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
+    role = discord.utils.get(ctx.guild.roles, name="DiscordDeveloper")
     response = "This bot was written in the language of Python by a few users "+role.mention+" with a passion for informatics and programming. \nThe core library used is the API offered by Discord called discordpy which grants access to an enormous amount of functions and events."
     response2 = "The brawlstats API was also used to gather information from the game, which allows to access a few but useful pieces of information. The bot commands can be viewed by typing ^help and navigating using groups (mod,util,sys and fun)"
     await ctx.send(response)
@@ -840,7 +841,7 @@ async def CompareMembers(ctx):
 
 async def role_count_(ctx,*rolename):
     role_name = " ".join(rolename[:])
-    dev = discord.utils.get(ctx.guild.roles, name="BotDeveloper")
+    dev = discord.utils.get(ctx.guild.roles, name="DiscordDeveloper")
     for role in ctx.guild.roles:
         if role.name == str(role_name):
             rolecount = int(len(role.members))
@@ -1028,7 +1029,7 @@ async def read_file(message):
             elif message.content.startswith('#'):
                 await gametags_process(ch,message)
             else:
-                dev = discord.utils.get(message.guild.roles, name="BotDeveloper")
+                dev = discord.utils.get(message.guild.roles, name="DiscordDeveloper")
                 #await message.delete(delay=3.0)
                 #alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
                 #await alert1.delete(delay=5.0)
