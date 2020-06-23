@@ -140,9 +140,24 @@ async def reg_member():
     embed.set_footer(text="Created by Lore")
     await logs.send(embed=embed)
 
-async def hello():
+async def hello_en():
     ch = instances.bot.get_channel(int(instances.en_general))
     await ch.send("Goodmorning everyone!")
+    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    tz = pytz.timezone('Europe/Rome')
+    time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
+    embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
+    embed.add_field(name="Event Type", value="Message", inline=True)
+    embed.add_field(name="Content", value="Good Morning", inline=True)
+    embed.add_field(name="Channel", value=ch.name, inline=True)
+    embed.add_field(name="Time", value=time, inline=True)
+    embed.set_footer(text="Created by Lore")
+    await logs.send(embed=embed)
+
+async def hello_it():
+    ch = instances.bot.get_channel(int(instances.it_general))
+    messages = ["Buongiorno a tutti!","Bella rega!","Buondì","Buona giornata e buon gaming a tutti!","Ben svegliati!"]
+    await ch.send(random.choice(messages))
     logs = instances.bot.get_channel(int(instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
@@ -235,3 +250,5 @@ async def giova():
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
     await logs.send(embed=embed)
+
+    

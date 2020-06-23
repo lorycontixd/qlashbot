@@ -337,14 +337,6 @@ async def welcome(ctx,channel_name):
         return
     await welcome_announcement(ctx,channel_name)
 
-@mod.command(name='refresh-banlist',brief='(MOD) (BS~) Get members who break the ingame banlist.',description=desc_refresh_banlist)
-async def test(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permission to use this command you do not have... Hrmmm...")
-        return
-    await CheckBanlist(ctx)
-
 @mod.command(name='purge',brief='(MOD) Clear messages in the channel.',description=desc_purge)
 async def purge(ctx,amount):
     author = ctx.message.author
@@ -392,22 +384,6 @@ async def print_rolemembers(ctx,*rolename):
         await ctx.send("Permission to use this command you do not have... Hrmmm...")
         return
     await print_rolemembers_(ctx,*rolename)
-
-@mod.command(name='view-members',brief='(MOD) (BS30+) Get a list of players that left ingame clubs.',description=desc_view_members )
-async def viewmembers(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permission to use this command you do not have... Hrmmm...")
-        return
-    await CompareMembers(ctx)
-
-@mod.command(name='write-members',brief="(MOD) (BS30+) Write all clan members to database",description=desc_write_members)
-async def writemembers(ctx):
-    author = ctx.message.author
-    if not checkforrole(author,"Sub-Coordinator","Moderator"):
-        await ctx.send("Permission to use this command you do not have... Hrmmm...")
-        return
-    await WriteMembersToFile2(ctx)
 
 @mod.command(name="giova")
 async def _giova(ctx):
