@@ -140,8 +140,8 @@ async def reg_member():
     embed.set_footer(text="Created by Lore")
     await logs.send(embed=embed)
 
-async def hello(param):
-    ch = instances.bot.get_channel(int(instances.bot_developer_channel))
+async def hello():
+    ch = instances.bot.get_channel(int(instances.en_general))
     await ch.send("Goodmorning everyone!")
     logs = instances.bot.get_channel(int(instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
