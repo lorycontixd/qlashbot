@@ -642,7 +642,7 @@ async def serverinfo_(ctx):
     e.add_field(name="Premium Subscription count:", value=str(guild.premium_subscription_count), inline=True)
     e.add_field(name="System Channel:", value=str(guild.system_channel), inline=True)
     e.add_field(name="Rules Channel:",value=str(guild.rules_channel),inline=True)
-    e.add_field(name="Public Updates Channel:",value=str(guild.public_updates_channel),inline=True)
+    #e.add_field(name="Public Updates Channel:",value=str(guild.public_updates_channel),inline=True)
     e.add_field(name="Role count:", value=str(len(guild.roles)), inline=True)
     e.add_field(name="Creation date:", value=str(guild.created_at), inline=True)
     e.set_footer(text="Bot created by Lore")
