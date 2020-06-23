@@ -121,8 +121,9 @@ async def reddit_webhook():
 async def reg_member():
     ch = instances.bot.get_channel(int(instances.bot_developer_channel))
     db = instances.mongoclient.heroku_q2z34tjm
-
     coll_membercount = db.QLASHBot_MemberCount
+    g = ch.guild
+    membercount = g.member_count
     today = date.today()
     mydict = {
         "Date":str(today),
@@ -250,5 +251,3 @@ async def giova():
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
     await logs.send(embed=embed)
-
-    

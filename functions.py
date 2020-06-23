@@ -51,6 +51,7 @@ async def on_ready_():
     #messages = ["Here I am. Hrmmm.", "Up and runnning I am.", "Hello again! I'm here. Yes. Hrmmmm.", "Back on track, I am."]
     #await ch.send(random.choice(messages))
 
+
 async def get_member_count(ctx):
     guild = bot.get_guild(int(qlash_bs_id))
     return guild.member_count
