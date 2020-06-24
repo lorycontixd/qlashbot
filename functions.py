@@ -1050,17 +1050,28 @@ async def webhook_insta():
         await webhook.send('Hello World', username='Foo')
 
 #***********************************************
-
 async def mainmenu(ctx):
-    password = "QLASH please"
+    message = "*************************************\n************ MAIN MENU ***************\n*************************************\n** 1. List of last 20 messages invoked from the bot\n** 2. List of registered QLASH Clans\n** 3. "
+    await ctx.send(message)
+
+async def _login(ctx):
+    user = ctx.message.author
+    sub = discord.utils.get(message.guild.roles, id=int("604761799505477635"))
+    if user.top role < sub:
+        await ctx.send("You do not have the permissions to access QLASH Bot's database!")
+    password = "QLASHplease"
     await ctx.send("Please enter the password: ")
 
     def check(m):
         return m.author == ctx.message.author
 
     reply = await bot.wait_for('message',check=check)
-
+    print(reply," ",password)
     if reply == password:
-        await ctx.send("You guessed it!")
+        await ctx.send("Access Granted, welcome "+ctx.message.author.mention+"!")
+        asyncio.sleep(1)
+        await mainmenu(ctx)
+
     else:
-        await ctx.send("Wrong")
+        await ctx.send("Wrong password")
+        return

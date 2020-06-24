@@ -539,8 +539,8 @@ async def achievement_removeall(ctx):
 #    a = MyCog()
 
 @bot.command(name='main-menu')
-async def _mainmenu(ctx):
-    await mainmenu(ctx)
+async def login(ctx):
+    await _login(ctx)
 
 
 
