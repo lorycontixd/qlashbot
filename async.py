@@ -28,7 +28,7 @@ from tasks import check_banlist_channel
 @bot.event
 async def on_ready():
     await on_ready_()
-    bot.add_cog(Weather)
+    bot.add_cog(Weather())
 
 @bot.event
 async def on_disconnect():
