@@ -538,6 +538,7 @@ async def achievement_removeall(ctx):
 #async def t1(ctx):
 #    a = MyCog()
 
+@bot.command(name='main-menu')
 async def _mainmenu(ctx):
     await mainmenu(ctx)
 
