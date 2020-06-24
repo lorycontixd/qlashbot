@@ -10,7 +10,7 @@ OWM_API_Key = 'c19412f77f267f8de7781eb6b6ffb56d'
 class Weather(commands.Cog):
     def __init__(self):
         self.owm = OWM(OWM_API_Key) #language='it' can be added to change language
-        self.reg = owm.city_id_registry()
+        self.reg = self.owm.city_id_registry()
 
     async def weather_current_(ctx,city,country_code):
         try:
