@@ -28,12 +28,13 @@ from tasks import check_banlist_channel
 @bot.event
 async def on_ready():
     await on_ready_()
+    bot.add_cog(Weather)
 
 @bot.event
 async def on_disconnect():
-    ch = bot.get_channel(int(bot_developer_channel))
-    messages = ["Logging off, I am.", "The connection, I'm closing down. Hrmmm.", "Gone I am!!", "Signed off, I have. Hrmmm."]
-    await ch.send(random.choice(messages))
+    #ch = bot.get_channel(int(bot_developer_channel))
+    #messages = ["Logging off, I am.", "The connection, I'm closing down. Hrmmm.", "Gone I am!!", "Signed off, I have. Hrmmm."]
+    #await ch.send(random.choice(messages))
     print("Logging off: ",str(bot.user)+" "+str(datetime.now()))
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged off 🔴")
