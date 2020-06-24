@@ -1048,3 +1048,19 @@ async def webhook_insta():
         url = 'https://discordapp.com/api/webhooks/723918930766200892/HN79cUZPMfXtMbF4JnZkuRUkCepDR1cH_JvqBs4IOfU3h6KaehjSqPtAyHzLhZ5Vkd35'
         webhook = Webhook.from_url(url, adapter=AsyncWebhookAdapter(session))
         await webhook.send('Hello World', username='Foo')
+
+#***********************************************
+
+async def mainmenu(ctx):
+    password = "QLASH please"
+    await ctx.send("Please enter the password: ")
+
+    def check(m):
+        return m.author == ctx.message.author
+
+    reply = await bot.wait_for('message',check=check)
+
+    if reply == password:
+        await ctx.send("You guessed it!")
+    else:
+        await ctx.send("Wrong")

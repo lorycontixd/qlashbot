@@ -49,15 +49,6 @@ def tail(file_name, N):
     # return the reversed list
     return list(reversed(list_of_lines))
 
-##********* Command Logs - Function to be called to register the invocation of a command in a file
-
-def CommandLogs(ctx,commandname):
-    author = ctx.message.author
-    tz = pytz.timezone('Europe/Rome')
-    time = datetime.now(tz=tz)
-    logfile = open('command_logs.txt','a+')
-    logfile.write(str(author)+" has called the command "+str(commandname)+" at time "+str(time)+'\n')
-    logfile.close()
 
 #******************************************************************************
 

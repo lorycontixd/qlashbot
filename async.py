@@ -538,6 +538,8 @@ async def achievement_removeall(ctx):
 #async def t1(ctx):
 #    a = MyCog()
 
+async def _mainmenu(ctx):
+    await mainmenu(ctx)
 
 
 
