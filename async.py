@@ -225,17 +225,17 @@ async def channels(ctx):
 async def welcome(ctx):
     await welcome_(ctx)
 
-@commands.cooldown(1,60, commands.BucketType.user)
-@util.command(name='weather-current',brief='(UTIL) Shows current weather for a given city',description=desc_weather_current)
-async def weather_current(ctx,city,country_code):
-    myclass = Weather()
-    await myclass.weather_current_(ctx,city,country_code)
+#@commands.cooldown(1,60, commands.BucketType.user)
+#@util.command(name='weather-current',brief='(UTIL) Shows current weather for a given city',description=desc_weather_current)
+#async def weather_current(ctx,city,country_code):
+#    myclass = Weather()
+#    await myclass.weather_current_(ctx,city,country_code)
 
-@commands.cooldown(1,60, commands.BucketType.user)
-@util.command(name='weather-5days',brief='(UTIL) Shows 5-days weather forecase for a city',description=desc_weather_5days)
-async def weather_five_days(ctx,city,country_code):
-    myclass = Weather()
-    await myclass.weather_five_days_(ctx,city,country_code)
+#@commands.cooldown(1,60, commands.BucketType.user)
+#@util.command(name='weather-5days',brief='(UTIL) Shows 5-days weather forecase for a city',description=desc_weather_5days)
+#async def weather_five_days(ctx,city,country_code):
+#    myclass = Weather()
+#    await myclass.weather_five_days_(ctx,city,country_code)
 
 @commands.cooldown(1,30,commands.BucketType.channel)
 @util.command(name='bot-info',brief="(UTIL) Shows some details about the bot's development")

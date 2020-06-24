@@ -7,11 +7,12 @@ from instances import *
 
 OWM_API_Key = 'c19412f77f267f8de7781eb6b6ffb56d'
 
-class Weather(commands.Cog):
+class Weather(commands.Cog,name="Weather"):
     def __init__(self):
         self.owm = OWM(OWM_API_Key) #language='it' can be added to change language
         self.reg = self.owm.city_id_registry()
 
+    @commands.command(name="weather-current")
     async def weather_current_(self,ctx,city,country_code):
         try:
             response = "``` \n"
@@ -41,6 +42,7 @@ class Weather(commands.Cog):
             error = "ExceptionError: Please check that you have spelled the city and the country CODE correctly! \nExample of country codes are: Italy-IT, Great Britain-GB, United States-US, Germany-DE, Spain-ES, Marocco-MA, France-FR, etc.. \nCities are to be written in English: EG. Milan is correct, Milano is wrong."
             await ctx.send(error)
 
+    @commands.command(name="weather-5days")
     async def weather_five_days_(self,ctx,city,country_code):
         try:
             response = "```\n"
