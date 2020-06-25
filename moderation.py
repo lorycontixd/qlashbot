@@ -170,26 +170,33 @@ class Moderation(commands.Cog,name="Moderation"):
         msg = ctx.message
         temp = " ".join(message[:])
         guild = ctx.guild
-        for channel in guild.text_channels:
-            if str(channel.name) == str(channelname):
-                print("channel: ",str(channel))
-                print("channelname: ",str(channelname))
-                await channel.send(temp)
+        channel = discord.utils.get(guild.text_channels, name=channelname)
+        if channel == None:
+            await ctx.send("Channel not found")
+            return
+        try:
+            await channel.send(temp)
             await msg.add_reaction('✅')
+        except:
+            await ctx.send("Error sending message")
+
+
 
     @commands.has_any_role('DiscordDeveloper','QLASH')
     @commands.command(name='welcome',brief='Send a welcome message to a specific channel by the bot.',hidden=True)
     async def welcome(self,ctx,channelname):
         msg = ctx.message
         guild = ctx.guild
-        for channel in guild.text_channels:
-            if str(channel.name) == str(channelname):
-                await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
-                await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = _mention_channel(566213862756712449)))
-                await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
-                await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
-                await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
-                await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
+        channel = discord.utils.get(guild.text_channels, name=channelname)
+        if channel == None:
+            await ctx.send("Channel not found")
+            return
+        await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
+        await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = _mention_channel(566213862756712449)))
+        await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
+        await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
+        await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
+        await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
         await msg.add_reaction('✅')
 
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
@@ -205,18 +212,18 @@ class Moderation(commands.Cog,name="Moderation"):
     async def purge_user(self,ctx,channelname,member:discord.Member):
         i=0
         m = ctx.message
-        for channel in ctx.guild.channels:
-            if channel.name == channelname:
-                messages = await channel.history(limit=1999).flatten()
-                for message in messages:
-                    if message.author == member:
-                        await message.delete()
-                        i+=1
-                msg = await ctx.send("Deleted all messages from user "+str(member)+" in channel "+channelname+" ("+str(i)+")")
-                await msg.delete(delay=6.0)
-                await m.add_reaction('✅')
-                return
-        await ctx.send(ctx.message.author.mention+", no channel found with name "+channelname)
+        channel = discord.utils.get(ctx.guild.text_channels, name=channelname)
+        if channel == None:
+            await ctx.send(ctx.message.author.mention+", no channel found with name "+channelname)
+            return
+        messages = await channel.history(limit=1000).flatten()
+        for message in messages:
+            if message.author == member:
+                await message.delete()
+                i+=1
+        msg = await ctx.send("Deleted all messages from user "+str(member)+" in channel "+channelname+" ("+str(i)+")")
+        await msg.delete(delay=6.0)
+        await m.add_reaction('✅')
 
     @commands.is_owner()
     @commands.command(name="role-give",hidden=True,pass_context=True)
@@ -244,12 +251,13 @@ class Moderation(commands.Cog,name="Moderation"):
     async def role_count(self,ctx,*rolename):
         temp = " ".join(rolename[:])
         dev = discord.utils.get(ctx.guild.roles, name="DiscordDeveloper")
-        for role in ctx.guild.roles:
-            if role.name == str(temp):
-                rolecount = int(len(role.members))
-                await ctx.send("In the role "+str(role.name)+" there are "+str(rolecount)+" members! ")
-                return
-        await ctx.send("No roles found for role "+temp+"! If you think this is a mistake please contact a "+dev.mention)
+        role = discord.utils.get(ctx.guild.roles, name=temp)
+        if role == None:
+            await ctx.send("No roles found for role "+temp+"! If you think this is a mistake please contact a "+dev.mention)
+            return
+        rolecount = int(len(role.members))
+        await ctx.send("In the role "+str(role.name)+" there are "+str(rolecount)+" members! ")
+        return
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='all-roles')
