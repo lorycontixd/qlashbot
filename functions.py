@@ -31,6 +31,7 @@ from games import *
 from google import *
 from weather import *
 from fun import *
+from moderation import *
 from modules import brawlstats, welcome_message, scheduler
 
 cest = timezone('Europe/Rome')
@@ -280,63 +281,6 @@ async def CheckBanlist(ctx):
     if count==0: #if no players were found in clans
         await ctx.send("No banned players found in qlash clans")
     await tempsmg.delete() #deletes bot message
-
-#************************************************ FUN **********************************************
-"""
-is_flipped = False
-async def flip(ctx):
-	global is_flipped
-	if is_flipped == False:
-		response = '(╯°□°）╯︵ ┻━┻ '
-		await ctx.channel.send(response)
-		is_flipped = True
-	else:
-		response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
-		await ctx.channel.send(response)
-
-async def invite_(ctx):
-    message = ctx.message
-    msg = await ctx.send("Creating invite..")
-    await message.channel.create_invite(reason='Advertisement purposes')
-    await msg.delete(delay=1.0)
-
-async def hello_(ctx):
-    await ctx.send("Hello "+ctx.message.author.name+"! \n My name is QLASH Bot, you can see my commands with ^help!")
-
-async def unflip(ctx):
-	global is_flipped
-	if is_flipped == True:
-		response = '┬─┬ ノ( ゜-゜ノ)'
-		await ctx.channel.send(response)
-		is_flipped = False
-	else:
-		response = 'Sorry the table is already unflipped!! ¯\_(ツ)_/¯ '
-		await ctx.channel.send(response)
-
-async def tstatus(ctx):
-	global is_flipped
-	if is_flipped == True:
-		response = 'Table is flipped'
-		await ctx.channel.send(response)
-	else:
-		response = 'Table is unflipped'
-		await ctx.channel.send(response)
-
-async def qlash_(ctx):
-    e=discord.Embed(title="QLASH", url="http://www.qlash.gg", description="Il Team QLASH è una organizzazione eSportiva con base in Italia. Co-fondata da Luca Pagano e Eugene Katchalov nel 2017, ha come scopo principale la promozione degli eSports in Italia e in Europa, creando sinergie con varie altre organizzazioni.",color=0x0061ff)
-    e.set_author(name="QLASH Bot")
-    e.set_image(url='https://liquipedia.net/commons/images/thumb/0/08/QLASH-PRO_black.png/600px-QLASH-PRO_black.png')
-    await ctx.send(embed=e)
-
-async def roll_(ctx):
-    value = randint(1,6)
-    await ctx.send("You rolled a "+str(value))
-
-async def bs_puns_(ctx):
-    choices = ['What do you call it when you get killed by a bull main? Bull-shit.','What do you call it when you get killed by a Shelly main? Shell shock.','What do you call it when you get killed by a Poco main? Hacks.','What do you call a team of crows? Toxic','How is franks super? Literally stunning','What is Nita without her super? UnBearable',"El primo isn't really a jokester, but he can pack quite a punch line",'Killing that little cactus man will give you a decent Spike in ego.','My club has barley any members.','All these puns are literally Tara-ble.','El Primo jumping in the enemy base with 11 gems.']
-    myint = randint(1,len(choices))
-    await ctx.send(str(choices[myint]))
-"""
 
 #*********************************************  VARIOUS  *******************************************
 async def ChannelList(ctx):
