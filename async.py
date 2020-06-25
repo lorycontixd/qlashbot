@@ -29,6 +29,7 @@ from tasks import check_banlist_channel
 async def on_ready():
     await on_ready_()
     bot.add_cog(Weather())
+    bot.add_cog(Fun())
 
 @bot.event
 async def on_disconnect():
@@ -123,10 +124,10 @@ async def on_command_completion(ctx):
 #*******************************************       GROUPS     ****************************************************
 #*****************************************************************************************************************
 
-@bot.group(pass_context=True,cog_name="Fun",case_insensitive=True)
-async def fun(ctx):
-        if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed is - Fun ...")
+#@bot.group(pass_context=True,cog_name="Fun",case_insensitive=True)
+#async def fun(ctx):
+#        if ctx.invoked_subcommand is None:
+#            await ctx.send("Invalid subcommand passed is - Fun ...")
 
 @bot.group(pass_context=True,cog_name="Mod",case_insensitive=True)
 async def mod(ctx):

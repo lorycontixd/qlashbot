@@ -30,6 +30,7 @@ from tasks import giova
 from games import *
 from google import *
 from weather import *
+from fun import *
 from modules import brawlstats, welcome_message, scheduler
 
 cest = timezone('Europe/Rome')
