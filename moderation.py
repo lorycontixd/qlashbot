@@ -160,9 +160,9 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.command(name='member-dm',pass_context=True,brief='Send a private message to a member by the bot.',description=desc_member_dm)
     async def dm(self,ctx,member: discord.Member, *message):
         mess = ctx.message
-    	await member.create_dm()
-    	await member.dm_channel.send(" ".join(args[:]))
-    	await mess.add_reaction('✅')
+        await member.create_dm()
+        await member.dm_channel.send(" ".join(args[:]))
+        await mess.add_reaction('✅')
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='announce',brief='Send a message to a specific channel by the bot.',description=desc_announce)
@@ -175,7 +175,7 @@ class Moderation(commands.Cog,name="Moderation"):
                 print("channel: ",str(channel))
                 print("channelname: ",str(channelname))
                 await channel.send(temp)
-        await msg.add_reaction('✅')
+            await msg.add_reaction('✅')
 
     @commands.has_any_role('DiscordDeveloper','QLASH')
     @commands.command(name='welcome',brief='Send a welcome message to a specific channel by the bot.',hidden=True)
