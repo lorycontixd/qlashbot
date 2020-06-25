@@ -536,21 +536,14 @@ async def clan_remove_(ctx,*cname):
     await ctx.send("Removed clan "+clanname+" from the database.")
 
 async def giverole(ctx,member: discord.Member , *rolename):
-	if not await Check(ctx,ctx.message.author):
-		#await ctx.send("You do not have permissions for this command!")
-		return
 	therolename = " ".join(rolename[:])
 	role = discord.utils.get(ctx.guild.roles, name=therolename)
 	if not role:
 		await ctx.send("ArguementError: Role "+therolename+" does not exist. 😭")
 		return
-	print(member,role)
 	await member.add_roles(role)
 
 async def removerole(ctx,member:discord.Member , *rolename):
-    if not await Check(ctx,ctx.message.author):
-        #await ctx.send("You do not have permissions for this command!")
-        return
     therolename = " ".join(rolename[:])
     role = discord.utils.get(ctx.guild.roles, name=therolename)
     if not role:

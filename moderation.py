@@ -21,7 +21,7 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.command(name='bs-playerinfo',brief='Search for information about a generic ingame player. (BS1) ',description=desc_bs_playerinfo)
     async def bs_pinfo(self,ctx,player_tag):
         role=''
-        player = await myclient.get_player(tag)
+        player = await myclient.get_player(player_tag)
         if not player:
             await ctx.send("Player with this tag was not found. If you think this was a problem, contact the Bot creators.")
             return
@@ -53,7 +53,7 @@ class Moderation(commands.Cog,name="Moderation"):
         presname = ''
         prestr = ''
         await ctx.send("Getting club info: ")
-        club = await myclient.get_club(tag)
+        club = await myclient.get_club(clan_tag)
         members = club.members
         for member in members:
             if str(member.role).lower() == 'president':
@@ -179,7 +179,7 @@ class Moderation(commands.Cog,name="Moderation"):
 
     @commands.has_any_role('DiscordDeveloper','QLASH')
     @commands.command(name='welcome',brief='Send a welcome message to a specific channel by the bot.',hidden=True)
-    async def welcome(self,ctx,channel_name):
+    async def welcome(self,ctx,channelname):
         msg = ctx.message
         guild = ctx.guild
         for channel in guild.text_channels:
@@ -221,20 +221,20 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.is_owner()
     @commands.command(name="role-give",hidden=True,pass_context=True)
     async def role_give(self,ctx,member: discord.Member , *rolename):
-    	therolename = " ".join(rolename[:])
-    	role = discord.utils.get(ctx.guild.roles, name=therolename)
+    	temp = " ".join(rolename[:])
+    	role = discord.utils.get(ctx.guild.roles, name=temp)
     	if not role:
-    		await ctx.send("ArguementError: Role "+therolename+" does not exist. 😭")
+    		await ctx.send("ArguementError: Role "+temp+" does not exist. 😭")
     		return
     	await member.add_roles(role)
 
     @commands.is_owner()
     @commands.command(name="role-remove",hidden=True,pass_context=True)
-    async def role_rem(self,ctx,member: discord.Member , *rolename):
-        therolename = " ".join(rolename[:])
-        role = discord.utils.get(ctx.guild.roles, name=therolename)
+    async def role_remove(self,ctx,member: discord.Member , *rolename):
+        temp = " ".join(rolename[:])
+        role = discord.utils.get(ctx.guild.roles, name=temp)
         if not role:
-            await ctx.send("ArguementError: Role "+therolename+" does not exist. 😭")
+            await ctx.send("ArguementError: Role "+temp+" does not exist. 😭")
             return
         print(member,role)
         await member.remove_roles(role)
@@ -242,14 +242,14 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='role-count')
     async def role_count(self,ctx,*rolename):
-        role_name = " ".join(rolename[:])
+        temp = " ".join(rolename[:])
         dev = discord.utils.get(ctx.guild.roles, name="DiscordDeveloper")
         for role in ctx.guild.roles:
-            if role.name == str(role_name):
+            if role.name == str(temp):
                 rolecount = int(len(role.members))
                 await ctx.send("In the role "+str(role.name)+" there are "+str(rolecount)+" members! ")
                 return
-        await ctx.send("No roles found for role "+role_name+"! If you think this is a mistake please contact a "+dev.mention)
+        await ctx.send("No roles found for role "+temp+"! If you think this is a mistake please contact a "+dev.mention)
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='all-roles')
@@ -292,7 +292,7 @@ class Moderation(commands.Cog,name="Moderation"):
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='role-members')
-    async def print_rolemembers(self,ctx,*rolename):
+    async def print_rolemembers(self,ctx,*role_name):
         rolename = " ".join(role_name[:])
         await ctx.trigger_typing()
         author = ctx.author
@@ -335,11 +335,11 @@ class Moderation(commands.Cog,name="Moderation"):
             await ctx.send(str(clans[i]["Name"])+": "+str(count))
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name="check-banlist",brief="(MOD) Check if banned players are in a QLASH Clan")
+    @commands.command(name="check-banlist",brief="Check if banned players are in a QLASH Clan",hidden=True)
     async def _banlist(self,ctx):
         await check_banlist_channel()
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name="giova")
+    @commands.command(name="giova",hidden=True)
     async def _giova(self,ctx):
         await giova()
