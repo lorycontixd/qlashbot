@@ -83,8 +83,6 @@ bot = None
 if bot is None:
     bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD
 
-ipapi.location(ip=None, key=None, field=None) #IP
-
 mongoclient = None
 
 if mongoclient is None:

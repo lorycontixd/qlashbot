@@ -682,6 +682,7 @@ async def purge_(ctx,amount):
 
 async def purge_user_(ctx,channelname,member:discord.Member):
     i=0
+    m = ctx.message
     for channel in ctx.guild.channels:
         if channel.name == channelname:
             messages = await channel.history(limit=1999).flatten()
@@ -689,8 +690,9 @@ async def purge_user_(ctx,channelname,member:discord.Member):
                 if message.author == member:
                     await message.delete()
                     i+=1
-            msg = await ctx.send("Deleted all messages from user "+str(member)+" in channel "+channelname)
+            msg = await ctx.send("Deleted all messages from user "+str(member)+" in channel "+channelname+" ("+str(i)+")")
             await msg.delete(delay=6.0)
+            await m.add_reaction('✅')
             return
     await ctx.send(ctx.message.author.mention+", no channel found with name "+channelname)
 
