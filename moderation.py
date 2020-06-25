@@ -166,7 +166,7 @@ class Moderation(commands.Cog,name="Moderation"):
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='announce',brief='Send a message to a specific channel by the bot.',description=desc_announce)
-    async def annouce(self,ctx,channel_name,*message):
+    async def annouce(self,ctx,channelname,*message):
         msg = ctx.message
         temp = " ".join(message[:])
         guild = ctx.guild
