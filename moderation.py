@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from descriptions import *
-from functions import set_
+#from functions import set_
 from instances import *
 from mongodb import *
 from tasks import check_banlist_channel,giova
