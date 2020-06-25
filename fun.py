@@ -41,30 +41,30 @@ class Fun(commands.Cog,name="Fun"):
     @commands.command(name='table-flip',brief='(FUN) Flip that table!!',description="Flip that table!!  50 seconds cooldown in the server")
     async def flip_(self,ctx):
         if self.is_flipped == False:
-    		response = '(╯°□°）╯︵ ┻━┻ '
-    		await ctx.channel.send(response)
-    		self.is_flipped = True
-    	else:
-    		response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
-    		await ctx.channel.send(response)
+            response = '(╯°□°）╯︵ ┻━┻ '
+            await ctx.channel.send(response)
+            self.is_flipped = True
+        else:
+            response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
+            await ctx.channel.send(response)
 
     @commands.cooldown(1, 50, commands.BucketType.guild)
     @commands.command(name='table-unflip',brief='(FUN) Unflip that table!!',description="Unflip that table!!  50 seconds cooldown in the server")
     async def unflip_(self,ctx):
         if self.is_flipped == True:
-    		response = '┬─┬ ノ( ゜-゜ノ)'
-    		await ctx.channel.send(response)
-    		self.is_flipped = False
-    	else:
-    		response = 'Sorry the table is already unflipped!! ¯\_(ツ)_/¯ '
-    		await ctx.channel.send(response)
+            response = '┬─┬ ノ( ゜-゜ノ)'
+            await ctx.channel.send(response)
+            self.is_flipped = False
+        else:
+            response = 'Sorry the table is already unflipped!! ¯\_(ツ)_/¯ '
+            await ctx.channel.send(response)
 
     @commands.cooldown(1, 50, commands.BucketType.guild)
     @commands.command(name='table-status',brief="(FUN) Check table's status",desciption=desc_tstatus)
     async def tstatus_(self,ctx):
-    	if self.is_flipped == True:
-    		response = 'Table is flipped'
-    		await ctx.channel.send(response)
-    	else:
-    		response = 'Table is unflipped'
-    		await ctx.channel.send(response)
+        if self.is_flipped == True:
+            response = 'Table is flipped'
+            await ctx.channel.send(response)
+        else:
+            response = 'Table is unflipped'
+            await ctx.channel.send(response)
