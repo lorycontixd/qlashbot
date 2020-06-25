@@ -309,66 +309,6 @@ async def check_bad_words(message):
             except asyncio.TimeoutError:
                 await channel.send('Timeout Error 👎')
 
-async def getplayer(ctx,tag):
-	role=''
-	player = await myclient.get_player(tag)
-	if not player:
-		await ctx.send("Player with this tag was not found. If you think this was a problem, contact the Bot creators.")
-		return
-	e=discord.Embed(title="Player info: "+str(player), description="------------------------------------------------", color=0xf6ec00)
-	e.set_author(name="QLASH Bot")
-	e.add_field(name="Player", value=str(player), inline=False)
-	e.add_field(name="Current Trophies", value=str(player.trophies), inline=True)
-	e.add_field(name="Highest Trophies", value=str(player.highest_trophies), inline=True)
-	e.add_field(name="Current Power Play", value=str(player.power_play_points), inline=True)
-	e.add_field(name="Highest Power Play", value=str(player.highest_power_play_points), inline=True)
-	e.add_field(name="Is Qualified in Championship Challenge", value=player.is_qualified_from_championship_challenge, inline=True)
-	e.add_field(name="3v3 Victories", value=str(player.x3v3_victories), inline=True)
-	e.add_field(name="Solo Victories", value=str(player.solo_victories), inline=True)
-	e.add_field(name="Duo Victories", value=str(player.duo_victories), inline=True)
-	cclub = player.club["tag"]
-	pclub = await myclient.get_club(cclub)
-	for member in pclub.members:
-		if member.name == player.name:
-			role = str(member.role)
-	e.add_field(name="Player Club", value=str(pclub.name)+'\n'+str(pclub.tag)+'\n'+role, inline=True)
-	e.add_field(name="Brawler Count", value=str(len(player.brawlers)), inline=True)
-	e.set_footer(text="Created By Lore")
-	await ctx.send(embed=e)
-
-async def getclan(ctx,tag):
-    presname = ''
-    prestr = ''
-    await ctx.send("Getting club info: ")
-    club = await myclient.get_club(tag)
-    members = club.members
-    for member in members:
-        if str(member.role).lower() == 'president':
-            presname = str(member.name)
-            prestr = str(member.trophies)
-    e=discord.Embed(title="Clan Info: "+str(club), description="------------------------------------------------", color=0xbe37f4)
-    e.set_author(name="QLASH Bot")
-    e.add_field(name="Clan", value=str(club), inline=False)
-    e.add_field(name="Member Count", value=str(len(members)), inline=True)
-    e.add_field(name="Description", value=str(club.description), inline=True)
-    e.add_field(name="Trophies", value=str(club.trophies), inline=True)
-    e.add_field(name="Required Trophies", value=str(club.required_trophies), inline=True)
-    e.add_field(name="Type", value=str(club.type), inline=True)
-    e.add_field(name="President",value=presname+'\n'+prestr,inline=True)
-    e.add_field(name="Top member", value=str(members[0].name)+'\n'+str(members[0].trophies)+'\n'+str(members[0].role), inline=True)
-    e.set_footer(text="Created By Lore")
-    await ctx.send(embed=e)
-
-async def vice(ctx): #count vicePresidents
-    clans = LoadClans()#list of dicts
-    for i in range(11):
-        tag = clans[i]["Tag"]
-        club = await myclient.get_club(tag)
-        count=0
-        for member in club.members:
-            if member.role == 'vicePresident':
-                count+=1
-        await ctx.send(str(clans[i]["Name"])+": "+str(count))
 
 #---- SET FUNCTION (GIVE ROLE TO MEMBERS FOR CURRENT CLAN)
 async def set_(ctx,player:discord.Member,gametag):
@@ -448,7 +388,6 @@ async def search_member(ctx,name,clubtag):
             await ctx.send(embed=e)
 
 async def qlash_trophies(ctx): #all qlash clans with requires trophies
-    print("Function qlash clans called")
     await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
     await ctx.trigger_typing()
     list = LoadClans

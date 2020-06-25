@@ -12,11 +12,12 @@ class Moderation(commands.Cog,name="Moderation"):
     def __init__(self):
         ipapi.location(ip=None, key=None, field=None)
 
-    @commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=desc_set)
-    async def set(self,ctx,player:discord.Member,ingame_tag):
-        await set_(ctx,player,ingame_tag)
+    #@commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=desc_set)
+    #async def set(self,ctx,player:discord.Member,ingame_tag):
+    #    await set_(ctx,player,ingame_tag)
 
     #ADMIN
+    @commands.cooldown(1, 20, commands.BucketType.user)
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='bs-playerinfo',brief='Search for information about a generic ingame player. (BS1) ',description=desc_bs_playerinfo)
     async def bs_pinfo(self,ctx,player_tag):
@@ -47,6 +48,7 @@ class Moderation(commands.Cog,name="Moderation"):
         await ctx.send(embed=e)
 
     #ADMIN
+    @commands.cooldown(1, 20, commands.BucketType.user)
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='bs-claninfo',brief='Search for information about an ingame clan. (BS1)',description=desc_bs_claninfo,)
     async def bs_cinfo(self,ctx,clan_tag):
@@ -74,7 +76,7 @@ class Moderation(commands.Cog,name="Moderation"):
 
     @commands.cooldown(1, 60, commands.BucketType.channel)
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @util.command(name='qlash-allclans',hidden=True,brief='List all ingame qlash clans. (BS30+) ',description = desc_qlash_allclans)
+    @commands.command(name='qlash-allclans',hidden=True,brief='List all ingame qlash clans. (BS30+) ',description = desc_qlash_allclans)
     async def qlash_allclans(self,ctx):
         await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
         await ctx.trigger_typing()
@@ -92,22 +94,6 @@ class Moderation(commands.Cog,name="Moderation"):
         e2.set_footer(text="Created By Lore")
         await ctx.send(embed=e)
         await ctx.send(embed=e2)
-
-    #ADMIN
-    @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='bs-memberinfo',brief='Search for information about a member within a given clan. (BS1) ',description=desc_bs_memberinfo)
-    async def bs_minfo(self,ctx,name,clan_tag):
-        await ctx.send("Getting member info: ")
-        club = await myclient.get_club(clubtag)
-        for member in club.members:
-            if name in member.name:
-                e=discord.Embed(title="Clan Member: "+str(member), description="------------------------------------------------", color=0x53d6fd)
-                e.set_author(name="QLASH Bot")
-                e.add_field(name="Member", value=str(member.name)+" ("+str(member.tag)+")", inline=False)
-                e.add_field(name="Role", value=str(member.role), inline=True)
-                e.add_field(name="Trophies", value=str(member.trophies), inline=True)
-                e.set_footer(text="Created By Lore")
-                await ctx.send(embed=e)
 
     @commands.is_owner()
     @commands.command(name='locate',brief = 'Locate an ip address',description=desc_ip)
@@ -200,8 +186,6 @@ class Moderation(commands.Cog,name="Moderation"):
             await msg.add_reaction('✅')
         except:
             await ctx.send("Error sending message")
-
-
 
     @commands.has_any_role('DiscordDeveloper','QLASH')
     @commands.command(name='welcome',brief='Send a welcome message to a specific channel by the bot.',hidden=True)
