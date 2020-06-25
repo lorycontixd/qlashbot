@@ -72,6 +72,27 @@ class Moderation(commands.Cog,name="Moderation"):
         e.set_footer(text="Created By Lore")
         await ctx.send(embed=e)
 
+    @commands.cooldown(1, 60, commands.BucketType.channel)
+    @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
+    @util.command(name='qlash-allclans',hidden=True,brief='List all ingame qlash clans. (BS30+) ',description = desc_qlash_allclans)
+    async def qlash_allclans(self,ctx):
+        await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
+        await ctx.trigger_typing()
+        list = LoadClans()
+        e=discord.Embed(title="List of all registered QLASH Clans", description="------------------------------------------------", color=0xffb43e)
+        e2=discord.Embed(color=0xffb43e)
+        e.set_author(name="QLASH Bot")
+        for i in range(len(list)):
+            tag = list[i]["Tag"]
+            club = await myclient.get_club(str(tag))
+            if i<21:
+                e.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
+            else:
+                e2.add_field(name="Clan: "+str(club),value="Required Trophies: "+str(club.required_trophies),inline=True)
+        e2.set_footer(text="Created By Lore")
+        await ctx.send(embed=e)
+        await ctx.send(embed=e2)
+
     #ADMIN
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='bs-memberinfo',brief='Search for information about a member within a given clan. (BS1) ',description=desc_bs_memberinfo)
@@ -161,7 +182,7 @@ class Moderation(commands.Cog,name="Moderation"):
     async def dm(self,ctx,member: discord.Member, *message):
         mess = ctx.message
         await member.create_dm()
-        await member.dm_channel.send(" ".join(args[:]))
+        await member.dm_channel.send(" ".join(message[:]))
         await mess.add_reaction('✅')
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')

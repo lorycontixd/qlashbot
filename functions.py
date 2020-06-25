@@ -234,60 +234,9 @@ async def insta_role_ended(message):
 async def hi():
     ch = bot.get_channel(int(bot_testing))
     await ch.send("hi")
-#*****************************************************************************************************************
-#*****************************************************************************************************************
-#**************************************       COMMAND FUNCTIONS     **********************************************
-#*****************************************************************************************************************
-#*****************************************************************************************************************
 
-
-##******** BANLIST FUNCTION: writes to a specific channel whether a banned user is in a QLASH Clan
-#banlist layout:  ingame name, ingame tag, days of ban (or perma)
-async def CheckBanlist(ctx):
-    count=0
-    channel = bot.get_channel(int(qlash_bot))
-    write_channel = bot.get_channel(int(banlist_testing))
-    tempmsg = await ctx.send("Calculating and reporting bans in channel: "+channel.mention)
-    await channel.trigger_typing()
-    messages = await write_channel.history(limit=150).flatten()
-    now = datetime.now()
-    for message in messages:
-        #convert utc time to est
-        creationDate = message.created_at
-        creationDate = creationDate.replace(tzinfo=from_zone)
-        central = creationDate.astimezone(to_zone)
-        dayToday = now.day
-        dayCreation = central.day
-        difference=dayToday-dayCreation
-
-        #work messages
-        content = message.content
-        temp = content.split(",")
-        playerTag = str(temp[1])
-        dayBan = str(temp[2])
-        if dayBan !='perma':
-            if difference>=int(dayBan):
-                await ctx.send("Ban for player "+str(temp[0])+" has expired.")
-                continue
-        list = LoadClans()
-        for i in range(len(list)-1):
-            clubName = list[i]["Name"]
-            clubTag = list[i]["Tag"]
-            cclub = await myclient.get_club(clubTag)
-            for member in cclub.members:
-                if str(member.tag) == str(playerTag):
-                    count+=1
-                    await ctx.send("Player "+str(member.name)+" found in clan "+str(cclub.name))
-    if count==0: #if no players were found in clans
-        await ctx.send("No banned players found in qlash clans")
-    await tempsmg.delete() #deletes bot message
 
 #*********************************************  VARIOUS  *******************************************
-async def ChannelList(ctx):
-	guild = ctx.guild
-	txt = guild.text_channels
-	voice = guild.voice_channels
-	await ctx.send(channels_response)
 
 async def welcome_(ctx):
     author = ctx.message.author
@@ -307,7 +256,6 @@ def GetClanTag(df,name):
             return str(df.iloc[i][1])
     print("Not Found")
     return
-
 
 def LoadBadWords():
     dict = {}
