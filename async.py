@@ -131,15 +131,15 @@ async def on_command_completion(ctx):
 #        if ctx.invoked_subcommand is None:
 #            await ctx.send("Invalid subcommand passed is - Fun ...")
 
-@bot.group(pass_context=True,cog_name="Mod",case_insensitive=True)
-async def mod(ctx):
-        if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed is - Moderation ...")
+#@bot.group(pass_context=True,cog_name="Mod",case_insensitive=True)
+#async def mod(ctx):
+#        if ctx.invoked_subcommand is None:
+#            await ctx.send("Invalid subcommand passed is - Moderation ...")
 
-@bot.group(pass_context=True,cog_name="Util",case_insensitive=True)
-async def util(ctx):
-        if ctx.invoked_subcommand is None:
-            await ctx.send("Invalid subcommand passed is - Utility ...")
+#@bot.group(pass_context=True,cog_name="Util",case_insensitive=True)
+#async def util(ctx):
+#        if ctx.invoked_subcommand is None:
+#            await ctx.send("Invalid subcommand passed is - Utility ...")
 
 @bot.group(pass_context=True,cog_name="Sys",case_insensitive=True)
 async def sys(ctx):
@@ -160,28 +160,33 @@ async def start(ctx):
 #*****************************************************************************************************************
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
-@util.command(name='qlash',brief='(UTIL) Display some information about QLASH.',description=
+@commands.command(name='qlash',brief='(UTIL) Display some information about QLASH.',description=
 'Display information about the QLASH Organisation, such as their goal, the founders and more...')
 async def qlash(ctx):
     await qlash_(ctx)
 
+async def invite_(channel):
+    link = await channel.create_invite(max_age = 0,max_uses=0)
+    await channel.send("Here is an instant invite to your server: " + link)
+
 @commands.cooldown(1,60,commands.BucketType.user)
-@util.command(name='invite',brief="(UTIL) Create an invite")
+@commands.command(name='invite',brief="(UTIL) Create an invite")
 async def invite(ctx):
-    await invite_(ctx)
+    await invite_(ctx.channel)
 
-@commands.cooldown(1, 60, commands.BucketType.channel)
-@util.command(name='qlash-allclans',hidden=True,brief='(UTIL) (BS30+) List all ingame qlash clans.',description = desc_qlash_allclans)
-async def qlash_allclans(ctx):
-    await qlash_trophies(ctx)
+#To be re-inserted soon
+#@commands.cooldown(1, 60, commands.BucketType.channel)
+#@commands.command(name='qlash-allclans',hidden=True,brief='(UTIL) (BS30+) List all ingame qlash clans.',description = desc_qlash_allclans)
+#async def qlash_allclans(ctx):
+#    await qlash_trophies(ctx)
 
 @commands.cooldown(1,60,commands.BucketType.user)
-@util.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.',description=desc_channels)
+@commands.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.',description=desc_channels)
 async def channels(ctx):
     await ChannelList(ctx)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
-@bot.command(name='hello',brief="Welcomes a user! ",description=desc_hello)
+@commands.command(name='hello',brief="Welcomes a user! ",description=desc_hello)
 async def welcome(ctx):
     await welcome_(ctx)
 
@@ -198,12 +203,12 @@ async def welcome(ctx):
 #    await myclass.weather_five_days_(ctx,city,country_code)
 
 @commands.cooldown(1,30,commands.BucketType.channel)
-@util.command(name='bot-info',brief="(UTIL) Shows some details about the bot's development")
+@commands.command(name='bot-info',brief="(UTIL) Shows some details about the bot's development")
 async def bot_info(ctx):
     await bot_info_(ctx)
 
 @commands.cooldown(1,60,commands.BucketType.channel)
-@util.command(name='bot-stats',brief='(UTIL) Shows information about QLASH Bot')
+@commands.command(name='bot-stats',brief='(UTIL) Shows information about QLASH Bot')
 async def bot_stats(ctx):
     await bot_stats_(ctx)
 
