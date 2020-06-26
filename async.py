@@ -159,16 +159,16 @@ async def sys(ctx):
 #**********************************************       UTILS     **************************************************
 #*****************************************************************************************************************
 
+async def invite_(channel):
+    link = await channel.create_invite(max_age = 0,max_uses=0)
+    await channel.send("Here is an instant invite to your server:  ")
+    await channel.send(link)
+
 @commands.cooldown(1, 60, commands.BucketType.channel)
 @bot.command(name='qlash',brief='(UTIL) Display some information about QLASH.',description=
 'Display information about the QLASH Organisation, such as their goal, the founders and more...')
 async def qlash(ctx):
     await qlash_(ctx)
-
-async def invite_(channel):
-    link = await channel.create_invite(max_age = 0,max_uses=0)
-    await channel.send("Here is an instant invite to your server:  ")
-    await channel.send(link)
 
 @commands.cooldown(1,60,commands.BucketType.user)
 @bot.command(name='invite',brief="(UTIL) Create an invite")
