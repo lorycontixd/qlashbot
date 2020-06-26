@@ -502,7 +502,7 @@ async def achievement_removeall(ctx):
 #    a = MyCog()
 
 async def mainmenu(ctx):
-    message = "*************************************\n************ MAIN MENU ***************\n*************************************\n** 1. List of last 20 messages invoked from the bot\n** 2. List of registered QLASH Clans\n** 3. "
+    message = "-----------------------------------\n------------ MAIN MENU ------------\n-----------------------------------\n** 1. List of last 20 messages invoked from the bot\n** 2. List of registered QLASH Clans\n** 3. "
     await ctx.send(message)
 
 async def _login(ctx):
