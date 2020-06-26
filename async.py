@@ -17,7 +17,6 @@ from previousscheduler import *
 from tasks import check_banlist_channel
 #from scheduler import *
 #from leagues import *
-from errors import *
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
@@ -79,34 +78,33 @@ async def on_command_error(ctx, error):
     reason = ''
     failed=True
     if isinstance(error, commands.errors.CheckFailure):
-        msg = await ctx.send('PermissionError: Have the correct permissions for this command you do not. 😥')
+        msg = await ctx.send('PermissionError: You do not have the permissions for this command 😥')
         reason = 'PermissionMissing'
         await msg.delete(delay=4.0)
-        await message.delete(delay=5.0)
+        await message.delete(delay=6.0)
     elif isinstance(error, commands.errors.UserInputError):
-        #msg = await ctx.send('ArguementError: Given argument not accepted is.. 😕')
-        raise BadArguement(error)
+        msg = await ctx.send('ArguementError: Given argument is invalid 😕')
         reason = 'UserInputError'
         await msg.delete(delay=4.0)
-        await message.delete(delay=5.0)
+        await message.delete(delay=6.0)
     elif isinstance(error, commands.CommandOnCooldown):
-        msg = await ctx.send('CommandError: On cooldown the command is. 😞')
+        msg = await ctx.send('CommandError: The command is on cooldown 😞')
         reason = 'CommandOnCooldown'
         await msg.delete(delay=4.0)
-        await message.delete(delay=5.0)
+        await message.delete(delay=6.0)
     elif isinstance(error, commands.CommandNotFound):
-        msg = await ctx.send('CommandError: Found command was not. 😞')
+        msg = await ctx.send('CommandError: Command was not found 😞')
         reason = 'CommandNotFound'
         await msg.delete(delay=4.0)
-        await message.delete(delay=5.0)
+        await message.delete(delay=6.0)
     elif isinstance(error, commands.DisabledCommand):
-        msg = await ctx.send('Hrmmm... Disabled this command has been.')
+        msg = await ctx.send('CommandError: Command has been disabled')
         reason = 'DisabledCommand'
         await msg.delete(delay=4.0)
         await message.delete(delay=5.0)
     else:
-        await ctx.send('Something unxpected we got... Hrmmm...')
-        await ctx.send(error)
+        await ctx.send('ExternalError: '+str(error))
+        #await ctx.send(error)
         reason = 'ExternalError'
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
