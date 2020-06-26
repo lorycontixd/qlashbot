@@ -167,7 +167,8 @@ async def qlash(ctx):
 
 async def invite_(channel):
     link = await channel.create_invite(max_age = 0,max_uses=0)
-    await channel.send("Here is an instant invite to your server:  ",link)
+    await channel.send("Here is an instant invite to your server:  ")
+    await channel.send(link)
 
 @commands.cooldown(1,60,commands.BucketType.user)
 @bot.command(name='invite',brief="(UTIL) Create an invite")
