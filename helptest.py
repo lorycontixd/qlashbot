@@ -1,3 +1,4 @@
+#First implementation for a better Help Command
 import discord
 from discord.ext import commands
 
