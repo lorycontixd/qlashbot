@@ -227,7 +227,8 @@ class Moderation(commands.Cog,name="Moderation"):
                 await message.delete()
                 i+=1
         msg = await ctx.send("Deleted all messages from user "+str(member)+" in channel "+channelname+" ("+str(i)+")")
-        await msg.delete(delay=6.0)
+        if m.author != member:
+            await msg.delete(delay=6.0)
         await m.add_reaction('✅')
 
     @commands.is_owner()
