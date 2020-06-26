@@ -505,19 +505,21 @@ async def achievement_removeall(ctx):
 
 async def mainmenu(ctx,member:discord.Member):
     await member.create_dm()
-    message = "```\n---------------------------------------------------------------------\n-------------------------- MAIN MENU --------------------------\n---------------------------------------------------------------------\n-- 1. QLASH Bot Command Logs\n-- 2. QLASH Clans database\n-- 3. Server Graph database\n\n-- 0. Exit Database```"
+    message = "```\n---------------------------------------------------------------------\n----------------------------- MAIN MENU -----------------------------\n---------------------------------------------------------------------\n-- 1. QLASH Bot Command Logs\n-- 2. QLASH Clans database\n-- 3. Server Graph database\n\n-- 0. Exit Database```"
     await member.dm_channel.send(message)
 
 async def opt1(ctx,member):
     await member.create_dm()
-    message = "```\n------------------------ COMMAND LOGS -------------------------\n\-- 1. Log Database View\n-- 2. Log Database Clear \n\n-- 0. Exit Database"
+    message = "```\n------------------------ COMMAND LOGS -------------------------\n\-- 1. Log Database View\n-- 2. Log Database Clear \n\n-- 0. Exit Database```"
     await member.dm_channel.send(message)
 
 async def _login(ctx):
     member = ctx.message.author
+    await ctx.message.delete()
     sub = discord.utils.get(ctx.message.guild.roles, id=int("604761799505477635"))
     if member.top_role < sub:
-        await ctx.send("You do not have the permissions to access QLASH Bot's database!")
+        error = await ctx.send("You do not have the permissions to access QLASH Bot's database!")
+        await error.delete(delay=5.0)
     await member.create_dm()
     password = "QLASH please"
     await member.dm_channel.send("Please enter the password: ")
@@ -545,7 +547,7 @@ async def _login(ctx):
                 await member.dm_channel.send("Option 2 still to be implemented")
                 return
             elif reply1_int==3:
-                await member.dm_channel.send("Option 2 still to be implemented")
+                await member.dm_channel.send("Option 3 still to be implemented")
                 return
     else:
         await member.dm_channel.send("Wrong password")
