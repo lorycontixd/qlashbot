@@ -501,8 +501,17 @@ async def achievement_removeall(ctx):
 #async def t1(ctx):
 #    a = MyCog()
 
-#async def mainmenu(ctx):
+#***************************************************************************************************************
 
+async def mainmenu(ctx,member:discord.Member):
+    await member.create_dm()
+    message = "```\n---------------------------------------------------------------------\n-------------------------- MAIN MENU --------------------------\n---------------------------------------------------------------------\n-- 1. QLASH Bot Command Logs\n-- 2. QLASH Clans database\n-- 3. Server Graph database\n\n-- 0. Exit Database```"
+    await member.dm_channel.send(message)
+
+async def opt1(ctx,member):
+    await member.create_dm()
+    message = "```\n------------------------ COMMAND LOGS -------------------------\n\-- 1. Log Database View\n-- 2. Log Database Clear \n\n-- 0. Exit Database"
+    await member.dm_channel.send(message)
 
 async def _login(ctx):
     member = ctx.message.author
@@ -518,10 +527,26 @@ async def _login(ctx):
 
     reply = await bot.wait_for('message',check=check)
     if reply.content == password:
-        await member.dm_channel.send("Access Granted, welcome "+member.mention+"!")
+        await member.dm_channel.send("Access Granted, welcome to the QLASH Database "+member.mention+"!")
         asyncio.sleep(1)
-        message = "```\n---------------------------------------------------------------------\n-------------------------- MAIN MENU --------------------------\n---------------------------------------------------------------------\n-- 1. QLASH Bot Command Logs\n-- 2. QLASH Clans database\n-- 3. Server Graph database\n```"
-        await member.dm_channel.send(message)
+        await mainmenu(ctx,member)
+        reply1_str = await bot.wait_for('message',check=check)
+        reply1_int = int(reply1_str.content)
+        numbers = [0,1,2,3]
+        if reply1_int not in numbers:
+            await member.dm_channel.send("InputError: Invalid option passed. Exiting..")
+            return
+        else:
+            if reply1_int==0:
+                await member.dm_channel.send("Exiting")
+            elif reply1_int==1:
+                await opt1(ctx,member)
+            elif reply1_int==2:
+                await member.dm_channel.send("Option 2 still to be implemented")
+                return
+            elif reply1_int==3:
+                await member.dm_channel.send("Option 2 still to be implemented")
+                return
     else:
         await member.dm_channel.send("Wrong password")
         return
