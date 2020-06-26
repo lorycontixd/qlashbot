@@ -85,7 +85,7 @@ async def on_command_error(ctx, error):
         await message.delete(delay=5.0)
     elif isinstance(error, commands.errors.UserInputError):
         #msg = await ctx.send('ArguementError: Given argument not accepted is.. 😕')
-        raise BadArguement("ArguementError")
+        raise BadArguement(error)
         reason = 'UserInputError'
         await msg.delete(delay=4.0)
         await message.delete(delay=5.0)
