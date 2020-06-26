@@ -15,6 +15,7 @@ from discord.voice_client import VoiceClient
 from functions import *
 from previousscheduler import *
 from tasks import check_banlist_channel
+from mongodb import view_database
 #from scheduler import *
 #from leagues import *
 
@@ -502,6 +503,10 @@ async def achievement_removeall(ctx):
 #    a = MyCog()
 
 #***************************************************************************************************************
+#***************************************************************************************************************
+#***************************************************************************************************************
+#***************************************************************************************************************
+
 
 async def mainmenu(ctx,member:discord.Member):
     await member.create_dm()
@@ -510,7 +515,12 @@ async def mainmenu(ctx,member:discord.Member):
 
 async def opt1(ctx,member):
     await member.create_dm()
-    message = "```\n------------------------ COMMAND LOGS -------------------------\n\-- 1. Log Database View\n-- 2. Log Database Clear \n\n-- 0. Exit Database```"
+    message = "```\n-------------------------- COMMAND LOGS ----------------------------\n-- 1. Log Database View\n-- 2. Log Database Clear \n\n-- 0. Exit Database```"
+    await member.dm_channel.send(message)
+
+async def opt2(ctx,member):
+    await member.create_dm()
+    message = "```\n-------------------------- QLASH CLANS -----------------------------\n-- 1. Add new QLASH clan\n-- 2. Remove QLASH Clan\n-- 3. View registered clans \n\n-- 0. Exit Database```"
     await member.dm_channel.send(message)
 
 async def _login(ctx):
@@ -529,7 +539,7 @@ async def _login(ctx):
 
     reply = await bot.wait_for('message',check=check)
     if reply.content == password:
-        await member.dm_channel.send("Access Granted, welcome to the QLASH Database "+member.mention+"!")
+        await member.dm_channel.send("Access Granted\nWelcome to the QLASH Database "+member.mention+"!")
         asyncio.sleep(1)
         await mainmenu(ctx,member)
         reply1_str = await bot.wait_for('message',check=check)
@@ -541,11 +551,29 @@ async def _login(ctx):
         else:
             if reply1_int==0:
                 await member.dm_channel.send("Exiting")
+                return
             elif reply1_int==1:
                 await opt1(ctx,member)
+                reply2_str = await bot.wait_for('message',check=check)
+                reply2_int = int(reply2_str.content)
+                if reply2_int not in [0,1,2,3]:
+                    await member.dm_channel.send("InputError: Invalid option passed. Exiting..")
+                    return
+                else:
+                    if reply2_int == 0:
+                        await member.dm_channel.send("Exiting")
+                        return
+                    elif reply2_int == 1:
+                        await member.dm_channel.send("Option 1 still to be implemented")
+                        return
+                    elif reply2_int == 2:
+                        await member.dm_channel.send("Option 1 still to be implemented")
+                        return
+                    elif reply2_int == 3:
+                        await view_database(ctx,member)
+                        return
             elif reply1_int==2:
-                await member.dm_channel.send("Option 2 still to be implemented")
-                return
+                await opt2(ctx,member)
             elif reply1_int==3:
                 await member.dm_channel.send("Option 3 still to be implemented")
                 return

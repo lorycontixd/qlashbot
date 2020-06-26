@@ -37,7 +37,7 @@ def remove_member(discord,tag):
     coll_registered = db.QLASHBot_Registered
     coll_registered.delete_one({"Discord":{"$eq":str(discord)}})
 
-async def view_database(ctx):
+async def view_database(ctx,member):
     db = instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     response='```\n'
@@ -51,7 +51,8 @@ async def view_database(ctx):
         response += str(i)+'. '+name+'\t'+tag+'\n'
         i+=1
     response+='```'
-    await ctx.send(response)
+    await member.create_dm
+    await member.dm_channel.send(response)
 
 
 
