@@ -17,6 +17,7 @@ from previousscheduler import *
 from tasks import check_banlist_channel
 #from scheduler import *
 #from leagues import *
+from errors import *
 
 #quotaguard ips = 54.72.12.1, 54.72.77.249
 #quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
@@ -83,7 +84,8 @@ async def on_command_error(ctx, error):
         await msg.delete(delay=4.0)
         await message.delete(delay=5.0)
     elif isinstance(error, commands.errors.UserInputError):
-        msg = await ctx.send('ArguementError: Given argument not accepted is.. 😕')
+        #msg = await ctx.send('ArguementError: Given argument not accepted is.. 😕')
+        raise BadArguement("ArguementError")
         reason = 'UserInputError'
         await msg.delete(delay=4.0)
         await message.delete(delay=5.0)

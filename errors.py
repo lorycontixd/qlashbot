@@ -5,8 +5,14 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 
-class Errors():
-    def __init__(self):
-        print("Cog Loaded: Errors")
+class Error(Exception):
+    """Base class for other exceptions"""
+    pass
 
-    async def ChannelNotFound(self)
+class InputError(Error):
+    """Input error class"""
+    pass
+
+class BadArguement(InputError):
+    """Bad Argument"""
+    pass
