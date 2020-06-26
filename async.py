@@ -501,30 +501,29 @@ async def achievement_removeall(ctx):
 #async def t1(ctx):
 #    a = MyCog()
 
-async def mainmenu(ctx):
-    message = "---------------------------------------------------------------------\n-------------------------- MAIN MENU --------------------------\n---------------------------------------------------------------------\n-- 1. List of last 20 messages invoked from the bot\n-- 2. List of registered QLASH Clans\n-- 3. "
-    await ctx.send(message)
+#async def mainmenu(ctx):
+
 
 async def _login(ctx):
-    user = ctx.message.author
+    member = ctx.message.author
     sub = discord.utils.get(ctx.message.guild.roles, id=int("604761799505477635"))
-    if user.top_role < sub:
+    if member.top_role < sub:
         await ctx.send("You do not have the permissions to access QLASH Bot's database!")
+    await member.create_dm()
     password = "QLASH please"
-    await ctx.send("Please enter the password: ")
+    await member.dm_channel.send("Please enter the password: ")
 
     def check(m):
-        return m.author == ctx.message.author
+        return m.author == ctx.message.author and type(m.channel)==discord.DMChannel
 
     reply = await bot.wait_for('message',check=check)
-    print(reply," ",password)
     if reply.content == password:
-        await ctx.send("Access Granted, welcome "+ctx.message.author.mention+"!")
+        await member.dm_channel.send("Access Granted, welcome "+member.mention+"!")
         asyncio.sleep(1)
-        await mainmenu(ctx)
-
+        message = "```\n---------------------------------------------------------------------\n-------------------------- MAIN MENU --------------------------\n---------------------------------------------------------------------\n-- 1. QLASH Bot Command Logs\n-- 2. QLASH Clans database\n-- 3. Server Graph database\n```"
+        await member.dm_channel.send(message)
     else:
-        await ctx.send("Wrong password")
+        await member.dm_channel.send("Wrong password")
         return
 
 
