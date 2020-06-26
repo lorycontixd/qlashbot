@@ -507,7 +507,7 @@ async def mainmenu(ctx):
 
 async def _login(ctx):
     user = ctx.message.author
-    sub = discord.utils.get(message.guild.roles, id=int("604761799505477635"))
+    sub = discord.utils.get(ctx.message.guild.roles, id=int("604761799505477635"))
     if user.top_role < sub:
         await ctx.send("You do not have the permissions to access QLASH Bot's database!")
     password = "QLASHplease"
