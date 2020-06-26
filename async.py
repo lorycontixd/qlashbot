@@ -510,7 +510,7 @@ async def _login(ctx):
     sub = discord.utils.get(ctx.message.guild.roles, id=int("604761799505477635"))
     if user.top_role < sub:
         await ctx.send("You do not have the permissions to access QLASH Bot's database!")
-    password = "QLASHplease"
+    password = "QLASH please"
     await ctx.send("Please enter the password: ")
 
     def check(m):
@@ -518,7 +518,7 @@ async def _login(ctx):
 
     reply = await bot.wait_for('message',check=check)
     print(reply," ",password)
-    if reply == password:
+    if reply.content == password:
         await ctx.send("Access Granted, welcome "+ctx.message.author.mention+"!")
         asyncio.sleep(1)
         await mainmenu(ctx)
