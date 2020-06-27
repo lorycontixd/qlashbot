@@ -172,7 +172,7 @@ class Moderation(commands.Cog,name="Moderation"):
         await mess.add_reaction('✅')
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='announce',brief='Send a message to a specific channel by the bot.',description=desc_announce)
+    @commands.command(name='say',brief='Send a message to a specific channel by the bot.',description=desc_announce)
     async def annouce(self,ctx,channelname,*message):
         msg = ctx.message
         temp = " ".join(message[:])
