@@ -165,6 +165,11 @@ async def invite_(channel):
     await channel.send(link)
 
 @commands.cooldown(1, 60, commands.BucketType.channel)
+@bot.command(name='hello',brief="Welcomes a user! ",description=desc_hello)
+async def welcome(ctx):
+    await welcome_(ctx)
+
+@commands.cooldown(1, 60, commands.BucketType.channel)
 @bot.command(name='qlash',brief='(UTIL) Display some information about QLASH.',description=
 'Display information about the QLASH Organisation, such as their goal, the founders and more...')
 async def qlash(ctx):
@@ -181,16 +186,6 @@ async def invite(ctx):
 #async def qlash_allclans(ctx):
 #    await qlash_trophies(ctx)
 
-@commands.cooldown(1,60,commands.BucketType.user)
-@bot.command(name='channels',pass_context=True,brief='(UTIL) Get a list of all channels in the server.',description=desc_channels)
-async def channels(ctx):
-    await ChannelList(ctx)
-
-@commands.cooldown(1, 60, commands.BucketType.channel)
-@bot.command(name='hello',brief="Welcomes a user! ",description=desc_hello)
-async def welcome(ctx):
-    await welcome_(ctx)
-
 #@commands.cooldown(1,60, commands.BucketType.user)
 #@util.command(name='weather-current',brief='(UTIL) Shows current weather for a given city',description=desc_weather_current)
 #async def weather_current(ctx,city,country_code):
@@ -203,7 +198,7 @@ async def welcome(ctx):
 #    myclass = Weather()
 #    await myclass.weather_five_days_(ctx,city,country_code)
 
-@commands.cooldown(1,30,commands.BucketType.channel)
+@commands.cooldown(1,60,commands.BucketType.channel)
 @bot.command(name='bot-info',brief="(UTIL) Shows some details about the bot's development")
 async def bot_info(ctx):
     await bot_info_(ctx)

@@ -1,8 +1,7 @@
 #commands and bot descriptions
 
 bot_description = """Welcome to the QLASH Bot Help Center. I am QLASH Bot and I allow users to do a bunch of cool and interesting stuff 😎.
-To navigate in this help menu, please type ^help <category name> to view all possible commands under a category, and ^help <category name> <command name> for a detailed description of a command.
-To run a command type ^<category> <command> <parameters (if any)>, for example ^util qlash-clan QLASH Olympus or ^fun roll
+To navigate in this help menu, please type ^help <command_name> to see how a command works.
 If you have any question or problem with my commands, please do not hesitate to contact our staff or the Bot creators directly.
 I hope you have a pleasant stay in the discord server! 🤩😁 """
 
@@ -48,7 +47,7 @@ Information includes: \n-- Name, Tag & ID\n-- Member Status \n-- Server join dat
 desc_serverinfo = """Moderator Command
 No Cooldown \n
 Shows all information of the current server.
-These include: \n-- Name & ID \n-- Region \n-- Member count \n--Owner \n-- Date of creation. \n-- Much more"""
+These include: \n-- Name & ID \n-- Region \n-- Member count \n-- Owner \n-- Date of creation. \n-- Much more"""
 
 desc_member_dm = """Moderator Command
 No Cooldown \n
