@@ -42,4 +42,3 @@ async def game1_nickname(before,after):
                 role2 = discord.utils.get(after.guild.roles, name="step2")
                 await after.dm_channel.send("Well done, you passed step 2!")
                 await after.add_roles(role2)
-#
