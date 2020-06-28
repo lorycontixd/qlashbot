@@ -126,7 +126,7 @@ async def on_member_update_role(before,after):
                     #myint = randint(1,len(messages))
                     print(after.name+" was given the role "+role.name)
                     id = role.id
-                    #file = open('message.csv','r+')
+                    #file = open('./media/csv/qlash_brawlstars_server_club_roles_channel_ids.csv','r+')
                     #content = file.read()
                     #lines = content.split('\n')
                     #for line in lines:
