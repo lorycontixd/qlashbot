@@ -27,7 +27,7 @@ from utility import *
 from mongodb import *
 from instances import *
 from tasks import giova
-from games import *
+from modules.games import *
 from modules.google import *
 from weather import *
 from fun import *

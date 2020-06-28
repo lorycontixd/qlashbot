@@ -13,7 +13,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from functions import *
-from previousscheduler import *
+from modules.previousscheduler import *
 from tasks import check_banlist_channel
 from mongodb import view_database
 #from scheduler import *
