@@ -38,7 +38,7 @@ cest = timezone('Europe/Rome')
 ##
 bot_status = True
 last_update = ''
-"""
+
 async def on_ready_():
     scheduler.add_default_tasks(apscheduler)
     print('Logged in as: ',bot.user)
@@ -52,7 +52,7 @@ async def on_ready_():
     #ch = bot.get_channel(int(bot_developer_channel))
     #messages = ["Here I am. Hrmmm.", "Up and runnning I am.", "Hello again! I'm here. Yes. Hrmmmm.", "Back on track, I am."]
     #await ch.send(random.choice(messages))
-"""
+
 
 async def get_member_count(ctx):
     guild = bot.get_guild(int(qlash_bs_id))
@@ -62,7 +62,7 @@ async def get_member_count(ctx):
     #print("Logging off: ",bot.user)
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged off 🔴")
-"""
+
 watchouts = ['spongebob']
 async def member_join_check(member:discord.Member):
     mychannel = bot.get_channel(int(qlash_bot))
@@ -79,7 +79,7 @@ async def member_join_check(member:discord.Member):
             await mychannel.send(embed=embed)
             mod = discord.utils.get(message.guild.roles, name="Moderator")
             await mychannel.send(mod.mention)
-"""
+
 async def member_join_welcome(member:discord.Member):
     await member.create_dm()
     welcome_message = """

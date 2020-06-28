@@ -26,11 +26,11 @@ from events import *
 #*****************************************************************************************************************
 #*********************************************       EVENTS     **************************************************
 #*****************************************************************************************************************
-event_functions = EventFunctions()
+#event_functions = EventFunctions()
 
 @bot.event
 async def on_ready():
-    await event_functions.on_ready_()
+    await on_ready_()
     bot.add_cog(Weather())
     bot.add_cog(Fun())
     bot.add_cog(Moderation())
