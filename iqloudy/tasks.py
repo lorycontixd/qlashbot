@@ -253,7 +253,7 @@ async def giova():
     await logs.send(embed=embed)
 
 async def invite_bot_ch():
-    channel = channel = discord.utils.get(guild.text_channels, id=int(446051853357154307))
+    channel = instances.bot.get_channel(446051853357154307)
     link = await channel.create_invite(max_age = 0,max_uses=0)
     await channel.send("Here is an instant invite to your server:  ")
     await channel.send(link)
