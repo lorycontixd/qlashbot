@@ -52,7 +52,7 @@ async def analyze(ctx):
     plt.xlabel("Date of "+month)
     plt.ylabel("Number of members in server")
     plt.plot(list_date,list_members)
-    pathname = '../media/images/membergraph-'+month+year+'.png'
+    pathname = './media/images/membergraph-'+month+year+'.png'
     plt.savefig(pathname,bbox_inches='tight')
     #cloudinary.uploader.upload(pathname)
     await ctx.send(file=discord.File(pathname))
