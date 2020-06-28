@@ -16,6 +16,7 @@ from functions import *
 from modules.previousscheduler import *
 from tasks import check_banlist_channel
 from mongodb import view_database
+from events import *
 #from scheduler import *
 #from leagues import *
 
@@ -25,10 +26,11 @@ from mongodb import view_database
 #*****************************************************************************************************************
 #*********************************************       EVENTS     **************************************************
 #*****************************************************************************************************************
+event_functions = EventFunctions()
 
 @bot.event
 async def on_ready():
-    await on_ready_()
+    await event_functions.on_ready_()
     bot.add_cog(Weather())
     bot.add_cog(Fun())
     bot.add_cog(Moderation())
