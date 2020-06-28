@@ -1,55 +1,558 @@
-{
-  "id": 1,
-  "name": "trophy road",
-  "brawlers" : [
-    {
-      "id" : 1,
-      "name" : "Shelly",
-      "about" : "Shelly uses a shotgun.",
-      "media" : [
-        {
-          "id" : 1,
-          "type" : "profile_icon",
-          "link" : "to be added"
-        }
-      ],
-      "health" : 3600,
-      "speed" : 2.4,
-      "play_style" : {
-        "offense" : 4,
-        "defense" : 3,
-        "utility" : 2
-      },
-      "main attack": {
-        "name": "Buckshot",
-        "about" : "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
-        "range": 7.67,
-        "reload" : 1500
-      },
-      "super" : {
-        "name" : "Super shell",
-        "about" : "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
-        "range": "7.67"
-      },
-      "gadgets" : [
-        {
-          "id" : 1,
-          "name" : "Fast Forward",
-          "about" : "Shelly dashes forward."
-        }
-      ],
-      "starPowers": [
-        {
-          "id" : 1,
-          "name" : "Band-Aid",
-          "about" : "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+[
+  {
+    "id": 1,
+    "name": "trophy road",
+    "brawlers": [
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
         },
-        {
-          "id" : 2,
-          "name" : "Shell Shock",
-          "about" : "Super Shell slows down enemies for 3 secs."
-        }
-      ]
-    }
-  ]
-}
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Nita",
+        "class": "Fighter",
+        "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rupture",
+          "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+          "range": 6,
+          "reload": 1250
+        },
+        "super": {
+          "name": "Overbearing",
+          "about": "Nita summons the spirit of Big Baby Bear to hunt down her enemies.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Bear Paws",
+            "about": "Stun the enemies close to the bear."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bear with Me ",
+            "about": "Nita and her bear recover 500 damage when either hits a target."
+          },
+          {
+            "id": 2,
+            "name": "Hyper Bear",
+            "about": "The attack speed of the bear is decreased by 50%. The bear's attack also has no warmup and cooldown time."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Colt",
+        "class": "Sharpshooter",
+        "about": "Colt fires an accurate burst of bullets from his dual revolvers. His Super shreds cover and extends the bullet barrage!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Six-shooters",
+          "about": "Colt shoots six straight long-range shots out of his revolvers.",
+          "range": 9,
+          "reload": 1600
+        },
+        "super": {
+          "name": "Bullet storm",
+          "about": "Colt rattles off a massive burst of bullets that shoot extra far and destroy cover.",
+          "range": 11
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Speedloader ",
+            "about": "Colt instantly reloads 2 ammo."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Slick Boots",
+            "about": "Colt's movement speed is increased."
+          },
+          {
+            "id": 2,
+            "name": "Magnum Special",
+            "about": "Colt's attack range and bullet speed are increased"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Bull",
+        "class": "Heavyweight",
+        "about": "Bull deals massive damage up close with his shotgun. For his Super move, he charges through barriers and knocks back enemies!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4900,
+        "speed": 2.57,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Double-barrel",
+          "about": "Bull's double-barreled shotgun deals heavy damage. It has very short range, so Bull likes to get up close and personal.",
+          "range": 5.33,
+          "reload": 1600
+        },
+        "super": {
+          "name": "Bulldozer",
+          "about": "Bull puts his head down and bulldozes through opponents and obstacles. He's always been headstrong!",
+          "range": 11
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "T-Bone Injector",
+            "about": "Bull instantly recovers 1500 health."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Tough Guy",
+            "about": "Bull gains a shield which reduces damage by 30% when Bull has less than 40% health. "
+          },
+          {
+            "id": 2,
+            "name": "Berserker",
+            "about": "Bull's reload speed is increased. "
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Jessie",
+        "class": "Fighter",
+        "about": "Jessie fires off an energy orb. After hitting a target, the orb bounces at the next target in range, hitting up to three enemies.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3200,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 2,
+          "utility": 4
+        },
+        "main attack": {
+          "name": "Shock Rifle",
+          "about": "Jessie fires off an energy orb. After hitting a target, the orb bounces at the next target in range, hitting up to three enemies.",
+          "range": 9,
+          "reload": 1800
+        },
+        "super": {
+          "name": "Scrappy!",
+          "about": "Jessie deploys a gun turret that automatically shoots at enemies. It's made of 100% recycled materials!",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "SparK Plug",
+            "about": "All enemies within close range of Scrappy are slowed down."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Energize",
+            "about": "Jessie's orbs heal Scrappy for 800 health per hit."
+          },
+          {
+            "id": 2,
+            "name": "Shocky",
+            "about": "Scrappy's projectiles bounce when they hit enemies."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Brock",
+        "class": "Sharpshooter",
+        "about": "Brock fires a long-range, explosive rocket at enemies. His Super is a ballistic rocket barrage that destroys cover!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rockin' Rocket",
+          "about": "Brock lets fly with a single Rockin' Rocket that really goes the distance.",
+          "range": 10,
+          "reload": 2100
+        },
+        "super": {
+          "name": "Rocket Rain",
+          "about": "Brock fires a rocket barrage that takes out enemies and obstacles. He only wants to see you bathing in the Rocket Rain!",
+          "range": 8.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Rocket Laces",
+            "about": "Brock does 500 damage to nearby enemies and jumps over objects"
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Incendiary",
+            "about": "600 damage per second 2 secs"
+          },
+          {
+            "id": 2,
+            "name": "Rocket No. Four",
+            "about": "Brock can fire a 4th rocket."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Dynamike",
+        "class": "Thrower",
+        "about": "Dynamike lobs two explosive sticks of dynamite. His Super attack is a whole barrel full of dynamite that blows up cover!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Short Fuse",
+          "about": "Mike tosses two sticks of dynamite, passing over any obstacles in the way. The fuses are cut as short as Mike's explosive temper!",
+          "range": 7.33,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Big Barrel O' Boom",
+          "about": "A big-bada-barrel of dynamite blows up cover. Any surviving enemies get knocked back on impact!",
+          "range": 7.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fidget Spinner",
+            "about": "Dynamike throws dynamites around him. Each stick deals 700 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Dynajump",
+            "about": " When Dynamike gets close to the explosion of a dynamite, he will be launched into the air."
+          },
+          {
+            "id": 2,
+            "name": "Demolition",
+            "about": "Increase super damage +1000."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Bo",
+        "class": "Fighter",
+        "about": "Bo fires three explosive arrows toward his targets. His Super ability places a trio of hidden, explosive mines on the ground!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 2,
+          "utility": 4
+        },
+        "main attack": {
+          "name": "Eagle-eyed",
+          "about": "Bo releases a trio of exploding arrows, tearing up enemies like an eagle's talons.",
+          "range": 8.67,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Catch A Fox",
+          "about": "Bo hides explosive traps in the ground. When triggered by an enemy, the traps explode after a short delay, knocking back and damaging enemies.",
+          "range": 8.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Super Totem",
+            "about": "Bo and allies are able to charge the super without attacking."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Circling Eagle",
+            "about": "Bo and allies can see enemies in bushes from a greater distance. "
+          },
+          {
+            "id": 2,
+            "name": "Snare a Bear",
+            "about": "Bo's mines stun enemies for 2 seconds."
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Tick",
+        "class": "Thrower",
+        "about": "Tick is a metal ball of barely controlled excitement and energy - explosive energy! He throws mines, and his Super makes his head detach, seek a target and explode.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2200,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 1,
+          "utility": 3
+        },
+        "main attack": {
+          "name": "Minimines",
+          "about": "Tick lobs a cluster of mines that separate before landing. The mines explode on contact with a target, or after a few seconds.",
+          "range": 8.67,
+          "reload": 2200
+        },
+        "super": {
+          "name": "Headfirst",
+          "about": "Tick detaches and launches his head. After landing, the head hops toward the nearest target and explodes on contact!",
+          "range": 3.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Backup Mine",
+            "about": "Tick dashes forward and drops a back-up mine."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Well-Oiled",
+            "about": "Tick recovers health 2 seconds faster than normal (after one second)."
+          },
+          {
+            "id": 2,
+            "name": "Automa-Tick Reload",
+            "about": "Tick has 10% shorter reload time. "
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "8-bit",
+        "class": "Sharpshooter",
+        "about": "8-Bit lumbers along like an arcade cabinet on legs. He shoots Blaster Beams and his Super boosts friendlies' damage!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4300,
+        "speed": 1.93,
+        "play_style": {
+          "offense": 5,
+          "defense": 1,
+          "utility": 3
+        },
+        "main attack": {
+          "name": "Blaster Beams",
+          "about": "Shoots a burst of Blaster Beams that damage any opponent they hit. The beams have medium range and a slight spread.",
+          "range": 10,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Damage Booster",
+          "about": "Deploys a turret that increases the damage output of all friendly Brawlers in its area of effect.",
+          "range": 8.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Cheat Cartridge",
+            "about": "8-bit teleports to the booster."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Extra Life",
+            "about": "8-bit instantly resurrects with full health, one time. "
+          },
+          {
+            "id": 2,
+            "name": "Boosted Booster",
+            "about": "The range of the booster is increased."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Emz",
+        "class": "Fighter",
+        "about": "Emz attacks with blasts of hair spray that deal damage over time, and slows down opponents with her Super.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 2,
+          "utility": 3
+        },
+        "main attack": {
+          "name": "Spray",
+          "about": "Emz gives you a blast of her hair spray! It's strong enough to melt your face.",
+          "range": 6.67,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Caustic Charisma",
+          "about": "Emz creates a cloud of toxicity around herself, slowing down the movement of enemies and damaging them.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Friendzoner",
+            "about": "Emz pushes back all enemies into the ideal range for doing her max damage and does 500 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bad Karma",
+            "about": "Enemies suffer +20% damage for each consecutive half-second caught in Emz' spray."
+          },
+          {
+            "id": 2,
+            "name": "Hype",
+            "about": "Emz recovers 400 health per enemy caught inside her toxic area of effect."
+          }
+        ]
+      }
+    ]
+  }
+]
