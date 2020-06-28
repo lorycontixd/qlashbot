@@ -27,7 +27,7 @@ from utility import *
 from mongodb import *
 from instances import *
 from tasks import giova
-from games import *
+from modules.games import *
 from modules.google import *
 from weather import *
 from fun import *
@@ -259,7 +259,7 @@ def GetClanTag(df,name):
 
 def LoadBadWords():
     dict = {}
-    FILEPATH = './media/csv/bad_words.csv'
+    FILEPATH = '../media/csv/bad_words.csv'
     file = open(FILEPATH,'r+')
     content = file.read()
     lines = content.split('\n')
@@ -595,7 +595,7 @@ async def WriteMembersToFile2(ctx):
 	"""
 	Writes all members of a clan in the database, in the file of the corresponding clan.
 	Layout of clan file: member_name	  member_role	member_tag
-	Clan file directory: ./media/texts/qlash_brawlstars_clubs
+	Clan file directory: ../media/texts/qlash_brawlstars_clubs
 	"""
 	global last_update
 	last_update = str(datetime.now())
