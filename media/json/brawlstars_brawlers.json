@@ -344,7 +344,7 @@
           {
             "id": 1,
             "name": "Dynajump",
-            "about": " When Dynamike gets close to the explosion of a dynamite, he will be launched into the air."
+            "about": "When Dynamike gets close to the explosion of a dynamite, he will be launched into the air."
           },
           {
             "id": 2,
@@ -550,6 +550,1342 @@
             "id": 2,
             "name": "Hype",
             "about": "Emz recovers 400 health per enemy caught inside her toxic area of effect."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "rare",
+    "brawlers": [
+      {
+        "id": 1,
+        "name": "El Primo",
+        "class": "Heavyweight",
+        "about": "El Primo throws a flurry of punches at his enemies. His Super is a leaping elbow drop that deals damage to all caught underneath!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 6000,
+        "speed": 2.57,
+        "play_style": {
+          "offense": 2,
+          "defense": 5,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Fists of Fury",
+          "about": "El Primo fires off a furious flurry of four fiery fists. That's a spicy jalapeno knuckle sandwich!",
+          "range": 3,
+          "reload": 800
+        },
+        "super": {
+          "name": "Flying Elbow Drop",
+          "about": "Leaping high, El Primo drops an Intergalactic Elbow that knocks around enemies and destroys cover!",
+          "range": 9
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Suplex Supplement",
+            "about": "El Primo throws enemies over his shoulders."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Meteor Rush",
+            "about": "El Primo gains +25% movement speed for 4 seconds after using his super. "
+          },
+          {
+            "id": 2,
+            "name": "El Fuego",
+            "about": "El Primo's super does 1200 damage over 4 seconds"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Barley",
+        "class": "Thrower",
+        "about": "Barley attacks by lobbing bottles at enemies, doing splash damage. His Super is a huge barrage of burning bottles!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2400,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Undiluted",
+          "about": "Barley lobs a bottle, breaking it on the ground. Enemies take damage from the splash, and more damage over time if they stay in the puddle.",
+          "range": 7.33,
+          "reload": 2000
+        },
+        "super": {
+          "name": "Last Call!",
+          "about": "Barley hurls a flurry of fiery bottles, covering a huge area in flames. This one's on the house!",
+          "range": 9.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Sticky Syrup Mixer ",
+            "about": "Barley releases a puddle of sticky syrup. Enemies caught in the syrup are slowed down."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Medical Use",
+            "about": "Barley recovers 400 health per attack. "
+          },
+          {
+            "id": 2,
+            "name": "Extra Noxious",
+            "about": "Barley's attack does +140 damage."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Poco",
+        "class": "Support",
+        "about": "Poco fires damaging sound waves at enemies. His Super can heal both Poco himself and his teammates!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 2,
+          "defense": 3,
+          "utility": 4
+        },
+        "main attack": {
+          "name": "Power Chord",
+          "about": "Poco strums his guitarrón, sending forward bone-jarring sound waves. Enemies hit by the waves take damage.",
+          "range": 7,
+          "reload": 1600
+        },
+        "super": {
+          "name": "Encore",
+          "about": "Poco heals himself and all friends he can reach with his uplifting melody. Does not affect enemies.",
+          "range": 9.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Tuning Fork",
+            "about": "Poco and his allies close to him recover 2500 health over 5 seconds"
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Da Capo!",
+            "about": "Poco heals allies 700 hp per attack."
+          },
+          {
+            "id": 2,
+            "name": "Screching Solo",
+            "about": "Poco's super does 800 damage."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Rosa",
+        "class": "Heavyweight",
+        "about": "This boxing botanist will plant her feet and go toe to toe! Her Super gives her tough, vegan protective gear.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 5400,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 5,
+          "utility": 1
+        },
+        "main attack": {
+          "name": "Hands of Stone",
+          "about": "Rosa throws a flurry of powerful punches with perfect technique!",
+          "range": 3.67,
+          "reload": 1000
+        },
+        "super": {
+          "name": "Strong Stuff",
+          "about": "Rosa gets a second skin of tough vine for 3 seconds, decreasing all damage received by 70% for the duration.",
+          "range": 0
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Grow Light",
+            "about": "Rosa plants a bush."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Plant Life",
+            "about": "Rosa recovers 200 hp per second while inside a bush."
+          },
+          {
+            "id": 2,
+            "name": "Thorny Gloves",
+            "about": "Rosa does +220 damage during her super."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "super rare",
+    "brawlers": [
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Nita",
+        "class": "Fighter",
+        "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rupture",
+          "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+          "range": 6,
+          "reload": 1250
+        },
+        "super": {
+          "name": "Overbearing",
+          "about": "Nita summons the spirit of Big Baby Bear to hunt down her enemies.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Bear Paws",
+            "about": "Stun the enemies close to the bear."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bear with Me ",
+            "about": "Nita and her bear recover 500 damage when either hits a target."
+          },
+          {
+            "id": 2,
+            "name": "Hyper Bear",
+            "about": "The attack speed of the bear is decreased by 50%. The bear's attack also has no warmup and cooldown time."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Dynamike",
+        "class": "Thrower",
+        "about": "Dynamike lobs two explosive sticks of dynamite. His Super attack is a whole barrel full of dynamite that blows up cover!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Short Fuse",
+          "about": "Mike tosses two sticks of dynamite, passing over any obstacles in the way. The fuses are cut as short as Mike's explosive temper!",
+          "range": 7.33,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Big Barrel O' Boom",
+          "about": "A big-bada-barrel of dynamite blows up cover. Any surviving enemies get knocked back on impact!",
+          "range": 7.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fidget Spinner",
+            "about": "Dynamike throws dynamites around him. Each stick deals 700 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Dynajump",
+            "about": "When Dynamike gets close to the explosion of a dynamite, he will be launched into the air."
+          },
+          {
+            "id": 2,
+            "name": "Demolition",
+            "about": "Increase super damage +1000."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Emz",
+        "class": "Fighter",
+        "about": "Emz attacks with blasts of hair spray that deal damage over time, and slows down opponents with her Super.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 2,
+          "utility": 3
+        },
+        "main attack": {
+          "name": "Spray",
+          "about": "Emz gives you a blast of her hair spray! It's strong enough to melt your face.",
+          "range": 6.67,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Caustic Charisma",
+          "about": "Emz creates a cloud of toxicity around herself, slowing down the movement of enemies and damaging them.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Friendzoner",
+            "about": "Emz pushes back all enemies into the ideal range for doing her max damage and does 500 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bad Karma",
+            "about": "Enemies suffer +20% damage for each consecutive half-second caught in Emz' spray."
+          },
+          {
+            "id": 2,
+            "name": "Hype",
+            "about": "Emz recovers 400 health per enemy caught inside her toxic area of effect."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "epic",
+    "brawlers": [
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Nita",
+        "class": "Fighter",
+        "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rupture",
+          "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+          "range": 6,
+          "reload": 1250
+        },
+        "super": {
+          "name": "Overbearing",
+          "about": "Nita summons the spirit of Big Baby Bear to hunt down her enemies.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Bear Paws",
+            "about": "Stun the enemies close to the bear."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bear with Me ",
+            "about": "Nita and her bear recover 500 damage when either hits a target."
+          },
+          {
+            "id": 2,
+            "name": "Hyper Bear",
+            "about": "The attack speed of the bear is decreased by 50%. The bear's attack also has no warmup and cooldown time."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Nita",
+        "class": "Fighter",
+        "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rupture",
+          "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+          "range": 6,
+          "reload": 1250
+        },
+        "super": {
+          "name": "Overbearing",
+          "about": "Nita summons the spirit of Big Baby Bear to hunt down her enemies.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Bear Paws",
+            "about": "Stun the enemies close to the bear."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bear with Me ",
+            "about": "Nita and her bear recover 500 damage when either hits a target."
+          },
+          {
+            "id": 2,
+            "name": "Hyper Bear",
+            "about": "The attack speed of the bear is decreased by 50%. The bear's attack also has no warmup and cooldown time."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Dynamike",
+        "class": "Thrower",
+        "about": "Dynamike lobs two explosive sticks of dynamite. His Super attack is a whole barrel full of dynamite that blows up cover!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Short Fuse",
+          "about": "Mike tosses two sticks of dynamite, passing over any obstacles in the way. The fuses are cut as short as Mike's explosive temper!",
+          "range": 7.33,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Big Barrel O' Boom",
+          "about": "A big-bada-barrel of dynamite blows up cover. Any surviving enemies get knocked back on impact!",
+          "range": 7.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fidget Spinner",
+            "about": "Dynamike throws dynamites around him. Each stick deals 700 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Dynajump",
+            "about": "When Dynamike gets close to the explosion of a dynamite, he will be launched into the air."
+          },
+          {
+            "id": 2,
+            "name": "Demolition",
+            "about": "Increase super damage +1000."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Emz",
+        "class": "Fighter",
+        "about": "Emz attacks with blasts of hair spray that deal damage over time, and slows down opponents with her Super.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 2,
+          "utility": 3
+        },
+        "main attack": {
+          "name": "Spray",
+          "about": "Emz gives you a blast of her hair spray! It's strong enough to melt your face.",
+          "range": 6.67,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Caustic Charisma",
+          "about": "Emz creates a cloud of toxicity around herself, slowing down the movement of enemies and damaging them.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Friendzoner",
+            "about": "Emz pushes back all enemies into the ideal range for doing her max damage and does 500 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bad Karma",
+            "about": "Enemies suffer +20% damage for each consecutive half-second caught in Emz' spray."
+          },
+          {
+            "id": 2,
+            "name": "Hype",
+            "about": "Emz recovers 400 health per enemy caught inside her toxic area of effect."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "mythic",
+    "brawlers": [
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Nita",
+        "class": "Fighter",
+        "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rupture",
+          "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+          "range": 6,
+          "reload": 1250
+        },
+        "super": {
+          "name": "Overbearing",
+          "about": "Nita summons the spirit of Big Baby Bear to hunt down her enemies.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Bear Paws",
+            "about": "Stun the enemies close to the bear."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bear with Me ",
+            "about": "Nita and her bear recover 500 damage when either hits a target."
+          },
+          {
+            "id": 2,
+            "name": "Hyper Bear",
+            "about": "The attack speed of the bear is decreased by 50%. The bear's attack also has no warmup and cooldown time."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Nita",
+        "class": "Fighter",
+        "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rupture",
+          "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+          "range": 6,
+          "reload": 1250
+        },
+        "super": {
+          "name": "Overbearing",
+          "about": "Nita summons the spirit of Big Baby Bear to hunt down her enemies.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Bear Paws",
+            "about": "Stun the enemies close to the bear."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bear with Me ",
+            "about": "Nita and her bear recover 500 damage when either hits a target."
+          },
+          {
+            "id": 2,
+            "name": "Hyper Bear",
+            "about": "The attack speed of the bear is decreased by 50%. The bear's attack also has no warmup and cooldown time."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Dynamike",
+        "class": "Thrower",
+        "about": "Dynamike lobs two explosive sticks of dynamite. His Super attack is a whole barrel full of dynamite that blows up cover!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Short Fuse",
+          "about": "Mike tosses two sticks of dynamite, passing over any obstacles in the way. The fuses are cut as short as Mike's explosive temper!",
+          "range": 7.33,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Big Barrel O' Boom",
+          "about": "A big-bada-barrel of dynamite blows up cover. Any surviving enemies get knocked back on impact!",
+          "range": 7.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fidget Spinner",
+            "about": "Dynamike throws dynamites around him. Each stick deals 700 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Dynajump",
+            "about": "When Dynamike gets close to the explosion of a dynamite, he will be launched into the air."
+          },
+          {
+            "id": 2,
+            "name": "Demolition",
+            "about": "Increase super damage +1000."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Emz",
+        "class": "Fighter",
+        "about": "Emz attacks with blasts of hair spray that deal damage over time, and slows down opponents with her Super.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 2,
+          "utility": 3
+        },
+        "main attack": {
+          "name": "Spray",
+          "about": "Emz gives you a blast of her hair spray! It's strong enough to melt your face.",
+          "range": 6.67,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Caustic Charisma",
+          "about": "Emz creates a cloud of toxicity around herself, slowing down the movement of enemies and damaging them.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Friendzoner",
+            "about": "Emz pushes back all enemies into the ideal range for doing her max damage and does 500 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bad Karma",
+            "about": "Enemies suffer +20% damage for each consecutive half-second caught in Emz' spray."
+          },
+          {
+            "id": 2,
+            "name": "Hype",
+            "about": "Emz recovers 400 health per enemy caught inside her toxic area of effect."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "legendary",
+    "brawlers": [
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Nita",
+        "class": "Fighter",
+        "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 4000,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 3,
+          "defense": 4,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Rupture",
+          "about": "Nita sends forth a shockwave, damaging enemies caught in the tremor.",
+          "range": 6,
+          "reload": 1250
+        },
+        "super": {
+          "name": "Overbearing",
+          "about": "Nita summons the spirit of Big Baby Bear to hunt down her enemies.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Bear Paws",
+            "about": "Stun the enemies close to the bear."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bear with Me ",
+            "about": "Nita and her bear recover 500 damage when either hits a target."
+          },
+          {
+            "id": 2,
+            "name": "Hyper Bear",
+            "about": "The attack speed of the bear is decreased by 50%. The bear's attack also has no warmup and cooldown time."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Dynamike",
+        "class": "Thrower",
+        "about": "Dynamike lobs two explosive sticks of dynamite. His Super attack is a whole barrel full of dynamite that blows up cover!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 2800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 5,
+          "defense": 2,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Short Fuse",
+          "about": "Mike tosses two sticks of dynamite, passing over any obstacles in the way. The fuses are cut as short as Mike's explosive temper!",
+          "range": 7.33,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Big Barrel O' Boom",
+          "about": "A big-bada-barrel of dynamite blows up cover. Any surviving enemies get knocked back on impact!",
+          "range": 7.33
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fidget Spinner",
+            "about": "Dynamike throws dynamites around him. Each stick deals 700 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Dynajump",
+            "about": "When Dynamike gets close to the explosion of a dynamite, he will be launched into the air."
+          },
+          {
+            "id": 2,
+            "name": "Demolition",
+            "about": "Increase super damage +1000."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Emz",
+        "class": "Fighter",
+        "about": "Emz attacks with blasts of hair spray that deal damage over time, and slows down opponents with her Super.",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3800,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 2,
+          "utility": 3
+        },
+        "main attack": {
+          "name": "Spray",
+          "about": "Emz gives you a blast of her hair spray! It's strong enough to melt your face.",
+          "range": 6.67,
+          "reload": 1700
+        },
+        "super": {
+          "name": "Caustic Charisma",
+          "about": "Emz creates a cloud of toxicity around herself, slowing down the movement of enemies and damaging them.",
+          "range": 5
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Friendzoner",
+            "about": "Emz pushes back all enemies into the ideal range for doing her max damage and does 500 damage."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Bad Karma",
+            "about": "Enemies suffer +20% damage for each consecutive half-second caught in Emz' spray."
+          },
+          {
+            "id": 2,
+            "name": "Hype",
+            "about": "Emz recovers 400 health per enemy caught inside her toxic area of effect."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "chromatic",
+    "brawlers": [
+      {
+        "id": 1,
+        "name": "Shelly",
+        "class": "Fighter",
+        "about": "Shelly's spread-fire shotgun blasts the other team with buckshot. Her Super destroys cover and keeps her opponents at a distance!",
+        "media": [
+          {
+            "id": 1,
+            "type": "profile_icon",
+            "link": "to be added"
+          }
+        ],
+        "health": 3600,
+        "speed": 2.4,
+        "play_style": {
+          "offense": 4,
+          "defense": 3,
+          "utility": 2
+        },
+        "main attack": {
+          "name": "Buckshot",
+          "about": "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+          "range": 7.67,
+          "reload": 1500
+        },
+        "super": {
+          "name": "Super shell",
+          "about": "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+          "range": 7.67
+        },
+        "gadgets": [
+          {
+            "id": 1,
+            "name": "Fast Forward",
+            "about": "Shelly dashes forward."
+          }
+        ],
+        "starPowers": [
+          {
+            "id": 1,
+            "name": "Band-Aid",
+            "about": "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+          },
+          {
+            "id": 2,
+            "name": "Shell Shock",
+            "about": "Super Shell slows down enemies for 3 secs."
           }
         ]
       }
