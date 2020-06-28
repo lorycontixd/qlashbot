@@ -37,7 +37,7 @@ def add_default_tasks(scheduler):
     scheduler.add_job(hello_it,id="hello_it",trigger='cron',hour='10',minute='0')
     scheduler.add_job(reg_member,id='register-member',trigger='cron',hour='22',minute='0')
     scheduler.add_job(giova,id="daily-saint",trigger='cron',hour='10',minute='0')
-    scheduler.add_job(invite_bot_ch,id='invite',trigger='cron',hour='12',minute='30')
+    scheduler.add_job(invite_bot_ch,id='invite',trigger='cron',hour='13',minute='05')
     pass
 
 def _get_jobs(scheduler):
