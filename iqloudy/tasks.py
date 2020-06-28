@@ -199,7 +199,7 @@ async def giova():
     if member==None:
         print("No member found with this ID")
         return
-    file = open('../media/texts/santi.txt','r+')
+    file = open('./media/texts/santi.txt','r+')
     content = file.read()
     lines = content.split("\n")
     for i in range(len(lines)):
