@@ -8,6 +8,7 @@ from instances import *
 from mongodb import *
 from tasks import check_banlist_channel,giova
 
+from modules import messages
 class Moderation(commands.Cog,name="Moderation"):
     def __init__(self):
         ipapi.location(ip=None, key=None, field=None)
@@ -173,35 +174,70 @@ class Moderation(commands.Cog,name="Moderation"):
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='say',brief='Send a message to a specific channel by the bot.',description=desc_announce)
-    async def annouce(self,ctx,channelname,*message):
+    async def say(self, ctx, channel:discord.TextChannel, *message):
+        if not channel:
+            channel = ctx.channel
+
         msg = ctx.message
-        temp = " ".join(message[:])
         guild = ctx.guild
-        channel = discord.utils.get(guild.text_channels, name=channelname)
-        if channel == None:
-            await ctx.send("Channel not found")
-            return
+
         try:
-            await channel.send(temp)
+            await channel.send(" ".join(message[:]))
             await msg.add_reaction('✅')
         except:
-            await ctx.send("Error sending message")
+            await ctx.channel.send("Error sending message")
 
-    @commands.has_any_role('DiscordDeveloper','QLASH')
-    @commands.command(name='welcome',brief='Send a welcome message to a specific channel by the bot.',hidden=True)
-    async def welcome(self,ctx,channelname):
+    @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
+    @commands.command(name='image',brief='Send a message to a specific channel by the bot.',description=desc_announce)
+    async def image(self, ctx, channel:discord.TextChannel, url, filename):
+        if not channel:
+            channel = ctx.channel
+
         msg = ctx.message
         guild = ctx.guild
-        channel = discord.utils.get(guild.text_channels, name=channelname)
-        if channel == None:
-            await ctx.send("Channel not found")
-            return
-        await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
-        await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = _mention_channel(566213862756712449)))
-        await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
-        await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
-        await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
-        await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
+
+        try:
+            await messages.send_file(channel, url, filename)
+            await msg.add_reaction('✅')
+        except:
+            await ctx.channel.send("Error sending message")
+
+    @commands.has_any_role('DiscordDeveloper','QLASH')
+    @commands.command(name='welcome',brief='Sends a welcome message to a specific channel by the bot.',hidden=True)
+    async def welcome(self, ctx, channel:discord.TextChannel = None):
+        if not channel:
+            channel = ctx.channel
+
+        msg = ctx.message
+        guild = ctx.guild
+
+        await messages.send_file(channel, messages.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
+        await channel.send(messages.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = bot.get_channel(566213862756712449).mention))
+        await msg.add_reaction('✅')
+
+    @commands.command(name='info',brief='Sends an infobox to a specific channel by the bot.',hidden=True)
+    async def info(self, ctx, channel:discord.TextChannel = None):
+        if not channel:
+            channel = ctx.channel
+
+        msg = ctx.message
+        guild = ctx.guild
+
+        await channel.send(embed=messages.QLASH_BRAWLSTARS_INFOBOX)
+        await msg.add_reaction('✅')
+
+    @commands.has_any_role('DiscordDeveloper','QLASH')
+    @commands.command(name='rules',brief='Sends the rules to a specific channel by the bot.',hidden=True)
+    async def rules(self, ctx, channel:discord.TextChannel = None):
+        if not channel:
+            channel = ctx.channel
+
+        msg = ctx.message
+        guild = ctx.guild
+
+        await messages.send_file(channel, messages.RULES_SECTION_IMAGE_URL,  "rules.png")
+        await channel.send(messages.RULES_MESSAGE_FIRST_SECTION)
+        await channel.send(messages.RULES_MESSAGE_SECOND_SECTION)
         await msg.add_reaction('✅')
 
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')

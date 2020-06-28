@@ -32,7 +32,7 @@ from modules.google import *
 from weather import *
 from fun import *
 from moderation import *
-from modules import brawlstats, welcome_message, scheduler
+from modules import brawlstats, scheduler
 
 cest = timezone('Europe/Rome')
 ##
@@ -538,21 +538,18 @@ async def write_message(ctx,channelname,*message):
             await channel.send(temp)
     await msg.add_reaction('✅')
 
-def _mention_channel(id):
-    return bot.get_channel(id).mention
-
-async def welcome_announcement(ctx,channelname):
-    msg = ctx.message
-    guild = ctx.guild
-    for channel in guild.text_channels:
-        if str(channel.name) == str(channelname):
-            await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
-            await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = _mention_channel(566213862756712449)))
-            await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
-            await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
-            await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
-            await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
-    await msg.add_reaction('✅')
+# async def welcome_announcement(ctx,channelname):
+#     msg = ctx.message
+#     guild = ctx.guild
+#     for channel in guild.text_channels:
+#         if str(channel.name) == str(channelname):
+#             await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
+#             await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = _mention_channel(566213862756712449)))
+#             await channel.send(embed=welcome_message.QLASH_BRAWLSTARS_INFOBOX)
+#             await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
+#             await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
+#             await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
+#     await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):
 	author = ctx.message.author
