@@ -1,0 +1,55 @@
+{
+  "id": 1,
+  "name": "trophy road",
+  "brawlers" : [
+    {
+      "id" : 1,
+      "name" : "Shelly",
+      "about" : "Shelly uses a shotgun.",
+      "media" : [
+        {
+          "id" : 1,
+          "type" : "profile_icon",
+          "link" : "to be added"
+        }
+      ],
+      "health" : 3600,
+      "speed" : 2.4,
+      "play_style" : {
+        "offense" : 4,
+        "defense" : 3,
+        "utility" : 2
+      },
+      "main attack": {
+        "name": "Buckshot",
+        "about" : "Shelly's boomstick fires a wide spread of pellets to a medium range. The more pellets hit, the greater the damage.",
+        "range": 7.67,
+        "reload" : 1500
+      },
+      "super" : {
+        "name" : "Super shell",
+        "about" : "Shelly's Super Shell obliterates both cover and enemies. Any survivors get knocked back.",
+        "range": "7.67"
+      },
+      "gadgets" : [
+        {
+          "id" : 1,
+          "name" : "Fast Forward",
+          "about" : "Shelly dashes forward."
+        }
+      ],
+      "starPowers": [
+        {
+          "id" : 1,
+          "name" : "Band-Aid",
+          "about" : "Shelly recovers 1800 health every 20 seconds. Activates when Shelly's health falls below 40%"
+        },
+        {
+          "id" : 2,
+          "name" : "Shell Shock",
+          "about" : "Super Shell slows down enemies for 3 secs."
+        }
+      ]
+    }
+  ]
+}
