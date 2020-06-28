@@ -259,7 +259,7 @@ def GetClanTag(df,name):
 
 def LoadBadWords():
     dict = {}
-    FILEPATH = './bad_words.csv'
+    FILEPATH = './media/csv/bad_words.csv'
     file = open(FILEPATH,'r+')
     content = file.read()
     lines = content.split('\n')
@@ -595,7 +595,7 @@ async def WriteMembersToFile2(ctx):
 	"""
 	Writes all members of a clan in the database, in the file of the corresponding clan.
 	Layout of clan file: member_name	  member_role	member_tag
-	Clan file directory: ./qlashclans2
+	Clan file directory: ./media/texts/qlash_brawlstars_clubs
 	"""
 	global last_update
 	last_update = str(datetime.now())
@@ -623,7 +623,7 @@ async def CompareMembers(ctx):
 	"""
 	Compares all members of a clan in the database with current member in clans.
 	Layout of clan file: member_name	  member_role	member_tag
-	Clan file directory: ./qlashclans2
+	Clan file directory: ./mecia/texts/qlash_brawlstars_clubs
 	"""
 	global last_update
 	#response = ' ``` \n'

@@ -1,6 +1,6 @@
 import gspread
 import os
-credentials_path = './google-api/qlash-bot-c0a45565e4f0.json'
+credentials_path = './media/json/qlash-bot-c0a45565e4f0-google-api.json'
 gc = gspread.service_account(filename=credentials_path)
 
 async def writeall(ctx):

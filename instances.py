@@ -131,4 +131,4 @@ testchannel = '723161066124607599'
 bot_developer_channel='720193411113680913'
 
 #database directories
-qc_directory2 = './qlashclans2/' #this one is the right one
+qc_directory2 = './media/texts/qlash_brawlstars_clubs/'
