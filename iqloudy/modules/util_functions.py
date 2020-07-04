@@ -21,18 +21,12 @@ from discord import Webhook, AsyncWebhookAdapter
 from datetime import datetime
 from random import randint
 from dateutil import tz
-from descriptions import *
-from checks import *
-from utility import *
-from mongodb import *
+from modules.util_checks import *
+from modules.util_mongodb import *
 from instances import *
-from tasks import giova
-from modules.games import *
-from modules.google import *
-from weather import *
-from fun import *
-from moderation import *
-from modules import brawlstats, welcome_message, scheduler
+from modules.util_games import *
+from modules.util_google import *
+from modules import util_brawlstats as brawlstats, util_scheduler as scheduler
 
 cest = timezone('Europe/Rome')
 ##
@@ -52,7 +46,7 @@ async def on_ready_():
     print('----------------')
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged in 🟢")
-    await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help for help"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.custom, name=" QLASH -- Brawl Stars"))
     #ch = bot.get_channel(int(bot_developer_channel))
     #messages = ["Here I am. Hrmmm.", "Up and runnning I am.", "Hello again! I'm here. Yes. Hrmmmm.", "Back on track, I am."]
     #await ch.send(random.choice(messages))
@@ -130,7 +124,7 @@ async def on_member_update_role(before,after):
                     #myint = randint(1,len(messages))
                     print(after.name+" was given the role "+role.name)
                     id = role.id
-                    #file = open('message.csv','r+')
+                    #file = open('./media/csv/qlash_brawlstars_server_club_roles_channel_ids.csv','r+')
                     #content = file.read()
                     #lines = content.split('\n')
                     #for line in lines:
@@ -184,6 +178,50 @@ async def on_raw_reaction_add(payload):
 #time zones
 from_zone = tz.tzutc() #utc
 to_zone = tz.tzlocal() #local
+ig_t_it= """🇮🇹
+Una volta ricevuto il ruolo “IG-EUROPE” e avuto accesso alla lobby di registrazione (Instagram Tournament - EU - 07/06), se sei il capitano, dai il comando !register e si aprirà una finestra nei messaggi privati nella quale effettuare la registrazione in questo modo:
+!createteam <Nome squadra> <nickname in game>
+
+Se avrai fatto tutto correttamente il bot genererà un codice team che dovrai condividere solo con i tuoi due compagni di squadra.
+- Per unirti ad una squadra già creata, dopo il comando !register scrivi al bot in privato il seguente comando:
+!jointeam <code team> <nickname in game>
+
+-Regole: #📕tournament-rules  sotto la voce "regole generali valide" per ogni modalità e "#Regole 3v3"
+-Premi: #💰tournament-prizes
+- Tutte le informazioni su come completare l'iscrizione puoi trovarle in #tournament-announcement
+
+
+"""
+
+
+ig_t_en="""🇬🇧
+Once you'll get the role “IG-EUROPE” or “IG-AMERICA” and get the access into the registration's lobby Instagram Tournament – EU/AM - 07/06), if you're the captain, you have to put the command !register and you will have a window in private messages in which you can do the registration as it follows:
+!createteam <Team's name> <In game nickname>
+
+If you'll do all correctly the bot will generate a Team code that you have to share with your 2 teammates.
+- To join in a Team already created, after the command !register write to the bot in private messages the following command:
+!jointeam <Team code> <In game nickname>
+
+-Rules: #📕tournament-rules  under #Rules 3v3
+-Prizes: #💰tournament-prizes
+- You can find all the information about how to complete the registration in #tournament-announcement
+
+
+"""
+
+
+ig_t_es="""🇪🇦
+Una vez que tengas el rol “IG-EUROPE” o “IG-AMERICA” y el acceso al lobby de registro, si eres el capitán, debes poner el comando !register y tendrás una ventana privada en la que puedes hacer el registro de la siguiente manera:
+!createteam <Nombre del equipo> <Apodo en el juego>
+
+Si haces todo correctamente, el bot generará un código de equipo que debes compartir con tus 2 compañeros de equipo.
+- Para unirte a un equipo ya creado, después del registro de comando escribe al bot en privado el siguiente comando:
+!jointeam <Código de equipo> <Apodo en el juego>
+
+-Reglas: #📕tournament-rules  abajo #Rules 3v3
+- Premios: #💰tournament-prizes
+- Puedes encontrar todas las informaciones sobre como registrarse en #tournament-announcement
+"""
 
 existing_roles = ["IG-EUROPE","IG-AMERICA"]
 async def check_instarole(message:discord.Message):
@@ -557,21 +595,18 @@ async def write_message(ctx,channelname,*message):
             await channel.send(temp)
     await msg.add_reaction('✅')
 
-def _mention_channel(id):
-    return bot.get_channel(id).mention
-
-async def welcome_announcement(ctx,channelname):
-    msg = ctx.message
-    guild = ctx.guild
-    for channel in guild.text_channels:
-        if str(channel.name) == str(channelname):
-            await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
-            await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = _mention_channel(566213862756712449)))
-            await channel.send(embed=welcome_message.WELCOME_MESSAGE_SECOND_SECTION)
-            await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
-            await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
-            await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
-    await msg.add_reaction('✅')
+# async def welcome_announcement(ctx,channelname):
+#     msg = ctx.message
+#     guild = ctx.guild
+#     for channel in guild.text_channels:
+#         if str(channel.name) == str(channelname):
+#             await welcome_message.send_file(channel, welcome_message.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
+#             await channel.send(welcome_message.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = _mention_channel(566213862756712449)))
+#             await channel.send(embed=welcome_message.QLASH_BRAWLSTARS_INFOBOX)
+#             await welcome_message.send_file(channel, welcome_message.RULES_SECTION_IMAGE_URL,  "rules.png")
+#             await channel.send(welcome_message.RULES_MESSAGE_FIRST_SECTION)
+#             await channel.send(welcome_message.RULES_MESSAGE_SECOND_SECTION)
+#     await msg.add_reaction('✅')
 
 async def purge_(ctx,amount):
 	author = ctx.message.author

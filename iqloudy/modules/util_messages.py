@@ -3,31 +3,39 @@ import discord
 
 from io import BytesIO
 
-from modules import constants
+QLASH_BRAWLSTARS_HOMEPAGE_URL="https://www.qlash.gg"
+QLASH_BRAWLSTARS_DISCORD_URL="https://www.discord.gg/qlash-brawlstars"
+QLASH_BRAWLSTARS_TELEGRAM_URL="https://www.telegram.me/QLASHBS"
+QLASH_BRAWLSTARS_INSTAGRAM_URL="https://www.instagram.com/qlash_brawlstars"
+QLASH_BRAWLSTARS_FACEBOOK_URL="https://www.facebook.com/qlashbrawlstars"
+QLASH_BRAWLSTARS_TIKTOK_URL="https://www.tiktok.com/@qlash"
+QLASH_BRAWLSTARS_TWITTER_URL="https://www.twitter.com/brawlqlash"
+QLASH_BRAWLSTARS_TWITCH_URL="https://www.twitch.tv/qlash_eng"
+QLASH_BRAWLSTARS_YOUTUBE_URL="https://www.youtube.com/qlash"
+#"https://www.youtube.com/channel/UCC4BUTrLaGrcIhSwVhPgMOA"
 
-
-WELCOME_MESSAGE_ICON_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850143480152114/PzQwxlPN_400x400.jpg"
-WELCOME_MESSAGE_IMAGE_URL = "https://cdn.discordapp.com/banners/415221296247341066/5feac1eee07f969ecbc6aa346738edb6.jpg?size=512"
-WELCOME_MESSAGE_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
 WELCOME_MESSAGE_FIRST_SECTION = """**Welcome to the QLASH Brawl Stars server!**
 Let us be the first to wish you a pleasant stay on our server.
 
 Please make yourself comfortable by reading up on our rules and check out our clans in {ALL_QLASH_CLANS_CHANNEL}.
 """
 
-WELCOME_MESSAGE_SECOND_SECTION = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Server QLASH Brawl Stars", color=0x00ccff)
-WELCOME_MESSAGE_SECOND_SECTION.set_author(name="QLASH -- Brawl Stars", url=constants.QLASH_BRAWLSTARS_DISCORD_URL, icon_url=WELCOME_MESSAGE_ICON_URL)
-WELCOME_MESSAGE_SECOND_SECTION.set_thumbnail(url=WELCOME_MESSAGE_THUMBNAIL_URL)
-WELCOME_MESSAGE_SECOND_SECTION.set_image(url=WELCOME_MESSAGE_IMAGE_URL)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Home page", value="[qlash.gg]({url})".format(url=constants.QLASH_BRAWLSTARS_HOMEPAGE_URL), inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Discord", value="[discord.gg/qlash-brawlstars]({url})".format(url=constants.QLASH_BRAWLSTARS_DISCORD_URL), inline=True)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Telegram", value="[t.me/QLASHBS]({url})".format(url=constants.QLASH_BRAWLSTARS_TELEGRAM_URL), inline=True)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Facebook", value="[QLASH Brawl Stars]({url})".format(url=constants.QLASH_BRAWLSTARS_FACEBOOK_URL), inline=False)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Twitter", value="[@brawlQLASH]({url})".format(url=constants.QLASH_BRAWLSTARS_TWITTER_URL), inline=True)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="Instagram", value="[@qlash_brawlstars]({url})".format(url=constants.QLASH_BRAWLSTARS_INSTAGRAM_URL), inline=True)
-WELCOME_MESSAGE_SECOND_SECTION.add_field(name="YouTube", value="[QLASH YouTube]({url})".format(url=constants.QLASH_BRAWLSTARS_YOUTUBE_URL), inline=False)
-
 WELCOME_MESSAGE_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723873104798941234/e50a80e8-6335-42c2-b82e-abf46b175893-profile_banner-480.png"
+
+QLASH_BRAWLSTARS_INFOBOX_ICON_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850143480152114/PzQwxlPN_400x400.jpg"
+QLASH_BRAWLSTARS_INFOBOX_IMAGE_URL = "https://cdn.discordapp.com/banners/415221296247341066/5feac1eee07f969ecbc6aa346738edb6.jpg?size=512"
+QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
+QLASH_BRAWLSTARS_INFOBOX = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Server QLASH Brawl Stars", color=0x00ccff)
+QLASH_BRAWLSTARS_INFOBOX.set_author(name="QLASH -- Brawl Stars", url=QLASH_BRAWLSTARS_DISCORD_URL, icon_url=QLASH_BRAWLSTARS_INFOBOX_ICON_URL)
+QLASH_BRAWLSTARS_INFOBOX.set_thumbnail(url=QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL)
+QLASH_BRAWLSTARS_INFOBOX.set_image(url=QLASH_BRAWLSTARS_INFOBOX_IMAGE_URL)
+QLASH_BRAWLSTARS_INFOBOX.add_field(name="Home page", value="[qlash.gg]({url})".format(url=QLASH_BRAWLSTARS_HOMEPAGE_URL), inline=False)
+QLASH_BRAWLSTARS_INFOBOX.add_field(name="Discord", value="[discord.gg/qlash-brawlstars]({url})".format(url=QLASH_BRAWLSTARS_DISCORD_URL), inline=True)
+QLASH_BRAWLSTARS_INFOBOX.add_field(name="Telegram", value="[t.me/QLASHBS]({url})".format(url=QLASH_BRAWLSTARS_TELEGRAM_URL), inline=True)
+QLASH_BRAWLSTARS_INFOBOX.add_field(name="Facebook", value="[QLASH Brawl Stars]({url})".format(url=QLASH_BRAWLSTARS_FACEBOOK_URL), inline=False)
+QLASH_BRAWLSTARS_INFOBOX.add_field(name="Twitter", value="[@brawlQLASH]({url})".format(url=QLASH_BRAWLSTARS_TWITTER_URL), inline=True)
+QLASH_BRAWLSTARS_INFOBOX.add_field(name="Instagram", value="[@qlash_brawlstars]({url})".format(url=QLASH_BRAWLSTARS_INSTAGRAM_URL), inline=True)
+QLASH_BRAWLSTARS_INFOBOX.add_field(name="YouTube", value="[QLASH YouTube]({url})".format(url=QLASH_BRAWLSTARS_YOUTUBE_URL), inline=False)
 
 RULES_MESSAGE_FIRST_SECTION = """**Rules**
 
