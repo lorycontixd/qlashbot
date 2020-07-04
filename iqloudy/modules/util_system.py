@@ -1,15 +1,15 @@
 #schedule
+import discord
 import schedule
 import time
 import calendar
 from matplotlib import pyplot as plt
 from datetime import date
 from datetime import datetime
-from instances import *
 from modules.util_mongodb import *
 from syncer import sync
 
-async def addsingle(ctx,date,member):
+async def addsingle(ctx,coll_membercount,date,member):
     mydict = {
         "Date":str(date),
         "Members":int(member)
@@ -17,7 +17,7 @@ async def addsingle(ctx,date,member):
     coll_membercount.insert_one(mydict)
     msg = await ctx.send("Member count added to the database")
 
-async def record(ctx):
+async def record(ctx,coll_membercount):
     membercount = ctx.guild.member_count
     #membercount = 14540
     today = date.today()
@@ -28,11 +28,11 @@ async def record(ctx):
     coll_membercount.insert_one(mydict)
     msg = await ctx.send("Registered today's member count")
 
-async def removeall(ctx):
+async def removeall(ctx,coll_membercount):
     coll_membercount.delete_many({})
     msg = await ctx.send("Cleared!")
 
-async def analyze(ctx):
+async def analyze(ctx,coll_membercount):
     firstdays = ['01','02','03','04','05','06','07','08','09']
     list_date = []
     list_members = []

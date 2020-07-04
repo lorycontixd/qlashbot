@@ -2,7 +2,6 @@
 import os
 import discord
 import brawlstats
-import ipapi
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api

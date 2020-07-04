@@ -2,13 +2,11 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from instances import *
 from modules.util_functions import *
 
 class Permissions(commands.Cog,name="Permissions"):
     def __init__(self):
         pass
-
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='check-all-channels ',brief='check all channel perms')

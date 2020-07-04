@@ -3,7 +3,6 @@ from pyowm import OWM
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from instances import *
 
 OWM_API_Key = 'c19412f77f267f8de7781eb6b6ffb56d'
 

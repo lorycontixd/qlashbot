@@ -6,11 +6,11 @@ from modules.cogs_fun import Fun
 from modules.cogs_system import System
 from modules.cogs_permissions import Permissions
 
-async def init_cogs(bot):
+async def init_cogs(bot,db):
     bot.add_cog(Weather())
     bot.add_cog(Fun())
     bot.add_cog(Moderation())
-    bot.add_cog(System())
+    bot.add_cog(System(db))
     bot.add_cog(BrawlStars())
     bot.add_cog(Messages())
     bot.add_cog(Permissions())

@@ -13,7 +13,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from modules.util_functions import *
-from modules.util_previousscheduler import *
 from modules.util_mongodb import view_database
 from modules import cogs
 #from scheduler import *
@@ -30,7 +29,8 @@ from modules import cogs
 @bot.event
 async def on_ready():
     await on_ready_()
-    await cogs.init_cogs(bot)
+    db = instances.mongoclient.heroku_q2z34tjm
+    await cogs.init_cogs(bot,db)
 
 @bot.event
 async def on_disconnect():
