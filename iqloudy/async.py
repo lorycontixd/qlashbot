@@ -17,6 +17,7 @@ from modules.previousscheduler import *
 from tasks import check_banlist_channel
 from mongodb import view_database
 from events import *
+from modules import cogs
 #from scheduler import *
 #from leagues import *
 
@@ -31,9 +32,7 @@ from events import *
 @bot.event
 async def on_ready():
     await on_ready_()
-    bot.add_cog(Weather())
-    bot.add_cog(Fun())
-    bot.add_cog(Moderation())
+    await cogs.init_cogs(bot)
 
 @bot.event
 async def on_disconnect():

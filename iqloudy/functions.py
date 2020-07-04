@@ -29,9 +29,6 @@ from instances import *
 from tasks import giova
 from modules.games import *
 from modules.google import *
-from weather import *
-from fun import *
-from moderation import *
 from modules import brawlstats, scheduler
 
 cest = timezone('Europe/Rome')
