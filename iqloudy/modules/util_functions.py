@@ -22,7 +22,7 @@ from datetime import datetime
 from random import randint
 from dateutil import tz
 from descriptions import *
-from checks import *
+from modules.util_checks import *
 from utility import *
 from modules.util_mongodb import *
 from instances import *
