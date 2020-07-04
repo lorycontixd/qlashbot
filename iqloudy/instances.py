@@ -17,7 +17,7 @@ from aiohttp_proxy import ProxyConnector,ProxyType
 from apscheduler.schedulers.blocking import BlockingScheduler
 from descriptions import *
 
-from modules import scheduler
+from modules import util_scheduler as scheduler
 
 #*****************************************************************************************************************
 #********************************************       SETTINGS     *************************************************

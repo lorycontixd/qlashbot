@@ -4,7 +4,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from instances import *
 from descriptions import *
-from functions import *
+from modules.util_functions import *
 
 class BrawlStars(commands.Cog,name="Brawl Stars"):
     def __init__(self):

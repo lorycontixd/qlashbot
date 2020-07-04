@@ -4,7 +4,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from discord import Webhook, AsyncWebhookAdapter
 
-from modules.scheduler import *
+from modules.util_scheduler import *
 
 class EventFunctions():
     def __init__(self):

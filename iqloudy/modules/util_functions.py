@@ -24,12 +24,12 @@ from dateutil import tz
 from descriptions import *
 from checks import *
 from utility import *
-from mongodb import *
+from modules.util_mongodb import *
 from instances import *
 from tasks import giova
-from modules.games import *
-from modules.google import *
-from modules import brawlstats, scheduler
+from modules.util_games import *
+from modules.util_google import *
+from modules import util_brawlstats as brawlstats, util_scheduler as scheduler
 
 cest = timezone('Europe/Rome')
 ##

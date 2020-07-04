@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from datetime import date
 from datetime import datetime
 from instances import *
-from mongodb import *
+from modules.util_mongodb import *
 from syncer import sync
 
 async def addsingle(ctx,date,member):

@@ -12,10 +12,10 @@ from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from functions import *
-from modules.previousscheduler import *
+from modules.util_functions import *
+from modules.util_previousscheduler import *
 from tasks import check_banlist_channel
-from mongodb import view_database
+from modules.util_mongodb import view_database
 from events import *
 from modules import cogs
 #from scheduler import *

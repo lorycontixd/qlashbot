@@ -5,10 +5,11 @@ from discord.voice_client import VoiceClient
 from descriptions import *
 #from functions import set_
 from instances import *
-from mongodb import *
+from modules.util_mongodb import *
 from tasks import check_banlist_channel,giova
 
-from modules import messages
+from modules import util_messages as messages
+
 class Moderation(commands.Cog,name="Moderation"):
     def __init__(self):
         ipapi.location(ip=None, key=None, field=None)
