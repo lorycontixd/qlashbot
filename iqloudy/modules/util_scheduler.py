@@ -3,7 +3,7 @@ from pytz import timezone
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.jobstores.mongodb import MongoDBJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
-from tasks import *
+from modules.util_tasks import *
 
 def init_scheduler(mongodb):
     jobstores = {

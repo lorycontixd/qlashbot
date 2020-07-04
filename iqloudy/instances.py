@@ -15,7 +15,6 @@ from datetime import datetime
 from dotenv import load_dotenv
 from aiohttp_proxy import ProxyConnector,ProxyType
 from apscheduler.schedulers.blocking import BlockingScheduler
-from descriptions import *
 
 from modules import util_scheduler as scheduler
 
@@ -23,8 +22,8 @@ from modules import util_scheduler as scheduler
 #********************************************       SETTINGS     *************************************************
 #*****************************************************************************************************************
 
-env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
-load_dotenv(dotenv_path=env_path)
+#env_path = os.path.dirname(os.path.realpath(__file__)) + '/.env'
+#load_dotenv(dotenv_path=env_path)
 #quota_url = 'http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293'
 
 connector = ProxyConnector(
@@ -79,6 +78,11 @@ if myclient is None:
     myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector) #BRAWLSTATS
 
 bot = None
+
+bot_description = """Welcome to the QLASH Bot Help Center. I am QLASH Bot and I allow users to do a bunch of cool and interesting stuff 😎.
+To navigate in this help menu, please type ^help <command_name> to see how a command works.
+If you have any question or problem with my commands, please do not hesitate to contact our staff or the Bot creators directly.
+I hope you have a pleasant stay in the discord server! 🤩😁 """
 
 if bot is None:
     bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD

@@ -3,7 +3,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from instances import *
-from descriptions import *
 from modules.util_functions import *
 
 class Permissions(commands.Cog,name="Permissions"):
