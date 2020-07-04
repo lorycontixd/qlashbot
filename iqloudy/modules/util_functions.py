@@ -45,7 +45,7 @@ async def on_ready_():
     print('----------------')
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged in 🟢")
-    await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help for help"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.custom, name=" QLASH -- Brawl Stars"))
     #ch = bot.get_channel(int(bot_developer_channel))
     #messages = ["Here I am. Hrmmm.", "Up and runnning I am.", "Hello again! I'm here. Yes. Hrmmmm.", "Back on track, I am."]
     #await ch.send(random.choice(messages))
