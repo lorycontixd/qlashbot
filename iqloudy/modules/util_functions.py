@@ -158,8 +158,6 @@ async def on_member_update_activity(before,after):
                     if found==False:
                         await ch.send(str(art)+'\t1')
 
-#async def on_raw_reaction_add(payload):
-
 
 #def on_message_changelog(message):
 #    ch = bot.get_channel(int(changelog_channel))
