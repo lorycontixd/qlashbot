@@ -123,12 +123,12 @@ support = '464695005156737024'
 banlist = '493151669849161743'
 banlist_testing = '713322449915215923'
 entry_exit = '713735004827418625'
-entries_discord = '714161674432806972'
 qlash_bot = '714161674432806972'
 ig_role_channel = '703596640593903716'
 file_managing = '721658324327858236'
 testchannel = '723161066124607599'
 bot_developer_channel='720193411113680913'
+changelog_channel = '728165928939814952'
 
 #database directories
 qc_directory2 = './media/texts/qlash_brawlstars_clubs/'

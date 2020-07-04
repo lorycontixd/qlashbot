@@ -14,6 +14,7 @@ def read_file(filename_in):
 		ll=line.split('\t')
 		name=ll[0]
 		ll2=name.split('#')
+		print(ll2)
 		tag='#'
 		temp=str(ll2[1]).replace('O','0')
 		temp=temp.replace(" ","")

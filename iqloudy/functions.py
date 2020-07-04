@@ -39,6 +39,10 @@ cest = timezone('Europe/Rome')
 bot_status = True
 last_update = ''
 
+#*************************************************************************************************
+#********************************************  EVENTS  *******************************************
+#*************************************************************************************************
+
 async def on_ready_():
     scheduler.add_default_tasks(apscheduler)
     print('Logged in as: ',bot.user)
@@ -159,6 +163,21 @@ async def on_member_update_activity(before,after):
                             break
                     if found==False:
                         await ch.send(str(art)+'\t1')
+
+async def on_raw_reaction_add(payload):
+    
+
+#def on_message_changelog(message):
+#    ch = bot.get_channel(int(changelog_channel))
+#    if message.channel != ch:
+#        return
+#    e = message.embeds[0]
+#    if e == None:
+#        return
+#    logs = bot.get_channel(int(qlash_bot))
+#    print()
+
+
 
 
 
@@ -867,7 +886,7 @@ async def read_file(message):
 
 async def get_audit_logs_(ctx,member:discord.Member):
     entries = await ctx.guild.audit_logs(limit=None, user=member).flatten()
-    await ctx.send("First Audit Log entry for user"+str(member)+"\n"+str(entries[0]))
+    await ctx.send("First Audit Log entry for user"+str(member)+"\n"+str([0]))
 
 #****************
 
