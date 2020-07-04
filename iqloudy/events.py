@@ -22,7 +22,7 @@ class EventFunctions():
         print('Websocket Gateway: ',bot.ws)
         print('Time: ',time)
         print('----------------')
-        await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.playing, name=" ^help for help"))
+        await bot.change_presence( activity=discord.Activity(type=discord.ActivityType.custom, name=" QLASH -- Brawl Stars"))
 
     async def member_join_check(self,member:discord.Member):
         mychannel = bot.get_channel(int(qlash_bot))
