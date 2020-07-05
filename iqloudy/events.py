@@ -8,6 +8,7 @@ from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
+from modules.util_checks import check_equal_lists
 
 #*******************************************   ON READY   ************************************************
 
