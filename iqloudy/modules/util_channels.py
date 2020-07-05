@@ -29,26 +29,24 @@ def _factory_build_permissions(ow_allow_perms, ow_deny_perms):
     return default_perms_dict
 
 def _factory_build_output(actor, perms_dict):
-    output = StringIO()
-    output.close()
+    with StringIO() as output:
+        actor_name = ""
+        if type(actor) is discord.Member:
+            actor_name = "Member " + actor.name
+        elif type(actor) is discord.Role:
+            if actor.name.startswith("@"):
+                actor_name = actor.name[1:]
+            else:
+                actor_name = actor.name
 
-    actor_name = ""
-    if type(actor) is discord.Member:
-        actor_name = "Member " + actor.name
-    elif type(actor) is discord.Role:
-        if actor.name.startswith("@"):
-            actor_name = actor.name[1:]
-        else:
-            actor_name = actor.name
-
-    output.write(actor_name)
-    output.write("\n")
-    output.write("```css\n")
-    for k in perms_dict:
-        output.write(k + " : " + perms_dict[k] + "\n")
-    output.write("```")
-    output.write("\n")
-    return output
+        output.write(actor_name)
+        output.write("\n")
+        output.write("```css\n")
+        for k in perms_dict:
+            output.write(k + " : " + perms_dict[k] + "\n")
+        output.write("```")
+        output.write("\n")
+        return output.getvalue()
 
 async def util_check_channel (cog, ctx, channel):
     for actor in channel.overwrites:
@@ -56,5 +54,6 @@ async def util_check_channel (cog, ctx, channel):
         ow_allow_perms =  discord.Permissions(ow_allow.value)
         ow_deny_perms =  discord.Permissions(ow_deny.value)
         perms_dict = _factory_build_permissions(ow_allow_perms,ow_deny_perms)
-        _factory_build_output(actor,perms_dict)
-        await ctx.send(output.getvalue())
+        #_check_permission_overwrites(actor,perms_dict)
+        output_string = _factory_build_output(actor,perms_dict)
+        await ctx.send(output_string)
