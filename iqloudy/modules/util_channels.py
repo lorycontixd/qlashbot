@@ -2,7 +2,10 @@ import discord
 import itertools
 from io import StringIO
 
-role_ids = {'@everyone': 415221296247341066, 'Muted': 700794700378144878}
+role_ids = {'@everyone': 415221296247341066, 'Muted': 700794700378144878,
+'Sub-Coordinator': 604761799505477635, 'Coordinator': 509708853861023745,
+'QLASH Crew': 487179485716676609, 'QLASH': 493107264438272000,
+'Moderator': 434863392637976596, 'Content Creator': 445974786766667777}
 
 ALLOWED = "✔️ ALLOWED"
 DENIED = "❌ DENIED"
@@ -75,8 +78,10 @@ def _factory_build_output(actor, perms_dict):
         return output.getvalue()
 
 def _check_expected_actual_overwrites(output,expected,actual):
+    output.write("```css\n")
     for k in {x : x for x in expected if x in actual and expected[x] != actual[x]}:
-        output.write(k + "\t" + actual[k] + "\tExpected: " + expected[k] + "\n")
+        output.write(k.ljust(22) + "\tExpected: " + expected[k] + "\t\tActual: " + actual[k] + "\n")
+    output.write("```\n")
 
 def _factory_build_missing_roles(channel):
     with StringIO() as output:
@@ -87,9 +92,10 @@ def _factory_build_missing_roles(channel):
                 if actor.name in role_ids:
                     del missing_roles[actor.name]
 
+        output.write("```diff\n")
         for k in missing_roles:
             output.write(k + " has no defined permissions.\n")
-
+        output.write("```\n")
         return output.getvalue()
 
 def _factory_build_anomalies(actor, perms_dict):
