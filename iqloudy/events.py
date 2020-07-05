@@ -205,7 +205,7 @@ async def reaction_check(payload):
         ch = bot.get_channel(int(payload.channel_id))
         e.add_field(name="Channel",value=ch.mention)
         m = await ch.fetch_message(int(payload.message_id))
-        e.add_field(name="Message",value="From "+str(message.author)+" at "+str(message.created_at.strftime("%d/%m/%Y, %H:%M:%S")))
+        e.add_field(name="Message",value="From "+str(m.author)+" at "+str(m.created_at.strftime("%d/%m/%Y, %H:%M:%S")))
 
 
 
