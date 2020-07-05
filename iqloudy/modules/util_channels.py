@@ -4,11 +4,11 @@ from io import StringIO
 
 role_everyone = 415221296247341066
 
-ALLOWED = "ALLOWED"
-DENIED = "DENIED"
-DEFAULT = "DEFAULT"
+ALLOWED = "✔️ ALLOWED"
+DENIED = "❌ DENIED"
+DEFAULT = "〰️ DEFAULT"
 
-permissions = ['create_instant_invites', 'kick_members', 'ban_members',
+permissions = ['create_instant_invite', 'kick_members', 'ban_members',
 'administrator', 'manage_channels','manage_guild','add_reactions',
 'view_audit_log','priority_speaker','read_messages','send_messages',
 'send_tts_messages','manage_messages','embed_links','attach_files','read_message_history','mention_everyone',
