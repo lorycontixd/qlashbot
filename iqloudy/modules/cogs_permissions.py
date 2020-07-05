@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from modules.util_functions import *
+from modules.util_permissions import *
 
 class Permissions(commands.Cog,name="Permissions"):
     def __init__(self):
@@ -16,7 +16,7 @@ class Permissions(commands.Cog,name="Permissions"):
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='check-channel',brief='check channel perms')
     async def check_channel(self,ctx,channel:discord.TextChannel):
-        await ctx.send("Not yet implemented.")
+        await util_check_channel(self, ctx, channel)
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='lock-channel',brief='lock channel')
