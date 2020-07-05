@@ -219,7 +219,7 @@ async def bot_commands_gametag(message):
 async def reaction_check(payload):
     unwanted = ["💩","🖕","🔪","🤮"]
     if payload.emoji.name in unwanted:
-        mod = discord.utils.get(message.guild.roles, name="Moderator")
+        mod = discord.utils.get(payload.member.guild.roles, name="Moderator")
         if payload.member.top_role < mod:
             mychannel = bot.get_channel(int(qlash_bot))
             e = discord.Embed(title="Detected unwanted emoji",description="-------------------------------------",color=0xff4013)
