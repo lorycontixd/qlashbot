@@ -142,7 +142,7 @@ def LoadBadWords():
 
 async def check_bad_words(message):
     author = message.author
-    if type(message.channel) != discord.TextChannel:
+    if message.channel.type != discord.TextChannel:
         return
     sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
     if author.top_role>=sub:
