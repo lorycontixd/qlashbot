@@ -202,7 +202,7 @@ async def reaction_check(payload):
         e = discord.Embed(title="Detected unwanted emoji",description="-------------------------------------",color=0xff4013)
         e.add_field(name="Emoji",value=payload.emoji)
         e.add_field(name="Author",value=payload.member)
-        ch = await bot.get_channel(int(payload.channel_id))
+        ch = bot.get_channel(int(payload.channel_id))
         e.add_field(name="Channel",value=ch.mention)
         m = ch.fetch_message(int(payload.message_id))
         e.add_field(name="Message",value="From "+str(message.author)+" at "+str(message.created_at.strftime("%d/%m/%Y, %H:%M:%S")))
