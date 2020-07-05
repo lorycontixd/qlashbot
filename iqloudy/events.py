@@ -197,6 +197,8 @@ async def check_roles_assignement(message:discord.Message):
 
 #*******************************************   ON REACTION ADD   ******************************************
 async def reaction_check(payload):
+    print(payload.emoji)
+    print(payload.emoji.name)
     unwanted = ["poop","shit","middle_finger","knife","face_vomiting"]
     if payload.emoji.name in unwanted:
         e = discord.Embed(title="Detected unwanted emoji",description="-------------------------------------",color=0xff4013)

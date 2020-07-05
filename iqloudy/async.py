@@ -65,7 +65,6 @@ async def on_message(message):
 @bot.event
 async def on_raw_reaction_add(payload):
     await events.reaction_check(payload)
-    pass
     #await game1_reaction(payload)
 
 
