@@ -199,6 +199,7 @@ async def check_roles_assignement(message:discord.Message):
 async def reaction_check(payload):
     unwanted = ["💩","🖕","🔪","🤮"]
     if payload.emoji.name in unwanted:
+        mychannel = bot.get_channel(int(qlash_bot))
         e = discord.Embed(title="Detected unwanted emoji",description="-------------------------------------",color=0xff4013)
         e.add_field(name="Emoji",value=payload.emoji)
         e.add_field(name="Author",value=payload.member)
@@ -206,7 +207,7 @@ async def reaction_check(payload):
         e.add_field(name="Channel",value=ch.mention)
         m = await ch.fetch_message(int(payload.message_id))
         e.add_field(name="Message",value="From "+str(m.author)+" at "+str(m.created_at.strftime("%d/%m/%Y, %H:%M:%S")))
-
+        await mychannel.send(embed=e)
 
 
 #*******************************************   SPECIAL EVENTS   ******************************************
