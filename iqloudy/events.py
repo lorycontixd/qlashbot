@@ -8,7 +8,7 @@ from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from modules.util_checks import check_equal_lists
+from modules.util_checks import check_equal_lists,validate_tag
 
 #*******************************************   ON READY   ************************************************
 
@@ -141,10 +141,14 @@ def LoadBadWords():
     return dict
 
 async def check_bad_words(message):
+    author = message.author
+    sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
+    if author.top_role>=sub:
+        return
     mychannel = bot.get_channel(int(qlash_bot))
     message_content = message.content.lower()
-    author = message.author
     badword_dict = LoadBadWords()
+    mod = discord.utils.get(message.guild.roles, name="Moderator")
     for badword in badword_dict:
         if badword in message_content:
             channel = bot.get_channel(int(qlash_bot))
@@ -157,6 +161,7 @@ async def check_bad_words(message):
             embed.add_field(name="ID",value=message.id)
             embed.set_footer(text="Created By Lore")
             await mychannel.send(embed=embed)
+            await mychannel.send(mod.mention)
             mess = await mychannel.send("Do I have permission to delete the message? (A moderatos has to react within 10 minutes)")
             await mess.add_reaction('✅')
             await mess.add_reaction('❌')
@@ -194,20 +199,36 @@ async def check_roles_assignement(message:discord.Message):
                 msg = await ch.send(author.mention+" You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you!")
                 await msg.delete(delay=8.0)
 
+#on message event to gather gametags shared with starlist
+async def bot_commands_gametag(message):
+    ch = bot.get_channel(int(bot_commands_channel))
+    if message.channel != ch:
+        return
+    if not message.startswith(".save")
+        return
+    print("received message from bot_commands channel")
+    list = message.split(" ")
+    tag = list[1]
+    if validate_tag(tag):
+        register_member(message.author,tag)
+
 
 #*******************************************   ON REACTION ADD   ******************************************
 async def reaction_check(payload):
     unwanted = ["💩","🖕","🔪","🤮"]
     if payload.emoji.name in unwanted:
-        mychannel = bot.get_channel(int(qlash_bot))
-        e = discord.Embed(title="Detected unwanted emoji",description="-------------------------------------",color=0xff4013)
-        e.add_field(name="Emoji",value=payload.emoji)
-        e.add_field(name="Author",value=payload.member)
-        ch = bot.get_channel(int(payload.channel_id))
-        e.add_field(name="Channel",value=ch.mention)
-        m = await ch.fetch_message(int(payload.message_id))
-        e.add_field(name="Message",value="From "+str(m.author)+" at "+str(m.created_at.strftime("%d/%m/%Y, %H:%M:%S")))
-        await mychannel.send(embed=e)
+        mod = discord.utils.get(message.guild.roles, name="Moderator")
+        if payload.member.top_role < mod:
+            mychannel = bot.get_channel(int(qlash_bot))
+            e = discord.Embed(title="Detected unwanted emoji",description="-------------------------------------",color=0xff4013)
+            e.add_field(name="Emoji",value=payload.emoji)
+            e.add_field(name="Author",value=payload.member)
+            ch = bot.get_channel(int(payload.channel_id))
+            e.add_field(name="Channel",value=ch.mention)
+            m = await ch.fetch_message(int(payload.message_id))
+            e.add_field(name="Message",value="From "+str(m.author)+" at "+str(m.created_at.strftime("%d/%m/%Y, %H:%M:%S")))
+            await mychannel.send(embed=e)
+            await mychannel.send(mod.mention)
 
 
 #*******************************************   SPECIAL EVENTS   ******************************************

@@ -27,3 +27,14 @@ def check_equal_lists(x,y): #x,y two lists
         return True
     else:
         return False
+
+def validate_tag(tag):
+    if not tag.startswith("#"):
+        return False
+    allowed = ['P','Y','L','Q','G','R','J','C','U','V','0','2','8','9']
+    for c in tag:
+        if c not in allowed:
+            return False
+    if len(tag) not in range(5,15):
+        return False
+    return True
