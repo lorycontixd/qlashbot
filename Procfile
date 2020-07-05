@@ -1,1 +1,1 @@
-worker: python iqloudy/async.py
+worker: python iqloudy/app.py
