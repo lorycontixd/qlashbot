@@ -204,7 +204,7 @@ async def bot_commands_gametag(message):
     ch = bot.get_channel(int(bot_commands_channel))
     if message.channel != ch:
         return
-    if not message.startswith(".save")
+    if not message.startswith(".save"):
         return
     print("received message from bot_commands channel")
     list = message.split(" ")
