@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from modules.util_permissions import *
+from modules.util_channels import *
 
-class Permissions(commands.Cog,name="Permissions"):
+class Channels(commands.Cog,name="Channels"):
     def __init__(self):
         pass
 

@@ -4,7 +4,7 @@ from modules.cogs_weather import Weather
 from modules.cogs_messages import Messages
 from modules.cogs_fun import Fun
 from modules.cogs_system import System
-from modules.cogs_permissions import Permissions
+from modules.cogs_channels import Channels
 
 async def init_cogs(bot,db):
     bot.add_cog(Weather())
@@ -13,4 +13,4 @@ async def init_cogs(bot,db):
     bot.add_cog(System(db))
     bot.add_cog(BrawlStars())
     bot.add_cog(Messages())
-    bot.add_cog(Permissions())
+    bot.add_cog(Channels())
