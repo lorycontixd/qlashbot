@@ -16,7 +16,7 @@ permissions = ['create_instant_invite', 'kick_members', 'ban_members',
 'move_members','use_voice_activation','change_nickname','manage_nicknames','manage_roles','manage_webhooks',
 'manage_emojis'
 ]
-def _util_check_channel_overwrites(actor, ow_allow_perms, ow_deny_perms):
+def _factory_build_permissions(ow_allow_perms, ow_deny_perms):
     default_perms_dict = dict.fromkeys(permissions, DEFAULT)
 
     for k in ow_allow_perms:
@@ -28,30 +28,33 @@ def _util_check_channel_overwrites(actor, ow_allow_perms, ow_deny_perms):
 
     return default_perms_dict
 
-async def util_check_channel (cog, ctx, channel):
+def _factory_build_output(actor, perms_dict):
     output = StringIO()
+    output.close()
+
+    actor_name = ""
+    if type(actor) is discord.Member:
+        actor_name = "Member " + actor.name
+    elif type(actor) is discord.Role:
+        if actor.name.startswith("@"):
+            actor_name = actor.name[1:]
+        else:
+            actor_name = actor.name
+
+    output.write(actor_name)
+    output.write("\n")
+    output.write("```css\n")
+    for k in perms_dict:
+        output.write(k + " : " + perms_dict[k] + "\n")
+    output.write("```")
+    output.write("\n")
+    return output
+
+async def util_check_channel (cog, ctx, channel):
     for actor in channel.overwrites:
         ow_allow, ow_deny = channel.overwrites[actor].pair()
         ow_allow_perms =  discord.Permissions(ow_allow.value)
         ow_deny_perms =  discord.Permissions(ow_deny.value)
-        perms_dict = _util_check_channel_overwrites(actor, ow_allow_perms,ow_deny_perms)
-        actor_name = ""
-        if type(actor) is discord.Member:
-            actor_name = "Member " + actor.name
-        elif type(actor) is discord.Role:
-            if actor.name.startswith("@"):
-                actor_name = actor.name[1:]
-            else:
-                actor_name = actor.name
-
-        output.write(actor_name)
-        output.write("\n")
-        output.write("```css\n")
-        for k in perms_dict:
-            output.write(k + " : " + perms_dict[k] + "\n")
-        output.write("```")
-        output.write("\n")
+        perms_dict = _factory_build_permissions(ow_allow_perms,ow_deny_perms)
+        _factory_build_output(actor,perms_dict)
         await ctx.send(output.getvalue())
-        output.truncate(0)
-        output.seek(0)
-    output.close()
