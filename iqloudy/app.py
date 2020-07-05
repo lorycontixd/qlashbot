@@ -39,8 +39,6 @@ async def on_disconnect():
     #messages = ["Logging off, I am.", "The connection, I'm closing down. Hrmmm.", "Gone I am!!", "Signed off, I have. Hrmmm."]
     #await ch.send(random.choice(messages))
     print("Logging off: ",str(bot.user)+" "+str(datetime.now()))
-    #mych = await bot.fetch_channel(int(bot_testing))
-    #await mych.send("Bot has logged off 🔴")
 
 @bot.event
 async def on_member_join(member:discord.Member):
