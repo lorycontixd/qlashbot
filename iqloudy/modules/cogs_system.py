@@ -99,10 +99,10 @@ class System(commands.Cog,name="System"):
     async def iqloudy_info(self,ctx):
         await iqloudy_info_(ctx)
 
-    @commands.cooldown(1,60,commands.BucketType.channel)
-    @commands.command(name='iqloudy-stats',brief='(UTIL) Shows information about QLASH Bot')
-    async def iqloudy__stats(self,ctx):
-        await iqloudy_stats(ctx)
+    #@commands.cooldown(1,60,commands.BucketType.channel,hidden=True)
+    #@commands.command(name='iqloudy-stats',brief='(UTIL) Shows information about QLASH Bot')
+    #async def iqloudy__stats(self,ctx):
+    #    await iqloudy_stats(ctx)
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='get-audit-logs',brief='Audit view.')

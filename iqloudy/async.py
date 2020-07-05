@@ -15,6 +15,7 @@ from discord.voice_client import VoiceClient
 from modules.util_functions import *
 from modules.util_mongodb import view_database
 from modules import cogs
+import events
 #from scheduler import *
 #from leagues import *
 
@@ -28,7 +29,7 @@ from modules import cogs
 
 @bot.event
 async def on_ready():
-    await on_ready_()
+    await events.on_ready_()
     db = instances.mongoclient.heroku_q2z34tjm
     await cogs.init_cogs(bot,db)
 
@@ -43,27 +44,29 @@ async def on_disconnect():
 
 @bot.event
 async def on_member_join(member:discord.Member):
-    await member_join_check(member)
-    await member_join_welcome(member)
+    await events.member_join_check(member)
+    await events.member_join_welcome(member)
 
 @bot.event
 async def on_member_update(before,after):
-    await on_member_update_role(before,after)
-    await game1_nickname(before,after)
+    await events.on_member_update_role(before,after)
+    #await game1_nickname(before,after)
     #await on_member_update_activity(before,after)
 
 @bot.event
 async def on_message(message):
-    await check_bad_words(message)
+    await events.check_bad_words(message)
     #await check_instarole(message)
     #await insta_role_ended(message)
-    await check_roles_assignement(message)
+    await events.check_roles_assignement(message)
     await read_file(message)
     await bot.process_commands(message)
 
 @bot.event
 async def on_raw_reaction_add(payload):
-    await game1_reaction(payload)
+    await events.reaction_check(payload)
+    pass
+    #await game1_reaction(payload)
 
 
 #command events

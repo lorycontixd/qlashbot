@@ -22,6 +22,7 @@ def register_member(member,gametag):
         "DiscordID" : int(member.id),
         "Gametag" : gametag,
         "Date" : str(date.today()),
+        "Tournaments" : 0,
         "Achievements" : []
     }
     coll_registered.insert_one(mydict)
@@ -30,31 +31,15 @@ def check_member(discord):
     db = instances.mongoclient.heroku_q2z34tjm
     coll_registered = db.QLASHBot_Registered
     document = coll_registered.find_one({"Discord":{"$eq":str(discord)}})
+    if document == None:
+        print("No member found in the database")
+        return
     return document #type <dict>
 
-def remove_member(discord,tag):
+def remove_member(discord):
     db = mongoclient.heroku_q2z34tjm
     coll_registered = db.QLASHBot_Registered
     coll_registered.delete_one({"Discord":{"$eq":str(discord)}})
-
-async def view_database(ctx,member):
-    db = instances.mongoclient.heroku_q2z34tjm
-    coll_qlashclans = db.QLASHBot_Clans
-    response='```\n'
-    response+="Name\tTag\tRoleID\tChannelID\n"
-    i=1
-    for document in coll_qlashclans.find():
-        name = str(document["Name"])
-        tag = str(document["Tag"])
-        roleID = str(document["RoleID"])
-        channelID = str(document["ChannelID"])
-        response += str(i)+'. '+name+'\t'+tag+'\n'
-        i+=1
-    response+='```'
-    await member.create_dm
-    await member.dm_channel.send(response)
-
-
 
 #*****************************************************************************************************************
 #*********************************************       CLANS     ***************************************************
@@ -86,11 +71,28 @@ def register_clan(roleID,channelID,tag,name):
     }
     coll_qlashclans.insert_one(mydict)
 
-
 def remove_clan(name):
     db = instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     result = coll_qlashclans.delete_one({"Name":{"$eq":str(name)}})
+
+#view all clans
+async def view_database(ctx,member):
+    db = instances.mongoclient.heroku_q2z34tjm
+    coll_qlashclans = db.QLASHBot_Clans
+    response='```\n'
+    response+="Name\tTag\tRoleID\tChannelID\n"
+    i=1
+    for document in coll_qlashclans.find():
+        name = str(document["Name"])
+        tag = str(document["Tag"])
+        roleID = str(document["RoleID"])
+        channelID = str(document["ChannelID"])
+        response += str(i)+'. '+name+'\t'+tag+'\n'
+        i+=1
+    response+='```'
+    await member.create_dm
+    await member.dm_channel.send(response)
 
 #*****************************************************************************************************************
 #******************************************       COMMAND LOGS     ***********************************************
