@@ -354,8 +354,11 @@ async def insta_role_ended(message):
 async def read_file(message):
     ch = message.channel
     if ch.id == int(file_managing):
+        print("in file managing")
         if not message.author.bot:
+            print("from human")
             if len(message.attachments)!=0:
+                print("has an attachment")
                 await gametags_process(ch,message)
             elif message.content.startswith('#'):
                 await gametags_process(ch,message)

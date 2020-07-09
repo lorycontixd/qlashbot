@@ -94,7 +94,7 @@ async def count_clubs(gametags, loading_msg = None):
 #++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
 
 
-async def gametags_process(self,ch,message):
+async def gametags_process(ch,message):
     start = timeit.default_timer()
     await ch.trigger_typing()
     att = None
