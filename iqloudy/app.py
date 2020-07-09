@@ -2,72 +2,63 @@ import brawlstats
 import discord
 import os
 import schedule
+import pytz
 import random
-import requests
-import urllib
+
+
+from modules.mongodb.library import register_commandlog
+
+
 #import holidayapi
 
-from urllib.request import Request, urlopen
 from datetime import datetime
 from discord.ext import commands
-from discord.ext.commands import Bot,cooldown
-from discord.voice_client import VoiceClient
-from modules.util_functions import *
-from modules.util_mongodb import view_database
-from modules import cogs
-import events
-#from scheduler import *
-#from leagues import *
+import bot_commands, bot_events as events
 
-#quotaguard ips = 54.72.12.1, 54.72.77.249
-#quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
+import bot_instances
 
-#*****************************************************************************************************************
-#*********************************************       EVENTS     **************************************************
-#*****************************************************************************************************************
-#event_functions = EventFunctions()
-
-@bot.event
+@bot_instances.bot.event
 async def on_ready():
     await events.on_ready_()
-    db = instances.mongoclient.heroku_q2z34tjm
-    await cogs.init_cogs(bot,db)
+    db = bot_instances.mongoclient.heroku_q2z34tjm
+    bot = bot_instances.bot
+    await bot_commands.init(bot,db)
 
-@bot.event
+@bot_instances.bot.event
 async def on_disconnect():
     #ch = bot.get_channel(int(bot_developer_channel))
     #messages = ["Logging off, I am.", "The connection, I'm closing down. Hrmmm.", "Gone I am!!", "Signed off, I have. Hrmmm."]
     #await ch.send(random.choice(messages))
     print("Logging off: ",str(bot.user)+" "+str(datetime.now()))
 
-@bot.event
+@bot_instances.bot.event
 async def on_member_join(member:discord.Member):
     await events.member_join_check(member)
     await events.member_join_welcome(member)
 
-@bot.event
+@bot_instances.bot.event
 async def on_member_update(before,after):
     await events.on_member_update_role(before,after)
     #await game1_nickname(before,after)
     #await on_member_update_activity(before,after)
 
-@bot.event
+@bot_instances.bot.event
 async def on_message(message):
     await events.check_bad_words(message)
     #await check_instarole(message)
     #await insta_role_ended(message)
     await events.check_roles_assignement(message)
-    await read_file(message)
-    await bot.process_commands(message)
+    await events.read_file(message)
+    await bot_instances.bot.process_commands(message)
 
-@bot.event
+@bot_instances.bot.event
 async def on_raw_reaction_add(payload):
     await events.reaction_check(payload)
     #await game1_reaction(payload)
 
 
 #command events
-@bot.event
+@bot_instances.bot.event
 async def on_command_error(ctx, error):
     commandname = ctx.invoked_with
     author = ctx.message.author
@@ -109,7 +100,7 @@ async def on_command_error(ctx, error):
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
-@bot.event
+@bot_instances.bot.event
 async def on_command_completion(ctx):
     commandname = ctx.invoked_with
     author = ctx.message.author
@@ -122,6 +113,6 @@ async def on_command_completion(ctx):
     #CommandLogs(ctx,commandname)
 
 try:
-    bot.run(DISCORD_TOKEN)
+    bot_instances.bot.run(bot_instances.DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:
 	print("Login unsuccessful was.")
