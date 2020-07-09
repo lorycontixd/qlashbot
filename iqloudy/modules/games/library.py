@@ -1,4 +1,3 @@
-from instances import *
 
 #***************** treasure_hunt *****************
 async def game1_reaction(payload):

@@ -8,7 +8,7 @@ import discord
 
 import random
 from modules.mongodb.library import *
-import instances
+import bot_instances
 
 from xml.etree import ElementTree as ET
 from lxml import etree, html
@@ -54,10 +54,10 @@ async def _retrieve_member(session, gametag):
 
 
 async def _process_banned_member(session, member, message):
-    await message.remove_reaction('📅', instances.bot.user)
-    await message.remove_reaction('✅', instances.bot.user)
-    await message.remove_reaction('❌', instances.bot.user)
-    await message.remove_reaction('❓', instances.bot.user)
+    await message.remove_reaction('📅', bot_instances.bot.user)
+    await message.remove_reaction('✅', bot_instances.bot.user)
+    await message.remove_reaction('❌', bot_instances.bot.user)
+    await message.remove_reaction('❓', bot_instances.bot.user)
 
     if(member == XML_FORM_ERROR):
         await message.add_reaction('❓')
@@ -111,7 +111,7 @@ def _check_time_expired(d0, time_expire):
     return delta.days >= time_expire
 
 async def reddit_webhook():
-   ch = instances.bot.get_channel(int(instances.bot_developer_channel))
+   ch = bot_instances.bot.get_channel(int(bot_instances.bot_developer_channel))
    async with aiohttp.ClientSession() as session:
        async with session.get('https://www.reddit.com/r/Brawlstars.json') as resp:
            if resp.status == 200:
@@ -119,8 +119,8 @@ async def reddit_webhook():
                await ch.send(await resp.text())
 
 async def reg_member():
-    ch = instances.bot.get_channel(int(instances.bot_developer_channel))
-    db = instances.mongoclient.heroku_q2z34tjm
+    ch = bot_instances.bot.get_channel(int(bot_instances.bot_developer_channel))
+    db = bot_instances.mongoclient.heroku_q2z34tjm
     coll_membercount = db.QLASHBot_MemberCount
     g = ch.guild
     membercount = g.member_count
@@ -130,7 +130,7 @@ async def reg_member():
         "Members":int(membercount)
     }
     coll_membercount.insert_one(mydict)
-    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
@@ -142,9 +142,9 @@ async def reg_member():
     await logs.send(embed=embed)
 
 async def hello_en():
-    ch = instances.bot.get_channel(int(instances.en_general))
+    ch = bot_instances.bot.get_channel(int(bot_instances.en_general))
     await ch.send("Goodmorning everyone!")
-    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
@@ -156,10 +156,10 @@ async def hello_en():
     await logs.send(embed=embed)
 
 async def hello_it():
-    ch = instances.bot.get_channel(int(instances.it_general))
+    ch = bot_instances.bot.get_channel(int(bot_instances.it_general))
     messages = ["Buongiorno a tutti!","Bella rega!","Buondì","Buona giornata e buon gaming a tutti!","Ben svegliati!"]
     await ch.send(random.choice(messages))
-    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
@@ -171,8 +171,8 @@ async def hello_it():
     await logs.send(embed=embed)
 
 async def check_banlist_channel():
-    botdev = instances.bot.get_channel(int(instances.bot_developer_channel))
-    ch = instances.bot.get_channel(724193592536596490)#int(instances.bot_banlist_channel))
+    botdev = bot_instances.bot.get_channel(int(bot_instances.bot_developer_channel))
+    ch = bot_instances.bot.get_channel(724193592536596490)#int(bot_instances.bot_banlist_channel))
     messages = await ch.history(limit=200).flatten()
     connector = aiohttp.TCPConnector(limit_per_host=2)
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
@@ -182,7 +182,7 @@ async def check_banlist_channel():
             banned_member = _extract_banned_member(message.content)
             statements.append(_process_banned_member(session, banned_member, message))
         await asyncio.gather(*statements)
-    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
@@ -195,7 +195,7 @@ async def check_banlist_channel():
 
 async def giova():
     #g = await bot.fetch_guild(335067221896200205)
-    member = await instances.bot.fetch_user(335067221896200205)
+    member = await bot_instances.bot.fetch_user(335067221896200205)
     if member==None:
         print("No member found with this ID")
         return
@@ -241,7 +241,7 @@ async def giova():
             message="Bona jurnat Giova, oggi è il "+string+' e sono già le 10. Svegliati!\nEcco i santi di oggi:\n\n'+text
             await member.dm_channel.send(message)
             break
-    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
@@ -253,11 +253,11 @@ async def giova():
     await logs.send(embed=embed)
 
 async def invite_bot_ch():
-    channel = instances.bot.get_channel(446051853357154307)
+    channel = bot_instances.bot.get_channel(446051853357154307)
     link = await channel.create_invite(max_age = 0,max_uses=0)
     await channel.send("Here is an instant invite to your server:  ")
     await channel.send(link)
-    logs = instances.bot.get_channel(int(instances.qlash_bot))
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
     tz = pytz.timezone('Europe/Rome')
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)

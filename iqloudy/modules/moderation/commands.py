@@ -5,7 +5,7 @@ from discord.voice_client import VoiceClient
 #from functions import set_
 import ipapi
 from modules.mongodb.library import *
-from modules.scheduler.tasks import check_banlist_channel,giova
+from modules.scheduler.library import check_banlist_channel,giova
 
 from modules.moderation import descriptions as moderation_descriptions
 

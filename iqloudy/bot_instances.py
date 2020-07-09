@@ -1,4 +1,4 @@
-#instances
+
 import os
 import discord
 import brawlstats

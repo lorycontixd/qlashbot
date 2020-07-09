@@ -2,7 +2,7 @@ import discord
 import pytz
 import random
 
-from instances import *
+from bot_instances import *
 from modules.mongodb.library import *
 from dateutil import tz
 from datetime import datetime
@@ -10,6 +10,8 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from modules.verification.library import check_equal_lists,validate_tag
+
+from modules.gametag_upload.library import gametags_process
 
 #*******************************************   ON READY   ************************************************
 
@@ -347,3 +349,17 @@ async def insta_role_ended(message):
             msg = await ch.send("Hello "+auth.mention+". The Instagram Tournament registrations are closed. \nPlease check the calendar or the announcement channels to keep updated with new tournaments that you can join. Thank you very much!")
             await message.delete(delay=6.0)
             await msg.delete(delay=6.0)
+
+async def read_file(message):
+    ch = message.channel
+    if ch.id == int(file_managing):
+        if not message.author.bot:
+            if len(message.attachments)!=0:
+                await gametags_process(ch,message)
+            elif message.content.startswith('#'):
+                await gametags_process(ch,message)
+            else:
+                dev = discord.utils.get(message.guild.roles, name="DiscordDeveloper")
+                #await message.delete(delay=3.0)
+                #alert1 = await ch.send("This channel only takes in attachments. If this is a mistake, please contact a "+dev.mention+".")
+                #await alert1.delete(delay=5.0)
