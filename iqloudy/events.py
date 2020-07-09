@@ -2,13 +2,13 @@ import discord
 import pytz
 
 from instances import *
-from modules.util_mongodb import *
+from modules.mongodb.library import *
 from dateutil import tz
 from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from modules.util_checks import check_equal_lists,validate_tag
+from modules.verification.library import check_equal_lists,validate_tag
 
 #*******************************************   ON READY   ************************************************
 

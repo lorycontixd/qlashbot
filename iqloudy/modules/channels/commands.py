@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
-from modules.util_channels import *
+from modules.channels.library import *
 
 class Channels(commands.Cog,name="Channels"):
     def __init__(self):

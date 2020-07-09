@@ -21,12 +21,10 @@ from discord import Webhook, AsyncWebhookAdapter
 from datetime import datetime
 from random import randint
 from dateutil import tz
-from modules.util_checks import *
-from modules.util_mongodb import *
+from modules.verification.library import *
+from modules.mongodb.library import *
 from instances import *
-from modules.util_games import *
-from modules.util_google import *
-from modules import util_brawlstats as brawlstats, util_scheduler as scheduler
+from modules.games.library import *
 
 cest = timezone('Europe/Rome')
 ##

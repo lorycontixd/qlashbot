@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from aiohttp_proxy import ProxyConnector,ProxyType
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from modules import util_scheduler as scheduler
+from modules.scheduler import scheduler
 
 #*****************************************************************************************************************
 #********************************************       SETTINGS     *************************************************
