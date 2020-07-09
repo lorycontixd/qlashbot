@@ -27,7 +27,7 @@ def _retrieve_playerClub(htmlPage):
     return htmlPage.xpath('//div[@class="_3lMfMVxY-knKo2dnVHMCWG _21sSMvccqXG6cJU-5FNqzv yVyPKdb4lsiRak5TAnxs3"]//..//div[2]//div/text()')[0].split("\n")[1].strip()
 
 
-def add_file_lines(f, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
+def _add_file_lines(f, clubs, print_clubs = True, print_members = False, print_found = True, print_invalid =  False, print_not_found = False):
     for k in clubs:
         if k == INVALID_CLUB and not print_invalid:
             continue
@@ -140,15 +140,15 @@ async def gametags_process(ch,message):
         clubs = await count_clubs(gametags, loading_msg)
         file = io.StringIO()
         file.write("\n")
-        brawlstats.add_file_lines(file, clubs, False, True, False, False, True)
+        _add_file_lines(file, clubs, False, True, False, False, True)
         file.write("\n")
-        brawlstats.add_file_lines(file, clubs, False, True, False, True, False)
+        _add_file_lines(file, clubs, False, True, False, True, False)
         file.write("\n")
         file.write("Printing found clubs and no. participants:\n")
-        brawlstats.add_file_lines(file, clubs, True, False, True, False, False)
+        _add_file_lines(file, clubs, True, False, True, False, False)
         file.write("\n")
         #file.write("Printing found club members:\n")
-        brawlstats.add_file_lines(file, clubs, False, True, True, False, False)
+        _add_file_lines(file, clubs, False, True, True, False, False)
         file.seek(0)
         await ch.send(content=message.author.mention+", please see the file below to check out the number of participants.", file=discord.File(fp=file, filename="tournament_info.txt"))
         file.close()
