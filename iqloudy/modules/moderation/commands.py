@@ -7,84 +7,25 @@ import ipapi
 from modules.mongodb.library import *
 from modules.scheduler.tasks import check_banlist_channel,giova
 
+from modules.moderation import descriptions as moderation_descriptions
 
 #*****************************************************************************************************************
 #**********************************************       MOD     ****************************************************
 #*****************************************************************************************************************
-
-desc_bs_playerinfo = """Moderator Command
-No Cooldown \n
-Search for information about a specific PLAYER from the Brawl Stars game, including: \n-- Name & Tag \n-- Highest & Current Trophies \n-- Player Victories \n-- Championship Qualification"""
-
-desc_bs_claninfo = """Moderator Command
-No Cooldown \n
-Search for information about a specific CLAN from the Brawl Stars game, including: \n-- Name & Tag \n-- Current & Required Trophies \n-- Player Count \n-- President & Highest Member"""
-
-desc_bs_memberinfo =  """Moderator Command
-No Cooldown \n
-Search for information about a specific MEMBER in a given clan from the Brawl Stars game.
-The difference from the player information is that, while in the previous function the parameter <#gametag> is required, for this function it is necessary to give the parameters <PlayerName> and <#clantag>, allowing you to not know the player's ingame tag.
-Informations about the member include:
-\n-- Name & Tag \n-- Clan Role \n-- Player Trophies"""
-
-desc_ip = """Moderator Command
-No Cooldown \n
-Locate an ip address with information such as country, city, postal code, longitude & latitude and much more.
-Only the creators of the bot have access to this function. Please contact them."""
-
-desc_memberinfo = """Moderator Command
-No Cooldown \n
-Show rich information about a discord member inside the server.
-Information includes: \n-- Name, Tag & ID\n-- Member Status \n-- Server join date \n-- Top role and permissions."""
-
-desc_serverinfo = """Moderator Command
-No Cooldown \n
-Shows all information of the current server.
-These include: \n-- Name & ID \n-- Region \n-- Member count \n-- Owner \n-- Date of creation. \n-- Much more"""
-
-desc_refresh_banlist = """Moderator Command
-No Cooldown \n
-Get a list of members who are currently banned from ingame QLASH clans, but that find themselves in one.
-The information is gathered from the banlist channel, where the most relevant information is the player tag and the period of ban."""
-
-desc_purge = """Moderator Command
-No Cooldown \n
-Clear a certain amount of messages in the channel where the command is invoked from.
-"""
-
-desc_view_members="""Moderator Command
-No Cooldown \n
-Get a list of players that left each QLASH Clan since the last time the database was updated (with the command ^mod write-members).
-It is possible that the list of players will be long, therefore it might take some time.
-"""
-
-desc_write_members = """Moderator Command
-No Cooldown \n
-Update the database with clan members (see help for command view-members)
-"""
-
-desc_qlash_allclans = """Utility command
-60 seconds cooldown per channel \n
-Print a list of all official QLASH Clans and the respective required trophies. No Parameters are needed for this function."""
-
-desc_qlash_clan = """Utility command
-60 seconds cooldown per channel \n
-Print information about a specific QLASH Clan.
-The parameter can be the clan tag (for precise search) or the clan name. In the second case, the name must be exact, or the command will not work."""
 
 
 class Moderation(commands.Cog,name="Moderation"):
     def __init__(self):
         ipapi.location(ip=None, key=None, field=None)
 
-    #@commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=desc_set)
+    #@commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=moderation_descriptions.desc_set)
     #async def set(self,ctx,player:discord.Member,ingame_tag):
     #    await set_(ctx,player,ingame_tag)
 
     #ADMIN
     @commands.cooldown(1, 20, commands.BucketType.user)
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='bs-playerinfo',brief='Search for information about a generic ingame player. (BS1) ',description=desc_bs_playerinfo)
+    @commands.command(name='bs-playerinfo',brief='Search for information about a generic ingame player. (BS1) ',description=moderation_descriptions.desc_bs_playerinfo)
     async def bs_pinfo(self,ctx,player_tag):
         role=''
         player = await myclient.get_player(player_tag)
@@ -115,7 +56,7 @@ class Moderation(commands.Cog,name="Moderation"):
     #ADMIN
     @commands.cooldown(1, 20, commands.BucketType.user)
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='bs-claninfo',brief='Search for information about an ingame clan. (BS1)',description=desc_bs_claninfo,)
+    @commands.command(name='bs-claninfo',brief='Search for information about an ingame clan. (BS1)',description=moderation_descriptions.desc_bs_claninfo,)
     async def bs_cinfo(self,ctx,clan_tag):
         presname = ''
         prestr = ''
@@ -141,7 +82,7 @@ class Moderation(commands.Cog,name="Moderation"):
 
     @commands.cooldown(1, 60, commands.BucketType.channel)
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='qlash-allclans',hidden=True,brief='List all ingame qlash clans. (BS30+) ',description = desc_qlash_allclans)
+    @commands.command(name='qlash-allclans',hidden=True,brief='List all ingame qlash clans. (BS30+) ',description = moderation_descriptions.desc_qlash_allclans)
     async def qlash_allclans(self,ctx):
         await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
         await ctx.trigger_typing()
@@ -161,7 +102,7 @@ class Moderation(commands.Cog,name="Moderation"):
         await ctx.send(embed=e2)
 
     @commands.is_owner()
-    @commands.command(name='locate',brief = 'Locate an ip address',description=desc_ip)
+    @commands.command(name='locate',brief = 'Locate an ip address',description=moderation_descriptions.desc_ip)
     async def locate(self,ctx,ip):
         print("Searching for location...")
         mydict = ipapi.location(ip)
@@ -183,7 +124,7 @@ class Moderation(commands.Cog,name="Moderation"):
         await ctx.send(embed=e)
 
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='member-info',brief='Show information of a discord member',description=desc_memberinfo)
+    @commands.command(name='member-info',brief='Show information of a discord member',description=moderation_descriptions.desc_memberinfo)
     async def memberinfo(self,ctx,member:discord.Member):
         member_dict = check_member(member)
         e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
@@ -210,7 +151,7 @@ class Moderation(commands.Cog,name="Moderation"):
         await ctx.send(embed=e)
 
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name="server-info",brief="Show information of the server",description=desc_serverinfo)
+    @commands.command(name="server-info",brief="Show information of the server",description=moderation_descriptions.desc_serverinfo)
     async def serverinfo(self,ctx):
         guild = ctx.guild
         e=discord.Embed(title="Server info: "+str(guild.name), color=0xe392ff)
@@ -229,7 +170,7 @@ class Moderation(commands.Cog,name="Moderation"):
         await ctx.send(embed=e)
 
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='purge',brief='Clear messages in the channel.',description=desc_purge)
+    @commands.command(name='purge',brief='Clear messages in the channel.',description=moderation_descriptions.desc_purge)
     async def purge(self,ctx,amount):
         author = ctx.message.author
         await ctx.channel.purge(limit=int(amount)+1)
