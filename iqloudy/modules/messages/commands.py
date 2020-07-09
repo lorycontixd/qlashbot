@@ -1,17 +1,9 @@
 import discord
 from discord.ext import commands
 
-from modules.messages import library as messages_library
+from modules.messages import library as messages_library, descriptions as messages_descriptions
 
-desc_member_dm = """Moderator Command
-No Cooldown \n
-The bot sends a private message to the specified member.
-The member can be accessed by tagging or by name#discriminator, while the message is written after the member parameter."""
 
-desc_announce = """Moderator Command
-No Cooldown\n
-The bot sends a message to the a specified channel.
-The channel can be accessed by name, while the message is written after the channel parameter"""
 
 
 class Messages(commands.Cog,name="Messages"):
@@ -20,77 +12,30 @@ class Messages(commands.Cog,name="Messages"):
 
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='member-dm',pass_context=True,brief='Send a private message to a member by the bot.',description=desc_member_dm)
-    async def dm(self,ctx,member: discord.Member, *message):
-        mess = ctx.message
-        await member.create_dm()
-        await member.dm_channel.send(" ".join(message[:]))
-        await mess.add_reaction('✅')
+    @commands.command(name='member-dm',pass_context=True,brief='Send a private message to a member by the bot.',description=messages_descriptions.desc_member_dm)
+    async def dm_(self,ctx,member: discord.Member, *message):
+        await messages_library.dm(self, ctx, member, message)
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='say',brief='Send a message to a specific channel by the bot.',description=desc_announce)
-    async def say(self, ctx, channel:discord.TextChannel, *message):
-        if not channel:
-            channel = ctx.channel
-
-        msg = ctx.message
-        guild = ctx.guild
-
-        try:
-            await channel.send(" ".join(message[:]))
-            await msg.add_reaction('✅')
-        except:
-            await ctx.channel.send("Error sending message")
+    @commands.command(name='say',brief='Send a message to a specific channel by the bot.',description=messages_descriptions.desc_announce)
+    async def say_(self, ctx, channel:discord.TextChannel, *message):
+        await messages_library.say(self, ctx, channel, message)
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name='image',brief='Send a message to a specific channel by the bot.',description=desc_announce)
-    async def image(self, ctx, channel:discord.TextChannel, url, filename):
-        if not channel:
-            channel = ctx.channel
-
-        msg = ctx.message
-        guild = ctx.guild
-
-        try:
-            await messages_library.send_file(channel, url, filename)
-            await msg.add_reaction('✅')
-        except:
-            await ctx.channel.send("Error sending message")
+    @commands.command(name='image',brief='Send a message to a specific channel by the bot.',description=messages_descriptions.desc_announce)
+    async def image_(self, ctx, channel:discord.TextChannel, url, filename):
+        await messages_library.image(self, ctx, channel, url, filename)
 
     @commands.has_any_role('DiscordDeveloper','QLASH')
     @commands.command(name='welcome',brief='Sends a welcome message to a specific channel by the bot.',hidden=True)
-    async def welcome(self, ctx, channel:discord.TextChannel = None):
-        if not channel:
-            channel = ctx.channel
-
-        msg = ctx.message
-        guild = ctx.guild
-
-        await messages_library.send_file(channel, messages_library.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
-        await channel.send(messages_library.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = bot.get_channel(566213862756712449).mention))
-        await msg.add_reaction('✅')
+    async def welcome_(self, ctx, channel:discord.TextChannel = None):
+        await messages_library.welcome(self, ctx, channel)
 
     @commands.command(name='info',brief='Sends an infobox to a specific channel by the bot.',hidden=True)
-    async def info(self, ctx, channel:discord.TextChannel = None):
-        if not channel:
-            channel = ctx.channel
-
-        msg = ctx.message
-        guild = ctx.guild
-
-        await channel.send(embed=messages_library.QLASH_BRAWLSTARS_INFOBOX)
-        await msg.add_reaction('✅')
+    async def info_(self, ctx, channel:discord.TextChannel = None):
+        await messages_library.info(self, ctx, channel)
 
     @commands.has_any_role('DiscordDeveloper','QLASH')
     @commands.command(name='rules',brief='Sends the rules to a specific channel by the bot.',hidden=True)
-    async def rules(self, ctx, channel:discord.TextChannel = None):
-        if not channel:
-            channel = ctx.channel
-
-        msg = ctx.message
-        guild = ctx.guild
-
-        await messages_library.send_file(channel, messages_library.RULES_SECTION_IMAGE_URL,  "rules.png")
-        await channel.send(messages_library.RULES_MESSAGE_FIRST_SECTION)
-        await channel.send(messages_library.RULES_MESSAGE_SECOND_SECTION)
-        await msg.add_reaction('✅')
+    async def rules_(self, ctx, channel:discord.TextChannel = None):
+        await messages_library.rules(self, ctx, channel)
