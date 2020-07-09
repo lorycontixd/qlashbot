@@ -1,8 +1,6 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import Bot,cooldown
-from discord.voice_client import VoiceClient
-from modules.channels.library import *
+from modules.channels import library as channels_library
 
 class Channels(commands.Cog,name="Channels"):
     def __init__(self):

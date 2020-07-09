@@ -1,9 +1,7 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import Bot,cooldown
-from discord.voice_client import VoiceClient
-from modules.util_functions import *
-from modules.messages import library
+
+from modules.messages import library as messages_library
 
 desc_member_dm = """Moderator Command
 No Cooldown \n
@@ -54,7 +52,7 @@ class Messages(commands.Cog,name="Messages"):
         guild = ctx.guild
 
         try:
-            await library.send_file(channel, url, filename)
+            await messages_library.send_file(channel, url, filename)
             await msg.add_reaction('✅')
         except:
             await ctx.channel.send("Error sending message")
@@ -68,8 +66,8 @@ class Messages(commands.Cog,name="Messages"):
         msg = ctx.message
         guild = ctx.guild
 
-        await library.send_file(channel, library.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
-        await channel.send(library.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = bot.get_channel(566213862756712449).mention))
+        await messages_library.send_file(channel, messages_library.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
+        await channel.send(messages_library.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = bot.get_channel(566213862756712449).mention))
         await msg.add_reaction('✅')
 
     @commands.command(name='info',brief='Sends an infobox to a specific channel by the bot.',hidden=True)
@@ -80,7 +78,7 @@ class Messages(commands.Cog,name="Messages"):
         msg = ctx.message
         guild = ctx.guild
 
-        await channel.send(embed=library.QLASH_BRAWLSTARS_INFOBOX)
+        await channel.send(embed=messages_library.QLASH_BRAWLSTARS_INFOBOX)
         await msg.add_reaction('✅')
 
     @commands.has_any_role('DiscordDeveloper','QLASH')
@@ -92,7 +90,7 @@ class Messages(commands.Cog,name="Messages"):
         msg = ctx.message
         guild = ctx.guild
 
-        await library.send_file(channel, library.RULES_SECTION_IMAGE_URL,  "rules.png")
-        await channel.send(library.RULES_MESSAGE_FIRST_SECTION)
-        await channel.send(library.RULES_MESSAGE_SECOND_SECTION)
+        await messages_library.send_file(channel, messages_library.RULES_SECTION_IMAGE_URL,  "rules.png")
+        await channel.send(messages_library.RULES_MESSAGE_FIRST_SECTION)
+        await channel.send(messages_library.RULES_MESSAGE_SECOND_SECTION)
         await msg.add_reaction('✅')
