@@ -136,7 +136,7 @@ async def gametags_process(ch,message):
             await ch.send("Not processed.")
             return
         loading_msg = await ch.send("0 out of {TAGS} gametags processed".format(TAGS = len(gametags)))
-        clubs = await brawlstats.count_clubs(gametags, loading_msg)
+        clubs = await count_clubs(gametags, loading_msg)
         file = io.StringIO()
         file.write("\n")
         brawlstats.add_file_lines(file, clubs, False, True, False, False, True)
