@@ -2,6 +2,7 @@ import aiohttp
 import re
 import asyncio
 import timeit
+from bot_instances import *
 
 from sys import stdin
 from lxml import etree, html
