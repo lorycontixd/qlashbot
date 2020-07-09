@@ -68,11 +68,6 @@ RULES_MESSAGE_SECOND_SECTION ="""
 
 RULES_SECTION_IMAGE_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723857824874233887/rules_discord.png"
 
-async def send_file(channel, url, filename):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            await channel.send(file=discord.File(BytesIO(await resp.read()),filename=filename))
-
 async def dm(self,ctx,member: discord.Member, message):
     mess = ctx.message
     await member.create_dm()
@@ -100,7 +95,7 @@ async def image(self, ctx, channel:discord.TextChannel, url, filename):
     guild = ctx.guild
 
     try:
-        await messages_library.send_file(channel, url, filename)
+        await _send_file(channel, url, filename)
         await msg.add_reaction('✅')
     except:
         await ctx.channel.send("Error sending message")
@@ -112,7 +107,7 @@ async def welcome(self, ctx, channel:discord.TextChannel = None):
     msg = ctx.message
     guild = ctx.guild
 
-    await messages_library.send_file(channel, messages_library.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
+    await _send_file(channel, messages_library.WELCOME_MESSAGE_SECTION_IMAGE_URL, "banner.png")
     await channel.send(messages_library.WELCOME_MESSAGE_FIRST_SECTION.format(ALL_QLASH_CLANS_CHANNEL = bot.get_channel(566213862756712449).mention))
     await msg.add_reaction('✅')
 
@@ -132,7 +127,12 @@ async def rules(self, ctx, channel:discord.TextChannel = None):
     msg = ctx.message
     guild = ctx.guild
 
-    await messages_library.send_file(channel, messages_library.RULES_SECTION_IMAGE_URL,  "rules.png")
+    await _send_file(channel, messages_library.RULES_SECTION_IMAGE_URL,  "rules.png")
     await channel.send(messages_library.RULES_MESSAGE_FIRST_SECTION)
     await channel.send(messages_library.RULES_MESSAGE_SECOND_SECTION)
     await msg.add_reaction('✅')
+
+async def _send_file(channel, url, filename):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            await channel.send(file=discord.File(BytesIO(await resp.read()),filename=filename))
