@@ -2,6 +2,7 @@ import aiohttp
 import re
 import asyncio
 import timeit
+import io
 from bot_instances import bot,myclient
 
 from sys import stdin
