@@ -14,7 +14,6 @@ from modules.mongodb.library import register_commandlog
 from datetime import datetime
 from discord.ext import commands
 import bot_commands, bot_events as events
-
 import bot_instances
 
 @bot_instances.bot.event
@@ -45,7 +44,7 @@ async def on_member_update(before,after):
 @bot_instances.bot.event
 async def on_message(message):
     await events.check_bad_words(message)
-    await check_instarole(message)
+    await events.check_instarole(message)
     #await insta_role_ended(message)
     await events.check_roles_assignement(message)
     await events.read_file(message)
