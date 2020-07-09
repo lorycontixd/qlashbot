@@ -3,34 +3,21 @@ import discord
 import os
 import schedule
 import random
-import requests
-import urllib
+
 #import holidayapi
 
-from urllib.request import Request, urlopen
 from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from modules.util_functions import *
-import commands,events
-import events
-#from scheduler import *
-#from leagues import *
-
-#quotaguard ips = 54.72.12.1, 54.72.77.249
-#quotaguard proxy = http://6cy3e5odaiitpe:gxag60u036717xavs35razjk18s2@eu-west-static-03.quotaguard.com:9293
-
-#*****************************************************************************************************************
-#*********************************************       EVENTS     **************************************************
-#*****************************************************************************************************************
-#event_functions = EventFunctions()
+import bot_commands, bot_events as events
 
 @bot.event
 async def on_ready():
     await events.on_ready_()
     db = instances.mongoclient.heroku_q2z34tjm
-    await commands.init_cogs(bot,db)
+    await bot_commands.init(bot,db)
 
 @bot.event
 async def on_disconnect():

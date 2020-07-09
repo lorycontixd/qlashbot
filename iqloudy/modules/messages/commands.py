@@ -3,9 +3,6 @@ from discord.ext import commands
 
 from modules.messages import library as messages_library, descriptions as messages_descriptions
 
-
-
-
 class Messages(commands.Cog,name="Messages"):
     def __init__(self):
         pass
@@ -14,12 +11,14 @@ class Messages(commands.Cog,name="Messages"):
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='member-dm',pass_context=True,brief='Send a private message to a member by the bot.',description=messages_descriptions.desc_member_dm)
     async def dm_(self,ctx,member: discord.Member, *message):
-        await messages_library.dm(self, ctx, member, message)
+        string_message = " ".join(message[:])
+        await messages_library.dm(self, ctx, member, string_message)
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='say',brief='Send a message to a specific channel by the bot.',description=messages_descriptions.desc_announce)
     async def say_(self, ctx, channel:discord.TextChannel, *message):
-        await messages_library.say(self, ctx, channel, message)
+        string_message = " ".join(message[:])
+        await messages_library.say(self, ctx, channel, string_message)
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='image',brief='Send a message to a specific channel by the bot.',description=messages_descriptions.desc_announce)
@@ -31,6 +30,7 @@ class Messages(commands.Cog,name="Messages"):
     async def welcome_(self, ctx, channel:discord.TextChannel = None):
         await messages_library.welcome(self, ctx, channel)
 
+    @commands.has_any_role('DiscordDeveloper','QLASH')
     @commands.command(name='info',brief='Sends an infobox to a specific channel by the bot.',hidden=True)
     async def info_(self, ctx, channel:discord.TextChannel = None):
         await messages_library.info(self, ctx, channel)

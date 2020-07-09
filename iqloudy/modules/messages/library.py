@@ -73,13 +73,13 @@ async def send_file(channel, url, filename):
         async with session.get(url) as resp:
             await channel.send(file=discord.File(BytesIO(await resp.read()),filename=filename))
 
-async def dm(self,ctx,member: discord.Member, *message):
+async def dm(self,ctx,member: discord.Member, message):
     mess = ctx.message
     await member.create_dm()
-    await member.dm_channel.send(" ".join(message[:]))
+    await member.dm_channel.send(message)
     await mess.add_reaction('✅')
 
-async def say(self, ctx, channel:discord.TextChannel, *message):
+async def say(self, ctx, channel:discord.TextChannel, message):
     if not channel:
         channel = ctx.channel
 
@@ -87,7 +87,7 @@ async def say(self, ctx, channel:discord.TextChannel, *message):
     guild = ctx.guild
 
     try:
-        await channel.send(" ".join(message[:]))
+        await channel.send(message)
         await msg.add_reaction('✅')
     except:
         await ctx.channel.send("Error sending message")
@@ -123,7 +123,7 @@ async def info(self, ctx, channel:discord.TextChannel = None):
     msg = ctx.message
     guild = ctx.guild
 
-    await channel.send(embed=messages_library.QLASH_BRAWLSTARS_INFOBOX)
+    await channel.send(embed=QLASH_BRAWLSTARS_INFOBOX)
 
 async def rules(self, ctx, channel:discord.TextChannel = None):
     if not channel:

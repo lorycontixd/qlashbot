@@ -6,7 +6,7 @@ from modules.fun.commands import Fun
 from modules.system.commands import System
 from modules.channels.commands import Channels
 
-async def init_cogs(bot,db):
+async def init(bot,db):
     bot.add_cog(Weather())
     bot.add_cog(Fun())
     bot.add_cog(Moderation())
