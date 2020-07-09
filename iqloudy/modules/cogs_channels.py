@@ -9,7 +9,7 @@ class Channels(commands.Cog,name="Channels"):
         pass
 
     @commands.has_any_role('DiscordDeveloper')
-    @commands.command(name='check-all-channels ',brief='check all channel perms')
+    @commands.command(name='check-all-channels',brief='check all channel perms')
     async def check_all_channels(self,ctx):
         await ctx.send("Not yet implemented.")
 

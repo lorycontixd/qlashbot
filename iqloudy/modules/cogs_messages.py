@@ -20,7 +20,6 @@ class Messages(commands.Cog,name="Messages"):
     def __init__(self):
         pass
 
-
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='member-dm',pass_context=True,brief='Send a private message to a member by the bot.',description=desc_member_dm)
     async def dm(self,ctx,member: discord.Member, *message):
