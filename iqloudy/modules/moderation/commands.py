@@ -6,7 +6,7 @@ from discord.voice_client import VoiceClient
 import ipapi
 from modules.mongodb.library import *
 from modules.scheduler.library import check_banlist_channel,giova
-
+from bot_instances import myclient
 from modules.moderation import descriptions as moderation_descriptions
 
 #*****************************************************************************************************************

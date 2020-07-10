@@ -11,7 +11,7 @@ def read_file(filename_in):
 	list=[]
 	file.close()
 	i=0
-	for line in lines[:-1]:
+	for line in lines:
 		ll=line.split('\t')
 		name=ll[0]
 		ll2=name.split('#')
