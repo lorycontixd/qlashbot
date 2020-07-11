@@ -26,7 +26,7 @@ async def flip():
         response = 'Sorry the table is already flipped!! ¯\_(ツ)_/¯ '
         await ctx.channel.send(response)
 
-async def unflip_(self,ctx):
+async def unflip(self,ctx):
     if self.is_flipped == True:
         response = '┬─┬ ノ( ゜-゜ノ)'
         await ctx.channel.send(response)
@@ -35,7 +35,7 @@ async def unflip_(self,ctx):
         response = 'Sorry the table is already unflipped!! ¯\_(ツ)_/¯ '
         await ctx.channel.send(response)
 
-async def table_status_(self,ctx):
+async def table_status(self,ctx):
     if self.is_flipped == True:
         response = 'Table is flipped'
         await ctx.channel.send(response)
