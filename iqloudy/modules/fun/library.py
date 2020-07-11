@@ -17,7 +17,7 @@ async def coin_flip(self,ctx):
     flip = random.choice(['Heads','Tails'])
     await ctx.channel.send('You flipped '+flip)
 
-async def flip():
+async def flip(self,ctx):
     if self.is_flipped == False:
         response = '(╯°□°）╯︵ ┻━┻ '
         await ctx.channel.send(response)
