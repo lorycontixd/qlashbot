@@ -348,7 +348,7 @@ async def check_instarole(message:discord.Message):
                     await msg.delete()
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎\nPlease send a screenshot again and reply to the message')
             else:
-                await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a "+dev.mention+". Thank you")
+                await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a **Moderator** or a **DiscordDeveloper**. Thank you")
 
 async def insta_role_ended(message):
     ch = message.channel
