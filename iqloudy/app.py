@@ -119,4 +119,3 @@ try:
     bot_instances.bot.run(bot_instances.DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:
     print("Login unsuccessful!")
-    print("Error: "+str(e))
