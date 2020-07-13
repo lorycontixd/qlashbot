@@ -42,6 +42,10 @@ async def on_member_update(before,after):
     #await on_member_update_activity(before,after)
 
 @bot_instances.bot.event
+async def on_member_ban(guild,user):
+    await events.on_member_ban_(guild,user)
+
+@bot_instances.bot.event
 async def on_message(message):
     await events.check_bad_words(message)
     await events.check_instarole(message)
