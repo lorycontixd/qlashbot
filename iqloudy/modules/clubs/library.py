@@ -1,6 +1,8 @@
 import io
 import discord
 
+from modules.countries import library as countries_library
+
 async def is_official_club(self, ctx, gametag):
     found = False
     for c in self.qlash_bs['official_clubs']:
@@ -45,9 +47,10 @@ async def print_official_club(self, ctx, gametag):
             QLASH_BRAWLSTARS_INFOBOX.set_thumbnail(url=QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL)
             QLASH_BRAWLSTARS_INFOBOX.add_field(name="Club", value=c["name"])
             QLASH_BRAWLSTARS_INFOBOX.add_field(name="Tag", value=c["tag"])
-            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Nation", value=c["country"])
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Nation", value=c["country"] + " " + countries_library.get_flag_emoji(c["country"]))
             if len(c["discord"]) > 0:
                 QLASH_BRAWLSTARS_INFOBOX.add_field(name="Discord", value=c["discord"], inline=False)
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Club page", value="https://www.starlist.pro/stats/club/" + c["tag"][1:], inline=False)
             await ctx.send(embed=QLASH_BRAWLSTARS_INFOBOX)
             break
     if not found:
@@ -60,6 +63,7 @@ async def print_official_clubs(self, ctx, channel):
     with io.StringIO() as output:
         output.write("```r\n")
         for c in self.qlash_bs['official_clubs']:
-            output.write(c['name'] + " " + c['tag'] + "\n")
+            output.write(countries_library.get_flag_emoji(c['country']) + " " + c['name'] + "\n" + c['tag'] + "\n"
+            )
         output.write("```")
         await channel.send(output.getvalue())
