@@ -6,7 +6,7 @@ async def bs_puns(self, ctx):
     await ctx.send(str(choices[myint]))
 
 async def roll(self, ctx):
-    value = randint(1,6)
+    value = random.randint(1,6)
     await ctx.send("You rolled a "+str(value))
 
 async def ping(self, ctx):

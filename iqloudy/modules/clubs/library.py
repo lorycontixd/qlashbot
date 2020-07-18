@@ -1,5 +1,7 @@
 import io
+import asyncio
 import discord
+from collections import defaultdict
 
 from modules.countries import library as countries_library
 
@@ -70,13 +72,31 @@ async def print_official_club(self, ctx, gametag):
         await ctx.send(gametag + " is not an official club.")
 
 async def print_official_clubs(self, ctx, channel):
+    qlash_bs_nation_clubs = defaultdict(list)
+
+    for c in self.qlash_bs['official_clubs']:
+        qlash_bs_nation_clubs[c['country']].append(c)
+
     if channel is None:
         channel = ctx.channel
 
-    with io.StringIO() as output:
-        output.write("```r\n")
-        for c in self.qlash_bs['official_clubs']:
-            output.write(countries_library.get_flag_emoji(c['country']) + " " + c['name'] + "\n" + c['tag'] + " " + c['required_trophies'] + "\n"
-            )
-        output.write("```")
-        await channel.send(output.getvalue())
+    for nation in qlash_bs_nation_clubs:
+        with io.StringIO() as output:
+            output.write(nation + " " + countries_library.get_flag_emoji(nation) + "\n")
+            output.write("```r\n")
+            for c in qlash_bs_nation_clubs[nation]:
+                output.write(c['name'] + "\n")
+                output.write(c['tag'] + "\n")
+                output.write("Required trophies: " + c['required_trophies'] + "\n")
+                output.write("President: " + c['leader'] + "\n")
+                #output.write("Region: " + c['esl_region'] + "\n")
+                output.write("Discord: " + c['discord'] + "\n")
+                if output.tell() >= 1400:
+                    output.write("```")
+                    await channel.send(output.getvalue())
+                    output.truncate(0)
+                    output.seek(0)
+                    output.write("```r\n")
+            output.write("```")
+            await channel.send(output.getvalue())
+            await asyncio.sleep(1)
