@@ -1,11 +1,615 @@
 {
-  "QLASH_BRAWLSTARS_HOMEPAGE_URL" : "https://www.qlash.gg",
-  "QLASH_BRAWLSTARS_DISCORD_URL" : "https://www.discord.gg/qlash-brawlstars"
-  "QLASH_BRAWLSTARS_TELEGRAM_URL" : "https://www.telegram.me/QLASHBS",
-  "QLASH_BRAWLSTARS_INSTAGRAM_URL" : "https://www.instagram.com/qlash_brawlstars",
-  "QLASH_BRAWLSTARS_FACEBOOK_URL" : "https://www.facebook.com/qlashbrawlstars",
-  "QLASH_BRAWLSTARS_TIKTOK_URL" : "https://www.tiktok.com/@qlash",
-  "QLASH_BRAWLSTARS_TWITTER_URL" : "https://www.twitter.com/brawlqlash",
-  "QLASH_BRAWLSTARS_TWITCH_URL" : "https://www.twitch.tv/qlash_eng",
-  "QLASH_BRAWLSTARS_YOUTUBE_URL" : "https://www.youtube.com/qlash"
+  "QLASH_BRAWLSTARS_HOMEPAGE_URL": "https://www.qlash.gg",
+  "QLASH_BRAWLSTARS_DISCORD_URL": "https://www.discord.gg/qlash-brawlstars",
+  "QLASH_BRAWLSTARS_TELEGRAM_URL": "https://www.telegram.me/QLASHBS",
+  "QLASH_BRAWLSTARS_INSTAGRAM_URL": "https://www.instagram.com/qlash_brawlstars",
+  "QLASH_BRAWLSTARS_FACEBOOK_URL": "https://www.facebook.com/qlashbrawlstars",
+  "QLASH_BRAWLSTARS_TIKTOK_URL": "https://www.tiktok.com/@qlash",
+  "QLASH_BRAWLSTARS_TWITTER_URL": "https://www.twitter.com/brawlqlash",
+  "QLASH_BRAWLSTARS_TWITCH_URL": "https://www.twitch.tv/qlash_eng",
+  "QLASH_BRAWLSTARS_YOUTUBE_URL": "https://www.youtube.com/qlash",
+  "official_clubs": [
+    {
+      "tag": "#VGR08YLV",
+      "name": "QLASH Storm ARG",
+      "country": "Argentina",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#20YJLCGCP",
+      "name": "QLASH AZE",
+      "country": "Azerbaijan",
+      "esl_region": "Europe & MEA",
+      "leader": "Ferid A#6794\n@FeridA03 (Ferid Agazade)",
+      "discord": "discord.gg/m6cCq2t"
+    },
+    {
+      "tag": "#280YY8UV8",
+      "name": "QLASH Bangla",
+      "country": "Bangladesh",
+      "esl_region": "APAC",
+      "leader": "Shifat Mahmud#4782\n(Shifat Mahmud)",
+      "discord": ""
+    },
+    {
+      "tag": "#2909P9GLY",
+      "name": "QLASH Bangla II",
+      "country": "Bangladesh",
+      "esl_region": "APAC",
+      "leader": "Shifat Mahmud#4782\n(Shifat Mahmud)",
+      "discord": ""
+    },
+    {
+      "tag": "#22092GJQL",
+      "name": "QLASH Bosnia",
+      "country": "Bosnia",
+      "esl_region": "Europe & MEA",
+      "leader": "|=>is0<=|#8238\n@is0brawlstars (|=>is0<=|)",
+      "discord": "discord.gg/7nCZxjW"
+    },
+    {
+      "tag": "#V92L8CU2",
+      "name": "QLASH Storm",
+      "country": "Brazil",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#VYGC2UUL",
+      "name": "QLASH Storm II",
+      "country": "Brazil",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#VJ8VRQCJ",
+      "name": "QLASH Storm III",
+      "country": "Brazil",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#208CGR9CQ",
+      "name": "QLASH Storm CL",
+      "country": "Chile",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#20LU82JRR",
+      "name": "QLASH Storm CL 2",
+      "country": "Chile",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#GGLVLQYG",
+      "name": "QLASH China",
+      "country": "China",
+      "esl_region": "APAC",
+      "leader": "SillyGoose101#9820\n(Amir)",
+      "discord": "discord.gg/NwmQRMh"
+    },
+    {
+      "tag": "#22CC2G8C",
+      "name": "QLASH Storm COL",
+      "country": "Colombia",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#229VLLQLG",
+      "name": "QLASH Storm CO2",
+      "country": "Colombia",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#82CRGUUQ",
+      "name": "QLASH Storm CR",
+      "country": "Costa Rica",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#G2P8L9J0",
+      "name": "QLASH Croatia",
+      "country": "Croatia",
+      "esl_region": "Europe & MEA",
+      "leader": "QLS|PecenaPatka#1971",
+      "discord": ""
+    },
+    {
+      "tag": "#R09VQ9VQ",
+      "name": "QLASH Croatia 2",
+      "country": "Croatia",
+      "esl_region": "Europe & MEA",
+      "leader": "QLS|PecenaPatka#1971",
+      "discord": ""
+    },
+    {
+      "tag": "#R02V0LY",
+      "name": "QLASH Egypt",
+      "country": "Egypt",
+      "esl_region": "Europe & MEA",
+      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
+      "discord": ""
+    },
+    {
+      "tag": "#GV9R8G2",
+      "name": "QLASH Egypt 2",
+      "country": "Egypt",
+      "esl_region": "Europe & MEA",
+      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
+      "discord": ""
+    },
+    {
+      "tag": "#22L8QJ9Q",
+      "name": "QLASH Egypt 3",
+      "country": "Egypt",
+      "esl_region": "Europe & MEA",
+      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
+      "discord": ""
+    },
+    {
+      "tag": "#2VYGVJLV",
+      "name": "QLASH Egypt 4",
+      "country": "Egypt",
+      "esl_region": "Europe & MEA",
+      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
+      "discord": ""
+    },
+    {
+      "tag": "#CG82RYQ9",
+      "name": "QLASH Egypt 5",
+      "country": "Egypt",
+      "esl_region": "Europe & MEA",
+      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
+      "discord": ""
+    },
+    {
+      "tag": "#202QJYGYJ",
+      "name": "QLASH Estonia",
+      "country": "Estonia",
+      "esl_region": "Europe & MEA",
+      "leader": "Laama We Like#8701 (GoGirls)\n@GoGirls0",
+      "discord": "discord.gg/APrDDBF"
+    },
+    {
+      "tag": "#20CJR2RLG",
+      "name": "QLASH Germany",
+      "country": "Germany",
+      "esl_region": "Europe & MEA",
+      "leader": "JuzzL#0167\n@JuzzlOG (Justin Will)",
+      "discord": "discord.gg/kuP5N5V"
+    },
+    {
+      "tag": "#20UVUG2Q8",
+      "name": "QLASH Storm GT",
+      "country": "Guatemala",
+      "esl_region": "NA & LATAM N",
+      "leader": "❄ Stark 🐺#4425",
+      "discord": ""
+    },
+    {
+      "tag": "#20GLLJG2Y",
+      "name": "QLASH Storm GT2",
+      "country": "Guatemala",
+      "esl_region": "NA & LATAM N",
+      "leader": "❄ Stark 🐺#4425",
+      "discord": ""
+    },
+    {
+      "tag": "#20YLQ22JJ",
+      "name": "QLASH Persia",
+      "country": "Iran (Islamic Republic of)",
+      "esl_region": "Europe & MEA",
+      "leader": "KLAUS | PERFEX™#7555\n@radwinhp (RaDWiN)",
+      "discord": ""
+    },
+    {
+      "tag": "#8GQ2G028",
+      "name": "QLASH Olympus",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "ElBlasfemo#3090\nAQUARIA#9112",
+      "discord": ""
+    },
+    {
+      "tag": "#8GLJ20QQ",
+      "name": "QLASH Chronos",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#8GR8QLLV",
+      "name": "QLASH Zeus",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#8R9PV8O2",
+      "name": "QLASH Hades",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#8RQRGPPR",
+      "name": "QLASH Demeter",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "⛈¢¢ᵏ ⁱ ˡ ˡᵧₒᵤ#6147",
+      "discord": ""
+    },
+    {
+      "tag": "#2CJLJUPV",
+      "name": "QLASH Aphrodite",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "QLS|RonniPizzi#4928",
+      "discord": ""
+    },
+    {
+      "tag": "#8CQ29UV8",
+      "name": "QLASH Hermes",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "QLS | Simone#1988",
+      "discord": ""
+    },
+    {
+      "tag": "#98VQUC8R",
+      "name": "QLASH Ares",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "Lore#5934",
+      "discord": ""
+    },
+    {
+      "tag": "#8URR8RPV",
+      "name": "QLASH Apollo",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#89QP2LJL",
+      "name": "QLASH Eros",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#RYRLPV98",
+      "name": "QLASH Athena",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#C8PCRJUJ",
+      "name": "QLASH Girls",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#9JQPR8CQ",
+      "name": "QLASH Bandicoot",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "Nemos#8608",
+      "discord": ""
+    },
+    {
+      "tag": "#VQQC2YQR",
+      "name": "QLASH Warped",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#9CUURQ2",
+      "name": "QLASH Malta",
+      "country": "Malta",
+      "esl_region": "Europe & MEA",
+      "leader": "QLASH Dylan Dog#2979\n(Josef Borg)",
+      "discord": ""
+    },
+    {
+      "tag": "#20V9J9U9Y",
+      "name": "QLASH Storm MX",
+      "country": "Mexico",
+      "esl_region": "NA & LATAM N",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#R0VG80PP",
+      "name": "QLASH Storm MX 2",
+      "country": "Mexico",
+      "esl_region": "NA & LATAM N",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#80UQJCRL",
+      "name": "QLASH Storm MX 3",
+      "country": "Mexico",
+      "esl_region": "NA & LATAM N",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#28J2Y0YGV",
+      "name": "QLASH Romania",
+      "country": "Romania",
+      "esl_region": "Europe & MEA",
+      "leader": "𝟒𝐔 | PauL#8412\n(Paul)",
+      "discord": "https://discord.gg/gEhcxy5"
+    },
+    {
+      "tag": "#20JU0YUPR",
+      "name": "QLASH Romania 2",
+      "country": "Romania",
+      "esl_region": "Europe & MEA",
+      "leader": "𝟒𝐔 | Iulia#6004",
+      "discord": "https://discord.gg/gEhcxy5"
+    },
+    {
+      "tag": "#20VR99VC2",
+      "name": "QLASH Storm PE",
+      "country": "Peru",
+      "esl_region": "LATAM South",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#20V888998",
+      "name": "QLASH Slovenia",
+      "country": "Slovenia",
+      "esl_region": "Europe & MEA",
+      "leader": "dedalik#6049\n(Deda Lik)",
+      "discord": "https://discord.gg/URr8MQA"
+    },
+    {
+      "tag": "#80GRQ980",
+      "name": "QLASH JC",
+      "country": "Spain",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/j5EABRs"
+    },
+    {
+      "tag": "#2LLCYCOV",
+      "name": "QLASH SPAIN",
+      "country": "Spain",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/j5EABRs"
+    },
+    {
+      "tag": "#V2R22VUY",
+      "name": "QLASH STARS",
+      "country": "Spain",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/j5EABRs"
+    },
+    {
+      "tag": "#V8UGQ9UG",
+      "name": "QLASH ANDRÓMEDA",
+      "country": "Spain",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/j5EABRs"
+    },
+    {
+      "tag": "#UUU8VG8",
+      "name": "QLASH Suisse",
+      "country": "Switzerland",
+      "esl_region": "Europe & MEA",
+      "leader": "JUL#6362\n(JUL)",
+      "discord": ""
+    },
+    {
+      "tag": "#28U2PP2PY",
+      "name": "QLASH Suisse 2",
+      "country": "Switzerland",
+      "esl_region": "Europe & MEA",
+      "leader": "JUL#6362\n(JUL)",
+      "discord": ""
+    },
+    {
+      "tag": "#20RQC9J8Y",
+      "name": "QLASH Storm +58",
+      "country": "Venezuela",
+      "esl_region": "NA & LATAM N",
+      "leader": "",
+      "discord": ""
+    }
+  ],
+  "invited_teams": [
+    {
+      "tag": "#QP2Y8JP",
+      "name": "BosnianLegends",
+      "country": "Bosnia",
+      "esl_region": "Europe & MEA",
+      "leader": "|=>is0<=|#8238\n@is0brawlstars (|=>is0<=|)",
+      "discord": "discord.gg/7nCZxjW"
+    },
+    {
+      "tag": "#8G890L",
+      "name": "OldStars",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#9Y0VR002",
+      "name": "OldStars Poison",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#U228ULJP",
+      "name": "OldStars Astra",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#PY8VUVCR",
+      "name": "OldStars Hades",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#LYLC09J0",
+      "name": "OldStars Hemen",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#JRJ9L0R9",
+      "name": "OldStars Aqua",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#20LVU9P8V",
+      "name": "OldStars Osiris",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#YVUC98LV",
+      "name": "OldStars Coelum",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#22LRYYVPV",
+      "name": "OldStars Eden",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#20G92LV0V",
+      "name": "OldStars Fehu",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/brYSrng"
+    },
+    {
+      "tag": "#V8PJ22QR",
+      "name": "eSports Mobile",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/s3yEFwE"
+    },
+    {
+      "tag": "#PUPYLJP0",
+      "name": "BlueStacks IT",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/bluestacksIT"
+    },
+    {
+      "tag": "#P8PV2YU9",
+      "name": "Game.Tv ITA",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "https://discord.gg/3Zc7ZXv"
+    },
+    {
+      "tag": "#GVUQL0RL",
+      "name": "Olympus | FFE",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#20LR0C9QJ",
+      "name": "Sanji| FFE",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#20LR0C9QJ",
+      "name": "Sanji| FFE",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": ""
+    },
+    {
+      "tag": "#QG02YUU",
+      "name": "DUCATO D'ITALIA",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "discord.gg/6JgXfZ4"
+    },
+    {
+      "tag": "#22YY20QGY",
+      "name": "WTF eSports",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "discord.gg/WRj2KeY"
+    },
+    {
+      "tag": "#222V2R92Y",
+      "name": "WTF Academy",
+      "country": "Italy",
+      "esl_region": "Europe & MEA",
+      "leader": "",
+      "discord": "discord.gg/WRj2KeY"
+    }
+  ]
 }
