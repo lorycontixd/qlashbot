@@ -14,7 +14,12 @@ class Clubs(commands.Cog, name="Clubs"):
         self.qlash_bs = qlash_bs
         pass
 
-    @commands.cooldown(1,1,commands.BucketType.channel)
+    @commands.cooldown(1,15,commands.BucketType.channel)
     @commands.command(name='is-official-club',brief='Check if a club is official.')
     async def is_official_club_(self,ctx,*gametag):
         await clubs_library.is_official_club(self, ctx, " ".join(gametag[:]))
+
+    @commands.cooldown(1,15,commands.BucketType.channel)
+    @commands.command(name='is-invited-club',brief='Check if a club is invited.')
+    async def is_invited_club_(self,ctx,*gametag):
+        await clubs_library.is_invited_club(self, ctx, " ".join(gametag[:]))
