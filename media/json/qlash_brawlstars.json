@@ -14,39 +14,44 @@
       "name": "QLASH Storm ARG",
       "country": "Argentina",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "AT|♠️Marquito♠️ #R00GLVVL",
+      "required_trophies": "22,000",
+      "discord": "https://discord.com/channels/415221296247341066/695763723264196760"
     },
     {
       "tag": "#20YJLCGCP",
       "name": "QLASH AZE",
       "country": "Azerbaijan",
       "esl_region": "Europe & MEA",
-      "leader": "Ferid A#6794\n@FeridA03 (Ferid Agazade)",
-      "discord": "https://discord.gg/m6cCq2t"
+      "leader": "Ferid A#6794",
+      "required_trophies": "17,000",
+      "discord": "https://discord.gg/NEV9DdJ"
     },
     {
       "tag": "#280YY8UV8",
       "name": "QLASH Bangla",
       "country": "Bangladesh",
       "esl_region": "APAC",
-      "leader": "Shifat Mahmud#4782\n(Shifat Mahmud)",
-      "discord": ""
+      "leader": "Shifat Mahmud#4782",
+      "required_trophies": "18,000",
+      "discord": "https://discord.com/channels/415221296247341066/734085406051663893"
     },
     {
       "tag": "#2909P9GLY",
       "name": "QLASH Bangla II",
       "country": "Bangladesh",
       "esl_region": "APAC",
-      "leader": "Shifat Mahmud#4782\n(Shifat Mahmud)",
-      "discord": ""
+      "leader": "Ali #988JRGUPJ",
+      "required_trophies": "10,000",
+      "discord": "https://discord.com/channels/415221296247341066/734085406051663893"
     },
     {
       "tag": "#22092GJQL",
       "name": "QLASH Bosnia",
       "country": "Bosnia",
       "esl_region": "Europe & MEA",
-      "leader": "|=>is0<=|#8238\n@is0brawlstars (|=>is0<=|)",
+      "leader": "|=>is0<=|#8238",
+      "required_trophies": "20,000",
       "discord": "https://discord.gg/7nCZxjW"
     },
     {
@@ -54,47 +59,44 @@
       "name": "QLASH Storm",
       "country": "Brazil",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "GuilhermePG❣ #GGLQJ08Y",
+      "required_trophies": "25,000",
+      "discord": "https://discord.com/channels/415221296247341066/695760884126974003"
     },
     {
       "tag": "#VYGC2UUL",
       "name": "QLASH Storm II",
       "country": "Brazil",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS|TaNegro⚡️ #YLCLYC08",
+      "required_trophies": "22,000",
+      "discord": "https://discord.com/channels/415221296247341066/695760884126974003"
     },
     {
       "tag": "#VJ8VRQCJ",
       "name": "QLASH Storm III",
       "country": "Brazil",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS|Luis BR #PQJ9JG8GR",
+      "required_trophies": "21,000",
+      "discord": "https://discord.com/channels/415221296247341066/695760884126974003"
     },
     {
       "tag": "#208CGR9CQ",
       "name": "QLASH Storm CL",
       "country": "Chile",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
-    },
-    {
-      "tag": "#20LU82JRR",
-      "name": "QLASH Storm CL 2",
-      "country": "Chile",
-      "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS| KR The Best#6152",
+      "required_trophies": "21,000",
+      "discord": "https://discord.gg/nEkZQTZ"
     },
     {
       "tag": "#GGLVLQYG",
       "name": "QLASH China",
       "country": "China",
       "esl_region": "APAC",
-      "leader": "SillyGoose101#9820\n(Amir)",
+      "leader": "SillyGoose101#9820",
+      "required_trophies": "18,000",
       "discord": "https://discord.gg/NwmQRMh"
     },
     {
@@ -102,24 +104,36 @@
       "name": "QLASH Storm COL",
       "country": "Colombia",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "VH | DARKAR #2RCQ9CCG",
+      "required_trophies": "21,000",
+      "discord": "https://discord.com/channels/415221296247341066/712722970275086496"
     },
     {
       "tag": "#229VLLQLG",
       "name": "QLASH Storm CO2",
       "country": "Colombia",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "VH | JuanP #CUQUJQ2L",
+      "required_trophies": "19,000",
+      "discord": "https://discord.com/channels/415221296247341066/712722970275086496"
     },
     {
       "tag": "#82CRGUUQ",
+      "name": "QLASH Storm CO3",
+      "country": "Colombia",
+      "esl_region": "LATAM South",
+      "leader": "diego2704 #GCRPG2CP",
+      "required_trophies": "14,000",
+      "discord": "https://discord.com/channels/415221296247341066/712722970275086496"
+    },
+    {
+      "tag": "#20RR228JP",
       "name": "QLASH Storm CR",
       "country": "Costa Rica",
       "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS|Gera©️®️ #YVG8CU0J",
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/697849718377807914"
     },
     {
       "tag": "#G2P8L9J0",
@@ -127,62 +141,70 @@
       "country": "Croatia",
       "esl_region": "Europe & MEA",
       "leader": "QLS|PecenaPatka#1971",
-      "discord": ""
+      "required_trophies": "21,000",
+      "discord": "https://discord.com/channels/415221296247341066/662979868811722762"
     },
     {
       "tag": "#R09VQ9VQ",
       "name": "QLASH Croatia 2",
       "country": "Croatia",
       "esl_region": "Europe & MEA",
-      "leader": "QLS|PecenaPatka#1971",
-      "discord": ""
+      "leader": "QLS|Non4me #2VYLJQU99",
+      "required_trophies": "18,000",
+      "discord": "https://discord.com/channels/415221296247341066/662979868811722762"
     },
     {
       "tag": "#R02V0LY",
       "name": "QLASH Egypt",
       "country": "Egypt",
       "esl_region": "Europe & MEA",
-      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
-      "discord": ""
+      "leader": "✨Ehab™️ #GG8QL0R9",
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/662961364134002698"
     },
     {
       "tag": "#GV9R8G2",
       "name": "QLASH Egypt 2",
       "country": "Egypt",
       "esl_region": "Europe & MEA",
-      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
-      "discord": ""
+      "leader": "✨Abdo™️ #2J2YRQCQ2",
+      "required_trophies": "17,000",
+      "discord": "https://discord.com/channels/415221296247341066/662961364134002698"
     },
     {
       "tag": "#22L8QJ9Q",
       "name": "QLASH Egypt 3",
       "country": "Egypt",
       "esl_region": "Europe & MEA",
-      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
-      "discord": ""
+      "leader": "Qlash l bedo #V8PUQGJU",
+      "required_trophies": "17,000",
+      "discord": "https://discord.com/channels/415221296247341066/662961364134002698"
     },
     {
       "tag": "#2VYGVJLV",
       "name": "QLASH Egypt 4",
       "country": "Egypt",
       "esl_region": "Europe & MEA",
-      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
-      "discord": ""
+      "leader": "Mr5rBo4 #GRYQ80R8",
+      "required_trophies": "14,000",
+      "discord": "https://discord.com/channels/415221296247341066/662961364134002698"
     },
     {
       "tag": "#CG82RYQ9",
       "name": "QLASH Egypt 5",
       "country": "Egypt",
       "esl_region": "Europe & MEA",
-      "leader": "zeezooX#9087\n@zeezooX4 (Ziyad Eslam)",
-      "discord": ""
+      "leader": "{☆ĐÄŘĶ♤MÄŠŤËŘ☆} #GRP8C2GP",
+      "required_trophies": "15,000",
+      "discord": "https://discord.com/channels/415221296247341066/662961364134002698"
     },
     {
       "tag": "#202QJYGYJ",
       "name": "QLASH Estonia",
       "country": "Estonia",
       "esl_region": "Europe & MEA",
-      "leader": "Laama We Like#8701 (GoGirls)\n@GoGirls0",
+      "leader": "Laama We Like#8701",
+      "required_trophies": "17,000",
       "discord": "https://discord.gg/APrDDBF"
     },
     {
@@ -190,7 +212,8 @@
       "name": "QLASH Germany",
       "country": "Germany",
       "esl_region": "Europe & MEA",
-      "leader": "JuzzL#0167\n@JuzzlOG (Justin Will)",
+      "leader": "JuzzL#0167",
+      "required_trophies": "22,000",
       "discord": "https://discord.gg/kuP5N5V"
     },
     {
@@ -199,55 +222,62 @@
       "country": "Guatemala",
       "esl_region": "NA & LATAM N",
       "leader": "❄ Stark 🐺#4425",
-      "discord": ""
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/713114371198288002"
     },
     {
       "tag": "#20GLLJG2Y",
       "name": "QLASH Storm GT2",
       "country": "Guatemala",
       "esl_region": "NA & LATAM N",
-      "leader": "❄ Stark 🐺#4425",
-      "discord": ""
+      "leader": "J. K. Myers #9LVLV9CG",
+      "required_trophies": "18,000",
+      "discord": "https://discord.com/channels/415221296247341066/713114371198288002"
     },
     {
       "tag": "#20YLQ22JJ",
       "name": "QLASH Persia",
       "country": "Iran",
       "esl_region": "Europe & MEA",
-      "leader": "KLAUS | PERFEX™#7555\n@radwinhp (RaDWiN)",
-      "discord": ""
+      "leader": "KLAUS | PERFEX™#7555",
+      "required_trophies": "19,000",
+      "discord": "https://discord.gg/9UDMMDr"
     },
     {
       "tag": "#8GQ2G028",
       "name": "QLASH Olympus",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "ElBlasfemo#3090\nAQUARIA#9112",
-      "discord": ""
+      "leader": "AQUARIA#9112",
+      "required_trophies": "24,000",
+      "discord": "https://discord.com/channels/415221296247341066/565164731824996393"
     },
     {
       "tag": "#8GLJ20QQ",
       "name": "QLASH Chronos",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "Lele™⚡️ #202U8RJ0",
+      "required_trophies": "23,000",
+      "discord": "https://discord.com/channels/415221296247341066/487170682166444032"
     },
     {
       "tag": "#8GR8QLLV",
       "name": "QLASH Zeus",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS|☢️DRAGO☢️ #8VCRVP90",
+      "required_trophies": "23,000",
+      "discord": "https://discord.com/channels/415221296247341066/564917616959815694"
     },
     {
       "tag": "#8R9PV8O2",
       "name": "QLASH Hades",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "BJ | ODINO™️ #CJGJLY",
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/518537850569097226"
     },
     {
       "tag": "#8RQRGPPR",
@@ -255,15 +285,17 @@
       "country": "Italy",
       "esl_region": "Europe & MEA",
       "leader": "⛈¢¢ᵏ ⁱ ˡ ˡᵧₒᵤ#6147",
-      "discord": ""
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/539528426017652737"
     },
     {
       "tag": "#2CJLJUPV",
       "name": "QLASH Aphrodite",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "QLS|RonniPizzi#4928",
-      "discord": ""
+      "leader": "Yoshi i need u #2GPJC28L0",
+      "required_trophies": "19,000",
+      "discord": "https://discord.com/channels/415221296247341066/564870722619441172"
     },
     {
       "tag": "#8CQ29UV8",
@@ -271,7 +303,8 @@
       "country": "Italy",
       "esl_region": "Europe & MEA",
       "leader": "QLS | Simone#1988",
-      "discord": ""
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/564870783554289674"
     },
     {
       "tag": "#98VQUC8R",
@@ -279,95 +312,125 @@
       "country": "Italy",
       "esl_region": "Europe & MEA",
       "leader": "Lore#5934",
-      "discord": ""
+      "required_trophies": "21,000",
+      "discord": "https://discord.com/channels/415221296247341066/564870896683057163"
     },
     {
       "tag": "#8URR8RPV",
       "name": "QLASH Apollo",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "ᴛɪᴍᴘᴜᶫᵒᵛᵉᵧₒᵤ #2QVRP9CU",
+      "required_trophies": "21,000",
+      "discord": "https://discord.com/channels/415221296247341066/571335012755177482"
     },
     {
       "tag": "#89QP2LJL",
       "name": "QLASH Eros",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS |Lazer #9UQVCJ",
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/564870944493928457"
     },
     {
       "tag": "#RYRLPV98",
       "name": "QLASH Athena",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "Kingslayer #8VGGCU8U",
+      "required_trophies": "20,000",
+      "discord": "https://discord.com/channels/415221296247341066/630754752967475201"
     },
     {
       "tag": "#C8PCRJUJ",
       "name": "QLASH Girls",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "ѕσяяу ι кιℓℓ υ #PUJC2LPJ",
+      "required_trophies": "1,000",
+      "discord": "https://discord.com/channels/415221296247341066/719603067179237447"
     },
     {
       "tag": "#9JQPR8CQ",
       "name": "QLASH Bandicoot",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "Nemos#8608",
-      "discord": ""
+      "leader": "✈️arch182✈️ #Y8PCUUP",
+      "required_trophies": "0",
+      "discord": "https://discord.com/channels/415221296247341066/734096657913741324"
     },
     {
       "tag": "#VQQC2YQR",
       "name": "QLASH Warped",
       "country": "Italy",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": ""
+      "leader": "✈️Lila✈️ #80J88GCGC",
+      "required_trophies": "0",
+      "discord": "https://discord.com/channels/415221296247341066/734096912159998083"
     },
     {
       "tag": "#9CUURQ2",
       "name": "QLASH Malta",
       "country": "Malta",
       "esl_region": "Europe & MEA",
-      "leader": "QLASH Dylan Dog#2979\n(Josef Borg)",
-      "discord": ""
+      "leader": "QLASH Dylan Dog#297",
+      "required_trophies": "16,000",
+      "discord": "https://discord.com/channels/415221296247341066/662970432869367809"
     },
     {
       "tag": "#20V9J9U9Y",
       "name": "QLASH Storm MX",
       "country": "Mexico",
       "esl_region": "NA & LATAM N",
-      "leader": "",
-      "discord": ""
+      "leader": "EB | ☢•ƝȊŦɌѺS•☢ #9VP00JRG9",
+      "required_trophies": "22,000",
+      "discord": "https://discord.com/channels/415221296247341066/715993099507335228"
     },
     {
       "tag": "#R0VG80PP",
       "name": "QLASH Storm MX 2",
       "country": "Mexico",
       "esl_region": "NA & LATAM N",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS|Click-Shift #GGPQJGVJ",
+      "required_trophies": "16,000",
+      "discord": "https://discord.com/channels/415221296247341066/715993099507335228"
     },
     {
       "tag": "#80UQJCRL",
       "name": "QLASH Storm MX 3",
       "country": "Mexico",
       "esl_region": "NA & LATAM N",
-      "leader": "",
-      "discord": ""
+      "leader": "QLS | Cisa™ #2LRU0RRR",
+      "required_trophies": "200",
+      "discord": "https://discord.com/channels/415221296247341066/715993099507335228"
+    },
+    {
+      "tag": "#20VR99VC2",
+      "name": "QLASH Storm PE",
+      "country": "Peru",
+      "esl_region": "LATAM South",
+      "leader": "QLS|Madara ☣️ #22RC8VL0",
+      "required_trophies": "22,000",
+      "discord": "https://discord.com/channels/415221296247341066/713688862966415401"
+    },
+    {
+      "tag": "#280G2UPY8",
+      "name": "QLASH Storm PE2",
+      "country": "Peru",
+      "esl_region": "LATAM South",
+      "leader": "EZ|✭Johnny✭ #9Y08CP9P",
+      "required_trophies": "15,000",
+      "discord": "https://discord.com/channels/415221296247341066/713688862966415401"
     },
     {
       "tag": "#28J2Y0YGV",
       "name": "QLASH Romania",
       "country": "Romania",
       "esl_region": "Europe & MEA",
-      "leader": "𝟒𝐔 | PauL#8412\n(Paul)",
-      "discord": "https://discord.gg/gEhcxy5"
+      "leader": "𝟒𝐔 | PauL#8412",
+      "required_trophies": "19,000",
+      "discord": "https://discord.gg/EASfKHt"
     },
     {
       "tag": "#20JU0YUPR",
@@ -375,79 +438,80 @@
       "country": "Romania",
       "esl_region": "Europe & MEA",
       "leader": "𝟒𝐔 | Iulia#6004",
-      "discord": "https://discord.gg/gEhcxy5"
-    },
-    {
-      "tag": "#20VR99VC2",
-      "name": "QLASH Storm PE",
-      "country": "Peru",
-      "esl_region": "LATAM South",
-      "leader": "",
-      "discord": ""
+      "required_trophies": "16,000",
+      "discord": "https://discord.gg/EASfKHt"
     },
     {
       "tag": "#20V888998",
       "name": "QLASH Slovenia",
       "country": "Slovenia",
       "esl_region": "Europe & MEA",
-      "leader": "dedalik#6049\n(Deda Lik)",
-      "discord": "https://discord.gg/URr8MQA"
+      "leader": "dedalik#6049",
+      "required_trophies": "13,000",
+      "discord": "https://discord.com/channels/415221296247341066/734099206645481574"
     },
     {
       "tag": "#80GRQ980",
       "name": "QLASH JC",
       "country": "Spain",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": "https://discord.gg/j5EABRs"
+      "leader": "QLS|TJCristian #GR8C92Q8",
+      "required_trophies": "23,000",
+      "discord": "https://discord.gg/qlash-spain"
     },
     {
       "tag": "#2LLCYCOV",
       "name": "QLASH SPAIN",
       "country": "Spain",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": "https://discord.gg/j5EABRs"
+      "leader": "QLS|Albika #P8QQUVQ9",
+      "required_trophies": "22,000",
+      "discord": "https://discord.gg/qlash-spain"
     },
     {
       "tag": "#V2R22VUY",
       "name": "QLASH STARS",
       "country": "Spain",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": "https://discord.gg/j5EABRs"
+      "leader": "QLS |Danielhn04 #289Q00V99",
+      "required_trophies": "16,000",
+      "discord": "https://discord.gg/qlash-spain"
     },
     {
       "tag": "#V8UGQ9UG",
       "name": "QLASH ANDRÓMEDA",
       "country": "Spain",
       "esl_region": "Europe & MEA",
-      "leader": "",
-      "discord": "https://discord.gg/j5EABRs"
+      "leader": "QLASH Carmiuka #PPUG880V",
+      "required_trophies": "13,000",
+      "discord": "https://discord.gg/qlash-spain"
     },
     {
       "tag": "#UUU8VG8",
       "name": "QLASH Suisse",
       "country": "Switzerland",
       "esl_region": "Europe & MEA",
-      "leader": "JUL#6362\n(JUL)",
-      "discord": ""
+      "leader": "JUL#6362",
+      "required_trophies": "20,000",
+      "discord": "https://discord.gg/NKSg4eg"
     },
     {
       "tag": "#28U2PP2PY",
       "name": "QLASH Suisse 2",
       "country": "Switzerland",
       "esl_region": "Europe & MEA",
-      "leader": "JUL#6362\n(JUL)",
-      "discord": ""
+      "leader": "JUL#6362",
+      "required_trophies": "14,000",
+      "discord": "https://discord.gg/NKSg4eg"
     },
     {
       "tag": "#20RQC9J8Y",
       "name": "QLASH Storm +58",
       "country": "Venezuela",
       "esl_region": "NA & LATAM N",
-      "leader": "",
-      "discord": ""
+      "leader": "+58®️|Garcilazo #2J822Q9",
+      "required_trophies": "21,000",
+      "discord": "https://discord.com/channels/415221296247341066/697582636285296820"
     }
   ],
   "invited_clubs": [
