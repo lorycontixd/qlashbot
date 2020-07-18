@@ -7,7 +7,7 @@ from modules.system.commands import System
 from modules.channels.commands import Channels
 from modules.clubs.commands import Clubs
 
-async def init(bot,db):
+async def init(bot,db,qlash_bs):
     bot.add_cog(Weather())
     bot.add_cog(Fun())
     bot.add_cog(Moderation())
@@ -15,4 +15,4 @@ async def init(bot,db):
     bot.add_cog(BrawlStars())
     bot.add_cog(Messages())
     bot.add_cog(Channels())
-    bot.add_cog(Clubs())
+    bot.add_cog(Clubs(qlash_bs))

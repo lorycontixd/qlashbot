@@ -1,6 +1,7 @@
 
 import os
 import discord
+import json
 import brawlstats
 import cloudinary
 import cloudinary.uploader
@@ -94,6 +95,11 @@ if mongoclient is None:
 apscheduler = None
 if apscheduler is None:
     apscheduler = scheduler.init_scheduler(mongoclient)
+
+qlash_bs = None
+
+if qlash_bs is None:
+    qlash_bs = json.load(open('./media/json/qlash_brawlstars.json', encoding="utf-8"))
 
 #sched = BlockingScheduler()
 

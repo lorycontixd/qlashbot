@@ -21,7 +21,8 @@ async def on_ready():
     await events.on_ready_()
     db = bot_instances.mongoclient.heroku_q2z34tjm
     bot = bot_instances.bot
-    await bot_commands.init(bot,db)
+    qlash_bs = bot_instances.qlash_bs
+    await bot_commands.init(bot,db,qlash_bs)
 
 @bot_instances.bot.event
 async def on_disconnect():
