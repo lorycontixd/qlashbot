@@ -6,7 +6,7 @@ from discord.voice_client import VoiceClient
 import ipapi
 from modules.mongodb.library import *
 from modules.scheduler.library import check_banlist_channel,giova
-
+from bot_instances import myclient
 from modules.moderation import descriptions as moderation_descriptions
 
 #*****************************************************************************************************************
@@ -300,7 +300,7 @@ class Moderation(commands.Cog,name="Moderation"):
         for e in listembeds:
             await ctx.send(embed=e)
 
-    @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
+    @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='vice-count')
     async def vice_(self,ctx):
         clans = LoadClans()#list of dicts
@@ -322,3 +322,15 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.command(name="giova",hidden=True)
     async def _giova(self,ctx):
         await giova()
+
+    @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
+    @commands.command(name="ban",brief="Bans a user",hidden=False,pass_context=True)
+    async def ban(member,delete_message_days,*reason):
+        reason_ = " ".join(reason[:])
+        if member == None:
+            await ctx.send("InputError: Invalid member")
+            return
+        if int(delete_message_days) < 0 or int(delete_message_days) > 7:
+            await ctx.send("InputError: Invalid integer for deleting messages (Min - 0 , Max - 7)")
+            return
+        await ctx.guild.ban(member,int(delete_message_days),reason_)

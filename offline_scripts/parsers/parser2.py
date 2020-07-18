@@ -10,6 +10,7 @@ def read_file(filename_in):
 	lines = content.split('\n')
 	list=[]
 	file.close()
+	i=0
 	for line in lines:
 		ll=line.split('\t')
 		name=ll[0]
@@ -18,7 +19,7 @@ def read_file(filename_in):
 		tag='#'
 		temp=str(ll2[1]).replace('O','0')
 		temp=temp.replace(" ","")
-		tag+=temp	
+		tag+=temp
 		list.append(tag)
 	return list
 
@@ -32,4 +33,3 @@ def main_program(filename_input,filename_destination):
 	write_to_file(list,filename_destination)
 
 main_program(input_filename,destination_filename)
-	

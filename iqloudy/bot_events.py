@@ -1,6 +1,7 @@
 import discord
 import pytz
 import random
+import asyncio
 
 from bot_instances import *
 from modules.mongodb.library import *
@@ -21,13 +22,34 @@ async def on_ready_():
     print('Bot ID: ',bot.user.id)
     print('Creation Date: ',bot.user.created_at)
     print('Websocket Gateway: ',bot.ws)
-    print('----------------')
+    tz = pytz.timezone('Europe/Rome')
+    nnow = datetime.now(tz=tz)
+    ttime = nnow.strftime("%d/%m/%Y %H:%M:%S")
+    print(str(ttime))
+    print('--------------------------')
+    app = await bot.application_info()
+    print("Application owner: "+str(app.owner))
+    print("Application Name: "+str(app.name))
+    print("Application ID: "+str(app.id))
+    print("Public Bot: "+str(app.bot_public))
+    print('--------------------------')
+
     #mych = await bot.fetch_channel(int(bot_testing))
     #await mych.send("Bot has logged in 🟢")
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="^help for help"))
     #ch = bot.get_channel(int(bot_developer_channel))
     #messages = ["Here I am. Hrmmm.", "Up and runnning I am.", "Hello again! I'm here. Yes. Hrmmmm.", "Back on track, I am."]
     #await ch.send(random.choice(messages))
+
+async def on_member_ban_(guild,user):
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
+    e=discord.Embed(title="User has been banned from the server: "+str(user), description="--------------------------------------",color=0xe32400)
+    e.add_field(name="User",value=str(user),inline=True)
+    e.add_field(name="User ID",value=str(user.id),inline=True)
+    e.add_field(name="Created at",value=str(user.created_at.strftime("%d/%m/%Y %H:%M%S")),inline=True)
+    e.add_field(name="Time of ban",value=str(datetime.now.strftime("%d/%m/%Y %H:%M%S")),inline=True)
+    e.set_footer(text="Created by Lore")
+    await logs.send(embed=e)
 
 
 #*******************************************   ON MEMBER JOIN   ******************************************
@@ -337,7 +359,7 @@ async def check_instarole(message:discord.Message):
                     await msg.delete()
                     await ch.send('Timeout for user '+str(message.author.name)+' 👎\nPlease send a screenshot again and reply to the message')
             else:
-                await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a Moderator or a "+dev.mention+". Thank you")
+                await ch.send("You are already given the instagram role "+foundrole+". If you have problems please contact a **Moderator** or a **DiscordDeveloper**. Thank you")
 
 async def insta_role_ended(message):
     ch = message.channel
