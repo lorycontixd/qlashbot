@@ -23,3 +23,13 @@ class Clubs(commands.Cog, name="Clubs"):
     @commands.command(name='is-invited-club',brief='Check if a club is invited.')
     async def is_invited_club_(self,ctx,*gametag):
         await clubs_library.is_invited_club(self, ctx, " ".join(gametag[:]))
+
+    @commands.cooldown(1,15,commands.BucketType.channel)
+    @commands.command(name='print-club',brief='Print out one official clubs.')
+    async def print_official_club(self,ctx, *gametag):
+        await clubs_library.print_official_club(self, ctx, " ".join(gametag[:]))
+
+    @commands.cooldown(1,15,commands.BucketType.channel)
+    @commands.command(name='print-all-clubs',brief='Print out all official clubs.')
+    async def print_official_clubs(self,ctx, channel:discord.TextChannel = None):
+        await clubs_library.print_official_clubs(self, ctx, channel)

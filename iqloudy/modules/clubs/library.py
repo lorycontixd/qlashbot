@@ -1,3 +1,5 @@
+import io
+import discord
 
 async def is_official_club(self, ctx, gametag):
     found = False
@@ -29,3 +31,35 @@ async def is_invited_club(self, ctx, gametag):
         await ctx.send("Yes, it is invited.")
     else:
         await ctx.send("Not invited.")
+
+async def print_official_club(self, ctx, gametag):
+    found = False
+
+    for c in self.qlash_bs['official_clubs']:
+        if gametag.startswith("#") and c['tag'] == gametag or c['name'] == gametag:
+            found = True
+            QLASH_BRAWLSTARS_INFOBOX_ICON_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850143480152114/PzQwxlPN_400x400.jpg"
+            QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
+            QLASH_BRAWLSTARS_INFOBOX = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Club in Brawl Stars", color=0x00ccff)
+            QLASH_BRAWLSTARS_INFOBOX.set_author(name="QLASH -- Brawl Stars", icon_url=QLASH_BRAWLSTARS_INFOBOX_ICON_URL)
+            QLASH_BRAWLSTARS_INFOBOX.set_thumbnail(url=QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL)
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Club", value=c["name"])
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Tag", value=c["tag"])
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Nation", value=c["country"])
+            if len(c["discord"]) > 0:
+                QLASH_BRAWLSTARS_INFOBOX.add_field(name="Discord", value=c["discord"], inline=False)
+            await ctx.send(embed=QLASH_BRAWLSTARS_INFOBOX)
+            break
+    if not found:
+        await ctx.send(gametag + " is not an official club.")
+
+async def print_official_clubs(self, ctx, channel):
+    if channel is None:
+        channel = ctx.channel
+
+    with io.StringIO() as output:
+        output.write("```r\n")
+        for c in self.qlash_bs['official_clubs']:
+            output.write(c['name'] + " " + c['tag'] + "\n")
+        output.write("```")
+        await channel.send(output.getvalue())
