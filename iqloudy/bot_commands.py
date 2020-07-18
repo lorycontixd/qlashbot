@@ -5,6 +5,7 @@ from modules.messages.commands import Messages
 from modules.fun.commands import Fun
 from modules.system.commands import System
 from modules.channels.commands import Channels
+from modules.clubs.commands import Clubs
 
 async def init(bot,db):
     bot.add_cog(Weather())
@@ -14,3 +15,4 @@ async def init(bot,db):
     bot.add_cog(BrawlStars())
     bot.add_cog(Messages())
     bot.add_cog(Channels())
+    bot.add_cog(Clubs())

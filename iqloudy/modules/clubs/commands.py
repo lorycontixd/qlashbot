@@ -1,18 +1,18 @@
 import discord
 from discord.ext import commands
 
-from modules.skeleton import library as skeleton_library, descriptions as skeleton_descriptions
+from modules.clubs import library as clubs_library, descriptions as clubs_descriptions
 
 #*****************************************************************************************************************
 #**********************************************       FUN     ****************************************************
 #*****************************************************************************************************************
 
 
-class Skeleton(commands.Cog, name="Skeleton"):
+class Clubs(commands.Cog, name="Clubs"):
     def __init__(self):
         pass
 
     @commands.cooldown(1,30,commands.BucketType.channel)
-    @commands.command(name='skel-hello',brief='A sample command.',description=skeleton_descriptions.desc_hello)
-    async def hello_(self,ctx):
-        await skeleton_library.hello(self, ctx)
+    @commands.command(name='is-official-club',brief='Check if a club is official.')
+    async def is_official_club_(self,ctx):
+        await clubs_library.is_official_club(self, ctx)
