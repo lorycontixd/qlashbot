@@ -51,8 +51,9 @@ async def print_official_club(self, ctx, gametag):
             found = True
             QLASH_BRAWLSTARS_INFOBOX_ICON_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850143480152114/PzQwxlPN_400x400.jpg"
             QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
+            QLASH_BRAWLSTARS_DISCORD_URL = self.qlash_bs['QLASH_BRAWLSTARS_DISCORD_URL']
             QLASH_BRAWLSTARS_INFOBOX = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Club in Brawl Stars", color=0x00ccff)
-            QLASH_BRAWLSTARS_INFOBOX.set_author(name="QLASH -- Brawl Stars", icon_url=QLASH_BRAWLSTARS_INFOBOX_ICON_URL)
+            QLASH_BRAWLSTARS_INFOBOX.set_author(name="QLASH -- Brawl Stars", url=QLASH_BRAWLSTARS_DISCORD_URL, icon_url=QLASH_BRAWLSTARS_INFOBOX_ICON_URL)
             QLASH_BRAWLSTARS_INFOBOX.set_thumbnail(url=QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL)
             QLASH_BRAWLSTARS_INFOBOX.add_field(name="Club", value=c["name"])
             QLASH_BRAWLSTARS_INFOBOX.add_field(name="Tag", value=c["tag"])
@@ -75,7 +76,7 @@ async def print_official_clubs(self, ctx, channel):
     with io.StringIO() as output:
         output.write("```r\n")
         for c in self.qlash_bs['official_clubs']:
-            output.write(countries_library.get_flag_emoji(c['country']) + " " + c['name'] + "\n" + c['tag'] + "\n"
+            output.write(countries_library.get_flag_emoji(c['country']) + " " + c['name'] + "\n" + c['tag'] + " " + c['required_trophies'] + "\n"
             )
         output.write("```")
         await channel.send(output.getvalue())
