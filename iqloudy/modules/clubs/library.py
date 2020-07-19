@@ -43,24 +43,34 @@ async def print_official_club(self, ctx, gametag):
         if gametag.startswith("#") and c['tag'] == gametag or c['name'] == gametag:
             found = True
             s = self.bot.get_guild(int(self.qlash_bs['server_id']))
+            cc = None
+            cr = None
+            if s is not None:
+                cc = s.get_channel(int(c["channel_id"]))
+                cr = s.get_role(int(c["role_id"]))
             QLASH_BRAWLSTARS_INFOBOX_ICON_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850143480152114/PzQwxlPN_400x400.jpg"
             QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL = "https://cdn.discordapp.com/attachments/720193411113680913/723850169036046346/qlash-transparent.png"
             QLASH_BRAWLSTARS_DISCORD_URL = self.qlash_bs['QLASH_BRAWLSTARS_DISCORD_URL']
-            QLASH_BRAWLSTARS_INFOBOX = discord.Embed(title="QLASH -- Brawl Stars", description="Official Discord Club in Brawl Stars", color=0x00ccff)
+            QLASH_BRAWLSTARS_INFOBOX = None
+            if cr is None:
+                QLASH_BRAWLSTARS_INFOBOX = discord.Embed(title=c["name"], description="Official Club in Brawl Stars", color=0x00ccff)
+            else:
+                QLASH_BRAWLSTARS_INFOBOX = discord.Embed(title=c["name"], description="Official Club in Brawl Stars", color=cr.color)
             QLASH_BRAWLSTARS_INFOBOX.set_author(name="QLASH -- Brawl Stars", url=QLASH_BRAWLSTARS_DISCORD_URL, icon_url=QLASH_BRAWLSTARS_INFOBOX_ICON_URL)
             QLASH_BRAWLSTARS_INFOBOX.set_thumbnail(url=QLASH_BRAWLSTARS_INFOBOX_THUMBNAIL_URL)
-            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Club", value=c["name"])
+            #QLASH_BRAWLSTARS_INFOBOX.add_field(name="Name", value=c["name"])
             QLASH_BRAWLSTARS_INFOBOX.add_field(name="Tag", value=c["tag"])
-            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Nation", value=c["country"] + " " + countries_library.get_flag_emoji(c["country"]))
-            QLASH_BRAWLSTARS_INFOBOX.add_field(name="President", value=c["leader"], inline=False)
-            if s is not None:
-                QLASH_BRAWLSTARS_INFOBOX.add_field(name="Role", value=s.get_role(int(c["role_id"])).mention, inline=False)
-                QLASH_BRAWLSTARS_INFOBOX.add_field(name="Channel", value=s.get_channel(int(c["channel_id"])).mention, inline=False)
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Country", value=c["country"] + " " + countries_library.get_flag_emoji(c["country"]))
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Owner", value=c["leader"], inline=False)
+            if cr is not None:
+                QLASH_BRAWLSTARS_INFOBOX.add_field(name="Role", value=cr.mention, inline=False)
+            if cc is not None:
+                QLASH_BRAWLSTARS_INFOBOX.add_field(name="Channel", value=cc.mention, inline=False)
             QLASH_BRAWLSTARS_INFOBOX.add_field(name="Required trophies", value=c["required_trophies"], inline=False)
             if "discord" in c and len(c["discord"]) > 0:
-                QLASH_BRAWLSTARS_INFOBOX.add_field(name="Discord", value=c["discord"], inline=False)
-            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Club page", value="https://www.starlist.pro/stats/club/" + c["tag"][1:], inline=False)
-            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Join this club!", value="https://link.brawlstars.com/invite/band/en?tag=" + c["tag"][1:], inline=False)
+                QLASH_BRAWLSTARS_INFOBOX.add_field(name="Server", value="[Discord Invite](" + c["discord"] + ")", inline=False)
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Club page", value="[Star List](https://www.starlist.pro/stats/club/" + c["tag"][1:] + ")", inline=False)
+            QLASH_BRAWLSTARS_INFOBOX.add_field(name="Join this club!", value="[Brawl Stars Invite](https://link.brawlstars.com/invite/band/en?tag=" + c["tag"][1:] + ")", inline=False)
             await ctx.send(embed=QLASH_BRAWLSTARS_INFOBOX)
             break
     if not found:
@@ -99,4 +109,21 @@ async def print_official_clubs(self, ctx, channel):
                     output.truncate(0)
                     output.seek(0)
             await channel.send(output.getvalue())
+            await asyncio.sleep(1)
+
+async def print_official_clubs_as_embeds(self, ctx, channel):
+    qlash_bs_nation_clubs = defaultdict(list)
+
+    for c in self.qlash_bs['official_clubs']:
+        qlash_bs_nation_clubs[c['country']].append(c)
+
+    if channel is None:
+        channel = ctx.channel
+
+    for nation in qlash_bs_nation_clubs:
+        with io.StringIO() as output:
+            output.write("**Official clubs in " + nation + "**\n")
+            await channel.send(output.getvalue())
+        for c in qlash_bs_nation_clubs[nation]:
+            await print_official_club(self,channel,c['tag'])
             await asyncio.sleep(1)

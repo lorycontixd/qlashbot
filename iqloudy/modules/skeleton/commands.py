@@ -13,6 +13,7 @@ class Skeleton(commands.Cog, name="Skeleton"):
         pass
 
     @commands.cooldown(1,30,commands.BucketType.channel)
+    @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='skel-hello',brief='A sample command.',description=skeleton_descriptions.desc_hello)
     async def hello_(self,ctx):
         await skeleton_library.hello(self, ctx)
