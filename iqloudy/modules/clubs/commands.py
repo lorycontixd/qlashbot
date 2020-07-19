@@ -10,7 +10,8 @@ from modules.clubs import library as clubs_library, descriptions as clubs_descri
 
 
 class Clubs(commands.Cog, name="Clubs"):
-    def __init__(self, qlash_bs):
+    def __init__(self, bot, qlash_bs):
+        self.bot = bot
         self.qlash_bs = qlash_bs
         pass
 

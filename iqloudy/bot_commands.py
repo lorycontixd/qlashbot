@@ -15,4 +15,4 @@ async def init(bot,db,qlash_bs):
     bot.add_cog(BrawlStars())
     bot.add_cog(Messages())
     bot.add_cog(Channels())
-    bot.add_cog(Clubs(qlash_bs))
+    bot.add_cog(Clubs(bot,qlash_bs))
