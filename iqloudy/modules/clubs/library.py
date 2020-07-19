@@ -79,26 +79,24 @@ async def print_official_clubs(self, ctx, channel):
     for nation in qlash_bs_nation_clubs:
         with io.StringIO() as output:
             output.write(nation + " " + countries_library.get_flag_emoji(nation) + "\n")
-            output.write("```r\n")
             for c in qlash_bs_nation_clubs[nation]:
-                output.write(c['name'])
-                if s is not None:
-                        output.write(" " + s.get_role(int(c["role_id"])).mention)
-                output.write("\n")
-                output.write(c['tag'] + "\n")
+                if s is None:
+                    output.write(c['name'] + "\n")
+                else:
+                        output.write(s.get_role(int(c["role_id"])).mention + "\n")
+                output.write("```r\n")
+                output.write("Tag: " + c['tag'] + "\n")
                 output.write("Required trophies: " + c['required_trophies'] + "\n")
                 output.write("President: " + c['leader'] + "\n")
+                output.write("```")
                 if s is not None:
-                    output.write(s.get_channel(int(c["channel_id"])).mention + "\n")
+                    output.write("Channel: " + s.get_channel(int(c["channel_id"])).mention + "\n")
                 if "discord" in c and len(c["discord"]) > 0:
                     output.write("Discord: " + c['discord'] + "\n")
 
                 if output.tell() >= 1400:
-                    output.write("```")
                     await channel.send(output.getvalue())
                     output.truncate(0)
                     output.seek(0)
-                    output.write("```r\n")
-            output.write("```")
             await channel.send(output.getvalue())
             await asyncio.sleep(1)
