@@ -116,7 +116,4 @@ async def on_command_completion(ctx):
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname)
 
-try:
-    bot_instances.bot.run(bot_instances.DISCORD_TOKEN)
-except discord.errors.LoginFailure as e:
-    print("Login unsuccessful!")
+bot_instances.bot.run(bot_instances.DISCORD_TOKEN)
