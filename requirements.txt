@@ -1,4 +1,4 @@
-discord.py
+discord.py==1.3.4
 brawlstats==4.0.3
 dnspython==1.16.0
 async-timeout==3.0.1
