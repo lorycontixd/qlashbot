@@ -7,7 +7,6 @@ asyncio
 pandas
 datetime
 schedule
-request
 ipapi
 aiohttp
 aiohttp_proxy
