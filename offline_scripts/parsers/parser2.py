@@ -12,6 +12,8 @@ def read_file(filename_in):
 	file.close()
 	i=0
 	for line in lines:
+		if len(line)==0:
+			continue
 		ll=line.split('\t')
 		name=ll[0]
 		ll2=name.split('#')
