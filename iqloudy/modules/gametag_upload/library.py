@@ -98,13 +98,16 @@ async def read_tag(session, clubs, gametag, loading_msg = None, current = 0, tot
 
 
 async def count_clubs(gametags, loading_msg = None):
-    connector = aiohttp.TCPConnector(limit_per_host=2)
-    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
+    #connector = aiohttp.TCPConnector(limit_per_host=2)
+    #headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
 
-    async with aiohttp.ClientSession(connector=connector,headers=headers) as session:
-        clubs = defaultdict(list)
-        await asyncio.gather(read_tags(session, clubs, gametags, loading_msg, 0, len(gametags)))
-        return clubs
+    #async with aiohttp.ClientSession(connector=connector,headers=headers) as session:
+    #    clubs = defaultdict(list)
+    #    await asyncio.gather(read_tags(session, clubs, gametags, loading_msg, 0, len(gametags)))
+    #    return clubs
+    clubs = defaultdict(list)
+    await asyncio.gather(read_tags(None, clubs, gametags, loading_msg, 0, len(gametags)))
+    return clubs
 
 #++++++++++++++++++++++++++++ achievements ++++++++++++++++++++++++++++++++++
 

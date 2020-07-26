@@ -13,6 +13,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from datetime import datetime
 from dotenv import load_dotenv
+import aiohttp
 from aiohttp_proxy import ProxyConnector,ProxyType
 from apscheduler.schedulers.blocking import BlockingScheduler
 
@@ -36,15 +37,27 @@ from modules.scheduler import scheduler
 #    rdns=True
 #)
 
-connector = ProxyConnector(
-    proxy_type=ProxyType.SOCKS5,
-    host='66.154.123.139',#'eu-west-static-03.quotaguard.com',
-    port=8040,
-    username='cbjvyx',
-    password='2mbm6n9r',
-    rdns=False
-)
+connector = None
 
+if connector is None:
+    connector = ProxyConnector(
+        proxy_type=ProxyType.SOCKS5,
+        host='66.154.123.139',#'eu-west-static-03.quotaguard.com',
+        port=8040,
+        username='cbjvyx',
+        password='2mbm6n9r',
+        rdns=False,
+        limit_per_host=3
+    )
+
+headers = None
+if headers is None:
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0'}
+
+session = None
+
+if session is None:
+    session = aiohttp.ClientSession(headers=headers,connector=connector)
 h_parameters = {
 	# Required
 	'country': 'IT',
@@ -88,7 +101,7 @@ clientsecret = '9R3Ys-YNtsrHCCLYShWLVhWuAoezQuX1'
 myclient = None
 
 if myclient is None:
-    myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,connector=connector) #BRAWLSTATS
+    myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,session=session,connector=connector) #BRAWLSTATS
 
 bot = None
 
