@@ -179,14 +179,15 @@ class Moderation(commands.Cog,name="Moderation"):
 
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='purge-user',brief="Clear all messages from a user inside a give channel")
-    async def purge_user(self,ctx,channelname,member:discord.Member):
+    async def purge_user(self,ctx,member:discord.Member,amount):
         i=0
         m = ctx.message
-        channel = discord.utils.get(ctx.guild.text_channels, name=channelname)
+        channel = m.channel
+        channelname = channel.name
         if channel == None:
             await ctx.send(ctx.message.author.mention+", no channel found with name "+channelname)
             return
-        messages = await channel.history(limit=1000).flatten()
+        messages = await channel.history(limit=int(amount)).flatten()
         for message in messages:
             if message.author == member:
                 await message.delete()
