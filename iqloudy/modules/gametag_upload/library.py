@@ -4,7 +4,7 @@ import re
 import asyncio
 import timeit
 import io
-from bot_instances import bot,myclient
+from bot_instances import bot, myclient
 
 from sys import stdin
 from lxml import etree, html
@@ -14,6 +14,7 @@ INVALID_PLAYER_NAME = "Invalid Tag"
 INVALID_CLUB = "Invalid"
 NOT_FOUND_PLAYER_NAME = "Unknown Player"
 NOT_FOUND_CLUB = "Unknown"
+NO_CLUB = "No Club"
 
 def _retrieve_gametag(line):
     return line.replace('O','0').rstrip()
@@ -54,16 +55,27 @@ def _check_missing_element(function, htmlPage, playerID):
     return found
 
 async def retrieve_player(session, playerID):
-    url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = playerID[1:])
-    async with session.get(url) as r:
-        if r.status != 200:
+    # url = "https://brawlstats.com/profile/{PLAYER_ID}".format(PLAYER_ID = playerID[1:])
+    # async with session.get(url) as r:
+    #     if r.status != 200:
+    #         return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
+    #     myparser = etree.HTMLParser(encoding="utf-8")
+    #     htmlPage = etree.HTML(await r.text(), parser=myparser)
+    #     if (_check_missing_element(_retrieve_playerName, htmlPage, playerID) and _check_missing_element(_retrieve_playerClub, htmlPage, playerID)):
+    #         return _retrieve_playerName(htmlPage), _retrieve_playerClub(htmlPage)
+    #     else:
+    #         return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
+    try:
+        player = await myclient.get_player(playerID)
+        club = await player.get_club()
+        if player is None:
             return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
-        myparser = etree.HTMLParser(encoding="utf-8")
-        htmlPage = etree.HTML(await r.text(), parser=myparser)
-        if (_check_missing_element(_retrieve_playerName, htmlPage, playerID) and _check_missing_element(_retrieve_playerClub, htmlPage, playerID)):
-            return _retrieve_playerName(htmlPage), _retrieve_playerClub(htmlPage)
+        elif club is None:
+            return player.name, NO_CLUB
         else:
-            return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
+            return player.name, club.name
+    except Exception:
+        return NOT_FOUND_PLAYER_NAME, NOT_FOUND_CLUB
 
 async def read_tags(session, clubs, gametags, loading_msg, current, total_tags):
     for gametag in gametags:
