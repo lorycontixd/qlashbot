@@ -4,7 +4,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 #from util_functions import *
 
-from modules.mongodb.library import view_database
+from modules.mongodb import library as mongo_library
 from modules.system import library as system_library, descriptions as system_descriptions
 
 #*****************************************************************************************************************
@@ -42,8 +42,6 @@ class System(commands.Cog,name="System"):
     async def qlash(self,ctx):
         await qlash_(ctx)
 
-
-
     @commands.cooldown(1,60,commands.BucketType.channel)
     @commands.command(name='iqloudy-info',brief="(UTIL) Shows some details about the bot's development")
     async def iqloudy_info_(self,ctx):
@@ -68,7 +66,7 @@ class System(commands.Cog,name="System"):
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='database-view',brief='View registered QLASH clans..')
     async def view_database_(self,ctx):
-        await view_database(ctx)
+        await mongo_library.view_database(ctx)
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='commandlog-view',brief='View the logs of recorded commands',description=system_descriptions.desc_commandlog_view)
