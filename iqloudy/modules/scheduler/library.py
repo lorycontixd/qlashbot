@@ -221,31 +221,40 @@ def get_int_from_bantime(ban_time):
     return int(myint)
 
 async def remove_reactions(message):
-    await message.remove_reaction('📅', bot_instances.bot.user)
-    await message.remove_reaction('✅', bot_instances.bot.user)
-    await message.remove_reaction('❌', bot_instances.bot.user)
-    await message.remove_reaction('❓', bot_instances.bot.user)
+    for reaction in message.reactions:
+        await reaction.remove(bot_instances.bot.user)
+    print("Reactions Removed")
 
 async def process_bantime(message,message_date,bantime):
     final_date_of_ban = message_date + timedelta(days=int(bantime))
+    print(final_date_of_ban)
     if final_date_of_ban < datetime.now():
         await message.add_reaction('📅')
+        print("Bantime processed")
         return True
     else:
+        print("Bantime processed")
         return False
 
 async def process_clan(message,gametag):
     if not validate_tag(gametag):
+        print("invalid tag")
         await message.add_reaction('❓')
         return
     clans = mongo_library.LoadClans()
-    player = await bot_instances.myclient.get_player(gametag)
+    try:
+        player = await bot_instances.myclient.get_player(gametag)
+    except:
+        await message.add_reaction('❓')
+        pass
+    print(player)
     if player == None:
         print("Player is None")
         await message.add_reaction('❓')
         return
-    club = await player.get_club()
-    if club == None:
+    club = player.club
+    print(club)
+    if not club:
         print("Club is None")
         await message.add_reaction('❌')
         return
@@ -274,6 +283,7 @@ async def check_banlist_api():
             arg = item.split("=")
             title = str(arg[0])
             value = str(arg[1])
+            print(title)
             if title=="tag":
                 banned_tag=value
             if title=="ban":
@@ -282,6 +292,7 @@ async def check_banlist_api():
                 has_ban_time = True
 
         await remove_reactions(message)
+        print(has_ban_time)
         if has_ban_time:
             if await process_bantime(message,created_at,banned_time):
                 expired+=1
