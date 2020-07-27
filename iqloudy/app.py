@@ -38,6 +38,7 @@ async def on_member_join(member:discord.Member):
 
 @bot_instances.bot.event
 async def on_member_update(before,after):
+    pass
     #await events.on_member_update_role(before,after)
     #await game1_nickname(before,after)
     #await on_member_update_activity(before,after)
