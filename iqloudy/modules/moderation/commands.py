@@ -45,27 +45,37 @@ class Moderation(commands.Cog,name="Moderation"):
         if not valid_len_tag(ingame_tag):
             raise bot_exceptions.TagError("Player tag does not meet length requirements.")
             return
+        temp = await ctx.send("Looking for clan for player "+str(player.mention))
         msg = ctx.message
-
         tag = ingame_tag.replace('O','0').rstrip()
-        myplayer = await myclient.get_player(tag)
+        myplayer=None
+        try:
+            myplayer = await myclient.get_player(tag)
+        except:
+            raise bot_exceptions.TagError(tag,"Player not found.")
+            return
         if check_member(player) == None:
             register_member(player,myplayer.tag)
-        player_club = await myplayer.get_club()
-
+        player_club = myplayer.club
+        if not player_club:
+            await asyncio.sleep(0.5)
+            await temp.edit("Player does not belong to any club.")
+            return
         official_clubs = LoadClans()
+        #await asyncio.sleep(0.5)
         for club in official_clubs:
             club_role = discord.utils.get(ctx.guild.roles, name=str(club["Name"]))
             if club_role in player.roles and club_role.name != "QLASH Girls" and club_role.name != "QLASH Eris":
                 await player.remove_roles(club_role)
             if club["Tag"] == str(player_club.tag):
-                await ctx.send("Player belongs to clan: "+str(player_club.name)+" --> QLASH Clan detected --> Giving discord role...")
+                await temp.edit("Clan found: **"+str(player_club.name)+"**")
                 await player.add_roles(club_role)
-                await ctx.send("Role "+str(club_role.name)+" was given to player "+str(player.mention)+".")
+                await asyncio.sleep(0.5)
+                await temp.edit("Role **"+str(club_role.name)+"** was given to player "+str(player.mention)+".")
                 return
-        new_message = "Player belongs to clan: "+str(club.name)+" --> Not a QLASH Clan. If you have any problems, please contact a member of the staff."
-        await ctx.send(new_message)
-        return
+        await temp.edit("Player belongs to clan: "+str(club.name)+".")
+        await asyncio.sleep(1)
+        await temp.edit("Clan does not belong to QLASH. No role was given to member "+player.mention+".")
 
 
     #ADMIN
