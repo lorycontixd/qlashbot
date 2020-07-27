@@ -111,22 +111,22 @@ async def member_join_welcome(member:discord.Member):
 #*******************************************   ON MEMBER UPDATE   ******************************************
 
 #JOIN new club role
-async def on_member_update_role(before,after):
-    if not check_equal_lists(before.roles,after.roles):
-        list = LoadClans()
-        clannames = [d["Name"] for d in list]
-        for role in after.roles:
-            if not role in before.roles:
-                if role.name in clannames:
-                    messages = ['We are delighted to have '+after.mention+' join us in '+role.name,'Hello '+role.name+'. Welcome to the team '+after.mention+'!','Hello '+role.name+'. We would like to welcome '+after.mention+' to the club.',"We're glad you are here, "+after.mention+"! "+role.name]
-                    print(after.name+" was given the role "+role.name)
-                    id = role.id
-                    clan_doc = get_clan(str(role.name))
-                    roleID = clan_doc["RoleID"]
-                    channelID = clan_doc["ChannelID"]
-                    if int(roleID) == id:
-                        ch = bot.get_channel(int(channelID))
-                        await ch.send(random.choice(messages))
+#async def on_member_update_role(before,after):
+#    if not check_equal_lists(before.roles,after.roles):
+#        list = LoadClans()
+#        clannames = [d["Name"] for d in list]
+#        for role in after.roles:
+#            if not role in before.roles:
+#                if role.name in clannames:
+#                    messages = ['We are delighted to have '+after.mention+' join us in '+role.name,'Hello '+role.name+'. Welcome to the team '+after.mention+'!','Hello '+role.name+'. We would like to welcome '+after.mention+' to the club.',"We're glad you are here, "+after.mention+"! "+role.name]
+#                    print(after.name+" was given the role "+role.name)
+#                    id = role.id
+#                    clan_doc = get_clan(str(role.name))
+#                    roleID = clan_doc["RoleID"]
+#                    channelID = clan_doc["ChannelID"]
+#                    if int(roleID) == id:
+#                        ch = bot.get_channel(int(channelID))
+#                        await ch.send(random.choice(messages))
 
 #started listening spotify track
 async def on_member_update_activity(before,after):

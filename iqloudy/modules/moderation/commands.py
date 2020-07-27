@@ -1,4 +1,5 @@
 import discord
+import json
 from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
@@ -12,15 +13,52 @@ from modules.moderation import descriptions as moderation_descriptions
 #*****************************************************************************************************************
 #**********************************************       MOD     ****************************************************
 #*****************************************************************************************************************
+def valid_tag(tag):
+    allowed = ["P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V", "0", "2", "8", "9"]
+    for c in tag:
+        if c not in allowed:
+            return False
+    return True
 
+def valid_len_tag(tag):
+    if len(tag)<=5 or len(tag)>=14:
+        return False
+    else:
+        return True
 
 class Moderation(commands.Cog,name="Moderation"):
     def __init__(self):
         ipapi.location(ip=None, key=None, field=None)
 
-    #@commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=moderation_descriptions.desc_set)
-    #async def set(self,ctx,player:discord.Member,ingame_tag):
-    #    await set_(ctx,player,ingame_tag)
+    @commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=moderation_descriptions.desc_set)
+    async def set(self,ctx,player:discord.Member,ingame_tag):
+        if not str(ingame_tag).startswith("#"):
+            await ctx.send("InvalidTag: Player tag must start with # character.")
+            return
+        if not valid_tag(ingame_tag):
+            await ctx.send("InvalidTag: Player tag does not meet the requirements.")
+            return
+        if not valid_len_tag(ingame_tag):
+            await ctx.send("InvalidTag: Player tag does not meet length requirements.")
+            return
+        msg = ctx.message
+        tag = ingame_tag.replace('O','0').rstrip()
+        player = await myclient.get_player(tag)
+        club = await player.get_club()
+
+        official_clubs = LoadClans()
+        for club in official_clubs:
+            club_role = discord.utils.get(ctx.guild.roles, name=str(club["Name"]))
+            if club_role in player.roles and club_role.name != "QLASH Girls" and club_role.name != "QLASH Eris":
+                await player.remove_roles(club_role)
+            if club["Tag"] == str(club.tag):
+                await ctx.send("Player belongs to clan: "str(club.name)+" --> QLASH Clan detected --> Giving discord role...")
+                await player.add_roles(club_role)
+                await ctx.send("Role "+str(club_role.name)+" was given to player "+str(player.mention)+".")
+                return
+        await ctx.send("Player belongs to clan: "+str(club.name)+" --> Not a QLASH Clan. If you have any problems, please contact a member of the staff.")
+        return
+
 
     #ADMIN
     @commands.cooldown(1, 20, commands.BucketType.user)
