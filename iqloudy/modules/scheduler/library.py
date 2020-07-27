@@ -1,13 +1,14 @@
 import aiohttp
 import asyncio
 
-from datetime import datetime,date
+from datetime import datetime,date,timedelta
 import re
 import pytz
 import discord
+import bot_exceptions
 
 import random
-from modules.mongodb.library import *
+from modules.mongodb import library as mongo_library
 import bot_instances
 
 from xml.etree import ElementTree as ET
@@ -51,7 +52,6 @@ async def _retrieve_member(session, gametag):
                 return club
             else:
                 return NOT_FOUND
-
 
 async def _process_banned_member(session, member, message):
     await message.remove_reaction('📅', bot_instances.bot.user)
@@ -194,22 +194,104 @@ async def check_banlist_channel():
     await logs.send(embed=embed)
 
 #******************************************************************************************************
+#******************************************************************************************************
+
+def validate_tag(tag):
+    assert type(tag)==str,"Invalid tag type in banlist check"
+    if not tag.startswith("#"):
+        raise bot_exceptions.TagError(tag,"Tag must start with #")
+        return False
+    allowed = ["#","P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V", "0", "2", "8", "9"]
+    for char in tag:
+        if str(char) not in allowed:
+            raise bot_exceptions.TagError(tag,"Invalid character for tag: "+str(char))
+            return False
+    length = len(tag)
+    if length<5 or length>14:
+        raise bot_exceptions.TagError(tag,"Invalid length for tag: "+str(length))
+        return False
+    return True
+
+def get_int_from_bantime(ban_time):
+    myint = ""
+    numbers = ["0","1","2","3","4","5","6","7","8","9"]
+    for char in ban_time:
+        if char in numbers:
+            myint+=char
+    return int(myint)
+
+async def remove_reactions(message):
+    await message.remove_reaction('📅', bot_instances.bot.user)
+    await message.remove_reaction('✅', bot_instances.bot.user)
+    await message.remove_reaction('❌', bot_instances.bot.user)
+    await message.remove_reaction('❓', bot_instances.bot.user)
+
+async def process_bantime(message,message_date,bantime):
+    final_date_of_ban = message_date + timedelta(days=int(bantime))
+    if final_date_of_ban < datetime.now():
+        await message.add_reaction('📅')
+        return True
+    else:
+        return False
+
+async def process_clan(message,gametag):
+    if not validate_tag(gametag):
+        await message.add_reaction('❓')
+        return
+    clans = mongo_library.LoadClans()
+    player = await bot_instances.myclient.get_player(gametag)
+    if player == None:
+        print("Player is None")
+        await message.add_reaction('❓')
+        return
+    club = await player.get_club()
+    if club == None:
+        print("Club is None")
+        await message.add_reaction('❌')
+        return
+    for clan in clans:
+        if club.tag == clan["Tag"]:
+            print("Player found in clan: "+str(club.name))
+            await message.add_reaction('✅')
+            return
+    await message.add_reaction('❌')
 
 async def check_banlist_api():
     ch = bot_instances.bot.get_channel(737402210824093768)
     messages = await ch.history(limit=200).flatten()
-    i=0
+    #numbers for logs
+    expired = 0 #expired bans
+    present = 0 #bans in qlash clans
+
     for message in messages:
         content = message.content
         created_at = message.created_at
-        line = content.split(",")
-        for item in line:
+        element = content.split(",")
+        banned_tag = ""
+        banned_time = 0
+        has_ban_time = False
+        for item in element:
             arg = item.split("=")
             title = str(arg[0])
             value = str(arg[1])
-            if i==1:
-                print(title," ",value)
-        i+=1   
+            if title=="tag":
+                banned_tag=value
+            if title=="ban":
+                print("Has bantime: "+str(value))
+                banned_time = get_int_from_bantime(value)
+                has_ban_time = True
+
+        await remove_reactions(message)
+        if has_ban_time:
+            if await process_bantime(message,created_at,banned_time):
+                expired+=1
+                continue
+        await process_clan(message,banned_tag)
+    print("Finished")
+
+
+
+
 #******************************************************************************************************
 
 async def giova():

@@ -124,8 +124,8 @@ if apscheduler is None:
 
 qlash_bs = None
 
-if qlash_bs is None:
-    qlash_bs = json.load(open('./media/json/qlash_brawlstars.json', encoding="utf-8"))
+#if qlash_bs is None:
+#    qlash_bs = json.load(open('./media/json/qlash_brawlstars.json', encoding="utf-8"))
 
 #sched = BlockingScheduler()
 
