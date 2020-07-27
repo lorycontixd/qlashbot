@@ -193,6 +193,25 @@ async def check_banlist_channel():
     embed.set_footer(text="Created by Lore")
     await logs.send(embed=embed)
 
+#******************************************************************************************************
+
+async def check_banlist_api():
+    ch = bot_instances.bot.get_channel(737402210824093768)
+    messages = await ch.history(limit=200).flatten()
+    i=0
+    for message in messages:
+        content = message.content
+        created_at = message.created_at
+        line = content.split(",")
+        for item in line:
+            arg = item.split("=")
+            title = str(arg[0])
+            value = str(arg[1])
+            if i==1:
+                print(title," ",value)
+        i+=1   
+#******************************************************************************************************
+
 async def giova():
     #g = await bot.fetch_guild(335067221896200205)
     member = await bot_instances.bot.fetch_user(335067221896200205)

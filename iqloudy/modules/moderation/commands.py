@@ -6,7 +6,7 @@ from discord.voice_client import VoiceClient
 #from functions import set_
 import ipapi
 from modules.mongodb.library import *
-from modules.scheduler.library import check_banlist_channel,giova
+from modules.scheduler.library import check_banlist_channel,giova,check_banlist_api
 from bot_instances import myclient
 from modules.moderation import descriptions as moderation_descriptions
 
@@ -362,7 +362,7 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name="check-banlist",brief="Check if banned players are in a QLASH Clan",hidden=True)
     async def _banlist(self,ctx):
-        await check_banlist_channel()
+        await check_banlist_api()
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name="giova",hidden=True)
