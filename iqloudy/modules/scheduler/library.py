@@ -220,22 +220,18 @@ def get_int_from_bantime(ban_time):
 async def remove_reactions(message):
     for reaction in message.reactions:
         await reaction.remove(bot_instances.bot.user)
-    print("Reactions Removed")
 
 async def process_bantime(message,message_date,bantime):
     final_date_of_ban = message_date + timedelta(days=int(bantime))
     print(final_date_of_ban)
     if final_date_of_ban < datetime.now():
         await message.add_reaction('📅')
-        print("Bantime processed")
         return True
     else:
-        print("Bantime processed")
         return False
 
 async def process_clan(message,gametag):
     if not validate_tag(gametag):
-        print("invalid tag")
         await message.add_reaction('❓')
         return
     clans = mongo_library.LoadClans()
@@ -244,20 +240,16 @@ async def process_clan(message,gametag):
         player = await bot_instances.myclient.get_player(gametag)
     except:
         pass
-    print(player)
     if player == None:
         print("Player is None")
         await message.add_reaction('❓')
         return
     club = player.club
-    print(club)
     if not club:
-        print("Club is None")
         await message.add_reaction('❌')
         return
     for clan in clans:
         if club.tag == clan["Tag"]:
-            print("Player found in clan: "+str(club.name))
             await message.add_reaction('✅')
             return
     await message.add_reaction('❌')
@@ -271,8 +263,14 @@ async def check_banlist_api():
 
     for message in messages:
         content = message.content
+        if "tag" not in content:
+            await message.add_reaction('⚠️')
+            continue
         created_at = message.created_at
         element = content.split(",")
+        if len(element)<2:
+            await message.add_reaction('⚠️')
+            continue
         banned_tag = ""
         banned_time = 0
         has_ban_time = False
