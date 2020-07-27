@@ -30,17 +30,24 @@ class TagError(InputError):
 
 #*************************************************************************
 
-class TransitionError(Error):
-    """Raised when an operation attempts a state transition that's not
-    allowed.
+class NotFound(Error):
+    """Exception raised when an object is not found.
 
     Attributes:
-        previous -- state at beginning of transition
-        next -- attempted new state
-        message -- explanation of why the specific transition is not allowed
+        message -- explanation of the error
     """
 
-    def __init__(self, previous, next, message):
-        self.previous = previous
-        self.next = next
+    def __init__(self,message):
         self.message = message
+
+class DiscordNotFound(NotFound):
+    """Exception raised when an object is not found.
+
+    Attributes:
+        object -- Object that was not found (player,role,channel,etc)
+        message -- explanation of the error
+    """
+
+    def __init__(self,object,message):
+        self.object = object
+        super().__init__(message)

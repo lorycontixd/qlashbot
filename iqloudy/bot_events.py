@@ -185,7 +185,7 @@ async def check_bad_words(message):
             embed.add_field(name="Author", value=author.mention, inline=True)
             embed.add_field(name="Bad Word", value=str(badword), inline=True)
             embed.add_field(name="Language", value=str(badword_dict[badword]), inline=True)
-            embed.add_field(name="Channel",value="#"+message.channel.name, inline = True)
+            embed.add_field(name="Channel",value="#"+message.channel.mention, inline = True)
             embed.add_field(name="ID",value=message.id)
             embed.set_footer(text="Created By Lore")
             await mychannel.send(embed=embed)
@@ -257,7 +257,6 @@ async def reaction_check(payload):
             e.add_field(name="Message",value="From "+str(m.author)+" at "+str(m.created_at.strftime("%d/%m/%Y, %H:%M:%S")))
             await mychannel.send(embed=e)
             await mychannel.send(mod.mention)
-
 
 #*******************************************   SPECIAL EVENTS   ******************************************
 
