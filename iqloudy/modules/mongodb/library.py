@@ -75,7 +75,7 @@ def remove_clan(name):
 
 #view all clans
 async def view_database(ctx):
-    member = ctx.message.author
+    #member = ctx.message.author
     db = bot_instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     response='```\n'
@@ -89,8 +89,7 @@ async def view_database(ctx):
         response += str(i)+'. '+name+'\t'+tag+'\n'
         i+=1
     response+='```'
-    await member.create_dm
-    await member.dm_channel.send(response)
+    await ctx.send(response)
 
 #*****************************************************************************************************************
 #******************************************       COMMAND LOGS     ***********************************************
