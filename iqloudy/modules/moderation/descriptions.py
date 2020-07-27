@@ -57,3 +57,9 @@ desc_qlash_clan = """Utility command
 60 seconds cooldown per channel \n
 Print information about a specific QLASH Clan.
 The parameter can be the clan tag (for precise search) or the clan name. In the second case, the name must be exact, or the command will not work."""
+
+desc_set = """Moderator command
+No Cooldown \n
+Set the role for a player.
+The function detects automatically the clan of the player and gives the right role if the clan belongs to QLASH.
+"""

@@ -42,9 +42,11 @@ class Moderation(commands.Cog,name="Moderation"):
             await ctx.send("InvalidTag: Player tag does not meet length requirements.")
             return
         msg = ctx.message
+
         tag = ingame_tag.replace('O','0').rstrip()
-        player = await myclient.get_player(tag)
-        club = await player.get_club()
+        myplayer = await myclient.get_player(tag)
+        register_member(myplayer,player.tag)
+        club = await myplayer.get_club()
 
         official_clubs = LoadClans()
         for club in official_clubs:
