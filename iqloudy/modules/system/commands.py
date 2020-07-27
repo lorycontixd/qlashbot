@@ -66,7 +66,7 @@ class System(commands.Cog,name="System"):
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='database-view',brief='View registered QLASH clans..')
     async def view_database_(self,ctx):
-        await mongo_library.view_database(self,ctx)
+        await mongo_library.view_database(ctx)
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='commandlog-view',brief='View the logs of recorded commands',description=system_descriptions.desc_commandlog_view)
