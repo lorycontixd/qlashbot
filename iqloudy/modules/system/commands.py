@@ -58,15 +58,15 @@ class System(commands.Cog,name="System"):
     #async def qlash_allclans(ctx):
     #    await qlash_trophies(ctx)
 
-    @commands.has_any_role('DiscordDeveloper')
-    @commands.command(name='get-audit-logs',brief='Audit view.')
-    async def get_audit_logs_(self,ctx,member:discord.Member):
-        await system_library.get_audit_logs(self,ctx,member)
+    #@commands.has_any_role('DiscordDeveloper')
+    #@commands.command(name='get-audit-logs',brief='Audit view.')
+    #async def get_audit_logs_(self,ctx,member:discord.Member):
+    #    await system_library.get_audit_logs(self,ctx,member)
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='database-view',brief='View registered QLASH clans..')
     async def view_database_(self,ctx):
-        await mongo_library.view_database(ctx)
+        await mongo_library.view_database(self,ctx)
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='commandlog-view',brief='View the logs of recorded commands',description=system_descriptions.desc_commandlog_view)

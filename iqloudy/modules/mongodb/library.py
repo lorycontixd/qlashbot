@@ -21,9 +21,9 @@ def register_member(member,gametag):
         "Discord" : str(member),
         "DiscordID" : int(member.id),
         "Gametag" : gametag,
-        "Date" : str(date.today()),
-        "Tournaments" : 0,
-        "Achievements" : []
+        "Date" : str(date.today())
+        #"Tournaments" : 0,
+        #"Achievements" : []
     }
     coll_registered.insert_one(mydict)
 
@@ -74,7 +74,8 @@ def remove_clan(name):
     result = coll_qlashclans.delete_one({"Name":{"$eq":str(name)}})
 
 #view all clans
-async def view_database(ctx,member):
+async def view_database(ctx):
+    member = ctx.message.author
     db = bot_instances.mongoclient.heroku_q2z34tjm
     coll_qlashclans = db.QLASHBot_Clans
     response='```\n'
