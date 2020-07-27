@@ -17,14 +17,14 @@ def valid_tag(tag):
     allowed = ["#","P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V", "0", "2", "8", "9"]
     for c in tag:
         if str(c) not in allowed:
-            print("Assert failed in Set Function: character "+str(c)+" not allowed in brawl tag.")
+            print("Assertion failed in Set Function: character "+str(c)+" not allowed in brawl tag.")
             return False
     return True
 
 def valid_len_tag(tag):
     length = len(str(tag))
     if length<=5 or length>=14:
-        print("Assert failed in Set Function: tag length not valid ("+str(length)+")")
+        print("Assertion failed in Set Function: tag length not valid ("+str(length)+")")
         return False
     else:
         return True
@@ -48,7 +48,7 @@ class Moderation(commands.Cog,name="Moderation"):
 
         tag = ingame_tag.replace('O','0').rstrip()
         myplayer = await myclient.get_player(tag)
-        register_member(myplayer,player.tag)
+        register_member(player,myplayer.tag)
         club = await myplayer.get_club()
 
         official_clubs = LoadClans()
