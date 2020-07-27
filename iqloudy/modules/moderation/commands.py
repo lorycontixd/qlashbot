@@ -38,15 +38,16 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=moderation_descriptions.desc_set)
     async def set(self,ctx,player:discord.Member,ingame_tag):
         if not str(ingame_tag).startswith("#"):
-            raise bot_exceptions.TagError("Player tag must start with # character.")
+            raise bot_exceptions.TagError(ingame_tag,"Player tag must start with # character.")
             return
         if not valid_tag(ingame_tag):
-            raise bot_exceptions.TagError("Player tag does not meet the requirements.")
+            raise bot_exceptions.TagError(ingame_tag,"Player tag does not meet the requirements.")
             return
         if not valid_len_tag(ingame_tag):
-            raise bot_exceptions.TagError("Player tag does not meet length requirements.")
+            raise bot_exceptions.TagError(ingame_tag,"Player tag does not meet length requirements.")
             return
         temp = await ctx.send("Looking for clan for player "+str(player.mention))
+        await asyncio.sleep(1)
         msg = ctx.message
         tag = ingame_tag.replace('O','0').rstrip()
         myplayer=None
@@ -59,7 +60,6 @@ class Moderation(commands.Cog,name="Moderation"):
             register_member(player,myplayer.tag)
         player_club = myplayer.club
         if not player_club:
-            await asyncio.sleep(0.5)
             await temp.edit(content="Player does not belong to any club.")
             return
         official_clubs = LoadClans()
@@ -71,7 +71,7 @@ class Moderation(commands.Cog,name="Moderation"):
             if club["Tag"] == str(player_club.tag):
                 await temp.edit(content="Clan found: **"+str(player_club.name)+"**")
                 await player.add_roles(club_role)
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(1)
                 await temp.edit(content="Role **"+str(club_role.name)+"** was given to player "+str(player.mention)+".")
                 return
         await temp.edit(content="Player belongs to clan: "+str(club.name)+".")
