@@ -18,6 +18,7 @@ from modules.gametag_upload.library import gametags_process
 
 async def on_ready_():
     scheduler.add_default_tasks(apscheduler)
+    print('--------------------------')
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)
     print('Creation Date: ',bot.user.created_at)
@@ -25,7 +26,7 @@ async def on_ready_():
     tz = pytz.timezone('Europe/Rome')
     nnow = datetime.now(tz=tz)
     ttime = nnow.strftime("%d/%m/%Y %H:%M:%S")
-    print(str(ttime))
+    print("Current Time: "+str(ttime))
     print('--------------------------')
     app = await bot.application_info()
     print("Application owner: "+str(app.owner))

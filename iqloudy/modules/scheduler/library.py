@@ -285,16 +285,11 @@ async def check_banlist_api():
                 has_ban_time = True
 
         await remove_reactions(message)
-        print(has_ban_time)
         if has_ban_time:
             if await process_bantime(message,created_at,banned_time):
                 expired+=1
                 continue
         await process_clan(message,banned_tag)
-    print("Finished")
-
-
-
 
 #******************************************************************************************************
 
