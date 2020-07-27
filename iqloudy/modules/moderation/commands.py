@@ -56,7 +56,8 @@ class Moderation(commands.Cog,name="Moderation"):
                 await player.add_roles(club_role)
                 await ctx.send("Role "+str(club_role.name)+" was given to player "+str(player.mention)+".")
                 return
-        await ctx.send("Player belongs to clan: "+str(club.name)+" --> Not a QLASH Clan. If you have any problems, please contact a member of the staff.")
+        new_message = "Player belongs to clan: "+str(club.name)+" --> Not a QLASH Clan. If you have any problems, please contact a member of the staff."
+        await ctx.send(new_message)
         return
 
 
