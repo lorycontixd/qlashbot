@@ -14,7 +14,7 @@ from modules.moderation import descriptions as moderation_descriptions
 #**********************************************       MOD     ****************************************************
 #*****************************************************************************************************************
 def valid_tag(tag):
-    allowed = ["P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V", "0", "2", "8", "9"]
+    allowed = ["#","P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V", "0", "2", "8", "9"]
     for c in tag:
         if str(c) not in allowed:
             print("Assert failed in Set Function: character "+str(c)+" not allowed in brawl tag.")
