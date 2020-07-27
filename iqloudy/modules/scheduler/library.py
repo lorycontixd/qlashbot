@@ -242,10 +242,10 @@ async def process_clan(message,gametag):
         await message.add_reaction('❓')
         return
     clans = mongo_library.LoadClans()
+    player = None
     try:
         player = await bot_instances.myclient.get_player(gametag)
     except:
-        await message.add_reaction('❓')
         pass
     print(player)
     if player == None:
