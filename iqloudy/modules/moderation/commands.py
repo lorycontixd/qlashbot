@@ -59,7 +59,7 @@ class Moderation(commands.Cog,name="Moderation"):
         player_club = myplayer.club
         if not player_club:
             await asyncio.sleep(0.5)
-            await temp.edit("Player does not belong to any club.")
+            await temp.edit(content="Player does not belong to any club.")
             return
         official_clubs = LoadClans()
         #await asyncio.sleep(0.5)
@@ -68,15 +68,14 @@ class Moderation(commands.Cog,name="Moderation"):
             if club_role in player.roles and club_role.name != "QLASH Girls" and club_role.name != "QLASH Eris":
                 await player.remove_roles(club_role)
             if club["Tag"] == str(player_club.tag):
-                await temp.edit("Clan found: **"+str(player_club.name)+"**")
+                await temp.edit(content="Clan found: **"+str(player_club.name)+"**")
                 await player.add_roles(club_role)
                 await asyncio.sleep(0.5)
-                await temp.edit("Role **"+str(club_role.name)+"** was given to player "+str(player.mention)+".")
+                await temp.edit(content="Role **"+str(club_role.name)+"** was given to player "+str(player.mention)+".")
                 return
-        await temp.edit("Player belongs to clan: "+str(club.name)+".")
+        await temp.edit(content="Player belongs to clan: "+str(club.name)+".")
         await asyncio.sleep(1)
-        await temp.edit("Clan does not belong to QLASH. No role was given to member "+player.mention+".")
-
+        await temp.edit(content="Clan does not belong to QLASH. No role was given to member "+player.mention+".")
 
     #ADMIN
     @commands.cooldown(1, 20, commands.BucketType.user)
@@ -86,7 +85,7 @@ class Moderation(commands.Cog,name="Moderation"):
         role=''
         player = await myclient.get_player(player_tag)
         if not player:
-            await ctx.send("Player with this tag was not found. If you think this was a problem, contact the Bot creators.")
+            await ctx.send("No players were found with such tag. If you think this was a problem, contact the Bot creators.")
             return
         e=discord.Embed(title="Player info: "+str(player), description="------------------------------------------------", color=0xf6ec00)
         e.set_author(name="QLASH Bot")
