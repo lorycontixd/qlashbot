@@ -31,9 +31,6 @@ def check_member(discord):
     db = bot_instances.mongoclient.heroku_q2z34tjm
     coll_registered = db.QLASHBot_Registered
     document = coll_registered.find_one({"Discord":{"$eq":str(discord)}})
-    if document == None:
-        print("No member found in the database")
-        return
     return document #type <dict>
 
 def remove_member(discord):

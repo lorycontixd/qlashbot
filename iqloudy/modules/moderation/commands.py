@@ -48,7 +48,8 @@ class Moderation(commands.Cog,name="Moderation"):
 
         tag = ingame_tag.replace('O','0').rstrip()
         myplayer = await myclient.get_player(tag)
-        register_member(player,myplayer.tag)
+        if check_member(player) == None:
+            register_member(player,myplayer.tag)
         player_club = await myplayer.get_club()
 
         official_clubs = LoadClans()
