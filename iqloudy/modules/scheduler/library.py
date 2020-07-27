@@ -278,11 +278,9 @@ async def check_banlist_api():
             arg = item.split("=")
             title = str(arg[0])
             value = str(arg[1])
-            print(title)
             if title=="tag":
                 banned_tag=value
             if title=="ban":
-                print("Has bantime: "+str(value))
                 banned_time = get_int_from_bantime(value)
                 has_ban_time = True
 

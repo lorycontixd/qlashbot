@@ -32,7 +32,7 @@ Example scheduler trigers:
 def add_default_tasks(scheduler):
     #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
     CEST = timezone('Europe/Rome')
-    scheduler.add_job(scheduler_library.check_banlist_channel, id='check_banlist_channel', trigger='cron',hour='22', minute='0')
+    scheduler.add_job(scheduler_library.check_banlist_api, id='check_banlist_api', trigger='cron',hour='22', minute='0')
     scheduler.add_job(scheduler_library.hello_en,id="hello_en",trigger='cron',hour='10',minute='0')
     scheduler.add_job(scheduler_library.hello_it,id="hello_it",trigger='cron',hour='10',minute='0')
     scheduler.add_job(scheduler_library.reg_member,id='register-member',trigger='cron',hour='22',minute='0')

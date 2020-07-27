@@ -5,6 +5,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 #from functions import set_
 import ipapi
+import bot_exceptions
 from modules.mongodb.library import *
 from modules.scheduler.library import check_banlist_channel,giova,check_banlist_api
 from bot_instances import myclient
@@ -36,13 +37,13 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=moderation_descriptions.desc_set)
     async def set(self,ctx,player:discord.Member,ingame_tag):
         if not str(ingame_tag).startswith("#"):
-            await ctx.send("InvalidTag: Player tag must start with # character.")
+            raise bot_exceptions.TagError("Player tag must start with # character.")
             return
         if not valid_tag(ingame_tag):
-            await ctx.send("InvalidTag: Player tag does not meet the requirements.")
+            raise bot_exceptions.TagError("Player tag does not meet the requirements.")
             return
         if not valid_len_tag(ingame_tag):
-            await ctx.send("InvalidTag: Player tag does not meet length requirements.")
+            raise bot_exceptions.TagError("Player tag does not meet length requirements.")
             return
         msg = ctx.message
 
