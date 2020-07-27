@@ -4,7 +4,7 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 #from util_functions import *
 
-from modules.mongodb import view_database
+from modules.mongodb.library import view_database
 from modules.system import library as system_library, descriptions as system_descriptions
 
 #*****************************************************************************************************************
