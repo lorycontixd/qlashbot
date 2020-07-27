@@ -52,7 +52,7 @@ class Moderation(commands.Cog,name="Moderation"):
             if club_role in player.roles and club_role.name != "QLASH Girls" and club_role.name != "QLASH Eris":
                 await player.remove_roles(club_role)
             if club["Tag"] == str(club.tag):
-                await ctx.send("Player belongs to clan: "str(club.name)+" --> QLASH Clan detected --> Giving discord role...")
+                await ctx.send("Player belongs to clan: "+str(club.name)+" --> QLASH Clan detected --> Giving discord role...")
                 await player.add_roles(club_role)
                 await ctx.send("Role "+str(club_role.name)+" was given to player "+str(player.mention)+".")
                 return
