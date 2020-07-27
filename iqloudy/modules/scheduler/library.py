@@ -296,7 +296,7 @@ async def check_banlist_api():
     time=str(datetime.now(tz=tz).strftime("%d/%m/%Y, %H:%M:%S"))
     embed=discord.Embed(title="New scheduled event triggered", description="--------------------------------------", color=0xd357fe)
     embed.add_field(name="Event Type", value="Check Banlist", inline=True)
-    embed.add_field(name="Content", value="Expired: "+str(expired)+"  Present: "+str(present)), inline=True)
+    embed.add_field(name="Content", value="Expired: "+str(expired)+"  Present: "+str(present), inline=True)
     embed.add_field(name="Channel", value="None", inline=True)
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
