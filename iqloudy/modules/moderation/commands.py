@@ -49,15 +49,15 @@ class Moderation(commands.Cog,name="Moderation"):
         tag = ingame_tag.replace('O','0').rstrip()
         myplayer = await myclient.get_player(tag)
         register_member(player,myplayer.tag)
-        club = await myplayer.get_club()
+        player_club = await myplayer.get_club()
 
         official_clubs = LoadClans()
         for club in official_clubs:
             club_role = discord.utils.get(ctx.guild.roles, name=str(club["Name"]))
             if club_role in player.roles and club_role.name != "QLASH Girls" and club_role.name != "QLASH Eris":
                 await player.remove_roles(club_role)
-            if club["Tag"] == str(club.tag):
-                await ctx.send("Player belongs to clan: "+str(club.name)+" --> QLASH Clan detected --> Giving discord role...")
+            if club["Tag"] == str(player_club.tag):
+                await ctx.send("Player belongs to clan: "+str(player_club.name)+" --> QLASH Clan detected --> Giving discord role...")
                 await player.add_roles(club_role)
                 await ctx.send("Role "+str(club_role.name)+" was given to player "+str(player.mention)+".")
                 return
