@@ -199,16 +199,13 @@ async def check_banlist_channel():
 def validate_tag(tag):
     assert type(tag)==str,"Invalid tag type in banlist check"
     if not tag.startswith("#"):
-        raise bot_exceptions.TagError(tag,"Tag must start with #")
         return False
     allowed = ["#","P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V", "0", "2", "8", "9"]
     for char in tag:
         if str(char) not in allowed:
-            raise bot_exceptions.TagError(tag,"Invalid character for tag: "+str(char))
             return False
     length = len(tag)
     if length<5 or length>14:
-        raise bot_exceptions.TagError(tag,"Invalid length for tag: "+str(length))
         return False
     return True
 

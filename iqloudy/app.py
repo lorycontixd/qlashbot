@@ -99,7 +99,7 @@ async def on_command_error(ctx, error):
         await msg.delete(delay=4.0)
         await message.delete(delay=5.0)
     else:
-        await ctx.send('ExternalError: '+str(error))
+        await ctx.send('ExternalError -- '+str(error))
         #await ctx.send(error)
         reason = 'ExternalError'
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
