@@ -78,10 +78,10 @@ class System(commands.Cog,name="System"):
     async def commandlog_clear(self,ctx):
         await system_library.commandlog_clear(self,ctx)
 
-    @commands.has_any_role('DiscordDeveloper')
-    @commands.command(name='registry-view')
-    async def registery_view(self,ctx,roleID,channelID,tag,*clan_name):
-        await registry_view_(ctx)
+    #@commands.has_any_role('DiscordDeveloper')
+    #@commands.command(name='registry-view')
+    #async def registery_view(self,ctx,roleID,channelID,tag,*clan_name):
+    #    await registry_view_(ctx)
 
 
     @commands.has_any_role('DiscordDeveloper')
