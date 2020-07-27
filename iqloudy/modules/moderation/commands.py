@@ -15,13 +15,16 @@ from modules.moderation import descriptions as moderation_descriptions
 #*****************************************************************************************************************
 def valid_tag(tag):
     allowed = ["P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V", "0", "2", "8", "9"]
-    for c in tag:
+    for str(c) in tag:
         if c not in allowed:
+            print("Assert failed in Set Function: character "+str(c)+" not allowed in brawl tag.")
             return False
     return True
 
 def valid_len_tag(tag):
-    if len(tag)<=5 or len(tag)>=14:
+    length = len(str(tag))
+    if length<=5 or length>=14:
+        print("Assert failed in Set Function: tag length not valid ("+str(length)+")")
         return False
     else:
         return True
