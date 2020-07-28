@@ -48,7 +48,7 @@ async def on_member_ban_(guild,user):
     e.add_field(name="User",value=str(user),inline=True)
     e.add_field(name="User ID",value=str(user.id),inline=True)
     e.add_field(name="Created at",value=str(user.created_at.strftime("%d/%m/%Y %H:%M%S")),inline=True)
-    e.add_field(name="Time of ban",value=str(datetime.now.strftime("%d/%m/%Y %H:%M%S")),inline=True)
+    e.add_field(name="Time of ban",value=str(datetime.now().strftime("%d/%m/%Y %H:%M%S")),inline=True)
     e.set_footer(text="Created by Lore")
     await logs.send(embed=e)
 
