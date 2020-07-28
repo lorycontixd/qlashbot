@@ -35,6 +35,7 @@ class Moderation(commands.Cog,name="Moderation"):
     def __init__(self):
         ipapi.location(ip=None, key=None, field=None)
 
+    @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=moderation_descriptions.desc_set)
     async def set(self,ctx,player:discord.Member,ingame_tag):
         if not str(ingame_tag).startswith("#"):

@@ -1,4 +1,6 @@
 def get_flag_emoji(country):
+    assert type(country)==str,"Invalid type for country emoji"
+    country = country.lower().capitalize()
     flag_emojis = {
         "Andorra": "🇦🇩",
         "United Arab Emirates": "🇦🇪",
