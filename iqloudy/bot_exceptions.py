@@ -40,7 +40,7 @@ class NotFoundError(Error):
     def __init__(self,message):
         self.message = message
 
-class DiscordNotFound(NotFound):
+class DiscordNotFound(NotFoundError):
     """Exception raised when an object is not found.
 
     Attributes:
