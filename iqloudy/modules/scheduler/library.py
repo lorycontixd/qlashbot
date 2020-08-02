@@ -303,6 +303,53 @@ async def check_banlist_api():
     await logs.send(embed=embed)
 
 #******************************************************************************************************
+#******************************************************************************************************
+#******************************************************************************************************
+
+async def reminder_art_open():
+    member = await bot_instances.bot.fetch_user(296356784619257857)
+    if member==None:
+        print("No member found with this ID")
+        return
+    await member.create_dm()
+    message = "Ciao Luca, ricordati che oggi devi aprire l'art competition! \nQLASH BOT ti augura una buona giornata!"
+    await member.dm_channel.send(message)
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
+    await logs.send("Art reminder send to "+str(member)+": Opening")
+
+async def reminder_art_close():
+    member = await bot_instances.bot.fetch_user(296356784619257857)
+    if member==None:
+        print("No member found with this ID")
+        return
+    await member.create_dm()
+    message = "Ciao Luca, ricordati che oggi devi chiudere l'art competition! \nQLASH BOT ti augura una buona giornata!"
+    await member.dm_channel.send(message)
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
+    await logs.send("Art reminder send to "+str(member)+": Closing")
+
+async def reminder_meme_open():
+    member = await bot_instances.bot.fetch_user(296356784619257857)
+    if member==None:
+        print("No member found with this ID")
+        return
+    await member.create_dm()
+    message = "Ciao Luca, ricordati che oggi devi aprire il meme competition! \nQLASH BOT ti augura una buona giornata!"
+    await member.dm_channel.send(message)
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
+    await logs.send("Meme reminder send to "+str(member)+": Opening")
+
+async def reminder_meme_close():
+    member = await bot_instances.bot.fetch_user(296356784619257857)
+    if member==None:
+        print("No member found with this ID")
+        return
+    await member.create_dm()
+    message = "Ciao Luca, ricordati che oggi devi chiudere il meme competition! \nQLASH BOT ti augura una buona giornata!"
+    await member.dm_channel.send(message)
+    logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
+    await logs.send("Meme reminder send to "+str(member)+": Closing")
+
 
 async def giova():
     #g = await bot.fetch_guild(335067221896200205)
@@ -362,6 +409,9 @@ async def giova():
     embed.add_field(name="Time", value=time, inline=True)
     embed.set_footer(text="Created by Lore")
     await logs.send(embed=embed)
+
+#******************************************************************************************************
+#******************************************************************************************************
 
 async def invite_bot_ch():
     channel = bot_instances.bot.get_channel(446051853357154307)

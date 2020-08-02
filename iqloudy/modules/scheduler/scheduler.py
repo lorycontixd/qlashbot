@@ -38,6 +38,11 @@ def add_default_tasks(scheduler):
     scheduler.add_job(scheduler_library.reg_member,id='register-member',trigger='cron',hour='22',minute='0')
     scheduler.add_job(scheduler_library.giova,id="daily-saint",trigger='cron',hour='10',minute='0')
     scheduler.add_job(scheduler_library.invite_bot_ch,id='invite',trigger='cron',hour='13',minute='00')
+
+    scheduler.add_job(scheduler_library.reminder_art_open,id'art-open',trigger='cron',day='21',hour='9',minute='0')
+    scheduler.add_job(scheduler_library.reminder_art_close,id'art-close',trigger='cron',day='30',hour='9',minute='0')
+    scheduler.add_job(scheduler_library.reminder_meme_open,id'meme-open',trigger='cron',day='14',hour='9',minute='0')
+    scheduler.add_job(scheduler_library.reminder_meme_close,id'meme-close',trigger='cron',day='24',hour='9',minute='0')
     pass
 
 def _get_jobs(scheduler):

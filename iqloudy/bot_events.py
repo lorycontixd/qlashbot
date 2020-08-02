@@ -11,7 +11,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from modules.verification.library import check_equal_lists,validate_tag
-
 from modules.gametag_upload.library import gametags_process
 
 #*******************************************   ON READY   ************************************************
@@ -44,11 +43,12 @@ async def on_ready_():
 
 async def on_member_ban_(guild,user):
     logs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
+    tz = pytz.timezone('Europe/Rome')
     e=discord.Embed(title="User has been banned from the server: "+str(user), description="--------------------------------------",color=0xe32400)
     e.add_field(name="User",value=str(user),inline=True)
     e.add_field(name="User ID",value=str(user.id),inline=True)
     e.add_field(name="Created at",value=str(user.created_at.strftime("%d/%m/%Y %H:%M%S")),inline=True)
-    e.add_field(name="Time of ban",value=str(datetime.now().strftime("%d/%m/%Y %H:%M%S")),inline=True)
+    e.add_field(name="Time of ban",value=str(datetime.now(tz=tz).strftime("%d/%m/%Y %H:%M%S")),inline=True)
     e.set_footer(text="Created by Lore")
     await logs.send(embed=e)
 
@@ -150,7 +150,6 @@ async def on_member_update_activity(before,after):
                     if found==False:
                         await ch.send(str(art)+'\t1')
 
-
 #*******************************************   ON MESSAGE   ******************************************
 
 def LoadBadWords():
@@ -165,6 +164,38 @@ def LoadBadWords():
         language = str(ll[1])
         dict[badword]=language
     return dict
+
+async def caps_spam_check(message):
+    author = message.author
+    if message.channel.type != discord.TextChannel:
+        return
+    sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
+    #if author.top_role>=sub:
+    #    return
+    log_channel = bot.get_channel(int(qlash_bot))
+    message_content = message.content
+    parsed_message = message_content.split(" ")
+    upper_cases = 0
+    message_length = len(parsed_message)
+    for char in parsed_message:
+        if char.isupper():
+            upper_casses += 1
+
+    percentage = float(upper_cases/message_length)*100
+    if int(percentage)>=60 and len(message_length)>7:
+        mod = discord.utils.get(message.guild.roles, name="Moderator")
+        embed=discord.Embed(title="Detected CAPS spam from "+str(author), color=0xff4013)
+        embed.set_author(name="QLASH Bot")
+        embed.add_field(name="Author", value=author.mention, inline=True)
+        embed.add_field(name="Channel",value="#"+message.channel.mention, inline = True)
+        embed.add_field(name="Message date",value=message.created_at,inline=True)
+        embed.add_field(name="ID",value=message.id,inline=True)
+        embed.add_field(name="Capped character percentage",value=str(percentage)+"%",inline=True)
+        embed.set_footer(text="Created By Lore")
+        await log_channel.send(embed=embed)
+        #await log_channel
+    else:
+        return
 
 async def check_bad_words(message):
     author = message.author

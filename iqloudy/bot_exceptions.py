@@ -30,7 +30,7 @@ class TagError(InputError):
 
 #*************************************************************************
 
-class NotFound(Error):
+class NotFoundError(Error):
     """Exception raised when an object is not found.
 
     Attributes:
@@ -51,3 +51,14 @@ class DiscordNotFound(NotFound):
     def __init__(self,object,message):
         self.object = object
         super().__init__(message)
+
+#**************************************************************************
+class PermissionError(Error):
+    """Exception raised when a permission is missing.
+
+    Attributes:
+        message -- message to display
+    """
+
+    def __init__(self,message):
+        self.message = message
