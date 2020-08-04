@@ -169,9 +169,9 @@ def LoadBadWords():
     return dict
 
 async def caps_spam_check(message):
-    author = message.author
     if type(message.channel)!= discord.TextChannel:
         return
+    author = message.author
     sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
     if author.top_role>=sub:
         return
