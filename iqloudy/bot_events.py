@@ -106,7 +106,10 @@ async def member_join_welcome(member:discord.Member):
     In #roles-assignment puoi chiedere il ruolo rispettivo al tuo clan
     Infine nell'area lounge potrai parlare con chiunque
     """
-    await member.dm_channel.send(str(welcome_message))
+    try:
+        await member.dm_channel.send(str(welcome_message))
+    except:
+        pass
 
 
 #*******************************************   ON MEMBER UPDATE   ******************************************
