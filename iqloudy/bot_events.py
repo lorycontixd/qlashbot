@@ -172,6 +172,8 @@ async def caps_spam_check(message):
     if type(message.channel)!= discord.TextChannel:
         return
     author = message.author
+    if type(author)!=discord.Member:
+        return
     sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
     if author.top_role>=sub:
         return
