@@ -50,6 +50,8 @@ async def on_member_ban(guild,user):
 @bot_instances.bot.event
 async def on_message(message):
     await events.check_bad_words(message)
+    await events.caps_spam_check(message)
+    #await events.msg_spam_check(message)
     await events.check_instarole(message)
     #await insta_role_ended(message)
     await events.check_roles_assignement(message)

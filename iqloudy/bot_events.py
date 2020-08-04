@@ -167,33 +167,66 @@ def LoadBadWords():
 
 async def caps_spam_check(message):
     author = message.author
-    if message.channel.type != discord.TextChannel:
+    if type(message.channel)!= discord.TextChannel:
         return
     sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
-    #if author.top_role>=sub:
-    #    return
+    if author.top_role>=sub:
+        return
     log_channel = bot.get_channel(int(qlash_bot))
     message_content = message.content
     parsed_message = message_content.split(" ")
     upper_cases = 0
+    total_chars = len(message_content)
+    if total_chars==0:
+        return
     message_length = len(parsed_message)
-    for char in parsed_message:
-        if char.isupper():
-            upper_casses += 1
-
-    percentage = float(upper_cases/message_length)*100
-    if int(percentage)>=60 and len(message_length)>7:
+    for word in parsed_message:
+        for char in word:
+            if char.isupper():
+                upper_cases += 1
+    percentage = float(upper_cases/total_chars)*100
+    if int(percentage)>=60 and total_chars>7:
         mod = discord.utils.get(message.guild.roles, name="Moderator")
         embed=discord.Embed(title="Detected CAPS spam from "+str(author), color=0xff4013)
         embed.set_author(name="QLASH Bot")
         embed.add_field(name="Author", value=author.mention, inline=True)
-        embed.add_field(name="Channel",value="#"+message.channel.mention, inline = True)
+        embed.add_field(name="Channel",value=message.channel.mention, inline = True)
         embed.add_field(name="Message date",value=message.created_at,inline=True)
         embed.add_field(name="ID",value=message.id,inline=True)
         embed.add_field(name="Capped character percentage",value=str(percentage)+"%",inline=True)
         embed.set_footer(text="Created By Lore")
         await log_channel.send(embed=embed)
         #await log_channel
+    else:
+        return
+
+async def msg_spam_check(message):
+    print("msg spam check called")
+    author = message.author
+    if type(message.channel)!= discord.TextChannel:
+        return
+    sub = discord.utils.get(message.guild.roles, name="Sub-Coordinator")
+    if author.top_role>=sub:
+        return
+    log_channel = bot.get_channel(int(qlash_bot))
+    message_content = message.content
+
+    counter = 0
+    async for old_message in message.channel.history(limit=6):
+        if old_message.author == message.author:
+            counter+=1
+    print("counter ",counter)
+    if counter > 5:
+        print("entered if statement")
+        mod = discord.utils.get(message.guild.roles, name="Moderator")
+        embed=discord.Embed(title="Detected possible spam from "+str(author), color=0xff4013)
+        embed.set_author(name="QLASH Bot")
+        embed.add_field(name="Author", value=author.mention, inline=True)
+        embed.add_field(name="Channel",value=message.channel.mention, inline = True)
+        embed.add_field(name="Message date",value=message.created_at,inline=True)
+        embed.add_field(name="ID",value=message.id,inline=True)
+        embed.set_footer(text="Created By Lore")
+        await log_channel.send(embed=embed)
     else:
         return
 
@@ -216,7 +249,7 @@ async def check_bad_words(message):
             embed.add_field(name="Author", value=author.mention, inline=True)
             embed.add_field(name="Bad Word", value=str(badword), inline=True)
             embed.add_field(name="Language", value=str(badword_dict[badword]), inline=True)
-            embed.add_field(name="Channel",value="#"+message.channel.mention, inline = True)
+            embed.add_field(name="Channel",value=message.channel.mention, inline = True)
             embed.add_field(name="ID",value=message.id)
             embed.set_footer(text="Created By Lore")
             await mychannel.send(embed=embed)
@@ -253,7 +286,9 @@ async def check_roles_assignement(message:discord.Message):
     if ch.name == "roles-assignment":
         if att==0:
             mod = discord.utils.get(message.guild.roles, name="Moderator")
+            print(author.top_role)
             if author.top_role < mod:
+                print(author.top_role.name+" is lower than mod in hierarchy.")
                 await message.delete()
                 msg = await ch.send(author.mention+" You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you!")
                 await msg.delete(delay=8.0)

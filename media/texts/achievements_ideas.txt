@@ -1,0 +1,62 @@
+exotoxin 🦠11/06/2020
+:green_circle: Discord
+
+“LFG”
+Posted in one of the channels dedicated to looking for groups.
++100 points
+:green_circle: Discord
+
+“Verified”
+Posted the profile screenshot in one of the channels dedicated to verification.
++50 points
+:green_circle: Discord
+
+“Champion”
+Won one of the community tournaments in QLASH.
++500 points
+Lore11/06/2020
+Good idea
+What do points give you though?
+exotoxin 🦠11/06/2020
+:green_circle: Discord
+
+“Instagram tournament player”
+Participated in the Instagram tournament.
++50 points
+:green_circle: Discord
+
+“Tournament player”
+Participated in five consecutive tournaments.
++100 points
+:yellow_circle: Brawl Stars
+
+“Winner”
+Won 15 matches in a row.
++100 points
+(checked by battle log on Brawl Stats)
+:yellow_circle: Brawl Stars
+
+“Clan member”
+Joined a clan in Brawl Stars and verified in the #roles-assignment channel.
++200 points
+:yellow_circle: Brawl Stars
+
+“Qualified”
+Won the Brawl Stars Championship Challenge.
++100 points
+:yellow_circle: Brawl Stars
+
+“Could Not Have Gone Better”
+Won the Brawl Stars Championship Challenge with no losses.
++200 points
+Lore12/06/2020
+----------------------------------------------------------
+- "LFG": dont think it's a very good idea.. people spam and it's difficult to keep track (maybe using on_message event with user cooldown to avoid spam)
+- "Verified": Can be replaced with called the ^save gametag function and got registered (checks if user already exists to avoid repetitions) (gives points autom. on registration)
+- "Champion":  :white_check_mark:  (points awarded manually)
+- "Instagram tournament player":  :white_check_mark:  (on_member_update -> role update -> "instagram tournament" string in new role name -> give points automatically)
+- "Tournament player": :white_check_mark:  (can be done using tournament counter in player profile in MongoDB. Not sure how to do it for consecutive)
+- "Winner": :white_check_mark:  (needs to be checked manually, either with screenshot proof or by moderator checking battlelog) (maybe battle log called using brawlstats API?)
+- "Clan member": Same as calling "^save gametag" function in my opinion
+- "Qualified": :white_check_mark:  (Can be checked with brawlstats api or just manually)
+"Could not have gone better": Good idea but difficult to check, the less screenshots as proof the better because people can easily lie with fake screenshots
