@@ -6,6 +6,7 @@ from modules.fun.commands import Fun
 from modules.system.commands import System
 from modules.channels.commands import Channels
 from modules.clubs.commands import Clubs
+frmo modules.voice_system import VoiceSystem
 
 async def init(bot,db,qlash_bs):
     bot.add_cog(Weather())
@@ -16,3 +17,4 @@ async def init(bot,db,qlash_bs):
     bot.add_cog(Messages())
     bot.add_cog(Channels())
     bot.add_cog(Clubs(bot,qlash_bs))
+    bot.add_cog(VoiceSystem())

@@ -9,6 +9,7 @@ import bot_instances
 # coll_qlashclans = db.QLASHBot_Clans
 # coll_membercount = db.QLASHBot_MemberCount
 # coll_achievements = db.QLASHBot_Achievements
+# coll_voicechannels = db.QLASHBot_VoiceChannels
 
 #*****************************************************************************************************************
 #********************************************       MEMBERS     **************************************************
