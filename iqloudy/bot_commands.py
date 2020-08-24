@@ -6,7 +6,7 @@ from modules.fun.commands import Fun
 from modules.system.commands import System
 from modules.channels.commands import Channels
 from modules.clubs.commands import Clubs
-frmo modules.voice_system import VoiceSystem
+from modules.voice_system import VoiceSystem
 
 async def init(bot,db,qlash_bs):
     bot.add_cog(Weather())
