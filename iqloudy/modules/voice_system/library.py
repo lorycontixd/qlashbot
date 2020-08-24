@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.voice_client import VoiceClient
 import bot_instances
-import mongodb as mongo
+from modules.mongodb import library as mongo
 
 class VoiceSystem(commands.Cog,name="VoiceSystem"):
     """
