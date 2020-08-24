@@ -10,8 +10,8 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
     """
     def __init__(self):
         self.waiting = bot_instances.bot.fetch_channel(747588681627336786)
-        self.ch1 = bot_instances.bot.fetch_channel(747588721544790117)
+        self.ch1 = bot_instances.bot.get_channel(747588721544790117)
     
     @commands.command(name="test",brief="Test command for Voice System")
-    def print_channel1(self):
+    async def print_channel1(self):
         print(self.ch1)
