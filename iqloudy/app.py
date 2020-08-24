@@ -91,15 +91,11 @@ async def on_command_error(ctx, error):
         await msg.delete(delay=4.0)
         await message.delete(delay=6.0)
     elif isinstance(error, commands.CommandNotFound):
-        msg = await ctx.send('CommandError: Command was not found 😞')
-        reason = 'CommandNotFound'
-        await msg.delete(delay=4.0)
-        await message.delete(delay=6.0)
+        await ctx.send('CommandError: Command was not found 😞')
+        return
     elif isinstance(error, commands.DisabledCommand):
-        msg = await ctx.send('CommandError: Command has been disabled')
-        reason = 'DisabledCommand'
-        await msg.delete(delay=4.0)
-        await message.delete(delay=5.0)
+        await ctx.send('CommandError: Command has been disabled')
+        return
     else:
         await ctx.send('ExternalError -- '+str(error))
         #await ctx.send(error)
