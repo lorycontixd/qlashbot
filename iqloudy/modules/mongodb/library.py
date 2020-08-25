@@ -1,6 +1,6 @@
 #tournament count file
 from pprint import pprint
-from datetime import date
+from datetime import date,datetime
 import re
 import bot_instances
 
@@ -152,3 +152,27 @@ def achievement_removeall_(ctx):
 #    #
 
 #achievement_register_("<Tournament Player> <Participated in 5 tournaments in a row> <100>")
+
+#*****************************************************************************************************************
+#******************************************       VOICE SYSTEM     ***********************************************
+#*****************************************************************************************************************
+
+def register_voicechannel(author, channel, channelID, password):
+    db = bot_instances.mongoclient.heroku_q2z34tjm
+    coll_voicechannels = db.QLASHBot_VoiceChannels
+
+    mydict = {
+        "Channel" : channel,
+        "ID" : channelID,
+        "Password" : password,
+        "CreatedBy" : author,
+        "CreatedAt" : datetime.now()
+    }
+
+    coll_voicechannels.insert_one(mydict)
+
+def get_voicechannel(ch_id):
+    db = bot_instances.mongoclient.heroku_q2z34tjm
+    coll_voicechannels = db.QLASHBot_VoiceChannels
+    document = coll_voicechannels.find_one({"ID": {"$eq": ch_id}})
+    return document  # type <dict>

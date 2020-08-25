@@ -63,7 +63,7 @@ async def on_raw_reaction_add(payload):
     await events.reaction_check(payload)
     #await game1_reaction(payload)
 
-
+"""
 #command events
 @bot_instances.bot.event
 async def on_command_error(ctx, error):
@@ -96,13 +96,14 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send('CommandError: Command has been disabled')
         return
+    
     else:
         await ctx.send('ExternalError -- '+str(error))
-        #await ctx.send(error)
+    #    #await ctx.send(error)
         reason = 'ExternalError'
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
-
+"""
 @bot_instances.bot.event
 async def on_command_completion(ctx):
     commandname = ctx.invoked_with
