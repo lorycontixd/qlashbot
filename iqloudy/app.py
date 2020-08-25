@@ -72,13 +72,14 @@ async def on_voice_state_update(member,before,after):
         - after (VoiceState) – The voice state after to the changes.
     """
     waitingroom = bot_instances.bot.get_channel(int(bot_instances.voice_waitingroom))
+    ch1 = bot_instances.bot.get_channel(int(bot_instances.voice_ch1))
     iqloudylogs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
-    if before.channel != None and before.channel!=waitingroom:
+    if before.channel == ch1 and before.channel!=waitingroom:
         if len(before.channel.members)==0:
             ch_id = before.channel.id
             remove_voicechannel(ch_id)
             await iqloudylogs.send("Voice Channel has been deleted from the database: "+str(before.channel.name))
-    if after.channel != None and after.channel != waitingroom:
+    if after.channel == ch1 and after.channel != waitingroom:
         #if a user connects to a VoiceChannel that is not the waiting room
         if member.voice.mute:
             await member.edit(mute=False)
