@@ -6,8 +6,7 @@ import pytz
 import random
 
 
-from modules.mongodb.library import register_commandlog
-
+from modules.mongodb.library import register_commandlog,remove_voicechannel
 
 #import holidayapi
 
@@ -63,6 +62,28 @@ async def on_raw_reaction_add(payload):
     await events.reaction_check(payload)
     #await game1_reaction(payload)
 
+#Voice state change for VoiceSystem
+@bot_instances.bot.event
+async def on_voice_state_update(member,before,after):
+    """
+    Parameters:
+        - member (Member) – The member whose voice states changed.
+        - before (VoiceState) – The voice state prior to the changes.
+        - after (VoiceState) – The voice state after to the changes.
+    """
+    waitingroom = bot_instances.bot.get_channel(int(bot_instances.voice_waitingroom))
+    iqloudylogs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
+    if before.channel != None and before.channel!=waitingroom:
+        if len(before.channel.members)==0:
+            ch_id = before.channel.id
+            remove_voicechannel(ch_id)
+            await iqloudylogs.send("Voice Channel has been deleted from the database: "+str(before.channel.name))
+    if after.channel != None and after.channel != waitingroom:
+        #if a user connects to a VoiceChannel that is not the waiting room
+        if member.voice.mute:
+            await member.edit(mute=False)
+        else:
+            pass
 """
 #command events
 @bot_instances.bot.event

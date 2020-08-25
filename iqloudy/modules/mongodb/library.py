@@ -176,3 +176,9 @@ def get_voicechannel(ch_id):
     coll_voicechannels = db.QLASHBot_VoiceChannels
     document = coll_voicechannels.find_one({"ID": {"$eq": ch_id}})
     return document  # type <dict>
+
+
+def remove_voicechannel(ch_id):
+    db = bot_instances.mongoclient.heroku_q2z34tjm
+    coll_voicechannels = db.QLASHBot_VoiceChannels
+    coll_voicechannels.delete_one({"ID": {"$eq": ch_id}})

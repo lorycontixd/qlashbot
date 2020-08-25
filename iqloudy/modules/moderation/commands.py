@@ -72,6 +72,9 @@ class Moderation(commands.Cog,name="Moderation"):
             if club["Tag"] == str(player_club.tag):
                 await temp.edit(content="Clan found: **"+str(player_club.name)+"**")
                 await player.add_roles(club_role)
+                wfr = discord.utils.get(ctx.guild.roles, name="waiting-for-role")
+                if wfr in player.roles:
+                    await player.remove_roles(wfr)
                 await asyncio.sleep(1)
                 await temp.edit(content="Role **"+str(club_role.name)+"** was given to player "+str(player.mention)+".")
                 return

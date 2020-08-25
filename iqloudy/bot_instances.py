@@ -159,7 +159,7 @@ bot_commands_channel = '446051853357154307'
 banlist = '493151669849161743'
 banlist_testing = '713322449915215923'
 entry_exit = '713735004827418625'
-qlash_bot = '714161674432806972'
+qlash_bot = '714161674432806972' #iqloudy-logs
 ig_role_channel = '703596640593903716'
 file_managing = '721658324327858236'
 testchannel = '723161066124607599'
@@ -168,3 +168,7 @@ changelog_channel = '728165928939814952'
 
 #database directories
 qc_directory2 = './media/texts/qlash_brawlstars_clubs/'
+
+#VOICE CHANNELS
+voice_waitingroom = '747760701958782976'
+voice_ch1 = '747761060970233926'

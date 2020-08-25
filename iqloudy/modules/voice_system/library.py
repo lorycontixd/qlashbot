@@ -13,8 +13,8 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
     """
     def __init__(self):
         #here goes a list of all voice channels (also add them to bot_instances/channels)
-        self.waitingroom = bot_instances.bot.get_channel(747588681627336786)
-        self.ch1 = bot_instances.bot.get_channel(747588721544790117)
+        self.waitingroom = bot_instances.bot.get_channel(int(bot_instances.voice_waitingroom))
+        self.ch1 = bot_instances.bot.get_channel(int(bot_instances.voice_ch1))
     
     @commands.command(name="connect",brief="Test command for Voice System")
     async def print_channel1(self,ctx,*channelname):
@@ -31,8 +31,6 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
             await ctx.send("You must be in the waiting room to connect to a Voice Channel.")
             return
         else:
-            print("Voice State: ", voice_state)
-            print("Connected Channel: ", voice_state.channel)
             if voice_state.channel != self.waitingroom:
                 await ctx.send("You must be in the waiting room to connect to a Voice Channel.")
                 return
@@ -51,7 +49,7 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
 
             try:
                 await asyncio.sleep(1)
-                p = await bot_instances.bot.wait_for('message', check=check,timeout=30.0)
+                p = await bot_instances.bot.wait_for('message', check=check,timeout=60.0)
                 password = p.content
                 await author.move_to(channel)
                 mongo.register_voicechannel(str(author),channel.name,channel.id,password)
@@ -71,14 +69,12 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
                 await ctx.send("An error has occured finding the channel. Please contact our staff.")
                 return
 
-            message = """
-            You are joining the Voice Channel {ch}, please type the password for this room __**within 30 seconds**__.
-            """.format(channel.name)
+            message = "You are joining the Voice Channel "+channel.name+", please type the password for this room __**within 30 seconds**__."
             await author.dm_channel.send(message)
 
             try:
                 await asyncio.sleep(1)
-                p=await bot_instances.bot.wait_for('message', check=check, timeout=30.0)
+                p=await bot_instances.bot.wait_for('message', check=check, timeout=60.0)
                 password=p.content
 
                 if str(password)==mongo_channel["Password"]:
