@@ -223,7 +223,6 @@ async def remove_reactions(message):
 
 async def process_bantime(message,message_date,bantime):
     final_date_of_ban = message_date + timedelta(days=int(bantime))
-    print(final_date_of_ban)
     if final_date_of_ban < datetime.now():
         await message.add_reaction('📅')
         return True

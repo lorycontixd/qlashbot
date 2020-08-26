@@ -170,5 +170,13 @@ changelog_channel = '728165928939814952'
 qc_directory2 = './media/texts/qlash_brawlstars_clubs/'
 
 #VOICE CHANNELS
-voice_waitingroom = '747760701958782976'
-voice_ch1 = '747761060970233926'
+text_commands = '748099480729026629'
+waitingroom = '748099535276081192'
+voice_ch1 = '748099610735804537'
+voice_ch2 = '748099640049664021'
+voice_ch3 = '748099659590795324'
+voice_ch4 = '748099678188601344'
+voice_ch5 = '748099695540174888'
+voice_ch6 = '748099715006201881'
+voice_ch7 = '748099755867111445'
+voice_ids = [int(eval("voice_ch"+str(i))) for i in range(1, 8)]

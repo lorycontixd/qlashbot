@@ -12,16 +12,24 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
     Class to deal with voice connections.
     """
     def __init__(self):
-        #here goes a list of all voice channels (also add them to bot_instances/channels)
-        self.waitingroom = bot_instances.bot.get_channel(int(bot_instances.voice_waitingroom))
-        self.ch1 = bot_instances.bot.get_channel(int(bot_instances.voice_ch1))
-    
+        self.ids = bot_instances.voice_ids
+        self.channels = [bot_instances.bot.get_channel(i) for i in self.ids]
+        self.waitingroom = bot_instances.bot.get_channel(int(bot_instances.waitingroom))
+        self.ch_commands = bot_instances.bot.get_channel(int(bot_instances.text_commands))
+        print("Available VoiceChannels: ",[i.name for i in self.channels])
+
     @commands.command(name="connect",brief="Test command for Voice System")
     async def print_channel1(self,ctx,*channelname):
+        if ctx.channel != self.ch_commands:
+            await ctx.send("This command can only be called in "+self.ch_commands.mention)
+            return
         channelname = " ".join(channelname[:])
         channel = discord.utils.get(ctx.guild.voice_channels, name=channelname)
         if channel is None:
             await ctx.send("Invalid channel name was given: "+str(channelname))
+            return
+        if channel not in self.channels:
+            await ctx.send("Invalid channel for connection: "+str(channelname))
             return
 
         author = ctx.message.author
@@ -43,7 +51,7 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
             message = """
             You are the host of a new Voice Channel, please set a password for this channel and share it only with your teammates.
 
-            You have __**30 seconds**__ to set a password before getting disconnected.
+            You have __**60 seconds**__ to set a password before getting disconnected.
             """
             await author.dm_channel.send(message)
 
@@ -69,7 +77,7 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
                 await ctx.send("An error has occured finding the channel. Please contact our staff.")
                 return
 
-            message = "You are joining the Voice Channel "+channel.name+", please type the password for this room __**within 30 seconds**__."
+            message = "You are joining the Voice Channel "+channel.name+", please type the password for this room __**within 60 seconds**__."
             await author.dm_channel.send(message)
 
             try:
@@ -90,7 +98,6 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
 
 
         #use change_activity_event + 0 members left to delete voice room
-
 
         
 

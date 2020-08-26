@@ -164,7 +164,7 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.is_owner()
     @commands.command(name='locate',brief = 'Locate an ip address',description=moderation_descriptions.desc_ip)
     async def locate(self,ctx,ip):
-        print("Searching for location...")
+        await ctx.send("Searching for location...")
         mydict = ipapi.location(ip)
         e=discord.Embed(title="Found location for ip: "+str(mydict["ip"]) , color=0xffaa00)
         e.set_author(name="QLASH Bot")
@@ -275,7 +275,7 @@ class Moderation(commands.Cog,name="Moderation"):
         if not role:
             await ctx.send("ArguementError: Role "+temp+" does not exist. 😭")
             return
-        print(member,role)
+        print("Role "+role.name+" removed from "+member.name+" using *role-remove")
         await member.remove_roles(role)
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
