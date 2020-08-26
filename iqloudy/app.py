@@ -133,6 +133,7 @@ async def on_command_error(ctx, error):
         await ctx.send('ExternalError -- '+str(error))
     #    #await ctx.send(error)
         reason = 'ExternalError'
+    await ctx.send("Error: "+str(error))
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
 
