@@ -6,7 +6,7 @@ import pytz
 import random
 
 
-from modules.mongodb.library import register_commandlog,remove_voicechannel
+from modules.mongodb.library import register_commandlog,remove_voicechannel,get_voicechannel
 
 #import holidayapi
 
@@ -80,8 +80,20 @@ async def on_voice_state_update(member,before,after):
     if before.channel.id in bot_instances.voice_ids and before.channel!=waitingroom:
         if len(before.channel.members)==0:
             ch_id = before.channel.id
+            doc = get_voicechannel(ch_id)
+            if doc == None:
+                return
             remove_voicechannel(ch_id)
-            await iqloudylogs.send("Voice Channel has been deleted from the database: "+str(before.channel.name))
+            await before.channel.edit(bitrate=64000)
+            e = discord.Embed(title="VocalRoom has been deleted from the database: "+str(before.channel.name), color=discord.Color.dark_gold())
+            e.set_author(name="QLASH Bot")
+            e.add_field(name="Channel",value=str(before.channel.name))
+            e.add_field(name="Host",value=str(doc["CreatedBy"]))
+            e.add_field(name="Password",value=str(doc["Password"]))
+            e.add_field(name="Created At",value=str(doc["CreatedAt"]))
+            e.set_footer(text="Created by Lore.")
+            await iqloudylogs.send(embed=e)
+
 
 
 #command events

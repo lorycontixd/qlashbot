@@ -291,9 +291,7 @@ async def check_roles_assignement(message:discord.Message):
     if ch.name == "roles-assignment":
         if att==0:
             mod = discord.utils.get(message.guild.roles, name="Moderator")
-            print(author.top_role)
             if author.top_role < mod:
-                print(author.top_role.name+" is lower than mod in hierarchy.")
                 await message.delete()
                 msg = await ch.send(author.mention+" You can only send screenshots for your role in this channel. If you have problems ask in support or contact a Moderator. Thank you!")
                 await msg.delete(delay=8.0)
@@ -305,7 +303,7 @@ async def bot_commands_gametag(message):
         return
     if not message.startswith(".save"):
         return
-    print("received message from bot_commands channel")
+    print("Received message from bot_commands channel")
     list = message.split(" ")
     tag = list[1]
     if validate_tag(tag):
