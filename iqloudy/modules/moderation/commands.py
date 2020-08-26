@@ -47,7 +47,7 @@ class Moderation(commands.Cog,name="Moderation"):
         if not valid_len_tag(ingame_tag):
             raise bot_exceptions.TagError(ingame_tag,"Player tag does not meet length requirements.")
             return
-        temp = await ctx.send("Looking for clan for player "+str(player.mention))
+        temp = await ctx.send("Looking for clan of player "+str(player.mention)+"...")
         await asyncio.sleep(1)
         msg = ctx.message
         tag = ingame_tag.replace('O','0').rstrip()
@@ -79,7 +79,7 @@ class Moderation(commands.Cog,name="Moderation"):
                 await temp.edit(content="Role **"+str(club_role.name)+"** was given to player "+str(player.mention)+".")
                 return
         await asyncio.sleep(1)
-        await temp.edit(content="Clan "+str(player_club)+" does not belong to QLASH. No role was given to member "+player.mention+".")
+        await temp.edit(content="Clan "+str(player_club["name"])+" does not belong to QLASH. No role was given to member "+player.mention+".")
 
     #ADMIN
     @commands.cooldown(1, 20, commands.BucketType.user)
