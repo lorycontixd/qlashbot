@@ -78,9 +78,8 @@ class Moderation(commands.Cog,name="Moderation"):
                 await asyncio.sleep(1)
                 await temp.edit(content="Role **"+str(club_role.name)+"** was given to player "+str(player.mention)+".")
                 return
-        await temp.edit(content="Player belongs to clan: "+str(club.name)+".")
         await asyncio.sleep(1)
-        await temp.edit(content="Clan does not belong to QLASH. No role was given to member "+player.mention+".")
+        await temp.edit(content="Clan "+str(player_club)+" does not belong to QLASH. No role was given to member "+player.mention+".")
 
     #ADMIN
     @commands.cooldown(1, 20, commands.BucketType.user)

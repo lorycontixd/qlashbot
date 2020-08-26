@@ -95,7 +95,7 @@ async def on_voice_state_update(member,before,after):
             await iqloudylogs.send(embed=e)
 
 
-
+"""
 #command events
 @bot_instances.bot.event
 async def on_command_error(ctx, error):
@@ -130,13 +130,13 @@ async def on_command_error(ctx, error):
         return
     
     else:
-        await ctx.send('ExternalError -- '+str(error))
+        await ctx.send('ExternalError!')
     #    #await ctx.send(error)
         reason = 'ExternalError'
     await ctx.send("Error: "+str(error))
     register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
-
+"""
 @bot_instances.bot.event
 async def on_command_completion(ctx):
     commandname = ctx.invoked_with
