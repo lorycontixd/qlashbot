@@ -7,7 +7,7 @@ from discord.voice_client import VoiceClient
 #from functions import set_
 import ipapi
 import bot_exceptions
-from modules.mongodb.library import *
+from modules.mongodb import library as mongo
 from modules.scheduler.library import check_banlist_channel,giova,check_banlist_api
 from bot_instances import myclient
 from modules.moderation import descriptions as moderation_descriptions
@@ -34,6 +34,8 @@ def valid_len_tag(tag):
 class Moderation(commands.Cog,name="Moderation"):
     def __init__(self):
         ipapi.location(ip=None, key=None)
+        self.m_clans = mongo.MongoClans()
+        self.m_member = mongo.MongoMembers()
 
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='set',brief="Get the discord role for the clan you belong to. (BS1) ",description=moderation_descriptions.desc_set)
@@ -57,13 +59,13 @@ class Moderation(commands.Cog,name="Moderation"):
         except:
             raise bot_exceptions.TagError(tag,"Player not found.")
             return
-        if check_member(player) == None:
-            register_member(player,myplayer.tag)
+        if self.m_member.check_member(player) == None:
+            self.m_member.register_member(player,myplayer.tag)
         player_club = myplayer.club
         if not player_club:
             await temp.edit(content="Player does not belong to any club.")
             return
-        official_clubs = LoadClans()
+        official_clubs = self.m_clans.LoadClans()
         #await asyncio.sleep(0.5)
         for club in official_clubs:
             club_role = discord.utils.get(ctx.guild.roles, name=str(club["Name"]))
@@ -145,7 +147,7 @@ class Moderation(commands.Cog,name="Moderation"):
     async def qlash_allclans(self,ctx):
         await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
         await ctx.trigger_typing()
-        list = LoadClans()
+        list = self.m_clans.LoadClans()
         e=discord.Embed(title="List of all registered QLASH Clans", description="------------------------------------------------", color=0xffb43e)
         e2=discord.Embed(color=0xffb43e)
         e.set_author(name="QLASH Bot")
@@ -185,16 +187,13 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.has_any_role('Moderator','DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='member-info',brief='Show information of a discord member',description=moderation_descriptions.desc_memberinfo)
     async def memberinfo(self,ctx,member:discord.Member):
-        member_dict = check_member(member)
+        member_dict = self.m_member.check_member(member)
         e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
         e.set_author(name="QLASH Bot")
         if member_dict != None:
             ingame_tag = member_dict["Gametag"]
-            registered_clan = member_dict["Clan"]
             registered_date = member_dict["Date"]
             e.add_field(name="Game Tag ", value=str(ingame_tag), inline=True)
-            if registered_clan:
-                e.add_field(name="Last DB_Registered Clan ", value=str(registered_clan), inline=True)
             e.add_field(name="DB_Registration Date ", value=str(registered_date), inline=True)
         e.add_field(name="Created", value=str(member.created_at), inline=True)
         e.add_field(name="ID", value=str(member.id), inline=True)
@@ -297,7 +296,7 @@ class Moderation(commands.Cog,name="Moderation"):
         await ctx.trigger_typing()
         author = ctx.author
         guild = ctx.guild
-        list = LoadClans()
+        list = self.m_clans.LoadClans()
         total_clans = len(list)
         sections = int(total_clans/21)+1
         listembeds=[]
@@ -363,7 +362,7 @@ class Moderation(commands.Cog,name="Moderation"):
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name='vice-count')
     async def vice_(self,ctx):
-        clans = LoadClans()#list of dicts
+        clans = self.m_clans.LoadClans()  # list of dicts
         for i in range(11):
             tag = clans[i]["Tag"]
             club = await myclient.get_club(tag)
@@ -378,10 +377,10 @@ class Moderation(commands.Cog,name="Moderation"):
     async def _banlist(self,ctx):
         await check_banlist_api()
 
-    @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
-    @commands.command(name="giova",hidden=True)
-    async def _giova(self,ctx):
-        await giova()
+    #@commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
+    #@commands.command(name="giova",hidden=True)
+    #async def _giova(self,ctx):
+    #    await giova()
 
     @commands.has_any_role('DiscordDeveloper', 'Sub-Coordinator','Coordinator','QLASH')
     @commands.command(name="ban",brief="Bans a user",hidden=False,pass_context=True)

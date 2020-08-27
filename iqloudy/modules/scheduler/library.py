@@ -233,7 +233,8 @@ async def process_clan(message,gametag):
     if not validate_tag(gametag):
         await message.add_reaction('❓')
         return
-    clans = mongo_library.LoadClans()
+    m = mongo_library.MongoClans
+    clans = m.LoadClans()
     player = None
     try:
         player = await bot_instances.myclient.get_player(gametag)

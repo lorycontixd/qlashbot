@@ -1,26 +1,34 @@
 import discord
+import time
 from discord.ext import commands
 from discord.voice_client import VoiceClient
 import asyncio
 import bot_instances
 from modules.mongodb import library as mongo
+from collections import Counter
 
-    
 
 class VoiceSystem(commands.Cog,name="VoiceSystem"):
     """
     Class to deal with voice connections.
     """
     def __init__(self):
-        self.ids = bot_instances.voice_ids
-        self.channels = [bot_instances.bot.get_channel(i) for i in self.ids]
-        self.waitingroom = bot_instances.bot.get_channel(int(bot_instances.waitingroom))
+        self.m_voice =mongo.MongoVoiceSystem()
+        self.m_voicestats = mongo.MongoVoiceStats()
+        self.room_docs = self.m_voice.LoadRooms()
+        self.channel_ids = [int(item["ID"]) for item in self.room_docs]
+        self.channels = [bot_instances.bot.get_channel(item) for item in self.channel_ids]
+        print(self.channels)
+        self.channel_names = [item.name for item in self.channels]
         self.ch_commands = bot_instances.bot.get_channel(int(bot_instances.text_commands))
-        print("Available VoiceChannels: ",[i.name for i in self.channels])
+        self.waitingroom = bot_instances.bot.get_channel(int(bot_instances.waitingroom))
 
     @commands.command(name="connect",brief="Test command for Voice System")
     async def print_channel1(self,ctx,*channelname):
-        if ctx.channel != self.ch_commands:
+        #-- CHECKS --
+        author = ctx.message.author
+        role_sub = discord.utils.get(ctx.guild.roles, id=int(bot_instances.id_role_sub))
+        if ctx.channel != self.ch_commands and author.top_role < role_sub:
             await ctx.send("This command can only be called in "+self.ch_commands.mention)
             return
         channelname = " ".join(channelname[:])
@@ -31,10 +39,7 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
         if channel not in self.channels:
             await ctx.send("Invalid channel for connection: "+str(channelname))
             return
-
-        author = ctx.message.author
         voice_state = author.voice
-        
         if voice_state is None:
             await ctx.send("You must be in the waiting room to connect to a Voice Channel.")
             return
@@ -46,6 +51,7 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
         def check(m):
             return m.author == author and type(m.channel) == discord.DMChannel
         
+        #OPERATIONS
         await author.create_dm()
         if len(channel.members) == 0:
             message = """
@@ -60,19 +66,20 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
                 p = await bot_instances.bot.wait_for('message', check=check,timeout=60.0)
                 password = p.content
                 await author.move_to(channel)
-                mongo.register_voicechannel(str(author),channel.name,channel.id,password)
+                self.m_voice.register_voicechannel(str(author),channel.name,channel.id,password)
                 user_limit = channel.user_limit
                 if user_limit == 0:
                     user_limit = "No Limit"
                 accept_msg = "Hello "+author.name+", you successfully created a room:\n- Channel Name: "+channel.name+"\n- Channel Bitrate: "+str(channel.bitrate)+"\n- Password: "+str(password)+"\n- User Limit: "+str(user_limit)+"\n\nGive the password only to those players that you want in your voice room."
                 await author.dm_channel.send(accept_msg)
+                self.m_voicestats.add_room_counter(channel.name)
                 return
             except asyncio.TimeoutError:
                 await author.dm_channel.send('TimeoutError, you will be disconnected. 👎')
                 return
         else:
             #Get password from user, check if room exists in mLab and process data
-            mongo_channel=mongo.get_voicechannel(channel.id)
+            mongo_channel = self.m_voice.get_voicechannel(channel.id)
             if mongo_channel == None:
                 await ctx.send("An error has occured finding the channel. Please contact our staff.")
                 return
@@ -105,6 +112,7 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
         ch_msg = ctx.channel
         if ch_msg != self.ch_commands:
             await ctx.send("This command can only be called in "+self.ch_commands.mention)
+            return
         if author.voice == None:
             await ctx.send("You must be connected to a voice channel to call this command.")
             return
@@ -112,7 +120,7 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
         if voice_ch_id not in bot_instances.voice_ids:
             await ctx.send("Cannot change the bitrate of this VoiceChannel")
             return
-        ch_doc = mongo.get_voicechannel(voice_ch_id)
+        ch_doc = self.m_voice.get_voicechannel(voice_ch_id)
         if str(author) != str(ch_doc["CreatedBy"]):
             await ctx.send("You must be the room host to change the bitrate.")
             return
@@ -121,8 +129,31 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
             return
         ch = bot_instances.bot.get_channel(int(voice_ch_id))
         await ch.edit(bitrate=bit_rate)
+        self.m_voicestats.add_bitrate_counter(author.voice.channel.name)
         await ctx.send("Bitrate was set successfully to "+str(bit_rate))
 
+    @commands.command(name="request-channel",brief="Request a temporary VoiceChannel when all protected channels are full.",hidden=True)
+    async def requestchannel(self,ctx):
+        author = ctx.author
+        l = len(self.channels)
+        #isOccupied
+        rooms = dict((item.name,False) if len(item.members) == 0 else (item.name,True) for item in self.channels)
+
+        values = list(rooms.values())
+        if True in values:
+            x = Counter(values)
+            await ctx.send("There are "+str(x[False])+" free rooms. You cannot ask for a new one.")
+        else:
+            msg = await ctx.send("Your request has been taken into account. Please stand by.")
+            #await bot_instances.channel_moderators.send(bot_instances.role_mod.mention+"\nA protected room has been requested by user "+author.name+".")
+            category_protectedrooms = bot_instances.bot.get_channel(bot_instances.id_category_protectedrooms)
+            newchannel = await category_protectedrooms.create_voice_channel(name="Room "+str(l+1),reason="All protected rooms were taken.")
+            await newchannel.edit(sync_permissions=True)
+            await asyncio.sleep(2)
+            self.m_voice.register_voiceroom(name=newchannel.name, id=newchannel.id, type="Extra")
+            await msg.edit(content="A new VoiceRoom has been created.")
+            self.channels.append(newchannel)
+            
         
         
 

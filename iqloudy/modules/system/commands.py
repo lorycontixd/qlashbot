@@ -12,11 +12,13 @@ from modules.system import library as system_library, descriptions as system_des
 #*****************************************************************************************************************
 
 
-
 class System(commands.Cog,name="System"):
     def __init__(self,bot, db):
         self.bot = bot
         self.coll_membercount = db.QLASHBot_MemberCount
+        self.mongovoice = mongo_library.MongoVoiceSystem()
+        self.mongovoicestats = mongo_library.MongoVoiceStats()
+        self.mongostats = mongo_library.MongoVoiceStats()
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='shutdown',brief='Shutdowns the instance (developer-only)')
@@ -37,15 +39,15 @@ class System(commands.Cog,name="System"):
     async def welcome_(self,ctx):
         await system_library.welcome(self,ctx)
 
-    @commands.has_any_role('DiscordDeveloper')
-    @commands.command(name='qlash',brief='Displays some information about QLASH.')
-    async def qlash(self,ctx):
-        await qlash_(ctx)
-
     @commands.cooldown(1,60,commands.BucketType.channel)
     @commands.command(name='iqloudy-info',brief="(UTIL) Shows some details about the bot's development")
     async def iqloudy_info_(self,ctx):
         await system_library.iqloudy_info(self,ctx)
+
+    #@commands.has_any_role('DiscordDeveloper')
+    #@commands.command(name='qlash',brief='Displays some information about QLASH.')
+    #async def qlash(self,ctx):
+    #    await qlash_(ctx)
 
     #@commands.cooldown(1,60,commands.BucketType.channel,hidden=True)
     #@commands.command(name='iqloudy-stats',brief='(UTIL) Shows information about QLASH Bot')
@@ -66,7 +68,8 @@ class System(commands.Cog,name="System"):
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='database-view',brief='View registered QLASH clans..')
     async def view_database_(self,ctx):
-        await mongo_library.view_database(ctx)
+        m = mongo_library.MongoClans()
+        await m.view_database(ctx)
 
     @commands.has_any_role('DiscordDeveloper')
     @commands.command(name='commandlog-view',brief='View the logs of recorded commands',description=system_descriptions.desc_commandlog_view)
@@ -117,22 +120,50 @@ class System(commands.Cog,name="System"):
 #********************************* achievements *************************************
 
     @commands.has_any_role('DiscordDeveloper')
-    @commands.command(name='achievement-add')
+    @commands.command(name='achievement-add',hidden=True)
     async def achievement_add(self, ctx,*params):
+        return #TO BE WORKED ON
         parameters = " ".join(params[:])
         name = achievement_register_(parameters)
         await ctx.send("Achievement '"+str(name)+"' added to the database!")
 
     @commands.has_any_role('DiscordDeveloper')
-    @commands.command(name='achievemnt-removeall')
+    @commands.command(name='achievemnt-removeall',hidden=True)
     async def achievement_removeall(self,ctx):
+        return #TO BE WORKED ON
         achievement_removeall_(ctx)
         await ctx.send("All achievements were removed from the database")
 
     @commands.has_any_role('DiscordDeveloper')
-    @commands.command(name='login')
+    @commands.command(name='login',hidden=True)
     async def login(self,ctx):
+        return #TO BE WORKED ON
         await system_library.login(self,ctx)
+    
+    @commands.has_any_role('DiscordDeveloper')
+    @commands.command(name="voiceroom-add")
+    async def voiceroomadd(self,ctx,id,*roomname):
+        name = " ".join(roomname[:])
+        self.mongovoice.register_voiceroom(name,id)
+        await ctx.send("VoiceRoom has been added to the database:\n- Name: "+str(name)+"\n- ID: "+str(id))
+
+    @commands.has_any_role('DiscordDeveloper')
+    @commands.command(name="voiceroom-remove")
+    async def voiceroomremove(self,ctx,name_or_id):
+        self.mongovoice.delete_voiceroom(name_or_id)
+        await ctx.send("VoiceRoom "+str(name_or_id)+"has been removed from the database")
+
+    @commands.has_any_role('DiscordDeveloper')
+    @commands.command(name="test")
+    async def test(self,ctx):
+        self.mongovoicestats.initialize_document()
+        await ctx.send("Done")
+
+    @commands.has_any_role('DiscordDeveloper')
+    @commands.command(name="vieww")
+    async def v(self, ctx,*roomname):
+        name = " ".join(roomname[:])
+        self.mongostats.add_room_counter(name)
 
 #********************************* tournaments *************************************
 

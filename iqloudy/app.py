@@ -6,7 +6,7 @@ import pytz
 import random
 
 
-from modules.mongodb.library import register_commandlog,remove_voicechannel,get_voicechannel
+from modules.mongodb import library as mongo
 
 #import holidayapi
 
@@ -14,6 +14,7 @@ from datetime import datetime
 from discord.ext import commands
 import bot_commands, bot_events as events
 import bot_instances
+from modules.voice_system import library as voice
 
 @bot_instances.bot.event
 async def on_ready():
@@ -63,6 +64,13 @@ async def on_raw_reaction_add(payload):
     #await game1_reaction(payload)
 
 #Voice state change for VoiceSystem
+
+@bot_instances.bot.event
+async def on_guild_channel_create(channel):
+    if isinstance(channel,discord.VoiceChannel):
+        if channel.category_id == bot_instances.id_category_protectedrooms:
+            pass
+
 @bot_instances.bot.event
 async def on_voice_state_update(member,before,after):
     """
@@ -71,6 +79,8 @@ async def on_voice_state_update(member,before,after):
         - before (VoiceState) – The voice state prior to the changes.
         - after (VoiceState) – The voice state after to the changes.
     """
+    m_voice = mongo.MongoVoiceSystem()
+    voicesystem = voice.VoiceSystem()
     waitingroom = bot_instances.bot.get_channel(int(bot_instances.waitingroom))
     ch1 = bot_instances.bot.get_channel(int(bot_instances.voice_ch1))
     iqloudylogs = bot_instances.bot.get_channel(int(bot_instances.qlash_bot))
@@ -80,10 +90,10 @@ async def on_voice_state_update(member,before,after):
     if before.channel.id in bot_instances.voice_ids and before.channel!=waitingroom:
         if len(before.channel.members)==0:
             ch_id = before.channel.id
-            doc = get_voicechannel(ch_id)
+            doc = m_voice.get_voicechannel(ch_id)
             if doc == None:
                 return
-            remove_voicechannel(ch_id)
+            m_voice.remove_voicechannel(ch_id)
             await before.channel.edit(bitrate=64000)
             e = discord.Embed(title="VocalRoom has been deleted from the database: "+str(before.channel.name), color=discord.Color.dark_gold())
             e.set_author(name="QLASH Bot")
@@ -93,7 +103,14 @@ async def on_voice_state_update(member,before,after):
             e.add_field(name="Created At",value=str(doc["CreatedAt"]))
             e.set_footer(text="Created by Lore.")
             await iqloudylogs.send(embed=e)
-
+            
+            room = m_voice.get_room(before.channel.id)
+            print(room["Name"]," ",room["ID"]," ",room["Type"])
+            if room["Type"] == "Extra":
+                print(room["Name"]+" is extra. removing")
+                await before.channel.delete(reason="VoiceRoom Extra was cleared.")
+                m_voice.delete_voiceroom(before.channel.id)
+                voicesystem.channels.remove(before.channel)
 
 """
 #command events
@@ -107,6 +124,7 @@ async def on_command_error(ctx, error):
     time = nnow.strftime("%d/%m/%Y %H:%M:%S")
     reason = ''
     failed=True
+    m_comm = mongo.MongoCommandLogs
     if isinstance(error, commands.errors.CheckFailure):
         msg = await ctx.send('PermissionError: You do not have the permissions for this command 😥')
         reason = 'PermissionMissing'
@@ -134,11 +152,12 @@ async def on_command_error(ctx, error):
     #    #await ctx.send(error)
         reason = 'ExternalError'
     await ctx.send("Error: "+str(error))
-    register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
+    m_comm.register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
 """
 @bot_instances.bot.event
 async def on_command_completion(ctx):
+
     commandname = ctx.invoked_with
     author = ctx.message.author
     tz = pytz.timezone('Europe/Rome')
@@ -146,7 +165,7 @@ async def on_command_completion(ctx):
     time = nnow.strftime("%d/%m/%Y %H:%M:%S")
     reason = 'None'
     failed=False
-    register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
+    mongo.MongoCommandLogs().register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname)
 
 try:

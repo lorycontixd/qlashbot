@@ -4,7 +4,7 @@ import random
 import asyncio
 
 from bot_instances import *
-from modules.mongodb.library import *
+from modules.mongodb import library as mongo
 from dateutil import tz
 from datetime import datetime
 from discord.ext import commands
@@ -117,15 +117,15 @@ async def member_join_welcome(member:discord.Member):
 #JOIN new club role
 #async def on_member_update_role(before,after):
 #    if not check_equal_lists(before.roles,after.roles):
-#        list = LoadClans()
+#        list = mongo.MongoClans().LoadClans()
 #        clannames = [d["Name"] for d in list]
 #        for role in after.roles:
 #            if not role in before.roles:
 #                if role.name in clannames:
 #                    messages = ['We are delighted to have '+after.mention+' join us in '+role.name,'Hello '+role.name+'. Welcome to the team '+after.mention+'!','Hello '+role.name+'. We would like to welcome '+after.mention+' to the club.',"We're glad you are here, "+after.mention+"! "+role.name]
 #                    print(after.name+" was given the role "+role.name)
-#                    id = role.id
-#                    clan_doc = get_clan(str(role.name))
+#                    id = role.id  
+#                    clan_doc = mongo.MongoClans().get_clan(str(role.name))
 #                    roleID = clan_doc["RoleID"]
 #                    channelID = clan_doc["ChannelID"]
 #                    if int(roleID) == id:
@@ -303,11 +303,12 @@ async def bot_commands_gametag(message):
         return
     if not message.startswith(".save"):
         return
+    m_memb = mongo.MongoMembers()
     print("Received message from bot_commands channel")
     list = message.split(" ")
     tag = list[1]
     if validate_tag(tag):
-        register_member(message.author,tag)
+        m_memb.register_member(message.author,tag)
 
 
 #*******************************************   ON REACTION ADD   ******************************************

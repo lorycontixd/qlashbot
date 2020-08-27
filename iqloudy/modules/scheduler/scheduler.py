@@ -32,11 +32,11 @@ Example scheduler trigers:
 def add_default_tasks(scheduler):
     #scheduler.add_job(reg_member, id='reg_member', trigger='cron', hours=22)
     CEST = timezone('Europe/Rome')
-    scheduler.add_job(scheduler_library.check_banlist_api, id='check_banlist_api', trigger='cron',hour='22', minute='0')
+    scheduler.add_job(scheduler_library.check_banlist_api, id='check_banlist_cron', trigger='cron',hour='22', minute='0')
     scheduler.add_job(scheduler_library.hello_en,id="hello_en",trigger='cron',hour='10',minute='0')
     scheduler.add_job(scheduler_library.hello_it,id="hello_it",trigger='cron',hour='10',minute='0')
     scheduler.add_job(scheduler_library.reg_member,id='register-member',trigger='cron',hour='22',minute='0')
-    scheduler.add_job(scheduler_library.giova,id="daily-saint",trigger='cron',hour='10',minute='0')
+    #scheduler.add_job(scheduler_library.giova,id="daily-saint",trigger='cron',hour='10',minute='0')
     scheduler.add_job(scheduler_library.invite_bot_ch,id='invite',trigger='cron',hour='13',minute='0')
     scheduler.add_job(scheduler_library.reminder_art_open,id='art-open',trigger='cron',day='21',hour='9',minute='0')
     scheduler.add_job(scheduler_library.reminder_art_close,id='art-close',trigger='cron',day='30',hour='9',minute='0')

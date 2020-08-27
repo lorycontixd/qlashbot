@@ -149,6 +149,19 @@ qlash_ares = '#98VQUC8R'
 igtag_picoz = '#20VVVVYQ8'
 igtag_elgarzy = '#RC9PVRCJ'
 
+#roles
+id_role_mod = '434863392637976596'
+id_role_sub = '604761799505477635'
+id_role_coord = '509708853861023745'
+id_role_discorddev = '714785317709676574'
+id_role_clanleader = '464688953501679627'
+
+#role_mod = discord.utils.get(bot.guild.roles, id=int(id_role_mod))
+#role_sub = discord.utils.get(bot.guild.roles, id=int(id_role_sub))
+#role_coord = discord.utils.get(bot.guild.roles, id=int(id_role_coord))
+#role_discorddev = discord.utils.get(bot.guild.roles, id=int(id_role_discorddev))
+#role_clanleader = discord.utils.get(bot.guild.roles, id=int(id_role_clanleader))
+
 #discord channel IDs
 roles_assignment = '434850121134637056'
 bot_testing = '705823922402361437'
@@ -165,9 +178,15 @@ file_managing = '721658324327858236'
 testchannel = '723161066124607599'
 bot_developer_channel='720193411113680913'
 changelog_channel = '728165928939814952'
+moderators_channel = 446366424617844756
+
+channel_moderators = bot.get_channel(moderators_channel)
 
 #database directories
 qc_directory2 = './media/texts/qlash_brawlstars_clubs/'
+
+#CATEGORIES
+id_category_protectedrooms = 748098064870408263
 
 #VOICE CHANNELS
 text_commands = '748099480729026629'
