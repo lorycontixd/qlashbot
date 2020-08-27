@@ -18,7 +18,6 @@ class VoiceSystem(commands.Cog,name="VoiceSystem"):
         self.room_docs = self.m_voice.LoadRooms()
         self.channel_ids = [int(item["ID"]) for item in self.room_docs]
         self.channels = [bot_instances.bot.get_channel(item) for item in self.channel_ids]
-        print(self.channels)
         self.channel_names = [item.name for item in self.channels]
         self.ch_commands = bot_instances.bot.get_channel(int(bot_instances.text_commands))
         self.waitingroom = bot_instances.bot.get_channel(int(bot_instances.waitingroom))
