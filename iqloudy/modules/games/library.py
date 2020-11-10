@@ -1,3 +1,5 @@
+import bot_utilities
+import random
 
 #***************** treasure_hunt *****************
 async def game1_reaction(payload):
@@ -41,3 +43,36 @@ async def game1_nickname(before,after):
                 role2 = discord.utils.get(after.guild.roles, name="step2")
                 await after.dm_channel.send("Well done, you passed step 2!")
                 await after.add_roles(role2)
+
+
+class Games():
+    def __init__(self):
+        pass
+
+    async def hangman(self,ctx):
+        letters = []
+        animals = bot_utilities.read_animal_text("/iqloudy/modules/games/animals.txt")
+        a_chosen = random.choice(animals)
+        a_len = len(a_chosen)
+
+        author = ctx.author
+        channel = ctx.channel
+        await ctx.send("I picked a random animal name. You must try to guess it, by guessing the letters of the word first.\nYou have 30 seconds for each letter, or the game will close automatically.\nYou can write cancel anytime to close the game.")
+        
+        letters = ["_" for letter in a_chosen]
+        assert len(letters) == a_len
+        
+        def check(m):
+            return m.author == author
+        if l>5:
+            first_letter = random.randint(1,a_len) #give 1 letter to player as hint
+            letters[first_letter] = a_chosen[first_letter]
+        first_message = ','.join(str(item) for item in letters)
+        msg = await bot_instances.bot.wait_for('message', check=check, timeout=60.0)
+        content = msg.content
+        botmessage = "Your starting word is:\n"+str(first_message)
+        await ctx.send(botmessage)
+        while content.lower()!="cancel":
+            break
+
+

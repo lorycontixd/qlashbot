@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+from modules.games import library as games
 from modules.fun import library as fun_library, descriptions as fun_descriptions
 
 #*****************************************************************************************************************
@@ -11,6 +12,7 @@ from modules.fun import library as fun_library, descriptions as fun_descriptions
 class Fun(commands.Cog, name="Fun"):
     def __init__(self):
         self.is_flipped = False
+        self.gameclass = games.Games()
 
     @commands.cooldown(1,30,commands.BucketType.channel)
     @commands.command(name='bs-puns',brief='Post a random and very funny pun about Brawl Stars.',description=fun_descriptions.desc_bs_puns)
@@ -46,3 +48,12 @@ class Fun(commands.Cog, name="Fun"):
     @commands.command(name='table-status',brief="Check table's status",desciption=fun_descriptions.desc_tstatus)
     async def table_status_(self,ctx):
         await fun_library.table_status(self, ctx)
+
+    @commands.cooldown(1, 60, commands.BucketType.channel)
+    @commands.command(name='iqloudy-info', brief="Shows some details about the bot's development")
+    async def iqloudy_info_(self, ctx):
+        await fun_library.iqloudy_info(self, ctx)
+
+    @commands.command(name="play-hangman",brief="Play a game of hangman.")
+    async def playhangman(self,ctx):
+        await self.gameclass.hangman(ctx) 

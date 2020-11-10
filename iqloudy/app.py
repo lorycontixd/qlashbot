@@ -5,7 +5,6 @@ import schedule
 import pytz
 import random
 
-
 from modules.mongodb import library as mongo
 
 #import holidayapi

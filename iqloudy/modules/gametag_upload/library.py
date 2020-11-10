@@ -43,7 +43,7 @@ def _add_file_lines(f, clubs, print_clubs = True, print_members = False, print_f
             f.write("\n{CLUB} members:\n".format(CLUB = k))
             for members in clubs[k]:
                 gametag, playerName = members
-                f.write("{GAMETAG} {PLAYER_NAME}\n".format(GAMETAG = gametag, PLAYER_NAME = playerName))
+                f.write("{GAMETAG} {PLAYER_NAME}\n".format(GAMETAG = gametag.upper(), PLAYER_NAME = playerName))
 
 def _check_missing_element(function, htmlPage, playerID):
     found = False

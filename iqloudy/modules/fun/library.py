@@ -42,3 +42,23 @@ async def table_status(self,ctx):
     else:
         response = 'Table is unflipped'
         await ctx.channel.send(response)
+
+
+async def iqloudy_info(self, ctx):
+    role = discord.utils.get(ctx.guild.roles, name="DiscordDeveloper")
+    response = "This bot was written in the language of Python by a few users "+role.mention + \
+        " with a passion for informatics and programming. \nThe core library used is the API offered by Discord called discordpy which grants access to an enormous amount of functions and events."
+    response2 = "The brawlstats API was also used to gather information from the game, which allows to access a few but useful pieces of information. The bot commands can be viewed by typing ^help and navigating using groups (mod,util,sys and fun)"
+    await ctx.send(response)
+    await ctx.send(response2)
+    e = discord.Embed(title="Bot info: " +str(self.bot.user.name), color=0xe392ff)
+    e.set_author(name="QLASH Bot")
+    e.add_field(name="Name", value=self.bot.user.mention, inline=True)
+    e.add_field(name="ID", value=str(self.bot.user.id), inline=True)
+    e.add_field(name="Is a Bot", value=str(self.bot.user.bot), inline=True)
+    e.add_field(name="Creation Date", value=str(
+        self.bot.user.created_at), inline=True)
+    e.add_field(name="Latency", value=str(self.bot.latency), inline=True)
+    e.add_field(name="Language", value=str(self.bot.user.locale), inline=True)
+    e.set_footer(text="Bot created by "+role.mention)
+    await ctx.send(embed=e)

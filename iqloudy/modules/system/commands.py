@@ -39,10 +39,6 @@ class System(commands.Cog,name="System"):
     async def welcome_(self,ctx):
         await system_library.welcome(self,ctx)
 
-    @commands.cooldown(1,60,commands.BucketType.channel)
-    @commands.command(name='iqloudy-info',brief="(UTIL) Shows some details about the bot's development")
-    async def iqloudy_info_(self,ctx):
-        await system_library.iqloudy_info(self,ctx)
 
     #@commands.has_any_role('DiscordDeveloper')
     #@commands.command(name='qlash',brief='Displays some information about QLASH.')
