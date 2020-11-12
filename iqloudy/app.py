@@ -18,7 +18,7 @@ from modules.voice_system import library as voice
 async def on_ready():
     print("on ready called")
     await events.on_ready_()
-    db = bot_instances.mongoclient["QlashBot"]
+    db = bot_instances.mongoclient.QlashBot
     bot = bot_instances.bot
     qlash_bs = bot_instances.qlash_bs
     await bot_commands.init(bot,db,qlash_bs)
@@ -102,7 +102,7 @@ async def on_voice_state_update(member,before,after):
             e.add_field(name="Created At",value=str(doc["CreatedAt"]))
             e.set_footer(text="Created by Lore.")
             await iqloudylogs.send(embed=e)
-            
+
             room = m_voice.get_room(before.channel.id)
             print(room["Name"]," ",room["ID"]," ",room["Type"])
             if room["Type"] == "Extra":
@@ -145,7 +145,7 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.DisabledCommand):
         await ctx.send('CommandError: Command has been disabled')
         return
-    
+
     else:
         await ctx.send('ExternalError!')
     #    #await ctx.send(error)

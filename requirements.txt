@@ -14,7 +14,7 @@ pytz
 pyowm
 python-dateutil
 python-dotenv
-pymongo
+pymongo[tls]
 APScheduler
 gspread
 matplotlib

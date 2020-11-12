@@ -37,8 +37,9 @@ SEED_DATA = [
 
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-uri = 'mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm'
+#uri = 'mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm'
 
+uri = 'mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority'
 ###############################################################################
 # main
 ###############################################################################
@@ -48,6 +49,7 @@ def main(args):
     client = pymongo.MongoClient(uri, retryWrites=False)
 
     db = client.get_default_database()
+    print(client.QlashBot)
 
     # First we'll add a few songs. Nothing is required to create the songs
     # collection; it is created automatically when we insert.
