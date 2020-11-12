@@ -2,6 +2,7 @@
 from pprint import pprint
 from datetime import date,datetime
 import re
+import pymongo
 import bot_instances
 
 # coll_registered = db.QLASHBot_Registered
@@ -13,6 +14,9 @@ import bot_instances
 
 class MongoDatabase():
     def __init__(self):
+        client = pymongo.MongoClient("mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
+        self.db = client.QlashBot
+        """
         self.db = bot_instances.mongoclient.heroku_q2z34tjm
         self.coll_registered = self.db.QLASHBot_Registered
         self.coll_commandlogs = self.db.QLASHBot_CommandLogs
@@ -22,6 +26,13 @@ class MongoDatabase():
         self.coll_voicechannels = self.db.QLASHBot_VoiceChannels
         self.coll_statistics = self.db.QLASHBot_Statistics
         self.coll_voicerooms = self.db.QLASHBot_VoiceRooms
+        """
+        self.coll_clans = self.db["Clans"]
+        self.coll_statistics = self.db["Statistics"]
+        self.coll_players = self.db["Players"]
+        self.coll_voicesystem = self.db["VoiceSystem"]
+        self.coll_commandlogs = self.db["CommandLogs"]
+
 
 #*****************************************************************************************************************
 #********************************************       MEMBERS     **************************************************
@@ -31,27 +42,27 @@ class MongoMembers(MongoDatabase):
     def __init__(self):
         super().__init__()
 
-    def register_member(self,member,gametag):
+    def register_member(self,member,gametag,day = date.today()):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_registered = db.QLASHBot_Registered
         mydict = {
             "Discord" : str(member),
             "DiscordID" : int(member.id),
             "Gametag" : gametag,
-            "Date" : str(date.today())
+            "Date" : str(day)
         }
-        self.coll_registered.insert_one(mydict)
+        self.coll_players.insert_one(mydict)
 
     def check_member(self,discord):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_registered = db.QLASHBot_Registered
-        document = self.coll_registered.find_one({"Discord":{"$eq":str(discord)}})
+        document = self.coll_players.find_one({"Discord":{"$eq":str(discord)}})
         return document #type <dict>
 
     def remove_member(self,discord):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_registered = db.QLASHBot_Registered
-        self.coll_registered.delete_one({"Discord":{"$eq":str(discord)}})
+        self.coll_players.delete_one({"Discord":{"$eq":str(discord)}})
 
 #*****************************************************************************************************************
 #*********************************************       CLANS     ***************************************************
@@ -65,14 +76,14 @@ class MongoClans(MongoDatabase):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_qlashclans = db.QLASHBot_Clans
         name = " ".join(nname[:])
-        document = self.coll_qlashclans.find_one({"Name":{"$eq":str(name)}})
+        document = self.coll_clans.find_one({"Name":{"$eq":str(name)}})
         return document #type <dict>
 
     def LoadClans(self):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_qlashclans = db.QLASHBot_Clans
         list = []
-        for document in self.coll_qlashclans.find():
+        for document in self.coll_clans.find():
             list.append(document)
         return list #list of dicts ("Name","Tag","RoleID","ChannelID")
 
@@ -85,12 +96,12 @@ class MongoClans(MongoDatabase):
             "RoleID": str(roleID),
             "ChannelID": str(channelID)
         }
-        self.coll_qlashclans.insert_one(mydict)
+        self.coll_clans.insert_one(mydict)
 
     def remove_clan(self,name):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_qlashclans = db.QLASHBot_Clans
-        result = self.coll_qlashclans.delete_one({"Name":{"$eq":str(name)}})
+        result = self.coll_clans.delete_one({"Name":{"$eq":str(name)}})
 
 #view all clans
     async def view_database(self,ctx):
@@ -182,30 +193,33 @@ class MongoVoiceSystem(MongoDatabase):
             "ID" : id,
             "Type" : type
         }
-        self.coll_voicerooms.insert_one(mydict)
+        self.coll_voicesystem.insert_one(mydict)
     
     def delete_voiceroom(self,name_or_id):
         if str(name_or_id[0]).isdigit(): #it's an ID
-            self.coll_voicerooms.delete_one({"ID": {"$eq": name_or_id}})
+            self.coll_voicesystem.delete_one({"ID": {"$eq": name_or_id}})
         else:
-            self.coll_voicerooms.delete_one({"Name": {"$eq": name_or_id}})
+            self.coll_voicesystem.delete_one({"Name": {"$eq": name_or_id}})
     
     def LoadRooms(self):
         list = []
-        for document in self.coll_voicerooms.find():
+        for document in self.coll_voicesystem.find():
             list.append(document)
         return list
     
     def get_room(self,name_or_id):
         document = None
         if str(name_or_id[0]).isdigit():  # it's an ID
-            document = self.coll_voicerooms.find_one({"ID": {"$eq": name_or_id}})
+            document = self.coll_voicesystem.find_one(
+                {"ID": {"$eq": name_or_id}})
         else:
-            document = self.coll_voicerooms.find_one({"Name": {"$eq": name_or_id}})
+            document = self.coll_voicesystem.find_one(
+                {"Name": {"$eq": name_or_id}})
         return document
     
     def get_usages(self,name):
-        document = self.coll_voicerooms.find_one({"Name": {"$eq": name_or_id}})
+        document = self.coll_voicesystem.find_one(
+            {"Name": {"$eq": name_or_id}})
         return document
 
     #-----------  VOICE CHANNELS  ----------------
@@ -222,19 +236,19 @@ class MongoVoiceSystem(MongoDatabase):
             "CreatedAt" : datetime.now()
         }
 
-        self.coll_voicechannels.insert_one(mydict)
+        self.coll_voicesystem.insert_one(mydict)
 
     def get_voicechannel(self,ch_id):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_voicechannels = db.QLASHBot_VoiceChannels
-        document = self.coll_voicechannels.find_one({"ID": {"$eq": ch_id}})
+        document = self.coll_voicesystem.find_one({"ID": {"$eq": ch_id}})
         return document  # type <dict>
 
 
     def remove_voicechannel(self,ch_id):
         #db = bot_instances.mongoclient.heroku_q2z34tjm
         #coll_voicechannels = db.QLASHBot_VoiceChannels
-        self.coll_voicechannels.delete_one({"ID": {"$eq": ch_id}})
+        self.coll_voicesystem.delete_one({"ID": {"$eq": ch_id}})
 
 #*****************************************************************************************************************
 #******************************************        STATISTICS      ***********************************************
@@ -246,6 +260,7 @@ class MongoStats(MongoDatabase):
     
     def reset_document(self):
         pass
+    
     
 class MongoVoiceStats(MongoStats):
     def __init__(self):
