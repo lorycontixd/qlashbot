@@ -120,7 +120,7 @@ async def reddit_webhook():
 
 async def reg_member():
     ch = bot_instances.bot.get_channel(int(bot_instances.bot_developer_channel))
-    db = bot_instances.mongoclient.heroku_q2z34tjm
+    db = bot_instances.mongoclient.QlashBot
     coll_membercount = db.QLASHBot_MemberCount
     g = ch.guild
     membercount = g.member_count
@@ -233,7 +233,7 @@ async def process_clan(message,gametag):
     if not validate_tag(gametag):
         await message.add_reaction('❓')
         return
-    m = mongo_library.MongoClans
+    m = mongo_library.MongoClans()
     clans = m.LoadClans()
     player = None
     try:

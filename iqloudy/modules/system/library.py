@@ -2,14 +2,20 @@
 import discord
 import schedule
 import time
+import ipapi
+import pytz
+import asyncio
 import calendar
 from matplotlib import pyplot as plt
 from datetime import date
 from datetime import datetime
-from modules.mongodb.library import *
+import modules.mongodb.library as mongo 
 from syncer import sync
+import bot_instances
 
-
+db = mongo.MongoDatabase()
+memberdb = mongo.MongoMembers()
+_clans = mongo.MongoClans()
 #**************************  database interaction  ********************************
 
 async def addsingle(self,ctx,coll_membercount,date,member):
@@ -17,7 +23,7 @@ async def addsingle(self,ctx,coll_membercount,date,member):
         "Date":str(date),
         "Members":int(member)
     }
-    coll_membercount.insert_one(mydict)
+    db.coll_membercount.insert_one(mydict)
     msg = await ctx.send("Member count added to the database")
 
 async def record(self,ctx,coll_membercount):
@@ -28,11 +34,11 @@ async def record(self,ctx,coll_membercount):
         "Date":str(today),
         "Members":int(membercount)
     }
-    coll_membercount.insert_one(mydict)
+    db.coll_membercount.insert_one(mydict)
     msg = await ctx.send("Registered today's member count")
 
 async def removeall(self,ctx,coll_membercount):
-    coll_membercount.delete_many({})
+    db.coll_membercount.delete_many({})
     msg = await ctx.send("Cleared!")
 
 async def analyze(self,ctx,coll_membercount):
@@ -42,7 +48,7 @@ async def analyze(self,ctx,coll_membercount):
     mydate = datetime.now()
     month = mydate.strftime("%B")
     year = mydate.strftime("%Y")
-    for document in coll_membercount.find():
+    for document in db.coll_membercount.find():
         date = str(document["Date"])
         mcount = int(document["Members"])
         date = str(date[-2:])
@@ -67,15 +73,17 @@ async def get_audit_logs(self, ctx,member:discord.Member):
     await ctx.send("First Audit Log entry for user"+str(member)+"\n"+str([0]))
 
 async def commandlog_view(self,ctx,limit):
+    clog = mongo.MongoCommandLogs()
     response = "``` \n"
-    list = view_commandlog(limit)
+    list = clog.view_commandlog(limit)
     for item in list:
         response+="User: "+str(item["User"])+" Time: "+str(item["Time"])+" Command: "+str(item["Command"])+" Failed: "+str(item["Failed"])+" Reason: "+str(item["Reason"])+"\n"
     response+="```"
     await ctx.send(response)
 
 async def commandlog_clear(self,ctx):
-    delete_commandlogs()
+    clog = mongo.MongoCommandLogs()
+    clog.delete_commandlogs()
     await ctx.send("Command Log File cleared!")
 
 async def welcome(self,ctx):
@@ -191,14 +199,14 @@ async def set(self,ctx,player:discord.Member,gametag):
     membergamename = ''
     rolename = ''
     foundRole = False
-    list = LoadClans()
+    list = _clans.LoadClans()
     for i in range(len(list)): #cycle through clans
         nname = str(list[i]["Name"])
         role = discord.utils.get(player.guild.roles, name=nname)
         if role in player.roles and role.name!="QLASH Girl":
             await player.remove_roles(role)
         tag = str(list[i]["Tag"])
-        club = await myclient.get_club(tag)
+        club = await bot_instances.myclient.get_club(tag)
         for member in club.members:
             if member.tag == gametag:
                 foundRole = True
@@ -217,15 +225,15 @@ async def set(self,ctx,player:discord.Member,gametag):
     if not clanname:
         clanname = "None"
 
-    member_dict = check_member(player)
+    member_dict = memberdb.check_member(player)
     if member_dict == None:
         print("member_dict None")
-        register_member(str(player),str(gametag),clanname,str(dt_string))
+        memberdb.register_member(str(player),str(gametag),clanname,str(dt_string))
         print("Registered "+str(player)+" to database ("+str(gametag)+")")
     else:
-        remove_member(str(player),str(gametag))
+        memberdb.remove_member(str(player),str(gametag))
         print("Already registered")
-        register_member(str(player),str(gametag),clanname,str(dt_string))
+        memberdb.register_member(str(player),str(gametag),clanname,str(dt_string))
 
     if foundRole==True:
         await mess.add_reaction('✅')
@@ -243,7 +251,7 @@ async def set(self,ctx,player:discord.Member,gametag):
 #---- SEARCH MEMBERS (SEARCH FOR INFORMATION OF A SPECIFIC MEMBER INSIDE A CLAN (give clantag))
 async def search_member(self,ctx,name,clubtag):
     await ctx.send("Getting member info: ")
-    club = await myclient.get_club(clubtag)
+    club = await bot_instances.myclient.get_club(clubtag)
     for member in club.members:
         if name in member.name:
             e=discord.Embed(title="Clan Member: "+str(member), description="------------------------------------------------", color=0x53d6fd)
@@ -257,7 +265,7 @@ async def search_member(self,ctx,name,clubtag):
 async def qlash_trophies(self,ctx): #all qlash clans with requires trophies
     await ctx.send("Gathering QLASH Clans information, please wait a few seconds...")
     await ctx.trigger_typing()
-    list = LoadClans
+    list = _clans.LoadClans()
     e=discord.Embed(title="List of all registered QLASH Clans", description="------------------------------------------------", color=0xffb43e)
     e2=discord.Embed(color=0xffb43e)
     e.set_author(name="QLASH Bot")
@@ -278,7 +286,7 @@ async def clan_add(self,ctx,roleID,channelID,tag,*cname):
         await ctx.send("Invalid Argument "+str(tag)+". Please add # in front!" )
         return
     clanname = " ".join(cname[:])
-    register_clan(roleID,channelID,tag,clanname) #frmo mongodb.py
+    _clans.register_clan(roleID,channelID,tag,clanname) #frmo mongodb.py
     await ctx.send("Added QLASH clan: "+clanname+" ("+tag+") to the database.")
     return
 
@@ -286,7 +294,7 @@ async def clan_remove(self,ctx,*cname):
     if not await Check(ctx,str(ctx.message.author)):
         return
     clanname = " ".join(cname[:])
-    remove_clan(clanname) #from mongodb.py
+    _clans.remove_clan(clanname) #from mongodb.py
     await ctx.send("Removed clan "+clanname+" from the database.")
 
 async def giverole(self,ctx,member: discord.Member , *rolename):
@@ -370,7 +378,7 @@ async def bot_info(self,ctx):
     await ctx.send(response2)
 
 async def member_info(self,ctx,member:discord.Member):
-    member_dict = check_member(member)
+    member_dict = memberdb.check_member(member)
     e=discord.Embed(title="Member info: "+str(member), description=str(member.mention), color=0x74a7ff)
     e.set_author(name="QLASH Bot")
     if member_dict != None:
