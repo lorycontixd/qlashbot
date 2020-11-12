@@ -14,8 +14,8 @@ import bot_instances
 
 class MongoDatabase():
     def __init__(self):
-        client = pymongo.MongoClient("mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
-        self.db = client.QlashBot
+        #client = pymongo.MongoClient("mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
+        self.db = bot_instances.mongoclient.QlashBot
         """
         self.db = bot_instances.mongoclient.heroku_q2z34tjm
         self.coll_registered = self.db.QLASHBot_Registered
@@ -157,7 +157,7 @@ class MongoCommandLogs(MongoDatabase):
 #*****************************************************************************************************************
 #******************************************       ACHIEVEMENTS     ***********************************************
 #*****************************************************************************************************************
-
+"""
 def achievement_register_(parameters): #name,description,value
     db = bot_instances.mongoclient.heroku_q2z34tjm
     coll_achievements = db.QLASHBot_Achievements
@@ -177,7 +177,7 @@ def achievement_removeall_(ctx):
     db = bot_instances.mongoclient.heroku_q2z34tjm
     coll_achievements = db.QLASHBot_Achievements
     coll_achievements.delete_many({})
-
+"""
 #*****************************************************************************************************************
 #******************************************       VOICE SYSTEM     ***********************************************
 #*****************************************************************************************************************
@@ -261,7 +261,7 @@ class MongoStats(MongoDatabase):
     def reset_document(self):
         pass
     
-    
+
 class MongoVoiceStats(MongoStats):
     def __init__(self):
         super().__init__()

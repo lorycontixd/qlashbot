@@ -2,6 +2,7 @@
 import os
 import discord
 import json
+import pymongo
 import brawlstats
 import cloudinary
 import cloudinary.uploader
@@ -102,6 +103,7 @@ myclient = None
 
 if myclient is None:
     myclient = brawlstats.Client(BS_TOKEN,is_async=True,debug=True,session=session,connector=connector) #BRAWLSTATS
+    print("defined brawlclient: ",myclient)
 
 bot = None
 
@@ -112,11 +114,14 @@ I hope you have a pleasant stay in the discord server! 🤩😁 """
 
 if bot is None:
     bot = commands.Bot(command_prefix='^', description = bot_description) #DISCORD
+    print("defined bot: ",bot)
 
 mongoclient = None
 
 if mongoclient is None:
-    mongoclient = MongoClient('mongodb://heroku_q2z34tjm:bn6uqg4ufjontd6s5snbiuvh3l@ds145486.mlab.com:45486/heroku_q2z34tjm',retryWrites=False) #MONGODB
+    mongoclient = pymongo.MongoClient(
+        "mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
+    print("defined mongoclient: ",mongoclient)
 
 apscheduler = None
 if apscheduler is None:

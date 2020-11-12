@@ -17,6 +17,7 @@ from modules.voice_system import library as voice
 
 @bot_instances.bot.event
 async def on_ready():
+    print("on ready called")
     await events.on_ready_()
     db = bot_instances.mongoclient.heroku_q2z34tjm
     bot = bot_instances.bot
@@ -156,7 +157,6 @@ async def on_command_error(ctx, error):
 """
 @bot_instances.bot.event
 async def on_command_completion(ctx):
-
     commandname = ctx.invoked_with
     author = ctx.message.author
     tz = pytz.timezone('Europe/Rome')
@@ -168,6 +168,7 @@ async def on_command_completion(ctx):
     #CommandLogs(ctx,commandname)
 
 try:
+    print("launching...")
     bot_instances.bot.run(bot_instances.DISCORD_TOKEN)
 except discord.errors.LoginFailure as e:
     print("Login unsuccessful!")
