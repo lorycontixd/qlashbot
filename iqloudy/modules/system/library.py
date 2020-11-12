@@ -615,7 +615,7 @@ def check_in_dict(dict,name):
 async def get_tournament_members(self,ctx,tournament_rolee):
     tournament_role = discord.utils.get(ctx.guild.roles, name=tournament_rolee)
     mydict = {} #
-    list = LoadClans()
+    list = _clans.LoadClans()
     clannames = [d["Name"] for d in list]
     for member in tournament_role.members:
         for role in member.roles:
@@ -644,5 +644,5 @@ async def get_tournament_members(self,ctx,tournament_rolee):
         await ctx.send(embed=emb)
 
 async def get_member_count(self,ctx):
-    guild = bot.get_guild(int(qlash_bs_id))
+    guild = bot_instances.bot.get_guild(int(bot_instances.qlash_bs_id))
     return guild.member_count

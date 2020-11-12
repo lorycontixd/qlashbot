@@ -2,6 +2,7 @@ import discord
 import pytz
 import random
 import asyncio
+import apscheduler
 
 from bot_instances import *
 from modules.mongodb import library as mongo
@@ -12,11 +13,12 @@ from discord.ext.commands import Bot,cooldown
 from discord.voice_client import VoiceClient
 from modules.verification.library import check_equal_lists,validate_tag
 from modules.gametag_upload.library import gametags_process
+import modules.scheduler.library as scheduler
 
 #*******************************************   ON READY   ************************************************
 
 async def on_ready_():
-    scheduler.add_default_tasks(apscheduler)
+    #scheduler.add_default_tasks(apscheduler)
     print('--------------------------')
     print('Logged in as: ',bot.user)
     print('Bot ID: ',bot.user.id)

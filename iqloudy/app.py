@@ -4,7 +4,6 @@ import os
 import schedule
 import pytz
 import random
-
 from modules.mongodb import library as mongo
 
 #import holidayapi
@@ -19,7 +18,7 @@ from modules.voice_system import library as voice
 async def on_ready():
     print("on ready called")
     await events.on_ready_()
-    db = bot_instances.mongoclient.heroku_q2z34tjm
+    db = bot_instances.mongoclient["QlashBot"]
     bot = bot_instances.bot
     qlash_bs = bot_instances.qlash_bs
     await bot_commands.init(bot,db,qlash_bs)
@@ -124,7 +123,7 @@ async def on_command_error(ctx, error):
     time = nnow.strftime("%d/%m/%Y %H:%M:%S")
     reason = ''
     failed=True
-    m_comm = mongo.MongoCommandLogs
+    m_comm = mongo.MongoCommandLogs()
     if isinstance(error, commands.errors.CheckFailure):
         msg = await ctx.send('PermissionError: You do not have the permissions for this command 😥')
         reason = 'PermissionMissing'
@@ -155,6 +154,7 @@ async def on_command_error(ctx, error):
     m_comm.register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
 """
+
 @bot_instances.bot.event
 async def on_command_completion(ctx):
     commandname = ctx.invoked_with
@@ -170,5 +170,7 @@ async def on_command_completion(ctx):
 try:
     print("launching...")
     bot_instances.bot.run(bot_instances.DISCORD_TOKEN)
+    print("done")
 except discord.errors.LoginFailure as e:
     print("Login unsuccessful!")
+    print(e)
