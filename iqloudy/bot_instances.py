@@ -120,7 +120,7 @@ mongoclient = None
 
 if mongoclient is None:
     mongoclient = pymongo.MongoClient(
-        "mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
+        "mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority",ssl=True)
     print("defined mongoclient: ",mongoclient)
 
 apscheduler = None
