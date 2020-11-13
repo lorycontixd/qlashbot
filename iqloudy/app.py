@@ -7,12 +7,15 @@ import random
 from modules.mongodb import library as mongo
 
 #import holidayapi
-
 from datetime import datetime
 from discord.ext import commands
 import bot_commands, bot_events as events
 import bot_instances
 from modules.voice_system import library as voice
+
+@bot_instances.bot.event
+async def on_connect():
+    print("Bot has connected!")
 
 @bot_instances.bot.event
 async def on_ready():
@@ -153,8 +156,8 @@ async def on_command_error(ctx, error):
     await ctx.send("Error: "+str(error))
     m_comm.register_commandlog(str(author),str(commandname),str(time),str(failed),reason)
     #CommandLogs(ctx,commandname+'(failed: '+reason+')')
-"""
 
+"""
 @bot_instances.bot.event
 async def on_command_completion(ctx):
     commandname = ctx.invoked_with

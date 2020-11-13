@@ -1,4 +1,4 @@
-#tournament count file
+
 from pprint import pprint
 from datetime import date,datetime
 import re
@@ -14,9 +14,9 @@ import bot_instances
 
 class MongoDatabase():
     def __init__(self):
-        #client = pymongo.MongoClient("mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
-        self.db = bot_instances.mongoclient.QlashBot
         """
+        #client = pymongo.MongoClient("mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
+        
         self.db = bot_instances.mongoclient.QlashBot
         self.coll_registered = self.db.QLASHBot_Registered
         self.coll_commandlogs = self.db.QLASHBot_CommandLogs
@@ -27,12 +27,12 @@ class MongoDatabase():
         self.coll_statistics = self.db.QLASHBot_Statistics
         self.coll_voicerooms = self.db.QLASHBot_VoiceRooms
         """
+        self.db = bot_instances.mongoclient.QlashBot
         self.coll_clans = self.db["Clans"]
         self.coll_statistics = self.db["Statistics"]
         self.coll_players = self.db["Players"]
         self.coll_voicesystem = self.db["VoiceSystem"]
         self.coll_commandlogs = self.db["CommandLogs"]
-
 
 #*****************************************************************************************************************
 #********************************************       MEMBERS     **************************************************
@@ -157,7 +157,8 @@ class MongoCommandLogs(MongoDatabase):
 #*****************************************************************************************************************
 #******************************************       ACHIEVEMENTS     ***********************************************
 #*****************************************************************************************************************
-"""
+
+
 def achievement_register_(parameters): #name,description,value
     db = bot_instances.mongoclient.QlashBot
     coll_achievements = db.QLASHBot_Achievements
@@ -177,7 +178,8 @@ def achievement_removeall_(ctx):
     db = bot_instances.mongoclient.QlashBot
     coll_achievements = db.QLASHBot_Achievements
     coll_achievements.delete_many({})
-"""
+
+
 #*****************************************************************************************************************
 #******************************************       VOICE SYSTEM     ***********************************************
 #*****************************************************************************************************************

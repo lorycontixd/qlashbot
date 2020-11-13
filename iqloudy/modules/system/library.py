@@ -16,6 +16,7 @@ import bot_instances
 db = mongo.MongoDatabase()
 memberdb = mongo.MongoMembers()
 _clans = mongo.MongoClans()
+
 #**************************  database interaction  ********************************
 
 async def addsingle(self,ctx,coll_membercount,date,member):
@@ -184,6 +185,8 @@ def GetClanTag(df,name):
             return str(df.iloc[i][1])
     print("Not Found")
     return
+
+
 
 #---- SET FUNCTION (GIVE ROLE TO MEMBERS FOR CURRENT CLAN)
 async def set(self,ctx,player:discord.Member,gametag):

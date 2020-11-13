@@ -119,6 +119,7 @@ if bot is None:
 mongoclient = None
 
 if mongoclient is None:
+    #pass
     mongoclient = pymongo.MongoClient(
         "mongodb+srv://lorenzoconti2:Lowzz.12@cluster0.li0yy.mongodb.net/QlashBot?retryWrites=true&w=majority")
     print("defined mongoclient: ",mongoclient)
