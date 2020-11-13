@@ -36,7 +36,7 @@ async def record(self,ctx,coll_membercount):
         "Members":int(membercount)
     }
     db.coll_membercount.insert_one(mydict)
-    msg = await ctx.send("Registered today's member count")
+    msg = await ctx.send("Registered today's member count") 
 
 async def removeall(self,ctx,coll_membercount):
     db.coll_membercount.delete_many({})
